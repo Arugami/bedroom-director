@@ -3,8 +3,31 @@
 ## Prerequisites
 - GitHub repository with the code
 - Cloudflare account
+- Wrangler CLI (optional, for direct deployments)
 
-## Deployment Steps
+## Quick Deploy with Wrangler CLI (Recommended)
+
+This method bypasses Git and deploys directly from your local build:
+
+```bash
+# 1. Build the site
+npm run build
+
+# 2. Deploy to Cloudflare Pages
+wrangler pages deploy out --project-name=bedroom-director
+```
+
+**Advantages:**
+- ✅ Instant deployment (no waiting for Git triggers)
+- ✅ Bypasses commit hash issues
+- ✅ Full control over what gets deployed
+- ✅ Faster iteration during development
+
+**Important:** Files must be under 25 MB. The hero video has been compressed to 5 MB.
+
+---
+
+## Deployment Steps (Git-based)
 
 ### 1. Connect GitHub Repository to Cloudflare Pages
 
