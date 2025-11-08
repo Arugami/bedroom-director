@@ -12,7 +12,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
 
   return (
     <Link href={`/tools/${tool.slug}`}>
-      <div className="group h-full p-6 bg-black/60 border border-gray-900 rounded-xl hover:border-bedroom-purple hover:bg-black/80 transition-all duration-300 cursor-pointer transform hover:-translate-y-1 cinematic-shadow hover:neon-box-glow backdrop-blur-sm flex flex-col">
+      <div className="group h-full p-4 sm:p-6 bg-black/60 border border-gray-900 rounded-xl hover:border-bedroom-purple hover:bg-black/80 transition-all duration-300 cursor-pointer transform hover:-translate-y-1 shadow-lg shadow-bedroom-purple/5 hover:shadow-bedroom-purple/20 backdrop-blur-sm flex flex-col">
         {/* Category Badge & Best For */}
         <div className="mb-4 flex flex-wrap gap-2">
           <span className={`inline-block px-3 py-1 ${categoryColor} text-white text-xs font-semibold rounded-full`}>
@@ -21,6 +21,11 @@ export default function ToolCard({ tool }: ToolCardProps) {
           {tool.bestFor && (
             <span className="inline-block px-3 py-1 bg-gray-800 text-screen-white/80 text-xs rounded-full">
               {tool.bestFor}
+            </span>
+          )}
+          {tool.proTips && (
+            <span className="inline-block px-3 py-1 bg-bedroom-purple/20 border border-bedroom-purple/40 text-bedroom-purple text-xs rounded-full">
+              💡 Pro Tips
             </span>
           )}
         </div>

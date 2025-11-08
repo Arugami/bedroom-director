@@ -40,6 +40,7 @@ def csv_to_json():
                 'license': row['License'],
                 'update_cadence': row['Update Cadence'],
                 'distinctive_edge': row['Distinctive Edge'],
+                'pro_tips': row.get('Pro Tips', ''),
                 'drawbacks': row['Drawbacks'],
                 'notable_sources': row['Notable Sources']
             }

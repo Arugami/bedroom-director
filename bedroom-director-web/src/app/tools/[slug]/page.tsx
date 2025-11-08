@@ -65,6 +65,18 @@ export default async function ToolDetailPage({ params }: PageProps) {
             </div>
           )}
 
+          {/* Pro Tips */}
+          {tool.proTips && (
+            <div className="p-6 bg-bedroom-purple/10 border-l-4 border-bedroom-purple rounded-lg">
+              <h2 className="text-xl font-bold text-bedroom-purple mb-3 flex items-center gap-2">
+                <span>💡</span> Pro Tips
+              </h2>
+              <p className="text-screen-white/90 leading-relaxed">
+                {tool.proTips}
+              </p>
+            </div>
+          )}
+
           {/* Key Features */}
           {tool.keyFeatures && (
             <div>

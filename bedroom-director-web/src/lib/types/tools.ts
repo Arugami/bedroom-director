@@ -18,6 +18,7 @@ export interface Tool {
   license: string;
   updateCadence: string;
   distinctiveEdge: string;
+  proTips: string;
   drawbacks: string;
   notableSources: string;
 }

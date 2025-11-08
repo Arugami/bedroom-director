@@ -110,8 +110,15 @@
 13. License
 14. Update Cadence
 15. Distinctive Edge
-16. Drawbacks
-17. Notable Sources
+16. **Pro Tips (NEW)**
+    - Purpose: Capture field-tested quirks, workflows, or gotchas (e.g., Nano Banana swaps need a removal pass first).
+    - Format: Short imperative sentence.
+    - Examples:
+      - `Remove the subject before adding the replacement; direct swaps fail.` 
+      - `Use Variety/Style sliders inside Meta.ai when iterating Midjourney v7 prompts.`
+      - Leave blank if no unique guidance is available.
+17. Drawbacks
+18. Notable Sources
 
 ---
 

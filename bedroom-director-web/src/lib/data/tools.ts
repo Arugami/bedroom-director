@@ -15,7 +15,14 @@ export function getTools(): Tool[] {
 
   try {
     // Path to CSV file in public folder
-    const csvPath = path.join(process.cwd(), 'public/ai_video_image_models.csv');
+    // During build, we need to go up from .next directory
+    let csvPath = path.join(process.cwd(), 'public/ai_video_image_models.csv');
+
+    // If file doesn't exist, try alternate path for build process
+    if (!fs.existsSync(csvPath)) {
+      csvPath = path.join(process.cwd(), '../public/ai_video_image_models.csv');
+    }
+
     const csvData = fs.readFileSync(csvPath, 'utf-8');
 
     const { data } = Papa.parse(csvData, {
@@ -43,6 +50,7 @@ export function getTools(): Tool[] {
       license: row['License'] || '',
       updateCadence: row['Update Cadence'] || '',
       distinctiveEdge: row['Distinctive Edge'] || '',
+      proTips: row['Pro Tips'] || '',
       drawbacks: row['Drawbacks'] || '',
       notableSources: row['Notable Sources'] || '',
     }));

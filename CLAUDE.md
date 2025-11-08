@@ -1,14 +1,18 @@
-# CLAUDE.md
+# Claude Code Prompt - Bedroom Director
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+**For Claude Code (claude.ai/code) when working in this repository.**
 
 ---
 
-## Project Overview
+## 🎯 Project Overview
 
-**Bedroom Director** - AI creative tool discovery & education platform with 156+ AI tools across 8 categories.
+**Bedroom Director** - AI creative tools discovery platform for bedroom filmmakers  
+**Tagline:** "From bedroom to big screen"  
+**Status:** Website in active development (Next.js 16 + TypeScript)  
+**Database:** 156 AI tools (video, image, voice, music)  
+**Server:** http://localhost:3000
 
-**Critical Positioning:** This is a discovery/education platform, NOT a generation platform. We guide users to find and use AI tools; users create on external platforms (Sora, Midjourney, etc.).
+**Critical:** Discovery/education platform (guide users to tools), NOT a generation platform.
 
 ---
 
@@ -83,22 +87,36 @@ with open('data/ai_video_image_models.csv', 'w', newline='') as f:
 
 ---
 
-## Tech Stack (Future Website)
+## Tech Stack
 
-- Frontend: Next.js 14 + TypeScript + TailwindCSS + shadcn/ui
-- Backend: Supabase (PostgreSQL), migrate from CSV
-- Deployment: Cloudflare Pages (static) + Workers (AI)
-- See `website/TECHNICAL_ARCHITECTURE.md` for complete specs
+**Current:**
+- Frontend: Next.js 16 + TypeScript + TailwindCSS
+- Data: CSV → JSON (Papa Parse)
+- Server: localhost:3000 (dev)
+
+**Future:**
+- Backend: Supabase (PostgreSQL)
+- Deployment: Cloudflare Pages
+- See `website/DESIGN_SPEC.md` for complete specs
 
 ---
 
 ## Brand Quick Reference
 
-- **Tagline:** "From bedroom to big screen"
-- **Core Aesthetic:** "Theme park at twilight" - cinematic + nostalgic, sophisticated + emotional
-- **Colors:** Director Black #000000, Bedroom Purple #7C3AED, Purple Bloom #8B5CF6
-- **Accent Neons:** Retro Teal #00CED1, Sunset Orange #FF8C42, Neon Yellow #FCD34D
-- Full guidelines in `BRAND_IDENTITY.md` and `BEDROOM_DIRECTOR_UNIVERSE.md`
+**Aesthetic:** "Hollywood Studios Florida noir meets Miami 80s twilight"
+
+**Visual DNA:**
+- 🌴 Palm trees (signature framing - Hollywood/Florida/Miami)
+- 🌆 Purple twilight gradients
+- ✨ Neon glow effects (practical, not overdone)
+- 🪑 Director's chair imagery
+- 🎬 Film grain texture (subtle)
+
+**Colors:**
+- Primary: Director Black #000000, Bedroom Purple #7C3AED
+- Neons: Teal #00CED1, Orange #FF8C42, Yellow #FCD34D
+
+**Full guidelines:** `BEDROOM_DIRECTOR_UNIVERSE.md` + `bedroom-director-universe/brand/VISUAL_IDENTITY.md`
 
 ---
 
@@ -146,11 +164,13 @@ That magical moment when neon signs turn on against a purple dusk sky. Think: Pu
 
 ## Key Documentation
 
-- `MASTER_TODO.md` - Task coordination
-- `docs/02_ENHANCED_SCHEMA.md` - Full 19-column schema
-- `docs/03_MODEL_CATEGORIES.md` - Category organization
-- `website/TECHNICAL_ARCHITECTURE.md` - Tech specs
-- `BRAND_IDENTITY.md` - Brand guidelines
+- `MASTER_TODO.md` - Project status & tasks
+- `ABOUT.md` - Mission/vision (2 paragraphs)
+- `AGENTS.md` - Repo guidelines (for Codex)
+- `BEDROOM_DIRECTOR_UNIVERSE.md` - Core aesthetic
+- `docs/03_MODEL_CATEGORIES.md` - Database categories
+- `website/DESIGN_SPEC.md` - Complete design system
+- `bedroom-director-universe/brand/VISUAL_IDENTITY.md` - Full visual guide
 
 ---
 
