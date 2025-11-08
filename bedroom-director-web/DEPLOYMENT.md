@@ -98,14 +98,42 @@ Monitor your deployment:
 
 ## Troubleshooting
 
+### ❌ Error: "Error occurred prerendering page /tools"
+
+If you see this error during Cloudflare build:
+
+**CAUSE:** Cloudflare is building from an old commit or incorrect settings.
+
+**SOLUTION:**
+1. **Verify latest commit:** Make sure Cloudflare is deploying commit `967d8e4` or later
+   - In Cloudflare Pages dashboard, check the commit hash being deployed
+   - Should show: "Complete Phase 14: Production-ready deployment"
+
+2. **Check build settings are EXACT:**
+   - Root directory: **Leave blank** (or set to `/`)
+   - Build command: `cd bedroom-director-web && npm install && npm run build`
+   - Build output: `bedroom-director-web/out`
+   - **DO NOT** set root directory to `bedroom-director-web`
+
+3. **Retry deployment:**
+   - Click "Retry deployment" button in Cloudflare dashboard
+   - Or push a new commit to trigger fresh build
+
+4. **If still failing:** Check that these files exist in the repo:
+   - `bedroom-director-web/src/app/tools/page.tsx` has Suspense wrapper
+   - `bedroom-director-web/src/app/robots.ts` has `export const dynamic = 'force-static'`
+   - `bedroom-director-web/src/app/sitemap.ts` has `export const dynamic = 'force-static'`
+
 ### Build Fails
 - Check build logs in Cloudflare Pages dashboard
 - Verify package.json dependencies
 - Ensure Node version matches `.node-version`
+- Make sure you're deploying from `main` branch with latest code
 
 ### CSV Not Loading
-- Verify `ai_video_image_models.csv` is in `public/` folder
+- Verify `ai_video_image_models.csv` is in `public/` folder (142 lines, 141 tools)
 - Check file path in `src/lib/data/tools.ts`
+- Should load 141 tools successfully
 
 ### Images Not Showing
 - Ensure images are in `public/` folder
