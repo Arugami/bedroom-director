@@ -96,4 +96,94 @@
       0 0 60px rgba(139, 92, 246, 0.08),
       0 10px 40px rgba(0, 0, 0, 0.5);
   }
+
+  /* Twilight gradient backgrounds - "Theme park at dusk" */
+  .twilight-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(30, 10, 50, 1) 0%,      /* Deep purple night sky */
+      rgba(60, 20, 80, 1) 30%,      /* Purple dusk */
+      rgba(100, 40, 120, 0.6) 60%,  /* Lighter purple horizon */
+      rgba(139, 92, 246, 0.3) 100%  /* Bedroom purple glow */
+    );
+  }
+
+  /* Neon text glow - visible halos */
+  .neon-text {
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px rgba(139, 92, 246, 0.5),
+      0 0 80px rgba(139, 92, 246, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Neon button glow */
+  .neon-button {
+    box-shadow:
+      0 0 20px rgba(139, 92, 246, 0.4),
+      0 0 40px rgba(139, 92, 246, 0.2),
+      0 0 60px rgba(139, 92, 246, 0.1),
+      0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .neon-button:hover {
+    box-shadow:
+      0 0 30px rgba(139, 92, 246, 0.6),
+      0 0 60px rgba(139, 92, 246, 0.4),
+      0 0 90px rgba(139, 92, 246, 0.2),
+      0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Accent neon colors - Retro Teal, Sunset Orange, Neon Yellow */
+  .neon-teal {
+    color: #00CED1;
+    text-shadow:
+      0 0 10px #00CED1,
+      0 0 20px #00CED1,
+      0 0 40px rgba(0, 206, 209, 0.5);
+  }
+
+  .neon-orange {
+    color: #FF8C42;
+    text-shadow:
+      0 0 10px #FF8C42,
+      0 0 20px #FF8C42,
+      0 0 40px rgba(255, 140, 66, 0.5);
+  }
+
+  .neon-yellow {
+    color: #FCD34D;
+    text-shadow:
+      0 0 10px #FCD34D,
+      0 0 20px #FCD34D,
+      0 0 40px rgba(252, 211, 77, 0.5);
+  }
+
+  /* Atmospheric haze effect */
+  .atmospheric-haze {
+    position: relative;
+  }
+
+  .atmospheric-haze::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 80%,
+      rgba(139, 92, 246, 0.15) 0%,
+      rgba(139, 92, 246, 0.08) 30%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  /* Multi-color light spill (theme park lighting) */
+  .multicolor-glow {
+    box-shadow:
+      -20px 0 60px rgba(0, 206, 209, 0.1),   /* Teal on left */
+      20px 0 60px rgba(255, 140, 66, 0.1),   /* Orange on right */
+      0 20px 80px rgba(139, 92, 246, 0.15);  /* Purple below */
+  }
 }

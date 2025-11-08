@@ -18,30 +18,24 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-director-black" style={{ margin: 0, padding: 0 }}>
       {/* Background Image - Director Silhouette */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
         style={{
           backgroundImage: "url('/liveathehudson_cinematic_wallpaper_faint_silhouette_of_a_direct_de4467c3-260a-4f9f-be96-d16dc941a6e7.jpg')"
         }}
       />
-      
-      {/* Dark gradient overlay to push background back */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60" />
-      
-      {/* Purple ambient glow overlay */}
-      <div className="absolute inset-0 purple-ambient" />
-      
-      {/* Film grain overlay */}
-      <div className="absolute inset-0 grain-texture" />
 
-      {/* LED Bar - Top */}
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[70%] max-w-4xl h-3 led-bar rounded-full" />
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
-      {/* Main content container with cinematic shadow */}
+      {/* Subtle purple ambient glow */}
+      <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-bedroom-purple/5" />
+
+      {/* Main content container */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-24">
         <div className="max-w-6xl mx-auto">
-          {/* Monitor/Screen frame effect - semi-transparent to show background */}
-          <div className="relative bg-director-black-soft/60 backdrop-blur-md border border-gray-800/50 rounded-2xl p-12 sm:p-16 md:p-20 cinematic-shadow neon-box-glow mx-auto">
+          {/* Content container - clean and minimal */}
+          <div className="relative bg-director-black/40 backdrop-blur-sm border border-gray-800/30 rounded-2xl p-12 sm:p-16 md:p-20 mx-auto">
             
             {/* Main Logo/Title - Inter Bold wordmark per brand guidelines */}
             <h1 className="font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-screen-white mb-8 text-center" style={{ letterSpacing: '-0.02em' }}>
@@ -64,7 +58,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <Link
                 href="/tools"
-                className="group inline-flex items-center gap-2 px-10 py-5 bg-bedroom-purple hover:bg-purple-bloom text-screen-white font-semibold rounded-lg transition-all transform hover:scale-105 box-bloom"
+                className="group inline-flex items-center gap-2 px-10 py-5 bg-bedroom-purple hover:bg-purple-bloom text-screen-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-bedroom-purple/20 hover:shadow-bedroom-purple/40"
               >
                 Discover Tools
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

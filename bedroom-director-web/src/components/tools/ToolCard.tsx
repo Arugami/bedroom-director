@@ -12,29 +12,49 @@ export default function ToolCard({ tool }: ToolCardProps) {
 
   return (
     <Link href={`/tools/${tool.slug}`}>
-      <div className="group h-full p-6 bg-black/60 border border-gray-900 rounded-xl hover:border-neon-purple hover:bg-black/80 transition-all duration-300 cursor-pointer transform hover:-translate-y-1 cinematic-shadow hover:neon-box-glow backdrop-blur-sm">
-        {/* Category Badge */}
-        <div className="mb-4">
+      <div className="group h-full p-6 bg-black/60 border border-gray-900 rounded-xl hover:border-bedroom-purple hover:bg-black/80 transition-all duration-300 cursor-pointer transform hover:-translate-y-1 cinematic-shadow hover:neon-box-glow backdrop-blur-sm flex flex-col">
+        {/* Category Badge & Best For */}
+        <div className="mb-4 flex flex-wrap gap-2">
           <span className={`inline-block px-3 py-1 ${categoryColor} text-white text-xs font-semibold rounded-full`}>
             {categoryLabel}
           </span>
+          {tool.bestFor && (
+            <span className="inline-block px-3 py-1 bg-gray-800 text-screen-white/80 text-xs rounded-full">
+              {tool.bestFor}
+            </span>
+          )}
         </div>
 
         {/* Tool Name & Vendor */}
-        <h3 className="text-xl font-bold text-screen-white mb-1 group-hover:text-neon-purple transition-colors">
+        <h3 className="text-xl font-bold text-screen-white mb-1 group-hover:text-bedroom-purple transition-colors">
           {tool.model}
         </h3>
-        <p className="text-sm text-screen-white/60 mb-4">
-          {tool.vendor}
+        <p className="text-sm text-screen-white/60 mb-3">
+          by {tool.vendor}
         </p>
 
-        {/* Description */}
-        <p className="text-screen-white/70 text-sm line-clamp-3 mb-4">
+        {/* Distinctive Edge */}
+        <p className="text-screen-white/70 text-sm line-clamp-3 mb-4 flex-grow">
           {tool.distinctiveEdge || tool.keyFeatures}
         </p>
 
+        {/* Pricing & Speed Info */}
+        <div className="mb-4 space-y-2">
+          {tool.pricing && (
+            <div className="text-xs text-screen-white/60">
+              <span className="font-semibold text-screen-white/80">Pricing:</span>{" "}
+              {tool.pricing.length > 60 ? `${tool.pricing.substring(0, 60)}...` : tool.pricing}
+            </div>
+          )}
+          {tool.speed && (
+            <div className="text-xs text-screen-white/60">
+              <span className="font-semibold text-screen-white/80">Speed:</span> {tool.speed}
+            </div>
+          )}
+        </div>
+
         {/* View Details Link */}
-        <div className="flex items-center gap-2 text-neon-purple text-sm font-medium group-hover:gap-3 transition-all">
+        <div className="flex items-center gap-2 text-bedroom-purple text-sm font-medium group-hover:gap-3 transition-all mt-auto">
           View Details
           <ArrowRight className="w-4 h-4" />
         </div>

@@ -37,7 +37,7 @@ export default function AboutSection() {
             <p className="text-screen-white/60">
               They're building the next Hollywood.
             </p>
-            <p className="pt-8 text-2xl sm:text-3xl font-bold text-purple-bloom text-bloom">
+            <p className="pt-8 text-2xl sm:text-3xl font-bold text-bedroom-purple">
               Bedroom Director.
             </p>
           </div>

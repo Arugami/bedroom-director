@@ -14,8 +14,8 @@ export function getTools(): Tool[] {
   }
 
   try {
-    // Path to CSV file (parent directory of bedroom-director-web)
-    const csvPath = path.join(process.cwd(), '../data/ai_video_image_models.csv');
+    // Path to CSV file in public folder
+    const csvPath = path.join(process.cwd(), 'public/ai_video_image_models.csv');
     const csvData = fs.readFileSync(csvPath, 'utf-8');
 
     const { data } = Papa.parse(csvData, {
