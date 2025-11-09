@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Search, ChevronDown } from "lucide-react";
@@ -14,7 +14,19 @@ const QUICK_CATEGORIES = [
 
 export default function Hero() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Content fades in after scrolling 100px
+      setScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ margin: 0, padding: 0 }}>
       {/* Twilight gradient background - purple to blue dusk sky */}
@@ -44,10 +56,14 @@ export default function Hero() {
       {/* Film grain texture - visible but not distracting */}
       <div className="absolute inset-0 grain-texture opacity-15" />
 
-      {/* Main content container - minimal on mobile, full on desktop */}
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+      {/* Main content container - fades in on scroll */}
+      <div 
+        className={`relative z-10 w-full px-4 sm:px-6 lg:px-8 py-12 md:py-24 transition-opacity duration-1000 ${
+          scrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
-          {/* Content - minimal overlay on mobile */}
+          {/* Content - minimal overlay on mobile, fades in on scroll */}
           <div className="relative mx-auto max-w-4xl">
             
             {/* Main Logo/Title - smaller on mobile */}
@@ -134,9 +150,16 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-        <ChevronDown className="w-6 h-6 text-white/40" />
+      {/* Scroll Indicator - more prominent when content is hidden */}
+      <div 
+        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20 transition-opacity duration-500 ${
+          scrolled ? 'opacity-0 md:opacity-100' : 'opacity-100'
+        }`}
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-white/60 text-sm font-medium md:hidden">Scroll to explore</span>
+          <ChevronDown className="w-6 h-6 text-white/60 md:text-white/40" />
+        </div>
       </div>
 
       {/* Bottom gradient fade */}
