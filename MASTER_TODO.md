@@ -1,10 +1,11 @@
 # AI Video & Image Database - Master TODO List
 
-**Project Status**: Active Development - Website Development In Progress
-**Last Updated**: November 5, 2025 (9:56pm)
+**Project Status**: Active Development - Website Live in Production
+**Last Updated**: November 8, 2025 (8:30pm)
 **Brand Name**: Bedroom Director
 **Domain**: bedroomdirector.com (+ bedroomdirector.ai)
-**Current Database Size**: 156 entries
+**Production Site**: https://bedroom-director.pages.dev
+**Current Database Size**: 156 entries (main CSV) | 141 entries (website)
 **Backup Strategy**: Rolling backups in `data/backups/` folder
 **Positioning**: Discovery & education platform for bedroom creators (guide, not generator)
 **Tagline**: "From bedroom to big screen"
@@ -247,16 +248,65 @@ Comprehensive database of AI creative tools (video, image, voice, music generati
 - Data: CSV → JSON via Papa Parse
 - Styling: Custom utilities + Tailwind + CSS effects
 
+### Phase 14: Production Deployment & Pro Tips Integration (Nov 8, 2025 - 4:00pm - 8:30pm)
+- ✅ **Pro Tips Feature Integration:**
+  - Synced CSV with Pro Tips column to website (141 tools + 4 new models with Pro Tips)
+  - Added `proTips` field to TypeScript Tool interface
+  - Updated CSV data loader to parse Pro Tips column
+  - Added Pro Tips display to tool detail pages (purple callout box with 💡 icon)
+  - Added Pro Tips badge to tool cards (shows when tool has Pro Tips)
+  - Example: Imagen 3 Nano Banana Pro Tip about character swap workflow
+
+- ✅ **Cloudflare Pages Deployment - Build Fixes:**
+  - Fixed Next.js 16 static export build errors:
+    - Added Suspense wrapper for useSearchParams in `/app/tools/page.tsx`
+    - Added `export const dynamic = 'force-static'` to `robots.ts` and `sitemap.ts`
+    - Moved viewport/themeColor to separate export in `layout.tsx`
+  - Successfully built 146 static pages locally (141 tools + 5 core pages)
+  - Identified root cause: Cloudflare was deploying from old commit (fb5764b instead of latest)
+
+- ✅ **Direct Deployment via Wrangler CLI:**
+  - Compressed hero video: 33 MB → 5 MB (Cloudflare Pages 25 MB file limit)
+  - Deployed successfully using Wrangler CLI (bypassed Git commit hash issue)
+  - Live deployment: https://bedroom-director.pages.dev
+  - Created comprehensive deployment documentation with troubleshooting guide
+
+- ✅ **Bug Fixes & Asset Management:**
+  - Fixed missing CSV file in `public/` folder (required for production build)
+  - Fixed missing hero video issue (re-added compressed 5MB version)
+  - Restored cinematic twilight director's chair video background on homepage
+
+- ✅ **Documentation Updates:**
+  - Created `DEPLOYMENT.md` with Git-based and Wrangler CLI deployment methods
+  - Added troubleshooting section for common Cloudflare Pages errors
+  - Documented exact build settings and requirements
+  - Added step-by-step Wrangler CLI deployment instructions (recommended method)
+
+- ✅ **Git Commits & Version Control:**
+  - Commit 967d8e4: "Complete Phase 14: Production-ready deployment + Pro Tips feature"
+  - Commit 24b07da: "Add troubleshooting guide for Cloudflare /tools prerender error"
+  - Commit 0a6fab0: "Fix deployment: Add CSV data, compress hero video to 5MB (was 33MB)"
+  - Commit 838017f: "Add Wrangler CLI deployment method to docs"
+  - Commit 6358d2e: "Restore hero video (5MB compressed)"
+  - All commits pushed to GitHub: `github.com/Arugami/bedroom-director`
+
+**Current Website Status:**
+- ✅ **Production Deployed:** https://bedroom-director.pages.dev
+- ✅ **All Features Working:** 141 tools, Pro Tips, search, filtering, dynamic routes
+- ✅ **Performance Optimized:** 5MB hero video, compressed images, static generation
+- ✅ **Build Status:** 146 pages generated successfully (Next.js 16 static export)
+
+---
+
 ## 🔄 IN PROGRESS TASKS
 
-### Phase 14: Website Enhancement & Deployment (Nov 8, 2025)
-- [ ] Test website thoroughly on localhost:3000
+### Phase 15: Website Enhancement & Polish (Next Steps)
+- [ ] Test website thoroughly on multiple devices
 - [ ] Add mobile responsive optimizations
 - [ ] Implement footer with links and social
-- [ ] Add "Featured Tools" dynamic data integration
-- [ ] Create About page with full manifesto
-- [ ] Set up Cloudflare Pages deployment
-- [ ] Configure custom domain (bedroomdirector.com)
+- [ ] Add "Featured Tools" dynamic data integration (currently showing first 6)
+- [ ] Create full About page with manifesto
+- [ ] Configure custom domain (bedroomdirector.com) on Cloudflare Pages
 - [ ] Add meta tags and SEO optimization
 - [ ] Implement Open Graph images
 - [ ] Add analytics (Plausible or PostHog)
