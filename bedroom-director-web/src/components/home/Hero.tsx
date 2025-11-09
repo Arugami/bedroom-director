@@ -44,14 +44,14 @@ export default function Hero() {
       {/* Film grain texture - visible but not distracting */}
       <div className="absolute inset-0 grain-texture opacity-15" />
 
-      {/* Main content container */}
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-24">
+      {/* Main content container - minimal on mobile, full on desktop */}
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-12 md:py-24">
         <div className="max-w-6xl mx-auto">
-          {/* Content - floating directly on video background */}
+          {/* Content - minimal overlay on mobile */}
           <div className="relative mx-auto max-w-4xl">
             
-            {/* Main Logo/Title - with text shadow for readability */}
-            <h1 className="font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-screen-white mb-8 text-center" 
+            {/* Main Logo/Title - smaller on mobile */}
+            <h1 className="font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-screen-white mb-4 md:mb-8 text-center" 
                 style={{ 
                   letterSpacing: '-0.02em',
                   textShadow: '0 2px 20px rgba(0, 0, 0, 0.8), 0 4px 40px rgba(0, 0, 0, 0.6)'
@@ -60,13 +60,13 @@ export default function Hero() {
             </h1>
 
             {/* Tagline */}
-            <p className="text-xl sm:text-2xl md:text-3xl text-screen-white/90 font-normal mb-16 text-center tracking-wide"
+            <p className="text-lg sm:text-2xl md:text-3xl text-screen-white/90 font-normal mb-8 md:mb-16 text-center tracking-wide"
                style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.7)' }}>
               From bedroom to big screen
             </p>
 
-            {/* W+K-inspired Copy */}
-            <div className="space-y-4 mb-16 text-lg sm:text-xl md:text-2xl text-screen-white/95 text-center max-w-3xl mx-auto">
+            {/* W+K-inspired Copy - hidden on mobile, shown on desktop */}
+            <div className="hidden md:block space-y-4 mb-16 text-lg sm:text-xl md:text-2xl text-screen-white/95 text-center max-w-3xl mx-auto">
               <p className="font-light tracking-wide" style={{ textShadow: '0 2px 12px rgba(0, 0, 0, 0.7)' }}>
                 Your bedroom is your studio.
               </p>
@@ -78,8 +78,8 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            {/* CTA Buttons - hidden on mobile */}
+            <div className="hidden md:flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <Link
                 href="/tools"
                 className="group inline-flex items-center gap-2 px-10 py-5 bg-bedroom-purple hover:bg-purple-bloom text-screen-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-2xl shadow-bedroom-purple/30 hover:shadow-bedroom-purple/50"
