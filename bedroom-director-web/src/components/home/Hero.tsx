@@ -21,10 +21,10 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b] via-[#312e81] to-[#0f172a]" />
 
       {/* Background Video - Director's Chair with Subtle Motion */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
+      <video
+        autoPlay
+        loop
+        muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-50"
       >
