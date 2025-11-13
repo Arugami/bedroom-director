@@ -1,0 +1,243 @@
+{
+  "creations": [
+    {
+      "id": "coca-cola-real-magic-2025",
+      "title": "Coca-Cola 'Real Magic' Holiday 2025",
+      "slug": "coca-cola-real-magic-2025",
+      "creator": {
+        "name": "Coca-Cola Creative Team",
+        "type": "brand",
+        "link": "https://www.coca-cola.com"
+      },
+      "category": "commercial",
+      "thumbnail": "/creations/coca-cola-real-magic.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=placeholder",
+      "description": "Heartwarming holiday campaign showcasing AI-generated family moments that brought people together during the 2025 holiday season.",
+      "longDescription": "Coca-Cola's groundbreaking 2025 holiday campaign used AI to create deeply personal family moments. The campaign generated over 2.3M views and set a new standard for AI-generated advertising.",
+      "views": "2.3M",
+      "likes": 45000,
+      "publishedDate": "2025-11-01",
+      "featured": true,
+      "tools": [
+        {
+          "name": "Sora 2 Pro",
+          "category": "VIDEO_GEN",
+          "role": "Primary video generation"
+        },
+        {
+          "name": "ElevenLabs",
+          "category": "VOICE_AUDIO",
+          "role": "Voiceover and narration"
+        },
+        {
+          "name": "Runway Gen-4",
+          "category": "VIDEO_GEN",
+          "role": "Post-processing and refinement"
+        }
+      ],
+      "breakdown": {
+        "concept": "Create authentic family moments that feel real and emotionally resonant",
+        "process": [
+          "Generated base scenes with Sora 2 Pro using detailed family moment prompts",
+          "Added voiceover narration with ElevenLabs for emotional depth",
+          "Refined transitions and color grading with Runway Gen-4",
+          "Composited multiple AI-generated scenes into cohesive narrative"
+        ],
+        "challenges": [
+          "Maintaining consistent character appearance across scenes",
+          "Achieving natural family interactions and expressions",
+          "Balancing AI generation with brand authenticity"
+        ],
+        "results": [
+          "2.3M views in first month",
+          "45K+ social media engagements",
+          "Featured in AdWeek as 'AI Campaign of the Year'"
+        ]
+      },
+      "prompts": [
+        {
+          "tool": "Sora 2 Pro",
+          "prompt": "Warm family gathering around Christmas tree, golden hour lighting streaming through windows, grandmother laughing with grandchildren, cinematic 4K, emotional depth, natural movements",
+          "settings": "4K resolution, 10 seconds, cinematic mode"
+        }
+      ],
+      "tags": ["holiday", "family", "emotional", "brand", "commercial", "4K"]
+    },
+    {
+      "id": "the-last-human-indie-short",
+      "title": "The Last Human - Indie Short",
+      "slug": "the-last-human-indie-short",
+      "creator": {
+        "name": "Alex Chen",
+        "type": "indie",
+        "link": "https://twitter.com/alexchen",
+        "bio": "Independent filmmaker from San Francisco"
+      },
+      "category": "short-film",
+      "thumbnail": "/creations/the-last-human.jpg",
+      "videoUrl": "https://vimeo.com/placeholder",
+      "description": "Award-winning sci-fi short exploring humanity's future in a world where AI has surpassed human intelligence.",
+      "longDescription": "Created entirely by one person over 3 months using AI tools, this 12-minute short film won Best Sci-Fi Short at the 2025 Indie Film Festival. A meditation on consciousness, humanity, and what it means to be the last of your kind.",
+      "views": "890K",
+      "likes": 32000,
+      "publishedDate": "2025-09-15",
+      "featured": true,
+      "awards": [
+        "Best Sci-Fi Short - Indie Film Festival 2025",
+        "Audience Choice Award - AI Film Fest 2025"
+      ],
+      "tools": [
+        {
+          "name": "Runway Gen-4",
+          "category": "VIDEO_GEN",
+          "role": "Primary video generation"
+        },
+        {
+          "name": "Veo 3",
+          "category": "VIDEO_GEN",
+          "role": "Establishing shots and environments"
+        },
+        {
+          "name": "ElevenLabs",
+          "category": "VOICE_AUDIO",
+          "role": "Character voices"
+        },
+        {
+          "name": "Udio",
+          "category": "MUSIC",
+          "role": "Original score"
+        }
+      ],
+      "breakdown": {
+        "concept": "One-person production exploring what makes us human",
+        "budget": "$500 (AI tool subscriptions only)",
+        "timeline": "3 months from concept to final cut",
+        "process": [
+          "Wrote script using traditional screenwriting methods",
+          "Generated environment shots with Veo 3 for wide establishing scenes",
+          "Created character close-ups and dialogue scenes with Runway Gen-4",
+          "Composed original score with Udio to match emotional beats",
+          "Added character voices with ElevenLabs for consistency",
+          "Edited in DaVinci Resolve for final color grading"
+        ],
+        "challenges": [
+          "Maintaining character consistency across 12 minutes",
+          "Creating believable futuristic environments on zero budget",
+          "Balancing AI generation with artistic vision"
+        ],
+        "results": [
+          "890K views across platforms",
+          "2 festival awards",
+          "Distribution deal with indie streaming platform"
+        ]
+      },
+      "prompts": [
+        {
+          "tool": "Runway Gen-4",
+          "prompt": "Close-up of weathered astronaut face, single tear, dramatic side lighting, 4K cinematic, emotional performance, shallow depth of field",
+          "settings": "4K, 8 seconds, high motion consistency"
+        },
+        {
+          "tool": "Veo 3",
+          "prompt": "Abandoned futuristic city, overgrown with nature, golden sunset, wide establishing shot, cinematic drone movement, 4K",
+          "settings": "4K, 15 seconds, camera movement: slow forward dolly"
+        }
+      ],
+      "tags": ["sci-fi", "indie", "award-winning", "one-person", "bedroom-studio", "festival"]
+    },
+    {
+      "id": "neon-dreams-music-video",
+      "title": "Neon Dreams - Music Video",
+      "slug": "neon-dreams-music-video",
+      "creator": {
+        "name": "Luna Park",
+        "type": "artist",
+        "link": "https://lunapark.music",
+        "bio": "Synthwave artist and visual creator"
+      },
+      "category": "music-video",
+      "thumbnail": "/creations/neon-dreams.jpg",
+      "videoUrl": "https://www.youtube.com/watch?v=placeholder",
+      "description": "Synthwave visual journey through a cyberpunk cityscape, perfectly synced to the beat.",
+      "longDescription": "Luna Park's breakthrough music video that went viral on TikTok and YouTube. Created entirely with AI tools in a bedroom studio, the video features stunning cyberpunk visuals that perfectly complement the synthwave track.",
+      "views": "1.5M",
+      "likes": 78000,
+      "publishedDate": "2025-10-20",
+      "featured": true,
+      "tools": [
+        {
+          "name": "Veo 3.1",
+          "category": "VIDEO_GEN",
+          "role": "Primary video generation"
+        },
+        {
+          "name": "Udio",
+          "category": "MUSIC",
+          "role": "Music composition"
+        },
+        {
+          "name": "Runway Gen-4",
+          "category": "VIDEO_GEN",
+          "role": "Visual effects and transitions"
+        }
+      ],
+      "breakdown": {
+        "concept": "Cyberpunk visual narrative matching synthwave energy",
+        "budget": "$200 (tool subscriptions)",
+        "timeline": "2 weeks from concept to release",
+        "process": [
+          "Composed synthwave track with Udio",
+          "Generated cyberpunk cityscape scenes with Veo 3.1",
+          "Created beat-synced transitions with Runway Gen-4",
+          "Color graded for neon aesthetic in DaVinci Resolve",
+          "Added practical effects and overlays"
+        ],
+        "challenges": [
+          "Syncing AI-generated visuals to music beats",
+          "Maintaining consistent neon aesthetic across scenes",
+          "Creating smooth transitions between generated clips"
+        ],
+        "results": [
+          "1.5M views in 3 weeks",
+          "Viral on TikTok with 500K+ uses in user videos",
+          "Featured on Spotify's 'Synthwave Rising' playlist"
+        ]
+      },
+      "prompts": [
+        {
+          "tool": "Veo 3.1",
+          "prompt": "Neon-lit cyberpunk city street, rain-soaked pavement reflecting pink and blue lights, flying cars overhead, cinematic camera movement through alley, 4K",
+          "settings": "4K, 12 seconds, camera: forward tracking shot"
+        }
+      ],
+      "tags": ["music-video", "synthwave", "cyberpunk", "viral", "neon", "bedroom-studio"]
+    }
+  ],
+  "categories": [
+    {
+      "id": "commercial",
+      "name": "Commercial",
+      "description": "Brand campaigns and advertising"
+    },
+    {
+      "id": "short-film",
+      "name": "Short Film",
+      "description": "Narrative short films and documentaries"
+    },
+    {
+      "id": "music-video",
+      "name": "Music Video",
+      "description": "Music videos and visual albums"
+    },
+    {
+      "id": "social-content",
+      "name": "Social Content",
+      "description": "TikTok, Instagram, and social media content"
+    },
+    {
+      "id": "experimental",
+      "name": "Experimental",
+      "description": "Artistic and experimental work"
+    }
+  ]
+}

@@ -1,6 +1,4 @@
-import Papa from 'papaparse';
-import fs from 'fs';
-import path from 'path';
+import modelsData from '@/data/models.json';
 import { Tool } from '@/lib/types/tools';
 
 export type { Tool } from '@/lib/types/tools';
@@ -8,51 +6,45 @@ export { CATEGORIES, CATEGORY_LABELS, CATEGORY_COLORS } from '@/lib/types/tools'
 
 let cachedTools: Tool[] | null = null;
 
+function createSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 export function getTools(): Tool[] {
   if (cachedTools) {
     return cachedTools;
   }
 
   try {
-    // Path to CSV file in public folder
-    // During build, we need to go up from .next directory
-    let csvPath = path.join(process.cwd(), 'public/ai_video_image_models.csv');
-
-    // If file doesn't exist, try alternate path for build process
-    if (!fs.existsSync(csvPath)) {
-      csvPath = path.join(process.cwd(), '../public/ai_video_image_models.csv');
-    }
-
-    const csvData = fs.readFileSync(csvPath, 'utf-8');
-
-    const { data } = Papa.parse(csvData, {
-      header: true,
-      skipEmptyLines: true,
-    });
-
-    cachedTools = data.map((row: any, index: number) => ({
+    cachedTools = (modelsData.models as any[]).map((model: any, index: number) => ({
       id: `tool-${index}`,
-      slug: createSlug(row['Model'] || row['model'] || `tool-${index}`),
-      vendor: row['Vendor'] || '',
-      category: row['Primary_Category'] || '',
-      modelType: row['Model_Type'] || '',
-      licenseType: row['License_Type'] || '',
-      specialFlags: row['Special_Flags'] || '',
-      skillLevel: row['Skill_Level'] || '',
-      bestFor: row['Best_For'] || '',
-      model: row['Model'] || '',
-      modality: row['Modality'] || '',
-      keyFeatures: row['Key Features'] || '',
-      durationResolution: row['Duration/Resolution'] || '',
-      controls: row['Controls'] || '',
-      speed: row['Speed'] || '',
-      pricing: row['Pricing'] || '',
-      license: row['License'] || '',
-      updateCadence: row['Update Cadence'] || '',
-      distinctiveEdge: row['Distinctive Edge'] || '',
-      proTips: row['Pro Tips'] || '',
-      drawbacks: row['Drawbacks'] || '',
-      notableSources: row['Notable Sources'] || '',
+      slug: createSlug(model.model || `tool-${index}`),
+      vendor: model.vendor || '',
+      category: model.primary_category || '',
+      modelType: model.model_type || '',
+      licenseType: model.license_type || '',
+      regionalRestrictions: model.regional_restrictions || '',
+      skillLevel: model.skill_level || '',
+      bestFor: model.best_for || '',
+      model: model.model || '',
+      modality: model.modality || '',
+      keyFeatures: model.key_features || '',
+      durationResolution: model.duration_resolution || '',
+      controls: model.controls || '',
+      speed: model.speed || '',
+      pricing: model.pricing || '',
+      license: model.license || '',
+      updateCadence: model.update_cadence || '',
+      distinctiveEdge: model.distinctive_edge || '',
+      proTips: model.pro_tips || '',
+      drawbacks: model.drawbacks || '',
+      notableSources: model.notable_sources || '',
+      featured: model.featured || false,
+      dateAdded: model.date_added || null,
+      isNew: model.is_new || false,
     }));
 
     return cachedTools;
@@ -74,13 +66,12 @@ export function getToolsByCategory(category: string): Tool[] {
 
 export function getFeaturedTools(limit: number = 6): Tool[] {
   const tools = getTools();
-  // For now, return first N tools. Later can add "featured" flag
-  return tools.slice(0, limit);
+  const featured = tools.filter(tool => tool.featured);
+  return featured.length > 0 ? featured.slice(0, limit) : tools.slice(0, limit);
 }
 
-function createSlug(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+export function getLatestTools(limit: number = 4): Tool[] {
+  const tools = getTools();
+  const newTools = tools.filter(tool => tool.isNew);
+  return newTools.slice(0, limit);
 }

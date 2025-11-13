@@ -5,7 +5,7 @@ export interface Tool {
   category: string;
   modelType: string;
   licenseType: string;
-  specialFlags: string;
+  regionalRestrictions?: string;
   skillLevel: string;
   bestFor: string;
   model: string;
@@ -21,6 +21,10 @@ export interface Tool {
   proTips: string;
   drawbacks: string;
   notableSources: string;
+  // New fields for dynamic features
+  featured?: boolean;
+  dateAdded?: string;
+  isNew?: boolean;
 }
 
 export const CATEGORIES = {

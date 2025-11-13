@@ -1,39 +1,9 @@
 import Link from "next/link";
 import { Play, ExternalLink } from "lucide-react";
+import { getFeaturedCreations } from "@/lib/data/creations";
 
 export default function TrendingCreations() {
-  const featured = [
-    {
-      title: "Coca-Cola 'Real Magic' Holiday 2025",
-      creator: "Coca-Cola Creative Team",
-      thumbnail: "/placeholder-video-1.jpg", // Replace with actual thumbnails
-      views: "2.3M",
-      tools: ["Sora 2 Pro", "ElevenLabs"],
-      category: "Commercial",
-      link: "#",
-      description: "Heartwarming holiday campaign showcasing AI-generated family moments"
-    },
-    {
-      title: "The Last Human - Indie Short",
-      creator: "Alex Chen",
-      thumbnail: "/placeholder-video-2.jpg",
-      views: "890K",
-      tools: ["Runway Gen-4", "Veo 3"],
-      category: "Short Film",
-      link: "#",
-      description: "Award-winning sci-fi short exploring humanity's future"
-    },
-    {
-      title: "Neon Dreams - Music Video",
-      creator: "Luna Park",
-      thumbnail: "/placeholder-video-3.jpg",
-      views: "1.5M",
-      tools: ["Veo 3.1", "Udio"],
-      category: "Music Video",
-      link: "#",
-      description: "Synthwave visual journey through a cyberpunk cityscape"
-    },
-  ];
+  const featured = getFeaturedCreations(3);
 
   return (
     <section className="relative py-32 overflow-hidden">
@@ -63,10 +33,10 @@ export default function TrendingCreations() {
 
         {/* Featured Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {featured.map((item, index) => (
+          {featured.map((creation) => (
             <Link
-              key={index}
-              href={item.link}
+              key={creation.id}
+              href={`/showcase/${creation.slug}`}
               className="group relative"
             >
               {/* Card */}
@@ -82,37 +52,37 @@ export default function TrendingCreations() {
                   
                   {/* Views badge */}
                   <div className="absolute top-3 right-3 px-3 py-1 bg-black/70 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium">
-                    {item.views} views
+                    {creation.views} views
                   </div>
 
                   {/* Category badge */}
                   <div className="absolute top-3 left-3 px-3 py-1 bg-bedroom-purple/80 backdrop-blur-sm rounded-full text-white text-xs font-semibold uppercase tracking-wide">
-                    {item.category}
+                    {creation.category}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-screen-white mb-2 group-hover:text-purple-bloom transition-colors">
-                    {item.title}
+                    {creation.title}
                   </h3>
                   
                   <p className="text-screen-white/60 text-sm mb-4">
-                    by {item.creator}
+                    by {creation.creator.name}
                   </p>
 
                   <p className="text-screen-white/70 text-sm mb-4 line-clamp-2">
-                    {item.description}
+                    {creation.description}
                   </p>
 
                   {/* Tools used */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {item.tools.map((tool, i) => (
+                    {creation.tools.map((tool, i) => (
                       <span
                         key={i}
                         className="px-3 py-1 bg-black/40 border border-gray-700/50 rounded-lg text-screen-white/70 text-xs"
                       >
-                        {tool}
+                        {tool.name}
                       </span>
                     ))}
                   </div>
