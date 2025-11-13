@@ -1,11 +1,11 @@
 # AI Video & Image Database - Master TODO List
 
 **Project Status**: Active Development - Website Live in Production
-**Last Updated**: November 8, 2025 (8:30pm)
+**Last Updated**: November 13, 2025 (2:00pm)
 **Brand Name**: Bedroom Director
 **Domain**: bedroomdirector.com (+ bedroomdirector.ai)
 **Production Site**: https://bedroom-director.pages.dev
-**Current Database Size**: 156 entries (main CSV) | 141 entries (website)
+**Current Database Size**: 140 models (JSON) | Dynamic data backend implemented
 **Backup Strategy**: Rolling backups in `data/backups/` folder
 **Positioning**: Discovery & education platform for bedroom creators (guide, not generator)
 **Tagline**: "From bedroom to big screen"
@@ -298,13 +298,190 @@ Comprehensive database of AI creative tools (video, image, voice, music generati
 
 ---
 
+### Phase 15: Homepage Refinement & Dynamic Data Backend (Nov 13, 2025 - 2:00pm)
+- ✅ **Hero Section Mobile Optimization:**
+  - Implemented scroll-triggered content reveal on mobile (video-first approach)
+  - Added subtle fade-in effect on desktop for cinematic entrance
+  - Hidden W+K copy and CTA buttons on mobile to let video breathe
+  - Enhanced scroll indicator with text hint for better UX
+  - Content stays visible once revealed (no disappearing on scroll up)
+
+- ✅ **Homepage Content Strategy:**
+  - Replaced SaaS-style StatsSection with "Trending AI Creations" (user research validated)
+  - Added "Brands Using AI" section for social proof
+  - Added "Latest Drops" section for freshness and discovery
+  - Aligned all sections with "90s theme park at twilight" aesthetic
+
+- ✅ **Trending AI Creations System:**
+  - Created JSON data structure (`creations.json`) with 3 sample creations
+  - Built TypeScript data loader with search/filter utilities
+  - Implemented dynamic TrendingCreations component (pulls from JSON)
+  - Created full showcase page (`/showcase`) with category filtering
+  - Built individual creation detail pages (`/showcase/[slug]`)
+  - Added comprehensive documentation (`MANAGING_CREATIONS.md`)
+
+- ✅ **Tools Database Refactor:**
+  - Switched from CSV to JSON parsing (faster, cleaner)
+  - Added `featured`, `date_added`, `is_new` fields to 140 models
+  - Updated 7 tools as featured, 6 tools as new
+  - Refactored data loader to use `models.json` directly
+  - Removed Papa Parse dependency (no longer needed)
+
+- ✅ **Dynamic Homepage Components:**
+  - TrendingCreations: Pulls from `creations.json`
+  - LatestDrops: Pulls newest tools from `models.json` (is_new flag)
+  - FeaturedTools: Pulls featured tools from `models.json` (featured flag)
+  - BrandsUsingAI: Placeholder structure for brand logos
+
+- ✅ **Git Commits:**
+  - Commit 3138aa4: "feat: implement dynamic data backend for trending creations and tools"
+  - All changes pushed to GitHub
+
+**Current Status:**
+- ✅ Single source of truth: `models.json` for all tools/models
+- ✅ No more hardcoded data in components
+- ✅ Easy content management via JSON files
+- ✅ Automatic featured and latest tools sections
+- ✅ Full showcase system with detail pages
+
+---
+
 ## 🔄 IN PROGRESS TASKS
 
-### Phase 15: Website Enhancement & Polish (Next Steps)
+### Phase 16: Prompt Library MVP 📚
+**Why**: User research validates this as a core differentiator from competitors  
+**Time Estimate**: 6-8 hours  
+**Impact**: High - addresses primary user pain point (inspiration & learning)
+
+**Tasks:**
+- [ ] **Design Prompt Card UI**
+  - Show prompt text prominently
+  - Display result image/video thumbnail
+  - Show tool(s) used with icons
+  - Include metadata (category, style, outcome type)
+  - Add "Try This" CTA button
+  - Design hover states and interactions
+
+- [ ] **Create Prompt Data Structure**
+  - Design JSON schema for prompts
+  - Fields: id, title, prompt_text, result_url, tool_used, category, style_tags, outcome_type, settings, author, likes, views, date_added
+  - Create sample prompts file (`prompts.json`)
+  - Add 10-15 high-quality example prompts
+
+- [ ] **Build Prompt Submission Flow**
+  - Create submission form UI
+  - Fields: prompt, result upload, tool selection, category, tags
+  - Add validation and preview
+  - Store submissions (JSON file or Supabase)
+  - Add moderation queue system
+
+- [ ] **Implement Categories & Filtering**
+  - Categories: Video, Image, Voice, Music
+  - Style filters: Cinematic, Photorealistic, Animated, Abstract, etc.
+  - Tool filters: Filter by specific AI tool
+  - Outcome filters: Commercial, Social, Experimental
+  - Search by keywords in prompt text
+
+- [ ] **Build Prompt Library Page**
+  - Grid layout with prompt cards
+  - Filter sidebar/top bar
+  - Search functionality
+  - Sort options (newest, most liked, trending)
+  - Pagination or infinite scroll
+
+- [ ] **Add "Try This" Functionality**
+  - Generate deep links to tools with prompt pre-filled
+  - Support for major platforms (Runway, Midjourney, etc.)
+  - Copy prompt to clipboard fallback
+  - Track click-through analytics
+
+- [ ] **Documentation**
+  - Create `MANAGING_PROMPTS.md` guide
+  - Document submission guidelines
+  - Add prompt writing best practices
+  - Include moderation workflow
+
+**Success Metrics:**
+- 50+ curated prompts at launch
+- User submission flow tested and working
+- "Try This" links functional for top 5 tools
+- Search and filtering working smoothly
+
+---
+
+### Phase 17: Community Features 👥
+**Why**: Build the "bedroom director" movement and foster community engagement  
+**Time Estimate**: 8-10 hours  
+**Impact**: High - creates sticky engagement and user-generated content
+
+**Tasks:**
+- [ ] **User Profiles System**
+  - Design profile page layout
+  - Fields: username, bio, avatar, location, portfolio link, social links
+  - Showcase section: user's creations, prompts, favorite tools
+  - Stats: total creations, prompts shared, community rank
+  - Edit profile functionality
+  - Public/private toggle for profile elements
+
+- [ ] **Creator Spotlights Feature**
+  - Design spotlight card/section
+  - Featured bedroom director of the week/month
+  - Interview format: Q&A, tools used, advice, portfolio
+  - Rotation system for featuring different creators
+  - Nomination/application process
+  - Add to homepage and dedicated spotlights page
+
+- [ ] **Discord Integration**
+  - Set up Discord server for Bedroom Director community
+  - Create channels: #introductions, #showcase, #prompts, #tools, #help
+  - Add Discord widget to website
+  - Implement Discord auth (optional)
+  - Cross-post featured content to Discord
+  - Add "Join Discord" CTAs throughout site
+
+- [ ] **Share Functionality**
+  - Share buttons for tools, prompts, creations
+  - Generate share cards with Open Graph images
+  - Copy link functionality
+  - Social media share (Twitter, LinkedIn, Reddit)
+  - Embed code for creations
+  - Track share analytics
+
+- [ ] **Upvoting & Favorites System**
+  - Add upvote/like buttons to prompts and creations
+  - Implement favorites/bookmarks functionality
+  - "My Favorites" page for logged-in users
+  - Sort by most upvoted/liked
+  - Trending algorithm (upvotes + recency)
+  - Display vote counts and trending badges
+
+- [ ] **Community Guidelines & Moderation**
+  - Create community guidelines page
+  - Content moderation workflow
+  - Report functionality for inappropriate content
+  - User reputation system
+  - Moderator tools and dashboard
+
+- [ ] **Engagement Features**
+  - Comments on creations and prompts
+  - Follow other creators
+  - Notifications for new content from followed creators
+  - Activity feed showing community highlights
+  - Leaderboard (top creators, most helpful prompts)
+
+**Success Metrics:**
+- 100+ Discord members at launch
+- User profiles created and active
+- 10+ creator spotlights published
+- Upvoting system driving content curation
+- Active sharing on social media
+
+---
+
+### Phase 18: Website Enhancement & Polish (Next Steps)
 - [ ] Test website thoroughly on multiple devices
 - [ ] Add mobile responsive optimizations
 - [ ] Implement footer with links and social
-- [ ] Add "Featured Tools" dynamic data integration (currently showing first 6)
 - [ ] Create full About page with manifesto
 - [ ] Configure custom domain (bedroomdirector.com) on Cloudflare Pages
 - [ ] Add meta tags and SEO optimization
@@ -312,14 +489,13 @@ Comprehensive database of AI creative tools (video, image, voice, music generati
 - [ ] Add analytics (Plausible or PostHog)
 
 **Future Enhancements:**
-- [ ] Configure Supabase project
-- [ ] Migrate CSV data to Supabase
-- [ ] Add user accounts and saved tools
+- [ ] Configure Supabase project for user data
+- [ ] Migrate to full database backend (Supabase)
+- [ ] Add user authentication (email, social login)
 - [ ] Implement advanced filtering (price range, skill level)
 - [ ] Build comparison tool (compare 2-3 tools side-by-side)
-- [ ] Add "Trending AI Ads" module
 - [ ] Create tutorial/guide section
-- [ ] Add community showcase
+- [ ] Add newsletter signup and email campaigns
 
 ---
 
