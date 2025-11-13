@@ -28,6 +28,18 @@ export default function Header() {
               Tools
             </Link>
             <Link
+              href="/prompts"
+              className="text-screen-white/70 hover:text-purple-bloom transition-colors"
+            >
+              Prompts
+            </Link>
+            <Link
+              href="/showcase"
+              className="text-screen-white/70 hover:text-purple-bloom transition-colors"
+            >
+              Showcase
+            </Link>
+            <Link
               href="/about"
               className="text-screen-white/70 hover:text-purple-bloom transition-colors"
             >
@@ -59,6 +71,20 @@ export default function Header() {
                 className="text-screen-white/70 hover:text-bedroom-purple transition-colors px-2 py-2"
               >
                 Tools
+              </Link>
+              <Link
+                href="/prompts"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-screen-white/70 hover:text-bedroom-purple transition-colors px-2 py-2"
+              >
+                Prompts
+              </Link>
+              <Link
+                href="/showcase"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-screen-white/70 hover:text-bedroom-purple transition-colors px-2 py-2"
+              >
+                Showcase
               </Link>
               <Link
                 href="/about"

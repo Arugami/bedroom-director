@@ -1,0 +1,389 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-11-13",
+    "total_prompts": 15
+  },
+  "categories": [
+    {
+      "id": "video",
+      "name": "Video",
+      "description": "Prompts for AI video generation"
+    },
+    {
+      "id": "image",
+      "name": "Image",
+      "description": "Prompts for AI image generation"
+    },
+    {
+      "id": "voice",
+      "name": "Voice & Audio",
+      "description": "Prompts for voice and audio generation"
+    },
+    {
+      "id": "music",
+      "name": "Music",
+      "description": "Prompts for AI music generation"
+    }
+  ],
+  "styles": [
+    "Cinematic",
+    "Photorealistic",
+    "Animated",
+    "Abstract",
+    "Vintage",
+    "Futuristic",
+    "Minimalist",
+    "Dramatic",
+    "Ethereal",
+    "Gritty"
+  ],
+  "prompts": [
+    {
+      "id": "prompt-001",
+      "title": "Cinematic Product Reveal",
+      "slug": "cinematic-product-reveal",
+      "prompt_text": "A sleek smartphone slowly rotating on a pedestal, dramatic studio lighting with purple and blue rim lights, particles floating in the air, camera orbiting 360 degrees, ultra-detailed reflections, commercial photography style, 4K",
+      "result_image": "/prompts/product-reveal.jpg",
+      "result_video": "/prompts/product-reveal.mp4",
+      "category": "video",
+      "tool_used": "Runway Gen-4 Turbo",
+      "tool_slug": "runway-gen-4-turbo",
+      "style_tags": ["Cinematic", "Photorealistic"],
+      "outcome_type": "commercial",
+      "settings": "4K, 5 seconds, High motion, Cinematic mode",
+      "author": {
+        "name": "Sarah Chen",
+        "username": "sarahcreates",
+        "avatar": "/avatars/sarah.jpg"
+      },
+      "likes": 342,
+      "views": 2847,
+      "date_added": "2025-11-10",
+      "featured": true,
+      "tips": "Use 'ultra-detailed reflections' to get those premium product shot vibes. The 360-degree orbit keeps it dynamic without being too fast."
+    },
+    {
+      "id": "prompt-002",
+      "title": "Neon Cyberpunk Street",
+      "slug": "neon-cyberpunk-street",
+      "prompt_text": "Rain-soaked Tokyo street at night, neon signs reflecting in puddles, people with umbrellas walking, steam rising from vents, flying cars in background, blade runner aesthetic, moody atmosphere, cinematic composition",
+      "result_image": "/prompts/cyberpunk-street.jpg",
+      "category": "image",
+      "tool_used": "Midjourney v7",
+      "tool_slug": "midjourney-v7",
+      "style_tags": ["Cinematic", "Futuristic"],
+      "outcome_type": "experimental",
+      "settings": "--ar 16:9 --style raw --v 7",
+      "author": {
+        "name": "Alex Rivera",
+        "username": "alexvfx",
+        "avatar": "/avatars/alex.jpg"
+      },
+      "likes": 589,
+      "views": 4231,
+      "date_added": "2025-11-09",
+      "featured": true,
+      "tips": "The 'rain-soaked' and 'reflecting in puddles' combo creates instant atmosphere. Add 'blade runner aesthetic' for that iconic cyberpunk look."
+    },
+    {
+      "id": "prompt-003",
+      "title": "Emotional Voice Narration",
+      "slug": "emotional-voice-narration",
+      "prompt_text": "A warm, empathetic female voice with slight rasp, speaking slowly and thoughtfully, conveying hope and resilience, documentary narrator style, natural breathing pauses",
+      "result_audio": "/prompts/emotional-narration.mp3",
+      "category": "voice",
+      "tool_used": "ElevenLabs Turbo v3",
+      "tool_slug": "elevenlabs-turbo-v3",
+      "style_tags": ["Dramatic", "Ethereal"],
+      "outcome_type": "commercial",
+      "settings": "Stability: 75%, Similarity: 80%, Style: 60%",
+      "author": {
+        "name": "Marcus Johnson",
+        "username": "marcusaudio",
+        "avatar": "/avatars/marcus.jpg"
+      },
+      "likes": 234,
+      "views": 1876,
+      "date_added": "2025-11-08",
+      "featured": false,
+      "tips": "Describe the emotional quality first, then the technical aspects. 'Natural breathing pauses' makes it sound more human."
+    },
+    {
+      "id": "prompt-004",
+      "title": "Lo-Fi Hip Hop Beat",
+      "slug": "lofi-hiphop-beat",
+      "prompt_text": "Chill lo-fi hip hop beat, dusty vinyl crackle, mellow piano chords, soft jazz drums, warm bass, rainy day vibes, study music, 90 BPM, nostalgic and relaxing",
+      "result_audio": "/prompts/lofi-beat.mp3",
+      "category": "music",
+      "tool_used": "Suno v4",
+      "tool_slug": "suno-v4",
+      "style_tags": ["Minimalist", "Vintage"],
+      "outcome_type": "social",
+      "settings": "Instrumental, 2 minutes, Custom mode",
+      "author": {
+        "name": "Luna Park",
+        "username": "lunabeats",
+        "avatar": "/avatars/luna.jpg"
+      },
+      "likes": 445,
+      "views": 3102,
+      "date_added": "2025-11-07",
+      "featured": true,
+      "tips": "Mention specific instruments and the BPM. 'Dusty vinyl crackle' and 'rainy day vibes' nail the lo-fi aesthetic."
+    },
+    {
+      "id": "prompt-005",
+      "title": "Time-Lapse City Sunrise",
+      "slug": "timelapse-city-sunrise",
+      "prompt_text": "Time-lapse of a modern city skyline transitioning from night to sunrise, lights turning off in buildings, sky changing from dark blue to orange and pink, clouds moving fast, golden hour lighting, aerial perspective",
+      "result_video": "/prompts/city-sunrise.mp4",
+      "category": "video",
+      "tool_used": "Veo 3.1",
+      "tool_slug": "veo-3-1",
+      "style_tags": ["Cinematic", "Dramatic"],
+      "outcome_type": "commercial",
+      "settings": "4K, 8 seconds, Time-lapse effect",
+      "author": {
+        "name": "David Kim",
+        "username": "davidvisuals",
+        "avatar": "/avatars/david.jpg"
+      },
+      "likes": 678,
+      "views": 5234,
+      "date_added": "2025-11-06",
+      "featured": true,
+      "tips": "Be specific about the transition (night to sunrise). 'Golden hour lighting' is key for that warm glow."
+    },
+    {
+      "id": "prompt-006",
+      "title": "Fantasy Portrait",
+      "slug": "fantasy-portrait",
+      "prompt_text": "Portrait of an elven warrior, long silver hair flowing, glowing blue eyes, intricate armor with gold details, forest background with magical particles, soft rim lighting, fantasy art style, highly detailed",
+      "result_image": "/prompts/fantasy-portrait.jpg",
+      "category": "image",
+      "tool_used": "FLUX 1.1 Pro",
+      "tool_slug": "flux-1-1-pro",
+      "style_tags": ["Photorealistic", "Ethereal"],
+      "outcome_type": "experimental",
+      "settings": "2K resolution, Raw mode",
+      "author": {
+        "name": "Emma Stone",
+        "username": "emmaart",
+        "avatar": "/avatars/emma.jpg"
+      },
+      "likes": 521,
+      "views": 3845,
+      "date_added": "2025-11-05",
+      "featured": false,
+      "tips": "Layer details: character features, clothing, background, lighting. 'Magical particles' adds that fantasy touch."
+    },
+    {
+      "id": "prompt-007",
+      "title": "Product Unboxing Animation",
+      "slug": "product-unboxing",
+      "prompt_text": "Hands opening a premium tech product box, camera zooming in on the product reveal, soft studio lighting, clean white background, smooth motion, satisfying unboxing experience, ASMR vibes",
+      "result_video": "/prompts/unboxing.mp4",
+      "category": "video",
+      "tool_used": "Kling 1.6",
+      "tool_slug": "kling-1-6",
+      "style_tags": ["Minimalist", "Cinematic"],
+      "outcome_type": "commercial",
+      "settings": "1080p, 6 seconds, Professional mode",
+      "author": {
+        "name": "Tech Unbox Pro",
+        "username": "techunbox",
+        "avatar": "/avatars/techunbox.jpg"
+      },
+      "likes": 412,
+      "views": 2934,
+      "date_added": "2025-11-04",
+      "featured": false,
+      "tips": "'Satisfying unboxing experience' and 'ASMR vibes' help the AI understand the pacing and feel you want."
+    },
+    {
+      "id": "prompt-008",
+      "title": "Vintage Film Look",
+      "slug": "vintage-film-look",
+      "prompt_text": "1970s style photograph, couple walking on beach at sunset, grainy film texture, faded colors, slight vignette, nostalgic mood, Kodak Portra 400 film aesthetic, soft focus",
+      "result_image": "/prompts/vintage-beach.jpg",
+      "category": "image",
+      "tool_used": "Ideogram v3.0",
+      "tool_slug": "ideogram-v3-0",
+      "style_tags": ["Vintage", "Photorealistic"],
+      "outcome_type": "social",
+      "settings": "Square format, Magic Prompt enabled",
+      "author": {
+        "name": "Retro Vibes",
+        "username": "retrovibes",
+        "avatar": "/avatars/retro.jpg"
+      },
+      "likes": 389,
+      "views": 2567,
+      "date_added": "2025-11-03",
+      "featured": false,
+      "tips": "Reference specific film stocks (Kodak Portra 400) for authentic vintage looks. 'Grainy film texture' is essential."
+    },
+    {
+      "id": "prompt-009",
+      "title": "Epic Trailer Voice",
+      "slug": "epic-trailer-voice",
+      "prompt_text": "Deep, powerful male voice with gravitas, movie trailer narrator style, dramatic pauses, building intensity, authoritative and commanding tone, cinematic delivery",
+      "result_audio": "/prompts/epic-voice.mp3",
+      "category": "voice",
+      "tool_used": "ElevenLabs Turbo v3",
+      "tool_slug": "elevenlabs-turbo-v3",
+      "style_tags": ["Dramatic", "Cinematic"],
+      "outcome_type": "commercial",
+      "settings": "Stability: 85%, Similarity: 70%, Style: 80%",
+      "author": {
+        "name": "Voice Pro",
+        "username": "voicepro",
+        "avatar": "/avatars/voicepro.jpg"
+      },
+      "likes": 298,
+      "views": 1923,
+      "date_added": "2025-11-02",
+      "featured": false,
+      "tips": "'Building intensity' and 'dramatic pauses' help create that trailer feel. Be specific about tone and delivery."
+    },
+    {
+      "id": "prompt-010",
+      "title": "Synthwave Sunset Drive",
+      "slug": "synthwave-sunset",
+      "prompt_text": "Retro synthwave track, pulsing bassline, bright synth arpeggios, 80s drum machine, neon sunset vibes, driving rhythm, nostalgic and energetic, 128 BPM",
+      "result_audio": "/prompts/synthwave.mp3",
+      "category": "music",
+      "tool_used": "Udio",
+      "tool_slug": "udio",
+      "style_tags": ["Futuristic", "Vintage"],
+      "outcome_type": "social",
+      "settings": "Instrumental, 2:30 duration, Custom lyrics mode",
+      "author": {
+        "name": "Synth Master",
+        "username": "synthmaster",
+        "avatar": "/avatars/synth.jpg"
+      },
+      "likes": 534,
+      "views": 3678,
+      "date_added": "2025-11-01",
+      "featured": true,
+      "tips": "Genre + specific instruments + mood + BPM = perfect music prompt. 'Neon sunset vibes' captures the aesthetic."
+    },
+    {
+      "id": "prompt-011",
+      "title": "Drone Shot Mountain Peak",
+      "slug": "drone-mountain-peak",
+      "prompt_text": "Aerial drone shot rising up a snow-covered mountain peak, revealing vast mountain range in background, golden hour lighting, dramatic clouds, cinematic camera movement, epic landscape",
+      "result_video": "/prompts/mountain-drone.mp4",
+      "category": "video",
+      "tool_used": "Runway Gen-4 Turbo",
+      "tool_slug": "runway-gen-4-turbo",
+      "style_tags": ["Cinematic", "Dramatic"],
+      "outcome_type": "commercial",
+      "settings": "4K, 7 seconds, Cinematic mode",
+      "author": {
+        "name": "Nature Films",
+        "username": "naturefilms",
+        "avatar": "/avatars/nature.jpg"
+      },
+      "likes": 723,
+      "views": 5892,
+      "date_added": "2025-10-31",
+      "featured": true,
+      "tips": "Describe the camera movement clearly ('rising up'). Golden hour + dramatic clouds = instant epic feel."
+    },
+    {
+      "id": "prompt-012",
+      "title": "Abstract Fluid Art",
+      "slug": "abstract-fluid-art",
+      "prompt_text": "Abstract fluid art, swirling colors of purple, teal, and gold, liquid paint mixing, organic shapes, high contrast, glossy finish, macro photography style, mesmerizing patterns",
+      "result_image": "/prompts/fluid-art.jpg",
+      "category": "image",
+      "tool_used": "Midjourney v7",
+      "tool_slug": "midjourney-v7",
+      "style_tags": ["Abstract", "Ethereal"],
+      "outcome_type": "experimental",
+      "settings": "--ar 1:1 --chaos 50 --v 7",
+      "author": {
+        "name": "Abstract Artist",
+        "username": "abstractart",
+        "avatar": "/avatars/abstract.jpg"
+      },
+      "likes": 467,
+      "views": 3234,
+      "date_added": "2025-10-30",
+      "featured": false,
+      "tips": "Specify colors and textures. 'Macro photography style' gives it that close-up, detailed look."
+    },
+    {
+      "id": "prompt-013",
+      "title": "Podcast Intro Music",
+      "slug": "podcast-intro",
+      "prompt_text": "Upbeat podcast intro music, acoustic guitar strumming, light percussion, friendly and inviting mood, conversational energy, 15 seconds, fade in and out",
+      "result_audio": "/prompts/podcast-intro.mp3",
+      "category": "music",
+      "tool_used": "Suno v4",
+      "tool_slug": "suno-v4",
+      "style_tags": ["Minimalist"],
+      "outcome_type": "commercial",
+      "settings": "Instrumental, 15 seconds, Custom mode",
+      "author": {
+        "name": "Podcast Pro",
+        "username": "podcastpro",
+        "avatar": "/avatars/podcast.jpg"
+      },
+      "likes": 312,
+      "views": 2145,
+      "date_added": "2025-10-29",
+      "featured": false,
+      "tips": "Short intros need clear mood descriptors. 'Conversational energy' helps match the podcast vibe."
+    },
+    {
+      "id": "prompt-014",
+      "title": "Fashion Model Walk",
+      "slug": "fashion-model-walk",
+      "prompt_text": "Fashion model walking down runway, confident stride, designer outfit with flowing fabric, dramatic lighting from sides, camera tracking movement, high fashion photography, elegant and powerful",
+      "result_video": "/prompts/fashion-walk.mp4",
+      "category": "video",
+      "tool_used": "Veo 3.1",
+      "tool_slug": "veo-3-1",
+      "style_tags": ["Cinematic", "Dramatic"],
+      "outcome_type": "commercial",
+      "settings": "4K, 6 seconds, Fashion mode",
+      "author": {
+        "name": "Fashion Forward",
+        "username": "fashionforward",
+        "avatar": "/avatars/fashion.jpg"
+      },
+      "likes": 589,
+      "views": 4123,
+      "date_added": "2025-10-28",
+      "featured": false,
+      "tips": "Describe the movement ('confident stride') and lighting setup. 'Flowing fabric' adds dynamic motion."
+    },
+    {
+      "id": "prompt-015",
+      "title": "Sci-Fi Spaceship Interior",
+      "slug": "scifi-spaceship",
+      "prompt_text": "Interior of futuristic spaceship cockpit, holographic displays, blue and white lighting, sleek metallic surfaces, control panels with glowing buttons, wide-angle view, sci-fi movie aesthetic, highly detailed",
+      "result_image": "/prompts/spaceship.jpg",
+      "category": "image",
+      "tool_used": "FLUX 1.1 Pro",
+      "tool_slug": "flux-1-1-pro",
+      "style_tags": ["Futuristic", "Cinematic"],
+      "outcome_type": "experimental",
+      "settings": "2K resolution, Raw mode",
+      "author": {
+        "name": "Sci-Fi Creator",
+        "username": "scificreator",
+        "avatar": "/avatars/scifi.jpg"
+      },
+      "likes": 634,
+      "views": 4567,
+      "date_added": "2025-10-27",
+      "featured": true,
+      "tips": "Layer the tech details (holographic displays, glowing buttons). 'Sci-fi movie aesthetic' sets the quality bar."
+    }
+  ]
+}
