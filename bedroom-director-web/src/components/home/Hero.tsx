@@ -19,13 +19,15 @@ export default function Hero() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Content fades in after scrolling 100px
-      setScrolled(window.scrollY > 100);
+      // Content fades in after scrolling 100px and stays visible
+      if (window.scrollY > 100 && !scrolled) {
+        setScrolled(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [scrolled]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ margin: 0, padding: 0 }}>
