@@ -199,6 +199,60 @@ export default function PromptsPage() {
             </h2>
           </div>
 
+          {/* Quick Category Filters - W+K: Fast & Obvious */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 px-4">
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
+                selectedCategory === "all"
+                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+              }`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => setSelectedCategory("video")}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
+                selectedCategory === "video"
+                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+              }`}
+            >
+              🎬 Video
+            </button>
+            <button
+              onClick={() => setSelectedCategory("image")}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
+                selectedCategory === "image"
+                  ? "bg-[#FF8C42] text-screen-white shadow-lg shadow-[#FF8C42]/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+              }`}
+            >
+              🖼️ Image
+            </button>
+            <button
+              onClick={() => setSelectedCategory("voice")}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
+                selectedCategory === "voice"
+                  ? "bg-[#00CED1] text-screen-white shadow-lg shadow-[#00CED1]/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+              }`}
+            >
+              🎙️ Voice
+            </button>
+            <button
+              onClick={() => setSelectedCategory("music")}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
+                selectedCategory === "music"
+                  ? "bg-[#FCD34D] text-screen-white shadow-lg shadow-[#FCD34D]/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+              }`}
+            >
+              🎵 Music
+            </button>
+          </div>
+
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto mb-8">
             <div className="relative">
