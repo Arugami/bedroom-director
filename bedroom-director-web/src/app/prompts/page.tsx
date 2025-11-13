@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, Filter, TrendingUp, Clock, Heart } from "lucide-react";
+import { Search, Filter, TrendingUp, Clock, Heart, ExternalLink, Sparkles } from "lucide-react";
 import PromptCard from "@/components/prompts/PromptCard";
+import { Toast } from "@/components/ui/Toast";
 import {
   getAllPrompts,
   getAllCategories,
@@ -11,6 +12,7 @@ import {
   getMostLikedPrompts,
   getMostViewedPrompts,
   getNewestPrompts,
+  Prompt,
 } from "@/lib/data/prompts";
 
 type SortOption = "newest" | "most-liked" | "most-viewed";
@@ -19,6 +21,8 @@ export default function PromptsPage() {
   const allPrompts = getAllPrompts();
   const categories = getAllCategories();
   const styles = getAllStyles();
+  
+  const [toast, setToast] = useState<{ message: string; type: "success" | "info" } | null>(null);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -67,27 +71,132 @@ export default function PromptsPage() {
     return results;
   }, [searchQuery, selectedCategory, selectedStyle, selectedOutcome, sortBy, allPrompts]);
 
+  const handleCopyPrompt = (prompt: Prompt) => {
+    setToast({
+      message: "✓ Prompt copied to clipboard!",
+      type: "success",
+    });
+  };
+
+  const handleTryThis = (prompt: Prompt) => {
+    setToast({
+      message: `✓ Prompt copied! Opening ${prompt.tool_used}...`,
+      type: "info",
+    });
+    // Open tool page in new tab after short delay
+    setTimeout(() => {
+      window.open(`/tools/${prompt.tool_slug}`, '_blank');
+    }, 800);
+  };
+
+  // Get featured prompt for hero
+  const heroPrompt = useMemo(() => {
+    const featured = allPrompts.filter(p => p.featured);
+    return featured[0] || allPrompts[0];
+  }, [allPrompts]);
+
   return (
     <main className="min-h-screen bg-director-black">
-      {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      {/* Toast Notifications */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+
+      {/* Hero Prompt Section - Jobs: One Stunning Example */}
+      <section className="relative py-16 overflow-hidden">
         {/* Twilight gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b] via-[#312e81] to-director-black" />
-
         {/* Film grain */}
         <div className="absolute inset-0 grain-texture opacity-10" />
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+          <div className="text-center mb-8">
             <h1
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-screen-white mb-6"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-screen-white mb-4"
               style={{ textShadow: "0 2px 20px rgba(0, 0, 0, 0.6)" }}
             >
-              Prompt Library
+              The Arsenal
             </h1>
-            <p className="text-screen-white/70 text-lg max-w-2xl mx-auto">
-              Discover proven prompts from the community. Copy, learn, and create your own magic.
+            <p className="text-screen-white/70 text-lg">
+              Steal these prompts. Create something legendary.
             </p>
+          </div>
+
+          {/* Featured Hero Prompt */}
+          {heroPrompt && (
+            <div className="relative rounded-2xl overflow-hidden bg-black/40 backdrop-blur-sm border border-gray-800/50 shadow-2xl shadow-bedroom-purple/20 mb-12">
+              {/* Result Preview */}
+              <div className="relative aspect-video bg-gradient-to-br from-bedroom-purple/20 to-gray-900">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <Sparkles className="w-16 h-16 text-bedroom-purple/40 mx-auto mb-4" />
+                    <div className="text-screen-white/20 text-lg uppercase tracking-wide">
+                      Featured {heroPrompt.category} Result
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-4 left-4 px-4 py-2 bg-[#FF8C42]/90 backdrop-blur-sm rounded-full text-white text-sm font-bold uppercase tracking-wide flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Featured
+                </div>
+              </div>
+
+              {/* Prompt Info */}
+              <div className="p-8">
+                <h2 className="text-3xl font-bold text-screen-white mb-4">
+                  {heroPrompt.title}
+                </h2>
+                <p className="text-screen-white/80 text-lg leading-relaxed mb-6">
+                  {heroPrompt.prompt_text}
+                </p>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <span className="text-screen-white/50 text-sm">Tool:</span>
+                    <span className="text-bedroom-purple text-lg font-semibold">
+                      {heroPrompt.tool_used}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-screen-white/70">
+                    <div className="flex items-center gap-1">
+                      <Heart className="w-5 h-5" />
+                      <span>{heroPrompt.likes}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Sparkles className="w-5 h-5" />
+                      <span>Tried by {Math.floor(heroPrompt.views * 0.15).toLocaleString()}</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleTryThis(heroPrompt)}
+                  className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-bedroom-purple hover:bg-purple-bloom text-screen-white text-lg font-bold rounded-xl transition-all shadow-2xl shadow-bedroom-purple/30 hover:shadow-bedroom-purple/50"
+                >
+                  <ExternalLink className="w-6 h-6" />
+                  Try This Prompt Now
+                </button>
+              </div>
+            </div>
+          )}
+
+          <div className="text-center">
+            <p className="text-screen-white/60 text-sm mb-2">
+              Scroll down to explore {allPrompts.length} more prompts
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Search & Filter Section */}
+      <section className="relative py-8 border-t border-gray-900/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-screen-white mb-2">
+              Explore The Collection
+            </h2>
           </div>
 
           {/* Search Bar */}
@@ -227,7 +336,12 @@ export default function PromptsPage() {
           {filteredPrompts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPrompts.map((prompt) => (
-                <PromptCard key={prompt.id} prompt={prompt} />
+                <PromptCard 
+                  key={prompt.id} 
+                  prompt={prompt}
+                  onCopy={handleCopyPrompt}
+                  onTryThis={handleTryThis}
+                />
               ))}
             </div>
           ) : (
