@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Main content container - fades in on scroll */}
       <div 
         className={`relative z-10 w-full px-4 sm:px-6 lg:px-8 py-12 md:py-24 transition-opacity duration-1000 ${
-          scrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'
+          scrolled ? 'opacity-100' : 'opacity-0 md:opacity-80'
         }`}
       >
         <div className="max-w-6xl mx-auto">

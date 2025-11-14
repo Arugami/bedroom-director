@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, GitCompare } from "lucide-react";
 import { useState } from "react";
+import { useComparison } from "@/contexts/ComparisonContext";
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { comparisonTools, toggleTray } = useComparison();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-900/50 bg-director-black/98 backdrop-blur supports-[backdrop-filter]:bg-director-black/95 shadow-lg shadow-bedroom-purple/5">

@@ -19,8 +19,8 @@
 
 ```
 AI_Image_Video_App/
-├── README.md                          # This file
-├── MASTER_TODO.md                     # Project task tracker
+├── readme.md                          # This file
+├── master-todo.md                     # Project task tracker
 │
 ├── data/                              # Database files
 │   ├── ai_video_image_models.csv     # Main database (153 entries)
@@ -28,18 +28,18 @@ AI_Image_Video_App/
 │   └── backups/                       # Backup files
 │
 ├── docs/                              # All documentation
-│   ├── 00_INDEX.md                    # Documentation index
-│   ├── 01_QUICK_START_GUIDE.md        # Getting started
-│   ├── 02_ENHANCED_SCHEMA.md          # Database schema
-│   ├── 03_MODEL_CATEGORIES.md         # Category breakdown
-│   ├── 04_USER_JOURNEY_GUIDE.md       # User guides
-│   ├── 05_PLATFORM_ACCESS_GUIDE.md    # Platform access
-│   ├── 06_WEBSITE_IMPLEMENTATION_GUIDE.md
+│   ├── 00-index.md                    # Documentation index
+│   ├── 01-quick-start-guide.md        # Getting started
+│   ├── 02-enhanced-schema.md          # Database schema
+│   ├── 03-model-categories.md         # Category breakdown
+│   ├── 04-user-journey-guide.md       # User guides
+│   ├── 05-platform-access-guide.md    # Platform access
+│   ├── 06-website-implementation-guide.md
 │   └── archive/                       # Deprecated docs
 │
 ├── research/                          # Research materials
 │   ├── Executive_Summary.md
-│   ├── Prompting_Research.md
+│   ├── prompting-research.md
 │   └── PRICING_AUDIT_FINDINGS.md
 │
 ├── scripts/                           # Python scripts
@@ -61,12 +61,12 @@ AI_Image_Video_App/
 
 ### **📋 Core Documentation (Start Here)**
 
-1. **[docs/00_INDEX.md](./docs/00_INDEX.md)**
+1. **[docs/00-index.md](./docs/00-index.md)**
    - Complete documentation index
    - Quick reference guide
    - **START HERE** for navigation
 
-2. **[docs/01_QUICK_START_GUIDE.md](./docs/01_QUICK_START_GUIDE.md)**
+2. **[docs/01-quick-start-guide.md](./docs/01-quick-start-guide.md)**
    - 4-week implementation checklist
    - Day-by-day tasks
    - Success metrics
@@ -76,13 +76,13 @@ AI_Image_Video_App/
 
 ### **🗄️ Data & Schema**
 
-3. **[docs/02_ENHANCED_SCHEMA.md](./docs/02_ENHANCED_SCHEMA.md)**
+3. **[docs/02-enhanced-schema.md](./docs/02-enhanced-schema.md)**
    - Complete CSV schema with 19 columns
    - Capability tag reference (40+ tags)
    - Use case to capability mapping
    - Migration strategy
 
-4. **[docs/03_MODEL_CATEGORIES.md](./docs/03_MODEL_CATEGORIES.md)**
+4. **[docs/03-model-categories.md](./docs/03-model-categories.md)**
    - Organized list of all 153 models
    - Categorized by type and capability
    - Coverage breakdown and statistics
@@ -92,13 +92,13 @@ AI_Image_Video_App/
 
 ### **🎯 User Experience**
 
-5. **[docs/04_USER_JOURNEY_GUIDE.md](./docs/04_USER_JOURNEY_GUIDE.md)**
+5. **[docs/04-user-journey-guide.md](./docs/04-user-journey-guide.md)**
    - 5 complete user journeys with decision trees
    - Comparison tables for each use case
    - Common mistakes to avoid
    - Quick decision flowchart
 
-6. **[docs/05_PLATFORM_ACCESS_GUIDE.md](./docs/05_PLATFORM_ACCESS_GUIDE.md)**
+6. **[docs/05-platform-access-guide.md](./docs/05-platform-access-guide.md)**
    - Where to use each model (official vs. third-party)
    - Pricing comparisons
    - Platform access matrix
@@ -108,7 +108,7 @@ AI_Image_Video_App/
 
 ### **💻 Website Implementation**
 
-7. **[docs/06_WEBSITE_IMPLEMENTATION_GUIDE.md](./docs/06_WEBSITE_IMPLEMENTATION_GUIDE.md)**
+7. **[docs/06-website-implementation-guide.md](./docs/06-website-implementation-guide.md)**
    - Complete UI/UX specifications
    - Smart search with natural language
    - Recommendation algorithm (with code)
@@ -119,17 +119,17 @@ AI_Image_Video_App/
 
 ### **🔬 Research & Analysis**
 
-8. **[research/PRICING_AUDIT_FINDINGS.md](./research/PRICING_AUDIT_FINDINGS.md)**
+8. **[research/pricing-audit-findings.md](./research/pricing-audit-findings.md)**
    - Pricing verification for top models
    - Source documentation
    - Audit status and findings
 
-9. **[research/Executive_Summary.md](./research/Executive_Summary.md)**
+9. **[research/executive-summary.md](./research/executive-summary.md)**
    - Executive summary of research findings
    - Model recommendations
    - Market analysis
 
-10. **[notes/EMERGING_MODELS.md](./notes/EMERGING_MODELS.md)**
+10. **[notes/emerging-models.md](./notes/emerging-models.md)**
     - Upcoming model releases
     - Developer previews
     - Rumored features
@@ -138,12 +138,12 @@ AI_Image_Video_App/
 
 ### **📊 Database Files**
 
-11. **[data/ai_video_image_models.csv](./data/ai_video_image_models.csv)**
+11. **[data/ai_video_image_models.csv](data/ai_video_image_models.csv)**
     - Main database with 153 models
     - 19 columns (6 metadata + 13 data fields)
     - Updated Nov 4, 2025
 
-12. **[data/models.json](./data/models.json)**
+12. **[data/models.json](data/models.json)**
     - JSON version of database
     - For API/web integration
 
@@ -156,35 +156,35 @@ AI_Image_Video_App/
 ## 🎯 Quick Navigation by Role
 
 ### **For Executives:**
-1. Read: `docs/00_IMPLEMENTATION_SUMMARY.md`
+1. Read: `docs/00-implementation-summary.md`
 2. Review: Expected outcomes and business metrics
-3. Check: `MASTER_TODO.md` for project status
+3. Check: `master-todo.md` for project status
 
 ### **For Product Managers:**
-1. Read: `docs/00_INDEX.md` for overview
-2. Read: `docs/04_USER_JOURNEY_GUIDE.md`
-3. Review: `docs/01_QUICK_START_GUIDE.md` for timeline
+1. Read: `docs/00-index.md` for overview
+2. Read: `docs/04-user-journey-guide.md`
+3. Review: `docs/01-quick-start-guide.md` for timeline
 
 ### **For Data Team:**
-1. Read: `docs/02_ENHANCED_SCHEMA.md`
+1. Read: `docs/02-enhanced-schema.md`
 2. Work with: `data/ai_video_image_models.csv`
 3. Reference: `research/` folder for verification
 
 ### **For Development Team:**
-1. Read: `docs/06_WEBSITE_IMPLEMENTATION_GUIDE.md`
-2. Reference: `docs/02_ENHANCED_SCHEMA.md` for data structure
+1. Read: `docs/06-website-implementation-guide.md`
+2. Reference: `docs/02-enhanced-schema.md` for data structure
 3. Use: `data/models.json` for API integration
 4. Check: `scripts/` folder for utilities
 
 ### **For Content Team:**
-1. Read: `docs/04_USER_JOURNEY_GUIDE.md`
-2. Read: `docs/05_PLATFORM_ACCESS_GUIDE.md`
+1. Read: `docs/04-user-journey-guide.md`
+2. Read: `docs/05-platform-access-guide.md`
 3. Track: `notes/EMERGING_MODELS.md` for latest announcements
 4. Create: Educational content based on user journeys
 
 ### **For UX/Design Team:**
-1. Read: `docs/06_WEBSITE_IMPLEMENTATION_GUIDE.md`
-2. Reference: `docs/04_USER_JOURNEY_GUIDE.md` for user flows
+1. Read: `docs/06-website-implementation-guide.md`
+2. Reference: `docs/04-user-journey-guide.md` for user flows
 3. Design: Model cards, filters, and comparison tables
 
 ---
@@ -275,12 +275,12 @@ AI_Image_Video_App/
 - All documents are comprehensive and self-contained
 
 ### **Implementation Questions:**
-- Reference: `01_QUICK_START_GUIDE.md` for step-by-step
-- Reference: `06_WEBSITE_IMPLEMENTATION_GUIDE.md` for technical specs
+- Reference: `01-quick-start-guide.md` for step-by-step
+- Reference: `06-website-implementation-guide.md` for technical specs
 
 ### **Data Questions:**
-- Reference: `02_ENHANCED_SCHEMA.md` for schema details
-- Reference: `08_RESEARCH_CATEGORIZATION.md` for classifications
+- Reference: `02-enhanced-schema.md` for schema details
+- Reference: `research/categorization-research.md` for classifications
 
 ---
 
@@ -307,7 +307,7 @@ You now have everything needed to create **the best AI model discovery website**
 - **Platform Updates:** ComfyUI Cloud public beta, Veo 3.1 Fast unlimited on Gemini Ultra
 - **Research:** Competitive analysis, user research findings, positioning strategy
 - **Enhanced UX Vision:** Prompt library + community + workflow-based navigation
-- **Documentation:** Created comprehensive docs/00_INDEX.md
+- **Documentation:** Created comprehensive docs/00-index.md
 
 ### Version 2.0 (November 3, 2025)
 - Added 7 new CSV columns

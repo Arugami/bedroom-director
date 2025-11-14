@@ -106,216 +106,151 @@ export default function PromptsPage() {
         />
       )}
 
-      {/* Hero Prompt Section - Jobs: One Stunning Example */}
-      <section className="relative py-16 overflow-hidden">
+      {/* Compact Hero Section */}
+      <section className="relative py-12 overflow-hidden">
         {/* Twilight gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b] via-[#312e81] to-director-black" />
         {/* Film grain */}
         <div className="absolute inset-0 grain-texture opacity-10" />
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-          <div className="text-center mb-8">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
             <h1
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-screen-white mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-screen-white mb-2"
               style={{ textShadow: "0 2px 20px rgba(0, 0, 0, 0.6)" }}
             >
               The Arsenal
             </h1>
-            <p className="text-screen-white/70 text-lg">
+            <p className="text-screen-white/70">
               Steal these prompts. Create something legendary.
-            </p>
-          </div>
-
-          {/* Featured Hero Prompt */}
-          {heroPrompt && (
-            <div className="relative rounded-2xl overflow-hidden bg-black/40 backdrop-blur-sm border border-gray-800/50 shadow-2xl shadow-bedroom-purple/20 mb-12">
-              {/* Result Preview */}
-              <div className="relative aspect-video bg-gradient-to-br from-bedroom-purple/20 to-gray-900">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <Sparkles className="w-16 h-16 text-bedroom-purple/40 mx-auto mb-4" />
-                    <div className="text-screen-white/20 text-lg uppercase tracking-wide">
-                      Featured {heroPrompt.category} Result
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute top-4 left-4 px-4 py-2 bg-[#FF8C42]/90 backdrop-blur-sm rounded-full text-white text-sm font-bold uppercase tracking-wide flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  Featured
-                </div>
-              </div>
-
-              {/* Prompt Info */}
-              <div className="p-8">
-                <h2 className="text-3xl font-bold text-screen-white mb-4">
-                  {heroPrompt.title}
-                </h2>
-                <p className="text-screen-white/80 text-lg leading-relaxed mb-6">
-                  {heroPrompt.prompt_text}
-                </p>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <span className="text-screen-white/50 text-sm">Tool:</span>
-                    <span className="text-bedroom-purple text-lg font-semibold">
-                      {heroPrompt.tool_used}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-screen-white/70">
-                    <div className="flex items-center gap-1">
-                      <Heart className="w-5 h-5" />
-                      <span>{heroPrompt.likes}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Sparkles className="w-5 h-5" />
-                      <span>Tried by {Math.floor(heroPrompt.views * 0.15).toLocaleString()}</span>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleTryThis(heroPrompt)}
-                  className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-bedroom-purple hover:bg-purple-bloom text-screen-white text-lg font-bold rounded-xl transition-all shadow-2xl shadow-bedroom-purple/30 hover:shadow-bedroom-purple/50"
-                >
-                  <ExternalLink className="w-6 h-6" />
-                  Try This Prompt Now
-                </button>
-              </div>
-            </div>
-          )}
-
-          <div className="text-center">
-            <p className="text-screen-white/60 text-sm mb-2">
-              Scroll down to explore {allPrompts.length} more prompts
             </p>
           </div>
         </div>
       </section>
 
-      {/* Search & Filter Section */}
-      <section className="relative py-8 border-t border-gray-900/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-screen-white mb-2">
-              Explore The Collection
-            </h2>
-          </div>
+      {/* Sticky Filter Bar */}
+      <div className="sticky top-16 z-40 bg-director-black/95 backdrop-blur-lg border-b border-gray-900/50 shadow-lg">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          {/* Category Filters + Sort in One Row */}
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+            {/* Quick Category Filters */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+              <button
+                onClick={() => setSelectedCategory("all")}
+                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                  selectedCategory === "all"
+                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+                }`}
+              >
+                All
+              </button>
+              <button
+                onClick={() => setSelectedCategory("video")}
+                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                  selectedCategory === "video"
+                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+                }`}
+              >
+                🎬 Video
+              </button>
+              <button
+                onClick={() => setSelectedCategory("image")}
+                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                  selectedCategory === "image"
+                    ? "bg-[#FF8C42] text-screen-white shadow-lg shadow-[#FF8C42]/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+                }`}
+              >
+                🖼️ Image
+              </button>
+              <button
+                onClick={() => setSelectedCategory("voice")}
+                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                  selectedCategory === "voice"
+                    ? "bg-[#00CED1] text-screen-white shadow-lg shadow-[#00CED1]/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+                }`}
+              >
+                🎙️ Voice
+              </button>
+              <button
+                onClick={() => setSelectedCategory("music")}
+                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                  selectedCategory === "music"
+                    ? "bg-[#FCD34D] text-screen-white shadow-lg shadow-[#FCD34D]/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
+                }`}
+              >
+                🎵 Music
+              </button>
+            </div>
 
-          {/* Quick Category Filters - W+K: Fast & Obvious */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 px-4">
-            <button
-              onClick={() => setSelectedCategory("all")}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
-                selectedCategory === "all"
-                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-              }`}
-            >
-              All
-            </button>
-            <button
-              onClick={() => setSelectedCategory("video")}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
-                selectedCategory === "video"
-                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-              }`}
-            >
-              🎬 Video
-            </button>
-            <button
-              onClick={() => setSelectedCategory("image")}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
-                selectedCategory === "image"
-                  ? "bg-[#FF8C42] text-screen-white shadow-lg shadow-[#FF8C42]/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-              }`}
-            >
-              🖼️ Image
-            </button>
-            <button
-              onClick={() => setSelectedCategory("voice")}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
-                selectedCategory === "voice"
-                  ? "bg-[#00CED1] text-screen-white shadow-lg shadow-[#00CED1]/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-              }`}
-            >
-              🎙️ Voice
-            </button>
-            <button
-              onClick={() => setSelectedCategory("music")}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
-                selectedCategory === "music"
-                  ? "bg-[#FCD34D] text-screen-white shadow-lg shadow-[#FCD34D]/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-              }`}
-            >
-              🎵 Music
-            </button>
+            {/* Sort Options */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setSortBy("newest")}
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                  sortBy === "newest"
+                    ? "bg-bedroom-purple text-screen-white"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60"
+                }`}
+              >
+                <Clock className="w-4 h-4" />
+                <span className="hidden sm:inline">Newest</span>
+              </button>
+              <button
+                onClick={() => setSortBy("most-liked")}
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                  sortBy === "most-liked"
+                    ? "bg-bedroom-purple text-screen-white"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60"
+                }`}
+              >
+                <Heart className="w-4 h-4" />
+                <span className="hidden sm:inline">Liked</span>
+              </button>
+              <button
+                onClick={() => setSortBy("most-viewed")}
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                  sortBy === "most-viewed"
+                    ? "bg-bedroom-purple text-screen-white"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60"
+                }`}
+              >
+                <TrendingUp className="w-4 h-4" />
+                <span className="hidden sm:inline">Trending</span>
+              </button>
+            </div>
           </div>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <div className="relative">
+          <div className="mt-4">
+            <div className="relative max-w-2xl mx-auto">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-screen-white/40" />
               <input
                 type="text"
                 placeholder="Search prompts, tools, styles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-lg text-screen-white placeholder:text-screen-white/40 focus:outline-none focus:border-bedroom-purple transition-all"
+                className="w-full pl-12 pr-4 py-3 bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-lg text-screen-white placeholder:text-screen-white/40 focus:outline-none focus:border-bedroom-purple transition-all"
               />
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Filter Toggle & Sort */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-lg text-screen-white hover:border-gray-700 transition-all"
-            >
-              <Filter className="w-4 h-4" />
-              {showFilters ? "Hide Filters" : "Show Filters"}
-            </button>
-
-            <div className="flex items-center gap-3">
-              <span className="text-screen-white/60 text-sm">Sort by:</span>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setSortBy("newest")}
-                  className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    sortBy === "newest"
-                      ? "bg-bedroom-purple text-screen-white"
-                      : "bg-black/40 text-screen-white/70 hover:bg-black/60"
-                  }`}
-                >
-                  <Clock className="w-4 h-4" />
-                  Newest
-                </button>
-                <button
-                  onClick={() => setSortBy("most-liked")}
-                  className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    sortBy === "most-liked"
-                      ? "bg-bedroom-purple text-screen-white"
-                      : "bg-black/40 text-screen-white/70 hover:bg-black/60"
-                  }`}
-                >
-                  <Heart className="w-4 h-4" />
-                  Most Liked
-                </button>
-                <button
-                  onClick={() => setSortBy("most-viewed")}
-                  className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    sortBy === "most-viewed"
-                      ? "bg-bedroom-purple text-screen-white"
-                      : "bg-black/40 text-screen-white/70 hover:bg-black/60"
-                  }`}
-                >
-                  <TrendingUp className="w-4 h-4" />
-                  Trending
-                </button>
-              </div>
-            </div>
-          </div>
+      {/* Advanced Filters Section (Collapsible) */}
+      <section className="relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-lg text-screen-white hover:border-gray-700 transition-all mx-auto"
+          >
+            <Filter className="w-4 h-4" />
+            {showFilters ? "Hide" : "Show"} Advanced Filters
+          </button>
 
           {/* Filters */}
           {showFilters && (
@@ -377,18 +312,21 @@ export default function PromptsPage() {
             </div>
           )}
 
-          {/* Results Count */}
-          <p className="text-center text-screen-white/60 mb-8">
-            Showing {filteredPrompts.length} {filteredPrompts.length === 1 ? "prompt" : "prompts"}
-          </p>
         </div>
       </section>
 
       {/* Prompts Grid */}
-      <section className="relative py-16">
+      <section className="relative py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Results Count */}
+          <div className="flex items-center justify-between mb-6">
+            <p className="text-screen-white/60 text-sm">
+              {filteredPrompts.length} {filteredPrompts.length === 1 ? "prompt" : "prompts"}
+            </p>
+          </div>
+
           {filteredPrompts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPrompts.map((prompt) => (
                 <PromptCard 
                   key={prompt.id} 

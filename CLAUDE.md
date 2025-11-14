@@ -48,7 +48,7 @@ python3 scripts/utilities/sync_to_json.py
    - Verify row counts before/after
 
 3. **Update docs when categories change**
-   - Update line numbers in `docs/03_MODEL_CATEGORIES.md`
+   - Update line numbers in `docs/03-model-categories.md`
 
 ---
 
@@ -97,7 +97,7 @@ with open('data/ai_video_image_models.csv', 'w', newline='') as f:
 **Future:**
 - Backend: Supabase (PostgreSQL)
 - Deployment: Cloudflare Pages
-- See `website/DESIGN_SPEC.md` for complete specs
+- See `website/design-spec.md` for complete specs
 
 ---
 
@@ -116,7 +116,7 @@ with open('data/ai_video_image_models.csv', 'w', newline='') as f:
 - Primary: Director Black #000000, Bedroom Purple #7C3AED
 - Neons: Teal #00CED1, Orange #FF8C42, Yellow #FCD34D
 
-**Full guidelines:** `BEDROOM_DIRECTOR_UNIVERSE.md` + `bedroom-director-universe/brand/VISUAL_IDENTITY.md`
+**Full guidelines:** `bedroom-director-universe.md` + `bedroom-director-universe/brand/visual-identity.md`
 
 ---
 
@@ -164,13 +164,13 @@ That magical moment when neon signs turn on against a purple dusk sky. Think: Pu
 
 ## Key Documentation
 
-- `MASTER_TODO.md` - Project status & tasks
-- `ABOUT.md` - Mission/vision (2 paragraphs)
-- `AGENTS.md` - Repo guidelines (for Codex)
-- `BEDROOM_DIRECTOR_UNIVERSE.md` - Core aesthetic
-- `docs/03_MODEL_CATEGORIES.md` - Database categories
-- `website/DESIGN_SPEC.md` - Complete design system
-- `bedroom-director-universe/brand/VISUAL_IDENTITY.md` - Full visual guide
+- `master-todo.md` - Project status & tasks
+- `about.md` - Mission/vision (2 paragraphs)
+- `agents.md` - Repo guidelines (for Codex)
+- `bedroom-director-universe.md` - Core aesthetic
+- `docs/03-model-categories.md` - Database categories
+- `website/design-spec.md` - Complete design system
+- `bedroom-director-universe/brand/visual-identity.md` - Full visual guide
 
 ---
 

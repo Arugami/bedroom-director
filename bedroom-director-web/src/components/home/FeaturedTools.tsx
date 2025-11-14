@@ -7,7 +7,7 @@ export default function FeaturedTools() {
   const tools = getFeaturedTools(6);
 
   return (
-    <section className="relative py-24 bg-director-black overflow-hidden">
+    <section className="relative py-16 bg-director-black overflow-hidden">
       {/* Background Image - AI Projector Beam (perfect for AI tools section) */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
@@ -20,13 +20,13 @@ export default function FeaturedTools() {
       <div className="absolute inset-0 grain-texture opacity-50" />
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex justify-between items-end mb-12">
+        <div className="flex justify-between items-end mb-10">
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-screen-white mb-4">
-              Featured Tools
+            <h2 className="text-3xl sm:text-4xl font-bold text-screen-white mb-2">
+              Your Arsenal
             </h2>
-            <p className="text-screen-white/60 text-lg">
-              Discover the latest AI creative tools
+            <p className="text-screen-white/60">
+              Start creating with these tools
             </p>
           </div>
           <Link
