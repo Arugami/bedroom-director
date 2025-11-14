@@ -1,17 +1,17 @@
 {
   "metadata": {
-    "version": "3.1",
-    "last_updated": "2025-11-13T13:52:17.428407",
-    "total_models": 140,
+    "version": "3.0",
+    "last_updated": "2025-11-14T19:29:31.744234",
+    "total_models": 145,
     "categories": {
-      "IMAGE_GEN": 35,
-      "VIDEO_GEN": 71,
+      "IMAGE_GEN": 36,
+      "VIDEO_GEN": 72,
       "VOICE_AUDIO": 6,
-      "MUSIC": 6,
+      "MUSIC": 7,
       "LIP_SYNC": 5,
-      "PLATFORM_AGGREGATOR": 10,
-      "POST_PROCESSING": 1,
-      "API_INFRASTRUCTURE": 6
+      "PLATFORM_AGGREGATOR": 11,
+      "API_INFRASTRUCTURE": 6,
+      "POST_PROCESSING": 2
     }
   },
   "models": [
@@ -36,9 +36,7 @@
       "pro_tips": "",
       "drawbacks": "Quality and prompt fidelity are lower than the newer commercial versions (1.1 Pro/Ultra).",
       "notable_sources": "huggingface.co/black-forest-labs",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-28"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Black Forest Labs",
@@ -61,9 +59,7 @@
       "pro_tips": "",
       "drawbacks": "Requires API integration or use through a partner app; not a standalone GUI tool. Weights are closed, limiting community fine-tuning.",
       "notable_sources": "blackforestlabs.ai/flux-1-1",
-      "featured": true,
-      "is_new": false,
-      "date_added": "2025-06-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Black Forest Labs",
@@ -86,9 +82,7 @@
       "pro_tips": "",
       "drawbacks": "Slower inference times and higher cost make it less suitable for rapid prototyping compared to the Pro version.",
       "notable_sources": "blackforestlabs.ai/flux-1-1\"",
-      "featured": false,
-      "is_new": true,
-      "date_added": "2025-11-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Ideogram AI",
@@ -111,9 +105,7 @@
       "pro_tips": "",
       "drawbacks": "Less photorealistic than top-tier competitors; free tier outputs are public.",
       "notable_sources": "ideogram.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Ideogram AI",
@@ -136,9 +128,7 @@
       "pro_tips": "",
       "drawbacks": "While photorealism is improved, it may still lag behind models purely focused on that, like Midjourney v7.",
       "notable_sources": "ideogram.ai/features/3.0\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -161,9 +151,7 @@
       "pro_tips": "",
       "drawbacks": "High hardware requirements make it inaccessible for users without high-end GPUs.",
       "notable_sources": "huggingface.co/stabilityai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -186,9 +174,7 @@
       "pro_tips": "",
       "drawbacks": "Slightly lower detail and fidelity compared to the standard Large model.",
       "notable_sources": "huggingface.co/stabilityai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -211,9 +197,7 @@
       "pro_tips": "",
       "drawbacks": "Noticeable trade-off in fine detail and prompt adherence compared to the larger models.",
       "notable_sources": "huggingface.co/stabilityai\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -236,9 +220,7 @@
       "pro_tips": "",
       "drawbacks": "Access requires ByteDance account; availability limited outside partner apps; no local/offline use",
       "notable_sources": "seed.bytedance.com/seedream4_0; time.com/bytedance-seedance",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-02"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Meta",
@@ -261,9 +243,7 @@
       "pro_tips": "",
       "drawbacks": "Not available for public use; its capabilities are demonstrated in a research context.",
       "notable_sources": "ai.meta.com/blog/emu-text-to-video-generation-image-editing-research/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Amazon",
@@ -286,9 +266,7 @@
       "pro_tips": "",
       "drawbacks": "aws.amazon.com/blogs/aws/amazon-titan-image-generator-v2-is-now-available-in-amazon-bedrock/",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-23"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Recraft",
@@ -311,9 +289,7 @@
       "pro_tips": "",
       "drawbacks": "recraft.ai",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Leonardo.ai",
@@ -336,9 +312,7 @@
       "pro_tips": "",
       "drawbacks": "leonardo.ai",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-04"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Reve",
@@ -361,9 +335,7 @@
       "pro_tips": "",
       "drawbacks": "Invite-only beta for some features; no local deployment; diversity-first outputs can reduce deterministic control",
       "notable_sources": "blog.reve.com/posts/reve-editing-model; blog.fal.ai/reve-is-now-available-on-fal",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -376,7 +348,7 @@
       "model": "Gemini 2.5 Flash Image (Nano-Banana)",
       "modality": "Text-to-Image; Image Editing",
       "key_features": "Conversational image generation & editing with mask-aware updates, multi-turn refinement, typography improvements, and prompt-grounded revisions",
-      "duration_resolution": "Still images up to 2048×2048 (supports aspect ratios & animated GIF beta)",
+      "duration_resolution": "Still images up to 2048\u00d72048 (supports aspect ratios & animated GIF beta)",
       "controls": "Text or multimodal prompts; region masks; reference images; step-by-step editing history in AI Studio",
       "speed": "Low-latency preview in Google AI Studio; optimized for sub-second edits via Gemini API Flash tier",
       "pricing": "Free preview in Google AI Studio; Vertex AI/Gemini API pay-as-you-go (charged per 1K image tokens)",
@@ -386,9 +358,7 @@
       "pro_tips": "",
       "drawbacks": "Preview access, watermarking/usage policies apply; enterprise billing details still evolving",
       "notable_sources": "developers.googleblog.com/en/introducing-gemini-2-5-flash-image/; ai.google.dev/gemini-api/docs/image-generation",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -401,7 +371,7 @@
       "model": "Gemini 2.0 Flash Image Preview",
       "modality": "Text-to-Image; Image Editing",
       "key_features": "Earlier Flash image model enabling rapid generation & mask-based edits with conversational workflow",
-      "duration_resolution": "Still images up to 1536×1536 (flexible aspect ratios)",
+      "duration_resolution": "Still images up to 1536\u00d71536 (flexible aspect ratios)",
       "controls": "Text prompts; optional reference images; automatic mask suggestions; batch variations",
       "speed": "Optimised for real-time responses in AI Studio chat",
       "pricing": "Available in AI Studio preview; Vertex AI per-token billing for enterprise",
@@ -411,9 +381,7 @@
       "pro_tips": "",
       "drawbacks": "Preview quality below Nano-Banana; limited documentation on advanced controls",
       "notable_sources": "ai.google.dev/gemini-api/docs/image-generation; lmarena.ai/leaderboard/image-edit",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -436,9 +404,7 @@
       "pro_tips": "",
       "drawbacks": "Lower resolution than competitors; sometimes struggles with hands and complex compositions; less prompt adherence than DALL-E 3",
       "notable_sources": "openai.com/dall-e-2",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-18"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -461,9 +427,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to ChatGPT ecosystem or API (no standalone app); no img2img or inpainting yet; slower than some competitors",
       "notable_sources": "platform.openai.com/docs/guides/images",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -486,9 +450,7 @@
       "pro_tips": "Remove the original subject before adding the new character; Nano Banana swaps fail when you try to overwrite in a single step.",
       "drawbacks": "Limited API access compared to competitors; some safety filters can be restrictive; primarily accessible through Gemini ecosystem",
       "notable_sources": "blog.google/products/gemini",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -511,9 +473,7 @@
       "pro_tips": "",
       "drawbacks": "More expensive than consumer options; requires Adobe ecosystem; less creative/artistic than Midjourney",
       "notable_sources": "adobe.com/products/firefly",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -525,20 +485,18 @@
       "best_for": "Production,Hobbyists",
       "model": "Firefly Image Model 5",
       "modality": "Text-to-Image; Image Editing",
-      "key_features": "Latest flagship with native 4MP photorealistic output, advanced prompt understanding, improved diversity and representation, enhanced structure control",
+      "key_features": "Firefly 5 delivers native 4MP photorealistic photography, better subject lighting, multi-person consistency, and direct hooks into Photoshop/Illustrator for Generative Fill, Expand, and Reference Image workflows.",
       "duration_resolution": "Native 4MP (2048x2048) resolution with HDR-ready output",
-      "controls": "Text prompts with enhanced natural language; reference images; structure controls; style library; Photoshop generative AI integration",
+      "controls": "Text prompts with conversational phrasing, reference image matching, depth/structure guides, style library, and direct Photoshop/LR Classic panels.",
       "speed": "Optimized inference ~5-10 seconds for 4MP images on Adobe cloud",
       "pricing": "Included in Adobe Creative Cloud plans or Firefly Premium ($4.99/mo); generative credits system (100 credits/mo standard)",
       "license": "Proprietary with full IP indemnification; commercial-safe training data; enterprise licensing available",
       "update_cadence": "Released October 2025 at Adobe MAX; continuous model improvements",
-      "distinctive_edge": "Most advanced commercially-safe model; native 4MP generation; best diversity in outputs; full legal protection for commercial work",
+      "distinctive_edge": "Only commercially-indemnified model that rivals Midjourney quality for lifestyle/editorial shots while living inside Adobe CC.",
       "pro_tips": "",
       "drawbacks": "Premium pricing; ecosystem lock-in; may be overly 'safe' for artistic experimentation; content filters can limit creative freedom",
       "notable_sources": "news.adobe.com/news/2025/10/adobe-max-2025-firefly",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -561,9 +519,7 @@
       "pro_tips": "",
       "drawbacks": "Requires technical setup; slower than cloud services; quality varies significantly with prompt engineering; needs powerful GPU",
       "notable_sources": "stability.ai/stable-image; huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -586,9 +542,7 @@
       "pro_tips": "",
       "drawbacks": "Smaller model means some quality trade-offs vs SD3 Large; community ecosystem still developing vs SDXL",
       "notable_sources": "huggingface.co/stabilityai/stable-diffusion-3-medium",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Playground AI",
@@ -611,9 +565,7 @@
       "pro_tips": "",
       "drawbacks": "Can be overly saturated for photorealism; smaller community than SDXL/SD3; web platform can have queue times",
       "notable_sources": "playgroundai.com; huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -636,9 +588,7 @@
       "pro_tips": "",
       "drawbacks": "Discord-first interface can be overwhelming; no local install; subscription required after free trial; queue times on basic plan",
       "notable_sources": "midjourney.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -661,9 +611,7 @@
       "pro_tips": "",
       "drawbacks": "Specialized for anime only; requires Midjourney subscription; Discord/web interface; can over-stylize prompts not meant for anime",
       "notable_sources": "nijijourney.com/en",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Microsoft",
@@ -686,9 +634,7 @@
       "pro_tips": "",
       "drawbacks": "New to market with limited track record; availability may be restricted initially; pricing structure not fully transparent; requires Microsoft account",
       "notable_sources": "microsoft.ai/news/introducing-mai-image-1; theverge.com/microsoft-ai-image-generator; zdnet.com/mai-image-1",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -711,9 +657,7 @@
       "pro_tips": "",
       "drawbacks": "Requires organization verification for API access; newer model with less community tooling than DALL-E 3; API-only (not in ChatGPT interface yet for free users)",
       "notable_sources": "platform.openai.com/docs/models/gpt-image-1; community.openai.com/t/new-gpt-image-model-in-the-api/1239462; azure.microsoft.com/en-us/blog/unveiling-gpt-image-1",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -736,9 +680,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to ChatGPT ecosystem; no standalone app; API details not fully available; newer so less community knowledge/tools than DALL-E 3",
       "notable_sources": "openai.com/index/introducing-4o-image-generation/; community.openai.com/4o-image-generation",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-13"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tencent",
@@ -761,9 +703,7 @@
       "pro_tips": "",
       "drawbacks": "Requires significant GPU resources (80B model); documentation primarily in Chinese; less Western community support than Stable Diffusion/FLUX",
       "notable_sources": "skywork.ai/blog/tencent-hunyuan-releases-3-0; techinasia.com/tencent-hunyuan-image-30; huggingface.co/tencent/HunyuanImage",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Magnific AI",
@@ -786,9 +726,7 @@
       "pro_tips": "",
       "drawbacks": "No refunds; expensive ($39/mo+); can produce artifacts if settings too high; no PayPal/crypto payment",
       "notable_sources": "magnific.ai; topazlabs.com/learn/bloom-vs-magnific",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -811,9 +749,7 @@
       "pro_tips": "",
       "drawbacks": "Learning curve for optimization; requires good source images; not designed for upscaling (use Gigapixel instead)",
       "notable_sources": "topazlabs.com/topaz-photo; elegantthemes.com/blog/design/topaz-photo-ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -836,9 +772,7 @@
       "pro_tips": "",
       "drawbacks": "Best for upscaling only (not general enhancement); slower than Bloom for AI art; learning curve for model selection",
       "notable_sources": "topazlabs.com/topaz-gigapixel; topazlabs.com/topaz-photo-vs-topaz-gigapixel",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -861,9 +795,7 @@
       "pro_tips": "",
       "drawbacks": "Cloud-only (requires internet); less control than Magnific; optimized for AI art (not photos); fewer advanced parameters",
       "notable_sources": "topazlabs.com/learn/bloom-vs-magnific; topazlabs.com/pricing",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -886,9 +818,7 @@
       "pro_tips": "",
       "drawbacks": "Remained a research preview, not released to the public. Some issues with physics and causality in complex scenes.",
       "notable_sources": "openai.com/sora",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -911,9 +841,7 @@
       "pro_tips": "",
       "drawbacks": "Region-limited invite rollout; compute throttling during spikes; no API yet",
       "notable_sources": "openai.com/index/sora-2/; eesel.ai/blog/sora-2-pricing",
-      "featured": true,
-      "is_new": false,
-      "date_added": "2025-06-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -936,9 +864,7 @@
       "pro_tips": "",
       "drawbacks": "Waitlist required; throughput throttled during demand spikes; no desktop or API support",
       "notable_sources": "openai.com/index/sora-2/; eesel.ai/blog/sora-2-pricing",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-02"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Microsoft/OpenAI",
@@ -961,9 +887,7 @@
       "pro_tips": "",
       "drawbacks": "Preview only; region & quota limits; image/video inputs still rolling out",
       "notable_sources": "learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/video-generation; ai.azure.com/catalog/models/sora",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -976,7 +900,7 @@
       "model": "Veo 3 Audio (Gemini API)",
       "modality": "Text-to-Video (+Audio)",
       "key_features": "Flagship Veo 3 model with native audio, 1080p output, and strong physics/prompt adherence",
-      "duration_resolution": "2–10 s clips (extendable via API) at 1080p",
+      "duration_resolution": "2\u201310 s clips (extendable via API) at 1080p",
       "controls": "Text prompts; optional reference images; adjustable aspect ratios",
       "speed": "Standard Gemini API throughput (seconds per frame)",
       "pricing": "$0.20/s (silent) or $0.40/s (audio) via partners like fal.ai; Vertex AI per-second billing",
@@ -986,9 +910,7 @@
       "pro_tips": "",
       "drawbacks": "High per-second cost vs. newer 3.1 Fast; safety filters may trim outputs",
       "notable_sources": "cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation; fal.ai/models/fal-ai/veo3",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1001,19 +923,17 @@
       "model": "Veo 3 Fast Audio (Gemini API)",
       "modality": "Text-to-Video (+Audio)",
       "key_features": "Faster Veo 3 tier balancing quality and speed; retains native dialogue/SFX",
-      "duration_resolution": "2–10 s clips at 1080p",
+      "duration_resolution": "2\u201310 s clips at 1080p",
       "controls": "Text prompts; reference images; same controls as standard",
       "speed": "Optimized fast queue for rapid iteration",
-      "pricing": "$0.25/s (silent) or $0.40/s (audio) per fal.ai (≈$2 for 5 s audio)",
+      "pricing": "$0.25/s (silent) or $0.40/s (audio) per fal.ai (\u2248$2 for 5 s audio)",
       "license": "Proprietary (Gemini API)",
       "update_cadence": "Released alongside Veo 3 fast preview in 2025",
       "distinctive_edge": "Cut iteration cost/time while keeping audio-enabled workflows",
       "pro_tips": "",
       "drawbacks": "Still pricey vs. Veo 3.1 Fast; preview access subject to quotas",
       "notable_sources": "cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation; fal.ai/models/fal-ai/veo3/fast",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1026,7 +946,7 @@
       "model": "Veo 3 Fast (Gemini API)",
       "modality": "Text-to-Video",
       "key_features": "Silent fast tier for quick drafts; maintains Veo 3 visual fidelity",
-      "duration_resolution": "2–10 s clips at 1080p",
+      "duration_resolution": "2\u201310 s clips at 1080p",
       "controls": "Text prompts; reference images; can add audio in post",
       "speed": "Fastest Gemini queue among Veo 3 variants",
       "pricing": "$0.25/s (silent) via fal.ai; enterprise discounts via partners",
@@ -1036,9 +956,7 @@
       "pro_tips": "",
       "drawbacks": "No native audio; still more expensive than 3.1 Fast; preview gating",
       "notable_sources": "fal.ai/models/fal-ai/veo3/fast; kie.ai/v3-api-pricing",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-24"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1051,7 +969,7 @@
       "model": "Veo 3 (Silent Gemini API)",
       "modality": "Text-to-Video",
       "key_features": "Standard Veo 3 visual model without audio; excels at realistic motion and cinematography",
-      "duration_resolution": "2–10 s clips at 1080p",
+      "duration_resolution": "2\u201310 s clips at 1080p",
       "controls": "Text prompts; reference images; aspect ratio controls",
       "speed": "Standard queue (seconds per frame)",
       "pricing": "$0.20/s (silent) via fal.ai; Google AI Studio/Vertex usage fees apply",
@@ -1061,9 +979,7 @@
       "pro_tips": "",
       "drawbacks": "Lacks native audio; per-second billing costly for long clips",
       "notable_sources": "fal.ai/models/fal-ai/veo3; cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1076,19 +992,17 @@
       "model": "Veo 2 (Gemini API)",
       "modality": "Text-to-Video",
       "key_features": "Earlier Veo generation with hybrid transformer diffusion; strong cinematic control but no native audio",
-      "duration_resolution": "Generates up to 1 min (Vertex) at 1080p (typically 5–10 s per call)",
+      "duration_resolution": "Generates up to 1 min (Vertex) at 1080p (typically 5\u201310 s per call)",
       "controls": "Text prompts; style tags; camera directives",
       "speed": "Longer render (~minutes per clip) on standard queues",
-      "pricing": "$0.50/s per Google pricing (≈$30/min)",
+      "pricing": "$0.50/s per Google pricing (\u2248$30/min)",
       "license": "Proprietary (Google)",
       "update_cadence": "Released Feb 2025; maintained as legacy option",
       "distinctive_edge": "Proven reliability with longer-duration outputs and documentation",
       "pro_tips": "",
       "drawbacks": "Legacy quality vs. Veo 3 family; expensive per-second pricing",
       "notable_sources": "cloud.google.com/vertex-ai/generative-ai/docs/models/veo/2-0-generate-001; techcrunch.com/2025/02/23/googles-new-ai-video-model-veo-2-will-cost-50-cents-per-second/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1101,19 +1015,17 @@
       "model": "Veo 3.1 (Gemini API)",
       "modality": "Text-to-Video (+Audio)",
       "key_features": "Paid-preview upgrade with richer native audio, improved cinematic control, reference-image \"Ingredients\", and scene extension capabilities.",
-      "duration_resolution": "Generates 2–10s clips by default; scene extension can create sequences up to a minute long at 1080p.",
+      "duration_resolution": "Generates 2\u201310s clips by default; scene extension can create sequences up to a minute long at 1080p.",
       "controls": "Text prompts, up to 3 reference images, first/last frame transitions, and integration with Gemini Flow.",
       "speed": "Cloud inference via Gemini API/Vertex AI; billed per-second.",
       "pricing": "$0.20/s (video only) or $0.40/s (audio) via partners like fal.ai.",
       "license": "Proprietary (Gemini API paid preview)",
       "update_cadence": "Released Oct 15, 2025, with ongoing Gemini feature drops.",
-      "distinctive_edge": "Adds native audio and multi-reference controls to Google’s flagship video stack.",
+      "distinctive_edge": "Adds native audio and multi-reference controls to Google\u2019s flagship video stack.",
       "pro_tips": "",
       "drawbacks": "Paid preview access; higher cost vs. the 'Fast' tier; subject to Google's safety filters.",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1126,7 +1038,7 @@
       "model": "Veo 3.1 Fast (Gemini API)",
       "modality": "Text-to-Video (+Audio)",
       "key_features": "A lower-cost Veo 3.1 variant that prioritizes faster turnaround times while retaining the option for native audio and reference controls.",
-      "duration_resolution": "2–10s clips (extendable) at up to 1080p.",
+      "duration_resolution": "2\u201310s clips (extendable) at up to 1080p.",
       "controls": "Text prompts, reference images, first/last frame controls; same API as standard Veo 3.1.",
       "speed": "Runs on a faster queue through the Gemini API and partners.",
       "pricing": "$0.10/s (silent) or $0.15/s (audio) on fal.ai.",
@@ -1136,9 +1048,7 @@
       "pro_tips": "",
       "drawbacks": "Still in preview; quality may be slightly below the standard Veo 3.1; clip durations are capped.",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-06"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -1161,9 +1071,7 @@
       "pro_tips": "",
       "drawbacks": "Slower and less capable than the subsequent Gen-4.",
       "notable_sources": "runwayml.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -1186,9 +1094,7 @@
       "pro_tips": "",
       "drawbacks": "The advanced UI has a steeper learning curve than simpler tools. The credit system can be complex.",
       "notable_sources": "runwayml.com\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -1211,9 +1117,7 @@
       "pro_tips": "",
       "drawbacks": "Still credit-based; guardrails can block edgy prompts; requires Runway subscription",
       "notable_sources": "runwayml.com/research/introducing-runway-gen-4; help.runwayml.com/hc/en-us/articles/37327109429011-Creating-with-Gen-4-Video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Luma",
@@ -1236,9 +1140,7 @@
       "pro_tips": "",
       "drawbacks": "Clip length limited to 10 s; lower-tier outputs are draft quality (need upscaling); strict content limits (no faces without permission, etc. per ToS); primarily English-centric prompting",
       "notable_sources": "Luma",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Luma",
@@ -1251,7 +1153,7 @@
       "model": "Ray 2",
       "modality": "Text-to-Video; Image-to-Video",
       "key_features": "Ray2 model delivers fast coherent motion, ultra-realistic detail and logical event sequences; integrates Modify Video tool",
-      "duration_resolution": "Generates cinematic 5–10 s clips at up to 1080p; HDR demos showcased",
+      "duration_resolution": "Generates cinematic 5\u201310 s clips at up to 1080p; HDR demos showcased",
       "controls": "Text prompts; image-to-video Modify pipeline; camera controls",
       "speed": "Near real-time previews via Luma cloud; available via Amazon Bedrock",
       "pricing": "Usage via Luma subscription/API; Amazon Bedrock metered pricing",
@@ -1261,9 +1163,7 @@
       "pro_tips": "",
       "drawbacks": "No public weights; still capped at short clips; advanced features in Ray3",
       "notable_sources": "lumalabs.ai/ray2; aws.amazon.com/blogs/aws/luma-ai-ray-2-video-model-is-now-available-in-amazon-bedrock/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -1286,9 +1186,7 @@
       "pro_tips": "",
       "drawbacks": "Quality was more stylized than photorealistic; modular features were powerful but could be credit-intensive.",
       "notable_sources": "pika.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-27"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -1311,9 +1209,7 @@
       "pro_tips": "",
       "drawbacks": "Still more focused on stylized content than photorealism. The credit cost of advanced features can add up quickly.",
       "notable_sources": "pika.art\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou (Kling Team)",
@@ -1326,19 +1222,17 @@
       "model": "Kling 2.5 Turbo Pro",
       "modality": "Text- & Image-to-Video",
       "key_features": "Premium tier flagship video generator with major quality upgrades. Significant improvements in prompt adherence, temporal control, fluid motion in dynamic scenes, and style consistency. Supports sound effects track (toggle on/off); multi-character scenes with consistent interactions. Redefines cinematic AI video generation with better physics simulation and reinforcement learning training.",
-      "duration_resolution": "Up to 5–10 s per generation via API/UI; 1080p output at 24–30 FPS; can stitch internally up to ~2 min in app",
+      "duration_resolution": "Up to 5\u201310 s per generation via API/UI; 1080p output at 24\u201330 FPS; can stitch internally up to ~2 min in app",
       "controls": "Text prompt plus optional image init; advanced camera directives (e.g. \"drone follow shot\") for cinematic angles; complex multi-step and causal relationship prompts; character interactions and scene transitions; toggle to enable auto SFX audio",
-      "speed": "Optimized \"Turbo\" inference yields ~5 s video in seconds on Kling cloud. Public web UIs (Bylo, Pollo) often run on GPU queues – a few minutes per clip. Native app (Kwai) real-time for short clips",
+      "speed": "Optimized \"Turbo\" inference yields ~5 s video in seconds on Kling cloud. Public web UIs (Bylo, Pollo) often run on GPU queues \u2013 a few minutes per clip. Native app (Kwai) real-time for short clips",
       "pricing": "30% cheaper than Kling 2.1 Pro: 25 credits for 5s 1080p (was 35 credits in 2.1). ~$0.04 per 5s video via partners. Free limited trials on third-party sites (Bylo.ai, Pollo.ai). Enterprise API deals available",
       "license": "Closed source; available via Kuaishou's apps and partner APIs. Outputs presumably free for personal use on platform; commercial API use negotiable. No explicit license for downloaded outputs (user must follow Kuaishou content rules)",
-      "update_cadence": "Released September 19, 2025. Rapid iteration: v2.1 in mid-2024, v2.5 (Sep 2025) with 2× speed/cost improvements. Split into Pro/Standard tiers Oct 2025. Likely new versions every 6–8 months",
+      "update_cadence": "Released September 19, 2025. Rapid iteration: v2.1 in mid-2024, v2.5 (Sep 2025) with 2\u00d7 speed/cost improvements. Split into Pro/Standard tiers Oct 2025. Likely new versions every 6\u20138 months",
       "distinctive_edge": "Best-in-class cinematic video quality; outperforms Veo 3 and Seedance per official benchmarks; excellent prompt adherence with complex multi-step narratives; physics-aware motion with large range; strong style consistency; 30% cost reduction from 2.1. Flexible: can generate silent clips for editing or with auto sound",
       "pro_tips": "",
       "drawbacks": "Official access mostly in Chinese apps; global users rely on unofficial portals. Documentation in English is sparse. Content is moderated under Chinese law (e.g. stricter on political content). Heavy motion outputs can introduce occasional artifacts in complex scenes. Higher tier cost than Standard",
       "notable_sources": "app.klingai.com/global/release-notes/2025-09-19; feedback.scenario.com/changelog",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-23"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou (Kling Team)",
@@ -1351,9 +1245,9 @@
       "model": "Kling 2.5 Turbo Standard",
       "modality": "Text- & Image-to-Video",
       "key_features": "Budget-friendly tier of Kling 2.5 family with same quality upgrades as Pro but at 720p resolution. Perfect for high-volume video creation at speed, for less. Same improvements: better prompt adherence, temporal control, smoother motion and temporal consistency, robust camera control, stronger style fidelity. Ideal for cinematic shots, product visuals, sports, and narrative scenes.",
-      "duration_resolution": "Up to 5–10 s per generation; 720p output at 24–30 FPS; can stitch internally up to ~2 min in app via Kling platform",
+      "duration_resolution": "Up to 5\u201310 s per generation; 720p output at 24\u201330 FPS; can stitch internally up to ~2 min in app via Kling platform",
       "controls": "Text prompt plus optional image init; advanced camera directives for cinematic camera moves (dolly, pan, tilt, orbit); complex scene instructions; character interactions; negative prompts; toggle to enable auto SFX audio",
-      "speed": "Faster generation than Pro: ~5 s video in seconds on Kling cloud. Optimized for high-volume workflows. Public web UIs (Bylo, Pollo) run on GPU queues – 1-3 minutes per clip",
+      "speed": "Faster generation than Pro: ~5 s video in seconds on Kling cloud. Optimized for high-volume workflows. Public web UIs (Bylo, Pollo) run on GPU queues \u2013 1-3 minutes per clip",
       "pricing": "Lower cost than Pro tier; available via Kling platform & partners (Scenario, fal.ai, Higgsfield) with credit-based pricing. Free limited trials on third-party sites. More affordable for bulk generation",
       "license": "Closed source; available via Kuaishou's apps and partner APIs. Outputs presumably free for personal use on platform; commercial API use negotiable. No explicit license for downloaded outputs (user must follow Kuaishou content rules)",
       "update_cadence": "Released October 2025 as lower-cost tier alongside Kling 2.5 Turbo Pro. Part of tiered pricing strategy similar to Kling 2.1 Master/Standard split",
@@ -1361,9 +1255,7 @@
       "pro_tips": "",
       "drawbacks": "720p resolution vs 1080p Pro; still limited to Chinese platform ecosystem with English documentation gaps; content moderation under Chinese law; complex dynamic scenes may show artifacts",
       "notable_sources": "blog.fal.ai/kling-2-5-turbo-is-now-available-on-fal; feedback.scenario.com/changelog; app.klingai.com\nxAI (Elon Musk),Grok \"\"\"\"Imagine\"\"\"\"\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -1378,17 +1270,15 @@
       "key_features": "Enterprise-focused generative video integrated in Adobe Firefly/CC. Emphasis on safe content (no IP or face misuse) and easy post-edit. Uses partner models (e.g. Ray 3 from Luma) under Adobe's UX",
       "duration_resolution": "Max ~15 s in beta; up to 1080p at launch; longer durations expected as feature matures",
       "controls": "Text prompts and optional reference image; style presets in UI. Supports aspect ratio settings. Tight Creative Cloud integration: can import results into Premiere Pro, etc. All outputs include Content Credentials metadata by default",
-      "speed": "Fast generation for beta: currently 1080p video costs 20 generative credits/sec (limited-time discount) – roughly 5× faster/cheaper than initial expectation (100 credits/sec). Real-time preview of frames in Firefly web app; final render <1 min for short clip",
+      "speed": "Fast generation for beta: currently 1080p video costs 20 generative credits/sec (limited-time discount) \u2013 roughly 5\u00d7 faster/cheaper than initial expectation (100 credits/sec). Real-time preview of frames in Firefly web app; final render <1 min for short clip",
       "pricing": "Included in Firefly Premium plans: e.g. Firefly Standard $4.99/mo (comes with premium generative credits) or as part of Creative Cloud Pro. Creative Cloud subscribers got limited free video tries (2 free videos). Generative credits pool used for video (shared with image/audio tasks). Excess use requires purchasing credit packs",
       "license": "Closed-source; Firefly outputs are user-owned and royalty-free for commercial use (Adobe indemnifies legal use). Strong usage terms forbid toxic or illegal content. All outputs automatically tagged with AI identifier (Content Credentials)",
       "update_cadence": "Launched Oct 2025 (beta). Frequent model integrations planned: Adobe partners with model makers (e.g. Luma's Ray 3 exclusive preview). Expect rapid improvements and more model options in Firefly over 2026.",
       "distinctive_edge": "Adobe's polish and trust: unique in enterprise-friendly licensing (indemnification, IP worry-free) and integration with Photoshop/Premiere workflows. Best choice for brands that require compliant content and editing pipeline.",
       "pro_tips": "",
-      "drawbacks": "Currently in beta with some quality limitations; not as cutting-edge in realism as Sora/Veo. Requires Adobe subscription (costly for casual users). Strict content filters (no adult, violence, or political misuse – generation will fail or be blurred)",
+      "drawbacks": "Currently in beta with some quality limitations; not as cutting-edge in realism as Sora/Veo. Requires Adobe subscription (costly for casual users). Strict content filters (no adult, violence, or political misuse \u2013 generation will fail or be blurred)",
       "notable_sources": "Adobe Firefly",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -1411,9 +1301,7 @@
       "pro_tips": "",
       "drawbacks": "Slower than v7; video is image-to-video only, not native text-to-video.",
       "notable_sources": "midjourney.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -1425,20 +1313,18 @@
       "best_for": "Production,Social Media",
       "model": "Midjourney v7",
       "modality": "Text-to-Image; Image-to-Video",
-      "key_features": "Draft Mode for up to 10× faster renders, higher realism in textures/anatomy, cinematic options like lens blur, plus Meta.ai access with Variety/Style/Weirdness sliders and SREF input.",
+      "key_features": "Draft Mode for up to 10\u00d7 faster renders, higher realism in textures/anatomy, cinematic options like lens blur, plus Meta.ai access with Variety/Style/Weirdness sliders and SREF input.",
       "duration_resolution": "Stills up to 2K resolution; Video: 5-21s clips at ~1080p",
       "controls": "Text prompts with --v 7 parameter, conversational editing, cinematic controls, and Meta.ai sliders (Variety/Style/Weirdness) with SREF box; also supports video toggles.",
       "speed": "Draft Mode is significantly faster; standard generation is also improved over v6. Video generation time is similar to v6.",
-      "pricing": "Basic $10/mo, Standard $30/mo, Pro $60/mo — with a current Meta.ai surface that exposes Midjourney for free (subject to Meta policy changes).",
+      "pricing": "Basic $10/mo, Standard $30/mo, Pro $60/mo \u2014 with a current Meta.ai surface that exposes Midjourney for free (subject to Meta policy changes).",
       "license": "Closed-source service; Pro/Mega plan required for companies with >$1M revenue.",
       "update_cadence": "Rolled out mid-2025",
       "distinctive_edge": "Fast Draft Mode paired with a no-cost Meta.ai interface expands access beyond Discord.",
       "pro_tips": "",
       "drawbacks": "Meta.ai access varies by region/account and the stylized output still demands prompt finesse to avoid overcooked looks.",
       "notable_sources": "midjourney.com\"",
-      "featured": true,
-      "is_new": false,
-      "date_added": "2025-10-13"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -1461,9 +1347,7 @@
       "pro_tips": "",
       "drawbacks": "Very short clips, no audio, and often flickery. Requires technical skill to use.",
       "notable_sources": "huggingface.co/stabilityai/stable-video-diffusion-img2vid",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -1486,9 +1370,7 @@
       "pro_tips": "",
       "drawbacks": "Still has the same limitations as the 14-frame model (no audio, non-commercial, requires technical skill).",
       "notable_sources": "huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "HPC-AI Tech",
@@ -1501,19 +1383,17 @@
       "model": "Open-Sora 2.0",
       "modality": "Text-to-Video",
       "key_features": "Open-source text-to-video model aiming for SOTA performance at lower compute cost. 12B parameter Transformer+Diffusion hybrid architecture with innovations: hierarchical video token autoencoder (Video DC-AE) for efficient compression, and a three-stage training pipeline (low-res text-to-video, then image-to-video for motion, then hi-res fine-tune). Achieves high fidelity and temporal consistency comparable to proprietary models, per authors.",
-      "duration_resolution": "Can generate ~2–5 s clips (16–24 frames at 480p–720p in demos). Trained for up to 8 s but quality best on shorter outputs. Configurable frame rate ~4–8 FPS (meant for smooth interpolation rather than real-time video).",
-      "controls": "Text prompt input. Supports basic neg prompts. No built-in user interface – intended for developers (PyTorch code on GitHub). Tools provided for data preprocessing and model training from scratch. Community is working on adding ControlNet-like extensions on top of Open-Sora.",
-      "speed": "Requires significant GPU memory (12B model, plus video frames). Generates ~1 second of video in tens of seconds on an A100 GPU. Not optimized for speed – focus was on cost-efficient training rather than fast inference. Further optimization or distillation may be needed for real-time use.",
-      "pricing": "Free and open-source. Code and model weights are on GitHub (Apache 2.0 License). Anyone can use, modify, or even commercialize it (the aim is democratization). No royalties – just credit the project. Essentially the community alternative to Sora.",
-      "license": "Completely open under Apache 2.0 – no usage restrictions baked in (aside from ethical AI guidelines). Users are responsible for safe use. HPC-AI Tech released it to spur innovation in video generation. This openness contrasts with most cutting-edge video models.",
-      "update_cadence": "Fast progress: Open-Sora 1.0 was mid-2024 (basic text2video). v2.0 released Mar 2025 with major quality leap. Likely ongoing academic-style releases – possibly v2.5 or v3 in 2026 if more funding. Community contributions (fine-tuned checkpoints) appear on HuggingFace, accelerating improvement.",
-      "distinctive_edge": "Truly \"Sora for all\" – high-quality results approaching closed models, but at a fraction of training cost (~$200k) thanks to clever optimizations. Gives researchers and smaller companies a fighting chance in video AI. A milestone in open AI like Stable Diffusion was for images.",
+      "duration_resolution": "Can generate ~2\u20135 s clips (16\u201324 frames at 480p\u2013720p in demos). Trained for up to 8 s but quality best on shorter outputs. Configurable frame rate ~4\u20138 FPS (meant for smooth interpolation rather than real-time video).",
+      "controls": "Text prompt input. Supports basic neg prompts. No built-in user interface \u2013 intended for developers (PyTorch code on GitHub). Tools provided for data preprocessing and model training from scratch. Community is working on adding ControlNet-like extensions on top of Open-Sora.",
+      "speed": "Requires significant GPU memory (12B model, plus video frames). Generates ~1 second of video in tens of seconds on an A100 GPU. Not optimized for speed \u2013 focus was on cost-efficient training rather than fast inference. Further optimization or distillation may be needed for real-time use.",
+      "pricing": "Free and open-source. Code and model weights are on GitHub (Apache 2.0 License). Anyone can use, modify, or even commercialize it (the aim is democratization). No royalties \u2013 just credit the project. Essentially the community alternative to Sora.",
+      "license": "Completely open under Apache 2.0 \u2013 no usage restrictions baked in (aside from ethical AI guidelines). Users are responsible for safe use. HPC-AI Tech released it to spur innovation in video generation. This openness contrasts with most cutting-edge video models.",
+      "update_cadence": "Fast progress: Open-Sora 1.0 was mid-2024 (basic text2video). v2.0 released Mar 2025 with major quality leap. Likely ongoing academic-style releases \u2013 possibly v2.5 or v3 in 2026 if more funding. Community contributions (fine-tuned checkpoints) appear on HuggingFace, accelerating improvement.",
+      "distinctive_edge": "Truly \"Sora for all\" \u2013 high-quality results approaching closed models, but at a fraction of training cost (~$200k) thanks to clever optimizations. Gives researchers and smaller companies a fighting chance in video AI. A milestone in open AI like Stable Diffusion was for images.",
       "pro_tips": "",
-      "drawbacks": "Still somewhat experimental – not as plug-and-play or stable as polished models. Motion can be less fluid in complex scenes. No built-in content filters – risk of misuse (users must handle moderation). And running it demands powerful GPUs (accessibility is relative – easier than training $2M models, but still heavy to run locally for most).",
+      "drawbacks": "Still somewhat experimental \u2013 not as plug-and-play or stable as polished models. Motion can be less fluid in complex scenes. No built-in content filters \u2013 risk of misuse (users must handle moderation). And running it demands powerful GPUs (accessibility is relative \u2013 easier than training $2M models, but still heavy to run locally for most).",
       "notable_sources": "HPC-AI Tech",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tencent",
@@ -1526,19 +1406,17 @@
       "model": "HunyuanVideo",
       "modality": "Text-to-Video",
       "key_features": "Open-source large T2V model (13B parameters) launched by Tencent in late 2024. Trained on multi-modal video data to achieve high visual quality, diverse motions, and strong text alignment. Claims performance comparable or superior to previous SOTA closed models. Also provides an image-to-video mode (HunyuanVideo-I2V) for single-image animation.",
-      "duration_resolution": "Demonstrated ~5 s videos at 1024×576 in 24 FPS. Can do up to 128 frames (5.3 s at 24 FPS) per generation per the paper, with potential for longer if stitched.",
-      "controls": "Text prompt input; optional image input mode. Supports various styles (the model learned diverse \"themes\"). They released both T2V and I2V model weights. Like most open releases, no official GUI – use via code or community UIs. A live demo site exists (China region) for text-to-video with limited daily quota.",
-      "speed": "As a large 13B model, inference is heavy – ~10 seconds of video might take a few minutes on multi-GPU setups. Tencent optimized it to some extent (they mention efficiency improvements), but speed is not real-time. Good for batch generation on cloud GPUs.",
+      "duration_resolution": "Demonstrated ~5 s videos at 1024\u00d7576 in 24 FPS. Can do up to 128 frames (5.3 s at 24 FPS) per generation per the paper, with potential for longer if stitched.",
+      "controls": "Text prompt input; optional image input mode. Supports various styles (the model learned diverse \"themes\"). They released both T2V and I2V model weights. Like most open releases, no official GUI \u2013 use via code or community UIs. A live demo site exists (China region) for text-to-video with limited daily quota.",
+      "speed": "As a large 13B model, inference is heavy \u2013 ~10 seconds of video might take a few minutes on multi-GPU setups. Tencent optimized it to some extent (they mention efficiency improvements), but speed is not real-time. Good for batch generation on cloud GPUs.",
       "pricing": "Free. Model weights on Hugging Face under an open license. Tencent also provides a free web tool (in Chinese) for anyone to try limited generations. No subscription needed. Essentially a public contribution to open AI research (likely to enhance Tencent cloud offerings indirectly).",
-      "license": "Open-source (likely Apache 2.0 or similar). Meant to be used and adapted widely. Commercial use is allowed (Tencent itself might use it in products). It's part of Tencent's \"Hunyuan\" AI platform strategy – they open-sourced to gain community adoption.",
+      "license": "Open-source (likely Apache 2.0 or similar). Meant to be used and adapted widely. Commercial use is allowed (Tencent itself might use it in products). It's part of Tencent's \"Hunyuan\" AI platform strategy \u2013 they open-sourced to gain community adoption.",
       "update_cadence": "Released Dec 2024. No major update as of Oct 2025 publicly, but ongoing internal research presumably. It was a one-time big release; future \"HunyuanVideo 2\" might depend on research direction. Meanwhile, community is fine-tuning it (e.g. custom models on HuggingFace).",
       "distinctive_edge": "First Chinese open model at parity with Western closed models. Excellent at complex motions and understanding Chinese text prompts (multilingual capability). Being open, it fosters global research and integration, raising the bar for non-English video generation especially.",
       "pro_tips": "",
-      "drawbacks": "Hardware intensive (13B model + video frames means needing at least an A100 GPU to run smoothly). Documentation and support mostly in Chinese (international users rely on translations). Also, as an open model, outputs aren't filtered – users can generate disallowed content unless they implement safety checks.",
+      "drawbacks": "Hardware intensive (13B model + video frames means needing at least an A100 GPU to run smoothly). Documentation and support mostly in Chinese (international users rely on translations). Also, as an open model, outputs aren't filtered \u2013 users can generate disallowed content unless they implement safety checks.",
       "notable_sources": "Tencent",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Genmo",
@@ -1551,19 +1429,17 @@
       "model": "Mochi 1 (preview)",
       "modality": "Text-to-Video",
       "key_features": "Open-source text-to-video model (by Genmo.ai) with focus on high motion fidelity and prompt obedience. Aims to close the quality gap to closed models. It's a diffusion-based video model released in late 2024 as a preview.",
-      "duration_resolution": "Shown generating ~3–4 s clips at 512×512 (12–16 frames @ ~4 FPS). Meant to demonstrate short dynamic motions (e.g. a person doing a quick action). Longer sequences possible by chaining but not primary use.",
+      "duration_resolution": "Shown generating ~3\u20134 s clips at 512\u00d7512 (12\u201316 frames @ ~4 FPS). Meant to demonstrate short dynamic motions (e.g. a person doing a quick action). Longer sequences possible by chaining but not primary use.",
       "controls": "Text prompts only. Genmo provided a hosted demo and Docker to run Mochi. No special control inputs beyond the prompt. Designed to be simple: input text, get video. Community can integrate it into notebooks or UIs (e.g. RunPod, Modal examples exist).",
-      "speed": "Moderate speed: a few seconds of video in perhaps ~30–60 seconds on a high-end GPU (roughly ~2× image generation time times number of frames). Genmo likely used optimized pytorch for release, but still not real-time.",
+      "speed": "Moderate speed: a few seconds of video in perhaps ~30\u201360 seconds on a high-end GPU (roughly ~2\u00d7 image generation time times number of frames). Genmo likely used optimized pytorch for release, but still not real-time.",
       "pricing": "Free and open. Available on GitHub/Hub (MIT license via Genmo). Genmo had a free online demo (during preview launch) to showcase it. They might build paid products on it eventually, but the model itself is open.",
       "license": "Very permissive open-source (MIT). You can use it in any projects. Genmo's ethos is community-first, so they released Mochi to spur innovation and gather feedback. No usage restrictions coded, aside from general responsible AI advisories.",
       "update_cadence": "Released Nov 2024 as \"preview\". Genmo hinted at continuing improvements (Mochi 2 etc.) but no major public release as of late 2025. The project is active on GitHub with updates to improve stability. We might see an official \"v1\" when it's more refined.",
-      "distinctive_edge": "Strong motion realism among open models – e.g. \"exceptional motion consistency\" reported by early testers. Good prompt alignment too. Essentially one of the best fully open text-to-video as of 2024, moving the needle for community models.",
+      "distinctive_edge": "Strong motion realism among open models \u2013 e.g. \"exceptional motion consistency\" reported by early testers. Good prompt alignment too. Essentially one of the best fully open text-to-video as of 2024, moving the needle for community models.",
       "pro_tips": "",
       "drawbacks": "Still a preview: occasional flicker between frames, and resolution is limited (for higher res, needs interpolation/upscaling). Also lacks advanced features (no audio, no control nets). Some users report it struggles with very complex prompts or long dialogues in the scene.",
       "notable_sources": "Genmo",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tsinghua Univ.",
@@ -1578,17 +1454,15 @@
       "key_features": "Successor to 2022's CogVideo (first Chinese text-to-video). CogVideo-X (2024) is an improved open model with better bilingual understanding and video coherence. Leverages transformer architectures and cogeneration techniques developed by Tsinghua.",
       "duration_resolution": "Generates about 4 s of video (32 frames at ~8 FPS) at ~480p. Aimed at short social video snippets (e.g. someone doing an action with a caption).",
       "controls": "Text prompt input (Chinese or English). No additional controls. The model has some training on Chinese-specific content, making it culturally tuned. Provided as research code; no GUI from authors aside from example scripts.",
-      "speed": "Inference speed similar to other transformer-based video models of its size – not instant, but workable (within a minute for a clip on decent GPU). Not optimized for deployment (research code quality).",
+      "speed": "Inference speed similar to other transformer-based video models of its size \u2013 not instant, but workable (within a minute for a clip on decent GPU). Not optimized for deployment (research code quality).",
       "pricing": "Free, open-source (released on GitHub under Apache License). No usage fees. Part of academic publication. Anyone can download weights and run or fine-tune.",
       "license": "Open license (Apache). Encourages research and even commercial experimentation (though model quality likely not fully production-ready without further tuning). Outputs should be used responsibly as usual, but no baked-in constraints.",
-      "update_cadence": "Original CogVideo was mid-2022; CogVideo-X paper in mid-2024. These are research milestones, not productized. Tsinghua might not continually maintain it – it serves as a foundation for others to build on. The community might fine-tune it or incorporate techniques into other models.",
-      "distinctive_edge": "Important for multilingual video generation – one of few models that understand Chinese text well. Open availability helps Chinese developers who might prefer it over English-trained models. Technically, it introduced some novel training tricks documented in the paper.",
+      "update_cadence": "Original CogVideo was mid-2022; CogVideo-X paper in mid-2024. These are research milestones, not productized. Tsinghua might not continually maintain it \u2013 it serves as a foundation for others to build on. The community might fine-tune it or incorporate techniques into other models.",
+      "distinctive_edge": "Important for multilingual video generation \u2013 one of few models that understand Chinese text well. Open availability helps Chinese developers who might prefer it over English-trained models. Technically, it introduced some novel training tricks documented in the paper.",
       "pro_tips": "",
       "drawbacks": "Quality is still behind Sora/Veo: videos are often low-res and occasionally incoherent on complex prompts. More a proof-of-concept than a competitor to closed models. Also, limited support/community compared to bigger open projects (fewer updates, less user-friendly packaging).",
       "notable_sources": "Tsinghua Univ.",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Various",
@@ -1602,18 +1476,16 @@
       "modality": "Text-to-Video; +Extensions",
       "key_features": "An open video generation framework (from researchers at NTU) which includes: a base text-to-video diffusion, an image-to-video refinement, and a motion LoRA system for customization. VideoCrafter 2 (2024) improved quality and introduced modulable components for community to plug in their own trained modules.",
       "duration_resolution": "Base model generates ~4 s (16 frames @ 4 FPS) at 512p. Can be extended by running multiple modules sequentially for longer or higher-res.",
-      "controls": "Text prompt for base gen. Optionally use an image init or depth map with the \"extension\" models to better control output. The framework allows swapping in custom Motion LoRAs – e.g. you can train a LoRA for \"skateboarding moves\" and apply it. Essentially Lego blocks for video AI.",
+      "controls": "Text prompt for base gen. Optionally use an image init or depth map with the \"extension\" models to better control output. The framework allows swapping in custom Motion LoRAs \u2013 e.g. you can train a LoRA for \"skateboarding moves\" and apply it. Essentially Lego blocks for video AI.",
       "speed": "Speed: each module is comparable to an image diffusion run per frame chunk, so base ~20 s per video on good GPU, then extension a bit more. Overall not real-time but modular (you can skip or add steps as needed to save time or improve quality). Designed to be relatively efficient and run on one GPU.",
-      "pricing": "Free, fully open-source (MIT license). Models and code on GitHub. No cost except compute. It's intended as a research and dev platform for open video AI – no subscription, etc.",
-      "license": "MIT license – do anything you want. The authors encourage both academic and commercial use. There's no usage restriction, though they include a note urging users to avoid misuse (no baked filter).",
+      "pricing": "Free, fully open-source (MIT license). Models and code on GitHub. No cost except compute. It's intended as a research and dev platform for open video AI \u2013 no subscription, etc.",
+      "license": "MIT license \u2013 do anything you want. The authors encourage both academic and commercial use. There's no usage restriction, though they include a note urging users to avoid misuse (no baked filter).",
       "update_cadence": "Initial release late 2023 (VideoCrafter 1). Version 2 in mid-2024 with major upgrades. Ongoing community contributions (many LoRAs and fine-tunes shared on HuggingFace). Likely future versions will appear as video models evolve, possibly adding audio or longer sequence handling.",
-      "distinctive_edge": "Highly extensible – one of the first open frameworks letting users *train their own motion modules* and plug them in. This means tailored outputs (e.g. a LoRA for a specific character or action) are easier. Great for developers wanting a customizable video generator rather than a fixed model.",
+      "distinctive_edge": "Highly extensible \u2013 one of the first open frameworks letting users *train their own motion modules* and plug them in. This means tailored outputs (e.g. a LoRA for a specific character or action) are easier. Great for developers wanting a customizable video generator rather than a fixed model.",
       "pro_tips": "",
-      "drawbacks": "As with many open models, raw quality is a notch below the likes of Sora or Runway. To get best results, one might need to run the extra refinement modules, which complicates usage. It's also a code-heavy tool – not a ready-made app for non-coders. And no audio support.",
+      "drawbacks": "As with many open models, raw quality is a notch below the likes of Sora or Runway. To get best results, one might need to run the extra refinement modules, which complicates usage. It's also a code-heavy tool \u2013 not a ready-made app for non-coders. And no audio support.",
       "notable_sources": "VideoCrafter",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -1636,9 +1508,7 @@
       "pro_tips": "",
       "drawbacks": "Invite or partner gated; no open weights; exports tied to platform terms",
       "notable_sources": "seed.bytedance.com/seedance; scenario.com/seedance-models",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -1661,9 +1531,7 @@
       "pro_tips": "",
       "drawbacks": "Lower res and more artifacts vs. Pro; stricter prompt limits",
       "notable_sources": "seed.bytedance.com/seedance; lmarena.ai/leaderboard/text-to-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Meta",
@@ -1686,9 +1554,7 @@
       "pro_tips": "",
       "drawbacks": "Not available for public use; capabilities are limited to short clips in a research context.",
       "notable_sources": "ai.meta.com/blog/emu-text-to-video-generation-image-editing-research/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-24"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Lightricks",
@@ -1711,9 +1577,7 @@
       "pro_tips": "",
       "drawbacks": "Clip length limited to short scenes; high-res runs need strong GPUs; audio tools still maturing",
       "notable_sources": "techround.co.uk/ltx-2; siliconangle.com/lightricks-ltx-2",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Shengshu AI",
@@ -1736,9 +1600,7 @@
       "pro_tips": "",
       "drawbacks": "Slower than short-form generators; advanced features behind paywall; no self-hosting",
       "notable_sources": "arxiv.org/abs/2405.04233; vidu.com/features",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-23"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -1761,9 +1623,7 @@
       "pro_tips": "",
       "drawbacks": "Heavy compute requirements for best quality; clip length capped at 5 s; docs primarily Chinese",
       "notable_sources": "alibabacloud.com/blog/video-generation; huggingface.co/tongyi-wan",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -1776,9 +1636,9 @@
       "model": "Wan 2.2 Animate 14B",
       "modality": "Image/Video-to-Video",
       "key_features": "Character animation/replacement with skeleton + expression control, relighting LoRA, and the Nov 2025 upgrade delivering sharper, cleaner visuals.",
-      "duration_resolution": "Generates 720p clips aligned to driver video length (typically 3–6 s)",
+      "duration_resolution": "Generates 720p clips aligned to driver video length (typically 3\u20136 s)",
       "controls": "Reference image sets + driver video; supports character swap with environmental relighting; integrates into Wan Studio",
-      "speed": "Post-upgrade inference is roughly 4× faster, so 720p swaps render in seconds on hosted queues.",
+      "speed": "Post-upgrade inference is roughly 4\u00d7 faster, so 720p swaps render in seconds on hosted queues.",
       "pricing": "Hosted providers now charge about $0.08 per second for 720p clips; self-host stays free under Apache 2.0.",
       "license": "Apache 2.0 open license",
       "update_cadence": "Launched Sept 19 2025 alongside Wan 2.2 updates",
@@ -1786,9 +1646,7 @@
       "pro_tips": "",
       "drawbacks": "Still capped at 720p and needs clean driver footage plus serious VRAM for local runs.",
       "notable_sources": "humanaigc.github.io/wan-animate; github.com/Wan-Video/Wan2.2",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -1801,19 +1659,17 @@
       "model": "Wan 2.5",
       "modality": "Text-to-Video (+Audio)",
       "key_features": "10 s native 1080p24; seamless audio-video sync; bilingual prompts; instruction-based editing with reasoning",
-      "duration_resolution": "5–10 s clips at 480p/720p/1080p (16:9, 9:16, 1:1)",
-      "controls": "Text prompts (≤800 chars); optional audio uploads; instruction-led refinement; multi-image workflows",
+      "duration_resolution": "5\u201310 s clips at 480p/720p/1080p (16:9, 9:16, 1:1)",
+      "controls": "Text prompts (\u2264800 chars); optional audio uploads; instruction-led refinement; multi-image workflows",
       "speed": "Cloud-only generation with standard vs Fast queues; asynchronous delivery via Wan Create",
-      "pricing": "Wan Create credits (≈38 for 5 s 480p up to ≈225 for 10 s 1080p); partner APIs like fal.ai bill $0.05–$0.15 per second",
+      "pricing": "Wan Create credits (\u224838 for 5 s 480p up to \u2248225 for 10 s 1080p); partner APIs like fal.ai bill $0.05\u2013$0.15 per second",
       "license": "Closed-source SaaS; commercial use governed by Alibaba terms",
       "update_cadence": "Announced 2025 with continuous Wan Create feature drops",
       "distinctive_edge": "Flagship Alibaba model delivering 10 s 1080p video with native audio sync and reasoning",
       "pro_tips": "",
       "drawbacks": "Requires Alibaba account/region access; higher tiers costly; no self-hosted weights",
       "notable_sources": "wan.video; toolplay.ai/tools/wan-2.5-ai-video-generator",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-06"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1834,11 +1690,9 @@
       "update_cadence": "Released Oct 28 2025 across app and platform",
       "distinctive_edge": "Best mix of camera control and lively human performance at mid-range pricing",
       "pro_tips": "",
-      "drawbacks": "Chinese-first UX; closed weights; confined to ≤10 s clips",
+      "drawbacks": "Chinese-first UX; closed weights; confined to \u226410 s clips",
       "notable_sources": "minimax.io/news/minimax-hailuo-23; platform.minimax.io/docs/api-reference/video-generation-t2v",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1851,19 +1705,17 @@
       "model": "Hailuo 02 Standard",
       "modality": "Text-to-Video; Image-to-Video",
       "key_features": "Native 1080p 10s clips with strong physics and cinematic lighting; NCR architecture boosts efficiency",
-      "duration_resolution": "6–10 s clips at 768p–1080p (24–30 fps)",
+      "duration_resolution": "6\u201310 s clips at 768p\u20131080p (24\u201330 fps)",
       "controls": "Text or image prompts; camera macros; multilingual prompting",
       "speed": "Standard queue (tens of seconds per clip online)",
-      "pricing": "Approx. 75–150 credits per clip (e.g., 10 s 768p = 150 credits) per toolplay.ai",
+      "pricing": "Approx. 75\u2013150 credits per clip (e.g., 10 s 768p = 150 credits) per toolplay.ai",
       "license": "Proprietary SaaS/API",
       "update_cadence": "Model unveiled June 18 2025",
       "distinctive_edge": "Balanced cost/quality option beating many peers on physics realism",
       "pro_tips": "",
       "drawbacks": "Credit-based pricing varies by reseller; limited to short clips",
       "notable_sources": "minimax.io/news/minimax-hailuo-02; toolplay.ai/tools/minimax-hailuo-02-ai-image-to-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1879,16 +1731,14 @@
       "duration_resolution": "6 s 1080p default (downloaded clip)",
       "controls": "Text/image prompts; optional last frame; prompt optimizer",
       "speed": "API-powered (fal/third parties) with quick async turnaround",
-      "pricing": "≈9.5 credits per second (6 s 1080p ≈ 57 credits) via kie.ai marketplace",
+      "pricing": "\u22489.5 credits per second (6 s 1080p \u2248 57 credits) via kie.ai marketplace",
       "license": "Proprietary SaaS/API",
       "update_cadence": "Available via API distributors mid-2025",
       "distinctive_edge": "Delivers top-tier cinematic physics at sub-$0.05 per second pricing",
       "pro_tips": "",
       "drawbacks": "Still closed-model; requires credit purchases or enterprise deals",
       "notable_sources": "kie.ai/hailuo-api; dzine.ai/tools/hailuo-02-pro",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-18"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1901,19 +1751,17 @@
       "model": "Hailuo 02 Fast",
       "modality": "Text-to-Video; Image-to-Video",
       "key_features": "Cost-optimized mode for quick drafts; trades some detail for speed while keeping motion coherence",
-      "duration_resolution": "6 s 512–768p outputs (optionally 1080p)",
+      "duration_resolution": "6 s 512\u2013768p outputs (optionally 1080p)",
       "controls": "Text prompts; image init; adjustable duration",
       "speed": "Fast queue with lower wait times on Hailuo Video platform",
-      "pricing": "Examples: 6 s 768p for 75 credits (toolplay); Freepik lists 35–165 credits by resolution",
+      "pricing": "Examples: 6 s 768p for 75 credits (toolplay); Freepik lists 35\u2013165 credits by resolution",
       "license": "Proprietary SaaS",
       "update_cadence": "Rolled out with Hailuo 02 product launch June 2025",
       "distinctive_edge": "Great for bulk generation or animatics before upgrading to Pro",
       "pro_tips": "",
       "drawbacks": "Lower resolution and more artifacts vs. Pro/Standard; credit top-ups required",
       "notable_sources": "toolplay.ai/tools/minimax-hailuo-02-ai-image-to-video; support.freepik.com/s/article/AI-Video-Generator-Credits",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Microsoft",
@@ -1936,9 +1784,7 @@
       "pro_tips": "",
       "drawbacks": "research.microsoft.com/en-us/projects/vasa/",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-07"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Higgsfield",
@@ -1951,7 +1797,7 @@
       "model": "DoP I2V-01",
       "modality": "Image-to-Video; Text-to-Video",
       "key_features": "50+ cinematic camera presets; Mix sequencing; style filters; speech-synced avatars",
-      "duration_resolution": "3–5 s MP4 clips at 720p",
+      "duration_resolution": "3\u20135 s MP4 clips at 720p",
       "controls": "Preset library + text prompts; image upload; optional speech audio; Lite/Standard/Turbo modes",
       "speed": "Cloud render with Turbo queue for faster turnaround; Lite/Standard process in seconds",
       "pricing": "Subscription credits per tier (Lite/Standard/Turbo); monthly credits expire if unused",
@@ -1961,9 +1807,7 @@
       "pro_tips": "",
       "drawbacks": "5 s duration cap; 720p ceiling; closed ecosystem with no open weights",
       "notable_sources": "thecreatorsai.com/p/higgsfield-ai-review-tutorial; higgsfield.ai/create-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1976,19 +1820,17 @@
       "model": "Veo 3.1 Audio (Gemini API)",
       "modality": "Text-to-Video (+Audio); Image-to-Video",
       "key_features": "Paid-preview upgrade with richer native audio, improved cinematic control, reference-image \"Ingredients\" and scene extension",
-      "duration_resolution": "Generates 2–10 s clips by default; scene extension chains to minute-long sequences at 1080p",
+      "duration_resolution": "Generates 2\u201310 s clips by default; scene extension chains to minute-long sequences at 1080p",
       "controls": "Text prompts; up to 3 reference images; first/last frame transitions; Gemini Flow integrations",
       "speed": "Cloud inference via Gemini API/Vertex AI; billed per-second",
       "pricing": "$0.20/s (video only) or $0.40/s (audio) via partners like fal.ai; enterprise pricing on Vertex AI",
       "license": "Proprietary (Gemini API paid preview)",
       "update_cadence": "Released Oct 15 2025 with ongoing Gemini feature drops",
-      "distinctive_edge": "Adds native audio + multi-reference controls to Google’s flagship video stack",
+      "distinctive_edge": "Adds native audio + multi-reference controls to Google\u2019s flagship video stack",
       "pro_tips": "",
       "drawbacks": "Paid preview access; higher cost vs Fast tier; subject to Google safety filters",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/; fal.ai/models/fal-ai/veo3.1",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -2001,7 +1843,7 @@
       "model": "Veo 3.1 Fast Audio (Gemini API)",
       "modality": "Text-to-Video (+Audio); Image-to-Video",
       "key_features": "Lower-cost Veo 3.1 variant prioritizing turnaround; inherits audio-on option and reference controls",
-      "duration_resolution": "2–10 s clips (extendable via scene extension) at up to 1080p",
+      "duration_resolution": "2\u201310 s clips (extendable via scene extension) at up to 1080p",
       "controls": "Text prompts; reference images; first/last frame; same API as Veo 3.1",
       "speed": "Faster queue through Gemini API and partners",
       "pricing": "$0.10/s (silent) or $0.15/s (audio) on fal.ai; billed pay-as-you-go",
@@ -2011,9 +1853,7 @@
       "pro_tips": "",
       "drawbacks": "Still preview-only; quality slightly below full Veo 3.1; capped clip durations",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/; fal.ai/models/fal-ai/veo3.1/fast",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-02"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou",
@@ -2026,7 +1866,7 @@
       "model": "Kling 2.1 Master",
       "modality": "Text-to-Video; Image-to-Video",
       "key_features": "Premium 1080p variant with advanced 3D camera motion, refined facial animation, multi-aspect support",
-      "duration_resolution": "5–10 s clips at 360p–1080p (looping via first/last frame)",
+      "duration_resolution": "5\u201310 s clips at 360p\u20131080p (looping via first/last frame)",
       "controls": "Text prompts; first-frame conditioning across tiers; Pro/Master support last-frame control; negative prompts",
       "speed": "Cloud generation via Kling app/partners; faster than 2.0 while preserving fidelity",
       "pricing": "Available through Kling platform & partners (Scenario, Higgsfield) with credit-based pricing",
@@ -2036,9 +1876,7 @@
       "pro_tips": "",
       "drawbacks": "Access limited to authorized platforms; heavy GPU requirements for 1080p; still capped at 10 s",
       "notable_sources": "app.klingai.com/global/release-notes/2025-05-26; help.scenario.com/en/articles/kling-video-models-the-essentials",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou",
@@ -2051,7 +1889,7 @@
       "model": "Kling 2.1 Standard",
       "modality": "Text-to-Video; Image-to-Video",
       "key_features": "Mainline Kling 2.1 model with smooth motion, strong prompt obedience, and 720/1080p output",
-      "duration_resolution": "5–10 s clips at 720p or 1080p",
+      "duration_resolution": "5\u201310 s clips at 720p or 1080p",
       "controls": "Text prompts; first-frame conditioning; negative prompts; camera presets",
       "speed": "Standard cloud queue on Kling/partner platforms",
       "pricing": "Credit-based pricing via partners (e.g., Scenario, Higgsfield)",
@@ -2061,9 +1899,7 @@
       "pro_tips": "",
       "drawbacks": "Still closed-source; limited documentation in English; capped to short clips",
       "notable_sources": "help.scenario.com/en/articles/kling-video-models-the-essentials; app.klingai.com/global/release-notes/2025-05-26",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -2078,7 +1914,7 @@
       "key_features": "Community-wide V1 release with cinematic camera prompts, storyboard timelines, style references, and soundtrack placeholders",
       "duration_resolution": "8 s clips at 1080p (supports 16:9, 9:16, 1:1); storyboard chaining can extend sequences",
       "controls": "Text prompts; reference images; camera/motion tags; storyboard remix; per-frame adjustments via Describe/Blend",
-      "speed": "Typical render 30–90 s via Discord bot depending on queue",
+      "speed": "Typical render 30\u201390 s via Discord bot depending on queue",
       "pricing": "Included in Midjourney subscriptions (Basic $10/mo, Standard $30/mo, Pro $60/mo); video counts against GPU minutes",
       "license": "Proprietary SaaS (Midjourney); commercial use per plan terms",
       "update_cadence": "V1 launched Jun 18 2025 with frequent iterative updates via changelog",
@@ -2086,9 +1922,7 @@
       "pro_tips": "",
       "drawbacks": "Discord-based workflow; clip length capped at 8 s; no native audio yet",
       "notable_sources": "updates.midjourney.com/introducing-our-v1-video-model/; techcrunch.com/2025/06/18/midjourney-launches-its-first-ai-video-generation-model-v1/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -2111,9 +1945,7 @@
       "pro_tips": "",
       "drawbacks": "Superseded by Gen-3/4; slower generation; shorter clips; less realistic than current models; maintained mainly for continuity",
       "notable_sources": "runwayml.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -2136,9 +1968,7 @@
       "pro_tips": "",
       "drawbacks": "Lower quality than 2024+ models; short clips only; occasional artifacts; stylized rather than photorealistic",
       "notable_sources": "pika.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-07"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -2161,9 +1991,7 @@
       "pro_tips": "",
       "drawbacks": "Quickly superseded by 2.0+; still stylized vs photorealistic; effects sometimes gimmicky; short clips limited use cases",
       "notable_sources": "pika.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Haiper",
@@ -2173,9 +2001,9 @@
       "regional_restrictions": "",
       "skill_level": "Intermediate",
       "best_for": "Production,Social Media",
-      "model": "Haiper AI ⚠️ DISCONTINUED",
+      "model": "Haiper AI \u26a0\ufe0f DISCONTINUED",
       "modality": "Text-to-Video; Image-to-Video",
-      "key_features": "⚠️ PLATFORM DISCONTINUED (Feb 2025): Was an emerging fast video generator with strong motion quality, free tier, image animation, extend video, repaint features. Pivoted to enterprise services only.",
+      "key_features": "\u26a0\ufe0f PLATFORM DISCONTINUED (Feb 2025): Was an emerging fast video generator with strong motion quality, free tier, image animation, extend video, repaint features. Pivoted to enterprise services only.",
       "duration_resolution": "2-4 seconds (free), up to 8 seconds (paid) at 720p [HISTORICAL]",
       "controls": "Text prompts; image-to-video; extend clips; repaint (content modification); motion strength controls [HISTORICAL]",
       "speed": "Very fast: ~20-40 seconds for 4s clip on Haiper cloud [HISTORICAL]",
@@ -2186,9 +2014,7 @@
       "pro_tips": "",
       "drawbacks": "DISCONTINUED: Platform shut down Feb 2025; website offline (404 errors); pivoted to enterprise-only B2B model; all consumer access ended; refunds issued to paid users",
       "notable_sources": "haiper.ai (offline); techcrunch.com/haiper-shutdown-2025",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kaiber",
@@ -2211,9 +2037,7 @@
       "pro_tips": "",
       "drawbacks": "More stylized than photorealistic; learning curve for best results; credit system can be confusing; occasional consistency issues",
       "notable_sources": "kaiber.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Imagine Art",
@@ -2236,9 +2060,7 @@
       "pro_tips": "",
       "drawbacks": "Native model quality behind leaders; video features limited; confusing which model you're using; credit depletion fast with video",
       "notable_sources": "imagine.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "FLORA",
@@ -2261,9 +2083,7 @@
       "pro_tips": "",
       "drawbacks": "Pricing complexity across models; learning curve for workflow blueprints; quality dependent on backend model selection",
       "notable_sources": "florafauna.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Figma",
@@ -2286,9 +2106,7 @@
       "pro_tips": "",
       "drawbacks": "Major acquisition transition uncertainty; standalone product future unclear; pricing/access model changing; may lose features during Figma integration",
       "notable_sources": "weavy.ai (redirecting to Figma); techcrunch.com/figma-weavy-acquisition",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-30"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Morphic",
@@ -2311,9 +2129,7 @@
       "pro_tips": "",
       "drawbacks": "Newer platform with smaller community; learning curve for canvas interface; some features still in development",
       "notable_sources": "morphic.com; morphstudio.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Scenario",
@@ -2336,9 +2152,7 @@
       "pro_tips": "",
       "drawbacks": "Training data sourcing controversies (copyright/trademark concerns noted by community); higher pricing for commercial scale; learning curve for custom models",
       "notable_sources": "scenario.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "VEED",
@@ -2361,9 +2175,7 @@
       "pro_tips": "",
       "drawbacks": "AI generation quality not as advanced as specialized tools; watermark on free tier; subscription required for serious use; avatars less realistic than dedicated platforms",
       "notable_sources": "veed.io",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pixverse",
@@ -2386,9 +2198,7 @@
       "pro_tips": "",
       "drawbacks": "Quality may not match premium platforms; effects can be gimmicky; newer platform with limited advanced controls; community smaller than established competitors",
       "notable_sources": "pixverse.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Luma",
@@ -2411,9 +2221,7 @@
       "pro_tips": "",
       "drawbacks": "Still limited to 10-second clips; requires paid tier for 4K/HDR; strict content policies; primarily English prompts; no API access yet",
       "notable_sources": "lumalabs.ai/ray3; blog.adobe.com/luma-ray3-firefly; cometapi.com/luma-ray3-inference",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -2436,9 +2244,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to 5 seconds currently; requires Discord (no web app); image-to-video only (not text-to-video); slower than pure video generators; artistic bias may not suit photorealism",
       "notable_sources": "updates.midjourney.com/introducing-v1-video-model/; techcrunch.com/2025/06/18/midjourney-video-v1; docs.midjourney.com/video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -2461,9 +2267,7 @@
       "pro_tips": "",
       "drawbacks": "Chinese language only (no English yet); regional restrictions; documentation primarily Chinese; content moderation under Chinese law; limited international availability",
       "notable_sources": "videomaker.com/bytedance-jimeng-ai; technode.com/bytedance-jimeng-ai; vidboard.ai/bytedance-ai-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "NVIDIA",
@@ -2486,9 +2290,7 @@
       "pro_tips": "",
       "drawbacks": "Specialized for physical AI (not general creative video); requires understanding of robotics/autonomous systems; complex setup; less artistic than creative video models",
       "notable_sources": "nvidia.com/en-us/ai/cosmos/; research.nvidia.com/cosmos-wfms; blogs.nvidia.com/open-models-data-ai/; github.com/nvidia-cosmos",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -2511,9 +2313,7 @@
       "pro_tips": "",
       "drawbacks": "Highly technical; requires significant GPU resources; primarily for research/advanced users; limited documentation; non-commercial license restrictions",
       "notable_sources": "github.com/Stability-AI/generative-models; huggingface.co/stabilityai/sv4d; stability.ai/research",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "xAI (Elon Musk)",
@@ -2534,11 +2334,9 @@
       "update_cadence": "Rapid iteration: launched v0.1 Aug 2025, v0.9 Oct 2025 with major quality/audio upgrade. Musk claims it \"improves daily\" via new builds. Likely frequent model updates pushed to app without notice.",
       "distinctive_edge": "First consumer AI video with *audio* in a social app; voice-operated and *uncensored* content approach stand out. Great for quick fun animations (e.g. make a still photo come alive with speech).",
       "pro_tips": "",
-      "drawbacks": "Quality and consistency trail leaders (described as \"behind Sora/Veo\" in detail). Also requires an initial image – no purely imagined scenes. Lax policy raises misuse risks (deepfakes, porn). Access tied to X subscription and iOS app (limited platform availability).",
+      "drawbacks": "Quality and consistency trail leaders (described as \"behind Sora/Veo\" in detail). Also requires an initial image \u2013 no purely imagined scenes. Lax policy raises misuse risks (deepfakes, porn). Access tied to X subscription and iOS app (limited platform availability).",
       "notable_sources": "xAI/Grok",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -2561,9 +2359,7 @@
       "pro_tips": "",
       "drawbacks": "Setup and VRAM heavy for 14B weights; capped at 720p unless upscaled; tooling still evolving",
       "notable_sources": "github.com/Wan-Video/Wan2.2; lmarena.ai/leaderboard/text-to-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -2578,7 +2374,7 @@
       "key_features": "AI video upscaling to 4K/8K; noise reduction; detail recovery; frame interpolation (slow-motion); motion deblur; SDR to HDR conversion; deinterlacing; stabilization; multiple AI models (Proteus, Gaia, Theia, Artemis, Nyx, Iris, Chronos, Apollo)",
       "duration_resolution": "Upscale to 4K and 8K resolution; batch processing; real-time preview",
       "controls": "Multiple AI model selection; adjustable enhancement levels; batch processing; crash recovery",
-      "speed": "Varies by model: Nyx ~1min for 30s footage; Proteus 12-14min for 720p→4K (RTX 4070)",
+      "speed": "Varies by model: Nyx ~1min for 30s footage; Proteus 12-14min for 720p\u21924K (RTX 4070)",
       "pricing": "One-time lifetime license: $299; Annual upgrades: $149/year; Free trial with watermark",
       "license": "Proprietary; One-time purchase with optional upgrades",
       "update_cadence": "Annual updates available; regular AI model improvements",
@@ -2586,9 +2382,7 @@
       "pro_tips": "",
       "drawbacks": "High system requirements (32GB RAM min); steep learning curve; risk of overprocessing/unnatural results; large output files; stability issues reported; color shifting problems",
       "notable_sources": "topazlabs.com/tools/video-upscale; unifab.ai/resource/topaz-video-ai-review",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ElevenLabs",
@@ -2603,7 +2397,7 @@
       "key_features": "Leading AI voice platform with ultra-realistic voices, voice cloning from 1-minute samples, 30+ languages, emotional control, sound effects",
       "duration_resolution": "High-quality 44.1kHz audio output; any duration",
       "controls": "Text input; voice selection from 1000+ voices or clone custom voice; emotional tone controls; speaking rate; stability/clarity sliders",
-      "speed": "Real-time generation for short texts; ~1-2× real-time for longer content; streaming available",
+      "speed": "Real-time generation for short texts; ~1-2\u00d7 real-time for longer content; streaming available",
       "pricing": "Free 10k chars/mo; Starter $5/mo (30k chars); Creator $22/mo (100k chars); Pro $99/mo (500k chars); Scale/Enterprise custom",
       "license": "Proprietary SaaS/API; commercial use requires paid plan; voice cloning requires consent/proof of ownership",
       "update_cadence": "Founded 2022; rapid growth 2023-2025; frequent voice quality and feature updates; restructured pricing Jan 2025",
@@ -2611,9 +2405,7 @@
       "pro_tips": "",
       "drawbacks": "Ethical concerns about voice cloning; character limits on lower tiers; API can be expensive for high volume; pronunciation occasional issues",
       "notable_sources": "elevenlabs.io",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-30"
+      "thumbnail_url": ""
     },
     {
       "vendor": "PlayHT",
@@ -2628,7 +2420,7 @@
       "key_features": "High-quality TTS with voice cloning, conversational AI, 142 languages, WordPress integration, API access, podcast generation",
       "duration_resolution": "High-fidelity audio output 44.1kHz; unlimited duration",
       "controls": "Text input; 900+ voices; instant voice cloning; multi-voice conversations; pronunciation library; SSML support",
-      "speed": "Real-time to 1.5× real-time depending on voice model",
+      "speed": "Real-time to 1.5\u00d7 real-time depending on voice model",
       "pricing": "Free 12.5k chars; Creator $31.20/mo (2M chars); Pro $79.20/mo (unlimited); Enterprise custom; API pay-as-you-go $0.24-0.96 per 1k chars",
       "license": "Proprietary SaaS/API; commercial use included on paid plans; voice cloning requires authorization",
       "update_cadence": "Founded 2016; Play3.0 model released 2024; continuous voice quality improvements",
@@ -2636,9 +2428,7 @@
       "pro_tips": "",
       "drawbacks": "More expensive than competitors; less brand recognition than ElevenLabs; occasional robotic inflections; API documentation less comprehensive",
       "notable_sources": "play.ht",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Murf.ai",
@@ -2661,9 +2451,7 @@
       "pro_tips": "",
       "drawbacks": "More expensive than competitors for equivalent usage; smaller voice library than ElevenLabs; some voices sound less natural",
       "notable_sources": "murf.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Azure AI",
@@ -2686,9 +2474,7 @@
       "pro_tips": "",
       "drawbacks": "Requires Azure account/technical setup; pricing can be complex; some voices less expressive than specialized providers; documentation dense",
       "notable_sources": "azure.microsoft.com/en-us/products/ai-services/text-to-speech",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google Cloud",
@@ -2711,9 +2497,7 @@
       "pro_tips": "",
       "drawbacks": "Requires GCP account; custom voice very limited access; some Neural2 voices in beta; pricing structure complex for multi-model use",
       "notable_sources": "cloud.google.com/text-to-speech",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -2736,9 +2520,7 @@
       "pro_tips": "",
       "drawbacks": "Chinese company (potential regional restrictions); API-only (developer-focused); pricing per character not per second",
       "notable_sources": "MiniMax (Oct 2025), LiveKit, Pipecat, Vapi integration announcements",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Suno",
@@ -2761,9 +2543,7 @@
       "pro_tips": "",
       "drawbacks": "Copyright/training data concerns; occasional lyric gibberish; consistency issues across continuations; quality varies by genre",
       "notable_sources": "suno.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Suno",
@@ -2786,9 +2566,7 @@
       "pro_tips": "",
       "drawbacks": "Still occasional lyric oddities; can't fully control melody; copyright debate ongoing; stem extraction quality varies",
       "notable_sources": "suno.com/blog/v4",
-      "featured": false,
-      "is_new": true,
-      "date_added": "2025-11-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Udio",
@@ -2811,9 +2589,7 @@
       "pro_tips": "",
       "drawbacks": "CRITICAL: Cannot download songs after Oct 2025 UMG settlement; massive user backlash and exodus; ownership rights unclear; users lost access to their creations",
       "notable_sources": "reuters.com/business/media-telecom/universal-music-settles-copyright-dispute-with-ai-firm-udio-2025-10-30; billboard.com/pro/udio-deal-backlash",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-28"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stable Audio",
@@ -2836,9 +2612,7 @@
       "pro_tips": "",
       "drawbacks": "Quality behind Suno/Udio; vocals not a strong suit; community/ecosystem smaller; requires GPU for local use; less genre variety",
       "notable_sources": "stableaudio.com; huggingface.co/stabilityai/stable-audio-open",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Suno",
@@ -2861,9 +2635,7 @@
       "pro_tips": "",
       "drawbacks": "Pro/Premier subscription required (no free access); higher credit cost per song; 8-min songs use significantly more credits; still can't fully control melody",
       "notable_sources": "help.suno.com/en/articles/8105153; suno.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-06"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -2886,9 +2658,7 @@
       "pro_tips": "",
       "drawbacks": "Chinese company (potential regional restrictions); credit-based pricing may be complex for new users; Reddit feedback mentions demos are \"pretty basic\"",
       "notable_sources": "MiniMax (Oct 31, 2025), Reddit r/SunoAI discussion",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Synthesia",
@@ -2911,9 +2681,7 @@
       "pro_tips": "",
       "drawbacks": "Not for creative storytelling (avatars are presenters); watermark on free tier; requires script preparation; uncanny valley for some",
       "notable_sources": "synthesia.io",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "HeyGen",
@@ -2936,9 +2704,7 @@
       "pro_tips": "",
       "drawbacks": "Avatar quality variable based on input; some ethical concerns about deepfake potential; translation quality depends on original audio",
       "notable_sources": "heygen.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "D-ID",
@@ -2961,9 +2727,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to talking heads (not full body); uncanny valley can occur; voices sound slightly synthetic; premium pricing for API",
       "notable_sources": "d-id.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Meta",
@@ -2986,9 +2750,7 @@
       "pro_tips": "",
       "drawbacks": "Research quality (not production polish); can have artifacts on challenging angles; requires technical setup; no GUI by default; no cloud service",
       "notable_sources": "github.com/Rudrabha/Wav2Lip; arxiv.org/abs/2008.10010",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "SadTalker",
@@ -3011,9 +2773,7 @@
       "pro_tips": "",
       "drawbacks": "Requires high-end GPU; setup more complex than cloud services; occasional artifacts; less polished than commercial tools; limited documentation",
       "notable_sources": "sadtalker.github.io; github.com/OpenTalker/SadTalker",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-24"
+      "thumbnail_url": ""
     },
     {
       "vendor": "LetzAI",
@@ -3036,9 +2796,7 @@
       "pro_tips": "",
       "drawbacks": "Video still in early access; credit-based quotas; closed ecosystem",
       "notable_sources": "letz.ai/blog/letzai-v4",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "LetzAI",
@@ -3051,19 +2809,17 @@
       "model": "LetzAI V4 Video (Early Access)",
       "modality": "Text-to-Video; Image-to-Video",
       "key_features": "Default in-house I2V plus Google Veo 3 integration; guided creation tools; virtual try-on workflows",
-      "duration_resolution": "8 s clips on Default 720p; Veo 3 option delivers 2–10 s up to 1080p with audio",
+      "duration_resolution": "8 s clips on Default 720p; Veo 3 option delivers 2\u201310 s up to 1080p with audio",
       "controls": "Text prompts; image references; guided shapes and start/end frames via editor",
       "speed": "Cloud queue (Default on LetzAI GPUs; Veo 3 via partners)",
-      "pricing": "Subscription tiers: Beginner €8.25 (20 vids), Fun €20.75 (50 vids), Pro €62.42 (150 vids); 600 credits per 8 s default vs 4500 credits Veo3 audio",
+      "pricing": "Subscription tiers: Beginner \u20ac8.25 (20 vids), Fun \u20ac20.75 (50 vids), Pro \u20ac62.42 (150 vids); 600 credits per 8 s default vs 4500 credits Veo3 audio",
       "license": "Proprietary SaaS with partner licensing (Google Veo)",
       "update_cadence": "Video feature announced Sept 26 2025 (early access rollout)",
       "distinctive_edge": "Combines low-cost house model with premium Veo 3 pipeline inside one tool",
       "pro_tips": "",
       "drawbacks": "Early access invite required; per-clip credits vary widely; reliant on partner GPU queues",
       "notable_sources": "letz.ai/blog/letzai-v4",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Freepik",
@@ -3075,20 +2831,18 @@
       "best_for": "Hobbyists,Social Media",
       "model": "Freepik AI Suite (Mystic, Magnific, Pikaso)",
       "modality": "Text-to-Image; Image Editing; Video Generation",
-      "key_features": "All-in-one creative platform with proprietary Mystic model (hyperrealistic images), Magnific upscaler, video generation, and aggregates top models (Flux, SDXL)",
+      "key_features": "All-in-one creative platform with proprietary Mystic model (hyperrealistic images), Magnific upscaler, video generation, and aggregates top models (Flux, SDXL) Includes Freepik Spaces node editor with camera control, start/end frame stitching, and Mystic/Magnific image+video stack.",
       "duration_resolution": "Up to 4K images with Mystic; video up to 1080p; supports multiple aspect ratios",
-      "controls": "Text prompts; Mystic for photorealism; Pikaso for real-time sketch-to-image; image editing suite; background removal; upscaling; video (Kling/Hailuo integration)",
+      "controls": "Text prompts; Mystic for photorealism; Pikaso for real-time sketch-to-image; image editing suite; background removal; upscaling; video (Kling/Hailuo integration); Freepik Spaces node graph with Change Camera node for dolly/pan/orbit moves and frame stitching",
       "speed": "Fast generation: ~5-10 seconds for Mystic images; real-time Pikaso; video ~1-2 min per clip",
       "pricing": "Free tier 10 daily uses; Premium $12/mo (200 uses); Premium Plus $40/mo (1000 uses); credit system varies by feature",
       "license": "Proprietary platform; commercial use allowed on paid plans; Mystic is exclusive native model; aggregates licensed third-party models",
       "update_cadence": "Mystic launched 2024 with Magnific partnership; continuous model updates and feature additions",
-      "distinctive_edge": "Best hyperrealistic results; all-in-one platform eliminates tool-switching; Pikaso real-time generation unique; generous stock library integration",
+      "distinctive_edge": "All-in-one suite spanning Mystic images, Magnific upscaler, Pikaso real-time sketching, Kling/Hailuo video, plus Freepik Spaces camera control for multi-shot workflows.",
       "pro_tips": "",
       "drawbacks": "Credit system confusing; some features expensive; Mystic only on paid tiers; video features limited vs dedicated platforms",
       "notable_sources": "freepik.com; freepik.com/ai/mystic",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenArt",
@@ -3111,9 +2865,7 @@
       "pro_tips": "",
       "drawbacks": "Overwhelming choice for beginners; credit costs vary wildly by model; queue times on free tier; some models outdated",
       "notable_sources": "openart.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "NightCafe",
@@ -3136,9 +2888,7 @@
       "pro_tips": "",
       "drawbacks": "UI can be cluttered; credit costs vary unpredictably; some models outdated; queue times frustrating; limited control vs dedicated tools",
       "notable_sources": "nightcafe.studio",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Artbreeder",
@@ -3161,9 +2911,7 @@
       "pro_tips": "",
       "drawbacks": "Breeding interface confusing initially; less control than prompt-based tools; not best for photorealism; commercial use requires high tier",
       "notable_sources": "artbreeder.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pollo.ai",
@@ -3186,9 +2934,7 @@
       "pro_tips": "",
       "drawbacks": "Credit system can be confusing; quality varies by model selected; not as polished as dedicated single-model platforms",
       "notable_sources": "pollo.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Based Labs",
@@ -3211,9 +2957,7 @@
       "pro_tips": "",
       "drawbacks": "Free tier has watermarks; queue times can be long; model selection overwhelming for beginners; limited advanced controls",
       "notable_sources": "basedlabs.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Glif",
@@ -3236,9 +2980,7 @@
       "pro_tips": "",
       "drawbacks": "Learning curve for creating glifs; quality depends on glif creator; can be overwhelming; documentation scattered",
       "notable_sources": "glif.app",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Wavespeed AI",
@@ -3261,9 +3003,7 @@
       "pro_tips": "",
       "drawbacks": "Developer-centric (assumes REST API proficiency); learning curve for optimization; default rate limits for high volume; pricing varies across models",
       "notable_sources": "wavespeed.ai; skywork.ai/blog/wavespeed-ai-review-2025; xole.ai/ai-image-generator/wavespeed-ai-review",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "fal.ai",
@@ -3286,9 +3026,7 @@
       "pro_tips": "",
       "drawbacks": "Per-use costs add up at scale; requires developer integration; no GUI (API only); enterprise features paywalled",
       "notable_sources": "fal.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-18"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Replicate",
@@ -3300,20 +3038,18 @@
       "best_for": "Developers,Enterprise",
       "model": "Replicate API Platform",
       "modality": "API/Infrastructure for AI Models",
-      "key_features": "Open-source model hosting platform with pay-per-second GPU pricing; run any public model or deploy custom models; strong community and model discovery",
+      "key_features": "Open-source model hosting platform with pay-per-second GPU pricing; run any public model or deploy custom models; strong community and model discovery Hosts proprietary workflows like Reve Image Edit Fast ($0.01/output) for rapid color/style edits.",
       "duration_resolution": "Supports all model native capabilities; platform-agnostic infrastructure",
       "controls": "API endpoints for 1000s of models; custom model deployment; Docker container support; auto-scaling; version control for models",
       "speed": "Varies by GPU tier selected: CPU to A100 GPUs; auto-scaling based on demand; cold start ~5-30s",
-      "pricing": "Pay-per-second GPU pricing: starts ~$0.0001/s (CPU) to $0.0023/s (A100); free tier $10 credit/month; no minimums",
+      "pricing": "Pay-per-second GPU pricing: starts ~$0.0001/s (CPU) to $0.0023/s (A100); free tier $10 credit/month; no minimums; flagship hosted pipelines such as Reve Image Edit Fast charge $0.01 per output",
       "license": "Infrastructure provider; hosts open-source models primarily; custom models follow user-defined licenses",
       "update_cadence": "Founded 2019; pioneer in model hosting; large community model catalog; acquired YC-backed",
       "distinctive_edge": "Largest open-source model catalog; deploy custom models easily; transparent GPU pricing; strong developer community; version control",
       "pro_tips": "",
       "drawbacks": "No proprietary models; UI minimal (API-first); cold starts can slow first run; pricing complexity with many GPU options",
       "notable_sources": "replicate.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Hugging Face",
@@ -3336,9 +3072,7 @@
       "pro_tips": "",
       "drawbacks": "Inference API quota limits; community models quality varies; enterprise features expensive; cold starts common",
       "notable_sources": "huggingface.co",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "CivitAI",
@@ -3361,9 +3095,7 @@
       "pro_tips": "",
       "drawbacks": "NSFW content prevalent (can filter); quality control varies; overwhelming choice; some models require attribution or restricted use",
       "notable_sources": "civitai.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tensor.art",
@@ -3386,9 +3118,7 @@
       "pro_tips": "",
       "drawbacks": "English interface improving but Chinese-first; some models region-locked; credit/energy system confusing; less known in West",
       "notable_sources": "tensor.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ComfyUI",
@@ -3411,9 +3141,7 @@
       "pro_tips": "",
       "drawbacks": "Steep learning curve; not beginner-friendly; requires technical setup; UI can be intimidating; no built-in model management",
       "notable_sources": "github.com/comfyanonymous/ComfyUI",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -3436,9 +3164,7 @@
       "pro_tips": "",
       "drawbacks": "Requires Creative Cloud plus generative credits; desktop-only for now.",
       "notable_sources": "x.com/Mr_AllenT (Nov 6, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Qwen Team",
@@ -3451,9 +3177,9 @@
       "model": "Qwen Multiple Angles LoRA",
       "modality": "LoRA for Text-to-Image",
       "key_features": "Subject/scene LoRA that keeps a character consistent across multiple camera angles inside ComfyUI/Automatic1111.",
-      "duration_resolution": "Matches whatever resolution the host diffusion model outputs (often 1024–2048 px).",
+      "duration_resolution": "Matches whatever resolution the host diffusion model outputs (often 1024\u20132048 px).",
       "controls": "Attach the LoRA in your pipeline, feed multi-angle prompts, and pair with camera directives for consistent poses.",
-      "speed": "Adds negligible overhead—same speed as your base checkpoint.",
+      "speed": "Adds negligible overhead\u2014same speed as your base checkpoint.",
       "pricing": "Free download from open-source hubs.",
       "license": "Open-source release (Apache-style).",
       "update_cadence": "Dropped November 2025 with community tweaks expected quickly.",
@@ -3461,9 +3187,7 @@
       "pro_tips": "",
       "drawbacks": "Text rendering remains weak, so layer typography in post.",
       "notable_sources": "x.com/hellorob (Nov 6, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Higgsfield",
@@ -3482,13 +3206,11 @@
       "pricing": "Credit-based plans (promo: 211 credits for 9 hours when following/replying on X); enterprise deals via Higgsfield.",
       "license": "Proprietary SaaS governed by Higgsfield ToS.",
       "update_cadence": "Introduced November 6, 2025 with ongoing preset/library drops.",
-      "distinctive_edge": "Combines body swap, dubbing, and background cleanup in one click—ideal for instant localization.",
+      "distinctive_edge": "Combines body swap, dubbing, and background cleanup in one click\u2014ideal for instant localization.",
       "pro_tips": "",
       "drawbacks": "Depends on Higgsfield cloud capacity and clean reference footage; promos may change quickly.",
       "notable_sources": "x.com/higgsfield_ai (Nov 6, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MotionStream (Joonghyk)",
@@ -3507,13 +3229,126 @@
       "pricing": "Research preview via joonghyk.com (pricing TBD).",
       "license": "Proprietary research build (request access).",
       "update_cadence": "Demoed November 2025; rapid iterations expected as interactive engine matures.",
-      "distinctive_edge": "Feels like puppeteering reality instead of prompting—live control over generated footage.",
+      "distinctive_edge": "Feels like puppeteering reality instead of prompting\u2014live control over generated footage.",
       "pro_tips": "",
       "drawbacks": "Requires high-end GPUs and is limited to the beta interface; no consumer release yet.",
       "notable_sources": "x.com/wildmindai (Nov 4, 2025); x.com/bilwalsidhu (Nov 7, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-04"
+      "thumbnail_url": ""
+    },
+    {
+      "vendor": "Adobe",
+      "primary_category": "IMAGE_GEN",
+      "model_type": "Platform Feature",
+      "license_type": "Proprietary",
+      "regional_restrictions": "",
+      "skill_level": "Intermediate",
+      "best_for": "Enterprise,Brand",
+      "model": "Firefly Custom Models (Beta)",
+      "modality": "Model Fine-Tuning",
+      "key_features": "Invite-only beta that lets Creative Cloud users train Firefly with their own product shots, illustrations, or characters to get brand-safe outputs on demand.",
+      "duration_resolution": "Matches Firefly 5 (native 4MP images, HDR-ready)",
+      "controls": "Upload reference dataset (20-100 images), label attributes, trigger custom model training, then invoke via prompts inside Firefly, Photoshop, or Firefly Boards.",
+      "speed": "Training jobs run on Adobe cloud (minutes). Inference identical to standard Firefly speed (~5-10s).",
+      "pricing": "Included for select Creative Cloud subscribers during beta; full rollout will use existing generative credit system.",
+      "license": "Proprietary; outputs covered by Adobe's commercial indemnity. User-uploaded training data remains private per Adobe policy.",
+      "update_cadence": "Beta announced Nov 2025; rolling invites to Adobe Firefly Ambassadors and enterprise accounts.",
+      "distinctive_edge": "First mainstream way for brands to fine-tune a commercial-safe model without touching code.",
+      "pro_tips": "Curate consistent lighting/backgrounds before uploading. Use metadata tags to control variants.",
+      "drawbacks": "Waitlist only; dataset upload capped (\u2264100 images).",
+      "notable_sources": "firefly.adobe.com/custom-models",
+      "thumbnail_url": ""
+    },
+    {
+      "vendor": "Adobe",
+      "primary_category": "MUSIC",
+      "model_type": "Native Model",
+      "license_type": "Proprietary",
+      "regional_restrictions": "",
+      "skill_level": "Beginner",
+      "best_for": "Video Editors,Filmmakers",
+      "model": "Firefly Generative Soundtrack (Beta)",
+      "modality": "Text-to-Music",
+      "key_features": "Generates expressive, story-driven scores that match a video's mood directly inside the Firefly web app.",
+      "duration_resolution": "Cues up to ~60 seconds (beta) exporting as WAV/MP3.",
+      "controls": "Describe mood/tempo/instrumentation, attach reference video clip, tweak intensity and structure.",
+      "speed": "~10-20 seconds per soundtrack clip on Adobe cloud.",
+      "pricing": "Uses the same generative credit pool as other Firefly tools (beta users get bonus credits).",
+      "license": "Adobe grants commercial use with Content Credentials metadata applied.",
+      "update_cadence": "Announced Nov 2025; updates shipping alongside Firefly video rollout.",
+      "distinctive_edge": "Single workflow for video + music under Adobe umbrella, reducing reliance on stock libraries.",
+      "pro_tips": "Upload a reference clip to sync crescendos; duplicate cues for alternate moods.",
+      "drawbacks": "Beta limited; cue length capped; no stems or MIDI yet.",
+      "notable_sources": "adobe.com/products/firefly",
+      "thumbnail_url": ""
+    },
+    {
+      "vendor": "Replicate",
+      "primary_category": "POST_PROCESSING",
+      "model_type": "Hosted Model",
+      "license_type": "Proprietary",
+      "regional_restrictions": "",
+      "skill_level": "Beginner",
+      "best_for": "Fashion,Product",
+      "model": "Reve Image Edit Fast",
+      "modality": "Image Editing",
+      "key_features": "High-speed color and style editing pipeline on Replicate; handles wardrobe recolors, exposure tweaks, and background shifts with minimal latency.",
+      "duration_resolution": "Edits up to 2K resolution (matches input).",
+      "controls": "Upload source image, pick preset or describe desired change, optional masks.",
+      "speed": "~2 seconds per edit on Replicate GPUs.",
+      "pricing": "$0.01 per output (pay-per-call).",
+      "license": "Replicate usage terms; outputs owned by user.",
+      "update_cadence": "Launched Nov 2025.",
+      "distinctive_edge": "Cheapest high-quality batch edit service for fashion/product variations.",
+      "pro_tips": "Batch similar shots for consistent color grading.",
+      "drawbacks": "No brush-level control yet; requires Replicate account.",
+      "notable_sources": "replicate.com/reve/edit-fast",
+      "thumbnail_url": ""
+    },
+    {
+      "vendor": "LTX Studio",
+      "primary_category": "VIDEO_GEN",
+      "model_type": "Platform Feature",
+      "license_type": "Proprietary",
+      "regional_restrictions": "",
+      "skill_level": "Intermediate",
+      "best_for": "Narrative,Education",
+      "model": "LTX Elements Character Consistency",
+      "modality": "Character Control",
+      "key_features": "Locks an AI actor's face across every shot generated in LTX Studio, solving character drift.",
+      "duration_resolution": "Applies to 720p-1080p clips generated within LTX.",
+      "controls": "Select character Element, enable consistency lock, storyboard scenes; system keeps identity across shots.",
+      "speed": "No extra render time; runs during normal generation (~1-2 min per scene).",
+      "pricing": "Included with LTX Studio subscription (details TBD).",
+      "license": "Outputs covered by LTX Studio commercial terms.",
+      "update_cadence": "Launched Nov 2025 via tutorial thread.",
+      "distinctive_edge": "Solves the #1 issue (face drift) for AI films without manual tracking.",
+      "pro_tips": "Lock wardrobe colors before enabling consistency.",
+      "drawbacks": "Requires building shots within LTX; no export of the character model.",
+      "notable_sources": "twitter.com/LTXStudio/status",
+      "thumbnail_url": ""
+    },
+    {
+      "vendor": "Meta",
+      "primary_category": "PLATFORM_AGGREGATOR",
+      "model_type": "Platform Aggregator",
+      "license_type": "Proprietary",
+      "regional_restrictions": "",
+      "skill_level": "Beginner",
+      "best_for": "Hobbyists,Social Media",
+      "model": "Meta AI Studio (Midjourney Partnership)",
+      "modality": "Text-to-Image & Video",
+      "key_features": "Meta AI chatbot now pipes Midjourney models for free editing, restyling, and quick video loops.",
+      "duration_resolution": "Images up to 2048px; short looping clips <5 s.",
+      "controls": "Chat prompts, restyle buttons, edit/modify toggles, remix slider.",
+      "speed": "Near real-time thanks to Meta-subsidized inference.",
+      "pricing": "Free inside Meta AI experiences.",
+      "license": "Meta AI terms layered with Midjourney output license (personal by default).",
+      "update_cadence": "Announced Nov 2025; rolling out across Messenger/IG/WhatsApp.",
+      "distinctive_edge": "Midjourney quality with zero-cost entry barrier.",
+      "pro_tips": "Use /remix to tweak an existing output without re-prompting from scratch.",
+      "drawbacks": "No advanced Midjourney parameters (stylize, chaos, etc.); limited clip length.",
+      "notable_sources": "twitter.com/jerrod_lew/status",
+      "thumbnail_url": ""
     }
   ]
 }

@@ -45,6 +45,7 @@ export function getTools(): Tool[] {
       featured: model.featured || false,
       dateAdded: model.date_added || null,
       isNew: model.is_new || false,
+      thumbnailUrl: model.thumbnail_url || '',
     }));
 
     return cachedTools;

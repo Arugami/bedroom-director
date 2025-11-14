@@ -42,7 +42,8 @@ def csv_to_json():
                 'distinctive_edge': row['Distinctive Edge'],
                 'pro_tips': row.get('Pro Tips', ''),
                 'drawbacks': row['Drawbacks'],
-                'notable_sources': row['Notable Sources']
+                'notable_sources': row['Notable Sources'],
+                'thumbnail_url': row.get('thumbnail_url', '')  # Sprint 1: Visual-first redesign
             }
             models.append(model)
     

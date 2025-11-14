@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "3.1",
-    "last_updated": "2025-11-13T13:52:17.428407",
+    "version": "3.0",
+    "last_updated": "2025-11-14T12:29:20.163005",
     "total_models": 140,
     "categories": {
       "IMAGE_GEN": 35,
@@ -36,9 +36,7 @@
       "pro_tips": "",
       "drawbacks": "Quality and prompt fidelity are lower than the newer commercial versions (1.1 Pro/Ultra).",
       "notable_sources": "huggingface.co/black-forest-labs",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-28"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Black Forest Labs",
@@ -61,9 +59,7 @@
       "pro_tips": "",
       "drawbacks": "Requires API integration or use through a partner app; not a standalone GUI tool. Weights are closed, limiting community fine-tuning.",
       "notable_sources": "blackforestlabs.ai/flux-1-1",
-      "featured": true,
-      "is_new": false,
-      "date_added": "2025-06-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Black Forest Labs",
@@ -86,9 +82,7 @@
       "pro_tips": "",
       "drawbacks": "Slower inference times and higher cost make it less suitable for rapid prototyping compared to the Pro version.",
       "notable_sources": "blackforestlabs.ai/flux-1-1\"",
-      "featured": false,
-      "is_new": true,
-      "date_added": "2025-11-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Ideogram AI",
@@ -111,9 +105,7 @@
       "pro_tips": "",
       "drawbacks": "Less photorealistic than top-tier competitors; free tier outputs are public.",
       "notable_sources": "ideogram.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Ideogram AI",
@@ -136,9 +128,7 @@
       "pro_tips": "",
       "drawbacks": "While photorealism is improved, it may still lag behind models purely focused on that, like Midjourney v7.",
       "notable_sources": "ideogram.ai/features/3.0\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -161,9 +151,7 @@
       "pro_tips": "",
       "drawbacks": "High hardware requirements make it inaccessible for users without high-end GPUs.",
       "notable_sources": "huggingface.co/stabilityai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -186,9 +174,7 @@
       "pro_tips": "",
       "drawbacks": "Slightly lower detail and fidelity compared to the standard Large model.",
       "notable_sources": "huggingface.co/stabilityai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -211,9 +197,7 @@
       "pro_tips": "",
       "drawbacks": "Noticeable trade-off in fine detail and prompt adherence compared to the larger models.",
       "notable_sources": "huggingface.co/stabilityai\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -236,9 +220,7 @@
       "pro_tips": "",
       "drawbacks": "Access requires ByteDance account; availability limited outside partner apps; no local/offline use",
       "notable_sources": "seed.bytedance.com/seedream4_0; time.com/bytedance-seedance",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-02"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Meta",
@@ -261,9 +243,7 @@
       "pro_tips": "",
       "drawbacks": "Not available for public use; its capabilities are demonstrated in a research context.",
       "notable_sources": "ai.meta.com/blog/emu-text-to-video-generation-image-editing-research/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Amazon",
@@ -286,9 +266,7 @@
       "pro_tips": "",
       "drawbacks": "aws.amazon.com/blogs/aws/amazon-titan-image-generator-v2-is-now-available-in-amazon-bedrock/",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-23"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Recraft",
@@ -311,9 +289,7 @@
       "pro_tips": "",
       "drawbacks": "recraft.ai",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Leonardo.ai",
@@ -336,9 +312,7 @@
       "pro_tips": "",
       "drawbacks": "leonardo.ai",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-04"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Reve",
@@ -361,9 +335,7 @@
       "pro_tips": "",
       "drawbacks": "Invite-only beta for some features; no local deployment; diversity-first outputs can reduce deterministic control",
       "notable_sources": "blog.reve.com/posts/reve-editing-model; blog.fal.ai/reve-is-now-available-on-fal",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -386,9 +358,7 @@
       "pro_tips": "",
       "drawbacks": "Preview access, watermarking/usage policies apply; enterprise billing details still evolving",
       "notable_sources": "developers.googleblog.com/en/introducing-gemini-2-5-flash-image/; ai.google.dev/gemini-api/docs/image-generation",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -411,9 +381,7 @@
       "pro_tips": "",
       "drawbacks": "Preview quality below Nano-Banana; limited documentation on advanced controls",
       "notable_sources": "ai.google.dev/gemini-api/docs/image-generation; lmarena.ai/leaderboard/image-edit",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -436,9 +404,7 @@
       "pro_tips": "",
       "drawbacks": "Lower resolution than competitors; sometimes struggles with hands and complex compositions; less prompt adherence than DALL-E 3",
       "notable_sources": "openai.com/dall-e-2",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-18"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -461,9 +427,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to ChatGPT ecosystem or API (no standalone app); no img2img or inpainting yet; slower than some competitors",
       "notable_sources": "platform.openai.com/docs/guides/images",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -486,9 +450,7 @@
       "pro_tips": "Remove the original subject before adding the new character; Nano Banana swaps fail when you try to overwrite in a single step.",
       "drawbacks": "Limited API access compared to competitors; some safety filters can be restrictive; primarily accessible through Gemini ecosystem",
       "notable_sources": "blog.google/products/gemini",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -511,9 +473,7 @@
       "pro_tips": "",
       "drawbacks": "More expensive than consumer options; requires Adobe ecosystem; less creative/artistic than Midjourney",
       "notable_sources": "adobe.com/products/firefly",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -536,9 +496,7 @@
       "pro_tips": "",
       "drawbacks": "Premium pricing; ecosystem lock-in; may be overly 'safe' for artistic experimentation; content filters can limit creative freedom",
       "notable_sources": "news.adobe.com/news/2025/10/adobe-max-2025-firefly",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -561,9 +519,7 @@
       "pro_tips": "",
       "drawbacks": "Requires technical setup; slower than cloud services; quality varies significantly with prompt engineering; needs powerful GPU",
       "notable_sources": "stability.ai/stable-image; huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -586,9 +542,7 @@
       "pro_tips": "",
       "drawbacks": "Smaller model means some quality trade-offs vs SD3 Large; community ecosystem still developing vs SDXL",
       "notable_sources": "huggingface.co/stabilityai/stable-diffusion-3-medium",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Playground AI",
@@ -611,9 +565,7 @@
       "pro_tips": "",
       "drawbacks": "Can be overly saturated for photorealism; smaller community than SDXL/SD3; web platform can have queue times",
       "notable_sources": "playgroundai.com; huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -636,9 +588,7 @@
       "pro_tips": "",
       "drawbacks": "Discord-first interface can be overwhelming; no local install; subscription required after free trial; queue times on basic plan",
       "notable_sources": "midjourney.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -661,9 +611,7 @@
       "pro_tips": "",
       "drawbacks": "Specialized for anime only; requires Midjourney subscription; Discord/web interface; can over-stylize prompts not meant for anime",
       "notable_sources": "nijijourney.com/en",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Microsoft",
@@ -686,9 +634,7 @@
       "pro_tips": "",
       "drawbacks": "New to market with limited track record; availability may be restricted initially; pricing structure not fully transparent; requires Microsoft account",
       "notable_sources": "microsoft.ai/news/introducing-mai-image-1; theverge.com/microsoft-ai-image-generator; zdnet.com/mai-image-1",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -711,9 +657,7 @@
       "pro_tips": "",
       "drawbacks": "Requires organization verification for API access; newer model with less community tooling than DALL-E 3; API-only (not in ChatGPT interface yet for free users)",
       "notable_sources": "platform.openai.com/docs/models/gpt-image-1; community.openai.com/t/new-gpt-image-model-in-the-api/1239462; azure.microsoft.com/en-us/blog/unveiling-gpt-image-1",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -736,9 +680,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to ChatGPT ecosystem; no standalone app; API details not fully available; newer so less community knowledge/tools than DALL-E 3",
       "notable_sources": "openai.com/index/introducing-4o-image-generation/; community.openai.com/4o-image-generation",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-13"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tencent",
@@ -761,9 +703,7 @@
       "pro_tips": "",
       "drawbacks": "Requires significant GPU resources (80B model); documentation primarily in Chinese; less Western community support than Stable Diffusion/FLUX",
       "notable_sources": "skywork.ai/blog/tencent-hunyuan-releases-3-0; techinasia.com/tencent-hunyuan-image-30; huggingface.co/tencent/HunyuanImage",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Magnific AI",
@@ -786,9 +726,7 @@
       "pro_tips": "",
       "drawbacks": "No refunds; expensive ($39/mo+); can produce artifacts if settings too high; no PayPal/crypto payment",
       "notable_sources": "magnific.ai; topazlabs.com/learn/bloom-vs-magnific",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -811,9 +749,7 @@
       "pro_tips": "",
       "drawbacks": "Learning curve for optimization; requires good source images; not designed for upscaling (use Gigapixel instead)",
       "notable_sources": "topazlabs.com/topaz-photo; elegantthemes.com/blog/design/topaz-photo-ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -836,9 +772,7 @@
       "pro_tips": "",
       "drawbacks": "Best for upscaling only (not general enhancement); slower than Bloom for AI art; learning curve for model selection",
       "notable_sources": "topazlabs.com/topaz-gigapixel; topazlabs.com/topaz-photo-vs-topaz-gigapixel",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -861,9 +795,7 @@
       "pro_tips": "",
       "drawbacks": "Cloud-only (requires internet); less control than Magnific; optimized for AI art (not photos); fewer advanced parameters",
       "notable_sources": "topazlabs.com/learn/bloom-vs-magnific; topazlabs.com/pricing",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -886,9 +818,7 @@
       "pro_tips": "",
       "drawbacks": "Remained a research preview, not released to the public. Some issues with physics and causality in complex scenes.",
       "notable_sources": "openai.com/sora",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -911,9 +841,7 @@
       "pro_tips": "",
       "drawbacks": "Region-limited invite rollout; compute throttling during spikes; no API yet",
       "notable_sources": "openai.com/index/sora-2/; eesel.ai/blog/sora-2-pricing",
-      "featured": true,
-      "is_new": false,
-      "date_added": "2025-06-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenAI",
@@ -936,9 +864,7 @@
       "pro_tips": "",
       "drawbacks": "Waitlist required; throughput throttled during demand spikes; no desktop or API support",
       "notable_sources": "openai.com/index/sora-2/; eesel.ai/blog/sora-2-pricing",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-02"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Microsoft/OpenAI",
@@ -961,9 +887,7 @@
       "pro_tips": "",
       "drawbacks": "Preview only; region & quota limits; image/video inputs still rolling out",
       "notable_sources": "learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/video-generation; ai.azure.com/catalog/models/sora",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -986,9 +910,7 @@
       "pro_tips": "",
       "drawbacks": "High per-second cost vs. newer 3.1 Fast; safety filters may trim outputs",
       "notable_sources": "cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation; fal.ai/models/fal-ai/veo3",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1011,9 +933,7 @@
       "pro_tips": "",
       "drawbacks": "Still pricey vs. Veo 3.1 Fast; preview access subject to quotas",
       "notable_sources": "cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation; fal.ai/models/fal-ai/veo3/fast",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1036,9 +956,7 @@
       "pro_tips": "",
       "drawbacks": "No native audio; still more expensive than 3.1 Fast; preview gating",
       "notable_sources": "fal.ai/models/fal-ai/veo3/fast; kie.ai/v3-api-pricing",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-24"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1061,9 +979,7 @@
       "pro_tips": "",
       "drawbacks": "Lacks native audio; per-second billing costly for long clips",
       "notable_sources": "fal.ai/models/fal-ai/veo3; cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1086,9 +1002,7 @@
       "pro_tips": "",
       "drawbacks": "Legacy quality vs. Veo 3 family; expensive per-second pricing",
       "notable_sources": "cloud.google.com/vertex-ai/generative-ai/docs/models/veo/2-0-generate-001; techcrunch.com/2025/02/23/googles-new-ai-video-model-veo-2-will-cost-50-cents-per-second/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1111,9 +1025,7 @@
       "pro_tips": "",
       "drawbacks": "Paid preview access; higher cost vs. the 'Fast' tier; subject to Google's safety filters.",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1136,9 +1048,7 @@
       "pro_tips": "",
       "drawbacks": "Still in preview; quality may be slightly below the standard Veo 3.1; clip durations are capped.",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-06"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -1161,9 +1071,7 @@
       "pro_tips": "",
       "drawbacks": "Slower and less capable than the subsequent Gen-4.",
       "notable_sources": "runwayml.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -1186,9 +1094,7 @@
       "pro_tips": "",
       "drawbacks": "The advanced UI has a steeper learning curve than simpler tools. The credit system can be complex.",
       "notable_sources": "runwayml.com\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -1211,9 +1117,7 @@
       "pro_tips": "",
       "drawbacks": "Still credit-based; guardrails can block edgy prompts; requires Runway subscription",
       "notable_sources": "runwayml.com/research/introducing-runway-gen-4; help.runwayml.com/hc/en-us/articles/37327109429011-Creating-with-Gen-4-Video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-16"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Luma",
@@ -1236,9 +1140,7 @@
       "pro_tips": "",
       "drawbacks": "Clip length limited to 10 s; lower-tier outputs are draft quality (need upscaling); strict content limits (no faces without permission, etc. per ToS); primarily English-centric prompting",
       "notable_sources": "Luma",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Luma",
@@ -1261,9 +1163,7 @@
       "pro_tips": "",
       "drawbacks": "No public weights; still capped at short clips; advanced features in Ray3",
       "notable_sources": "lumalabs.ai/ray2; aws.amazon.com/blogs/aws/luma-ai-ray-2-video-model-is-now-available-in-amazon-bedrock/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -1286,9 +1186,7 @@
       "pro_tips": "",
       "drawbacks": "Quality was more stylized than photorealistic; modular features were powerful but could be credit-intensive.",
       "notable_sources": "pika.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-27"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -1311,9 +1209,7 @@
       "pro_tips": "",
       "drawbacks": "Still more focused on stylized content than photorealism. The credit cost of advanced features can add up quickly.",
       "notable_sources": "pika.art\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou (Kling Team)",
@@ -1336,9 +1232,7 @@
       "pro_tips": "",
       "drawbacks": "Official access mostly in Chinese apps; global users rely on unofficial portals. Documentation in English is sparse. Content is moderated under Chinese law (e.g. stricter on political content). Heavy motion outputs can introduce occasional artifacts in complex scenes. Higher tier cost than Standard",
       "notable_sources": "app.klingai.com/global/release-notes/2025-09-19; feedback.scenario.com/changelog",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-23"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou (Kling Team)",
@@ -1361,9 +1255,7 @@
       "pro_tips": "",
       "drawbacks": "720p resolution vs 1080p Pro; still limited to Chinese platform ecosystem with English documentation gaps; content moderation under Chinese law; complex dynamic scenes may show artifacts",
       "notable_sources": "blog.fal.ai/kling-2-5-turbo-is-now-available-on-fal; feedback.scenario.com/changelog; app.klingai.com\nxAI (Elon Musk),Grok \"\"\"\"Imagine\"\"\"\"\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -1386,9 +1278,7 @@
       "pro_tips": "",
       "drawbacks": "Currently in beta with some quality limitations; not as cutting-edge in realism as Sora/Veo. Requires Adobe subscription (costly for casual users). Strict content filters (no adult, violence, or political misuse – generation will fail or be blurred)",
       "notable_sources": "Adobe Firefly",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -1411,9 +1301,7 @@
       "pro_tips": "",
       "drawbacks": "Slower than v7; video is image-to-video only, not native text-to-video.",
       "notable_sources": "midjourney.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -1436,9 +1324,7 @@
       "pro_tips": "",
       "drawbacks": "Meta.ai access varies by region/account and the stylized output still demands prompt finesse to avoid overcooked looks.",
       "notable_sources": "midjourney.com\"",
-      "featured": true,
-      "is_new": false,
-      "date_added": "2025-10-13"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -1461,9 +1347,7 @@
       "pro_tips": "",
       "drawbacks": "Very short clips, no audio, and often flickery. Requires technical skill to use.",
       "notable_sources": "huggingface.co/stabilityai/stable-video-diffusion-img2vid",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -1486,9 +1370,7 @@
       "pro_tips": "",
       "drawbacks": "Still has the same limitations as the 14-frame model (no audio, non-commercial, requires technical skill).",
       "notable_sources": "huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt\"",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "HPC-AI Tech",
@@ -1511,9 +1393,7 @@
       "pro_tips": "",
       "drawbacks": "Still somewhat experimental – not as plug-and-play or stable as polished models. Motion can be less fluid in complex scenes. No built-in content filters – risk of misuse (users must handle moderation). And running it demands powerful GPUs (accessibility is relative – easier than training $2M models, but still heavy to run locally for most).",
       "notable_sources": "HPC-AI Tech",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tencent",
@@ -1536,9 +1416,7 @@
       "pro_tips": "",
       "drawbacks": "Hardware intensive (13B model + video frames means needing at least an A100 GPU to run smoothly). Documentation and support mostly in Chinese (international users rely on translations). Also, as an open model, outputs aren't filtered – users can generate disallowed content unless they implement safety checks.",
       "notable_sources": "Tencent",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Genmo",
@@ -1561,9 +1439,7 @@
       "pro_tips": "",
       "drawbacks": "Still a preview: occasional flicker between frames, and resolution is limited (for higher res, needs interpolation/upscaling). Also lacks advanced features (no audio, no control nets). Some users report it struggles with very complex prompts or long dialogues in the scene.",
       "notable_sources": "Genmo",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tsinghua Univ.",
@@ -1586,9 +1462,7 @@
       "pro_tips": "",
       "drawbacks": "Quality is still behind Sora/Veo: videos are often low-res and occasionally incoherent on complex prompts. More a proof-of-concept than a competitor to closed models. Also, limited support/community compared to bigger open projects (fewer updates, less user-friendly packaging).",
       "notable_sources": "Tsinghua Univ.",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Various",
@@ -1611,9 +1485,7 @@
       "pro_tips": "",
       "drawbacks": "As with many open models, raw quality is a notch below the likes of Sora or Runway. To get best results, one might need to run the extra refinement modules, which complicates usage. It's also a code-heavy tool – not a ready-made app for non-coders. And no audio support.",
       "notable_sources": "VideoCrafter",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -1636,9 +1508,7 @@
       "pro_tips": "",
       "drawbacks": "Invite or partner gated; no open weights; exports tied to platform terms",
       "notable_sources": "seed.bytedance.com/seedance; scenario.com/seedance-models",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -1661,9 +1531,7 @@
       "pro_tips": "",
       "drawbacks": "Lower res and more artifacts vs. Pro; stricter prompt limits",
       "notable_sources": "seed.bytedance.com/seedance; lmarena.ai/leaderboard/text-to-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Meta",
@@ -1686,9 +1554,7 @@
       "pro_tips": "",
       "drawbacks": "Not available for public use; capabilities are limited to short clips in a research context.",
       "notable_sources": "ai.meta.com/blog/emu-text-to-video-generation-image-editing-research/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-24"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Lightricks",
@@ -1711,9 +1577,7 @@
       "pro_tips": "",
       "drawbacks": "Clip length limited to short scenes; high-res runs need strong GPUs; audio tools still maturing",
       "notable_sources": "techround.co.uk/ltx-2; siliconangle.com/lightricks-ltx-2",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Shengshu AI",
@@ -1736,9 +1600,7 @@
       "pro_tips": "",
       "drawbacks": "Slower than short-form generators; advanced features behind paywall; no self-hosting",
       "notable_sources": "arxiv.org/abs/2405.04233; vidu.com/features",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-23"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -1761,9 +1623,7 @@
       "pro_tips": "",
       "drawbacks": "Heavy compute requirements for best quality; clip length capped at 5 s; docs primarily Chinese",
       "notable_sources": "alibabacloud.com/blog/video-generation; huggingface.co/tongyi-wan",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -1786,9 +1646,7 @@
       "pro_tips": "",
       "drawbacks": "Still capped at 720p and needs clean driver footage plus serious VRAM for local runs.",
       "notable_sources": "humanaigc.github.io/wan-animate; github.com/Wan-Video/Wan2.2",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -1811,9 +1669,7 @@
       "pro_tips": "",
       "drawbacks": "Requires Alibaba account/region access; higher tiers costly; no self-hosted weights",
       "notable_sources": "wan.video; toolplay.ai/tools/wan-2.5-ai-video-generator",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-06"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1836,9 +1692,7 @@
       "pro_tips": "",
       "drawbacks": "Chinese-first UX; closed weights; confined to ≤10 s clips",
       "notable_sources": "minimax.io/news/minimax-hailuo-23; platform.minimax.io/docs/api-reference/video-generation-t2v",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1861,9 +1715,7 @@
       "pro_tips": "",
       "drawbacks": "Credit-based pricing varies by reseller; limited to short clips",
       "notable_sources": "minimax.io/news/minimax-hailuo-02; toolplay.ai/tools/minimax-hailuo-02-ai-image-to-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1886,9 +1738,7 @@
       "pro_tips": "",
       "drawbacks": "Still closed-model; requires credit purchases or enterprise deals",
       "notable_sources": "kie.ai/hailuo-api; dzine.ai/tools/hailuo-02-pro",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-18"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -1911,9 +1761,7 @@
       "pro_tips": "",
       "drawbacks": "Lower resolution and more artifacts vs. Pro/Standard; credit top-ups required",
       "notable_sources": "toolplay.ai/tools/minimax-hailuo-02-ai-image-to-video; support.freepik.com/s/article/AI-Video-Generator-Credits",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Microsoft",
@@ -1936,9 +1784,7 @@
       "pro_tips": "",
       "drawbacks": "research.microsoft.com/en-us/projects/vasa/",
       "notable_sources": "",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-07"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Higgsfield",
@@ -1961,9 +1807,7 @@
       "pro_tips": "",
       "drawbacks": "5 s duration cap; 720p ceiling; closed ecosystem with no open weights",
       "notable_sources": "thecreatorsai.com/p/higgsfield-ai-review-tutorial; higgsfield.ai/create-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -1986,9 +1830,7 @@
       "pro_tips": "",
       "drawbacks": "Paid preview access; higher cost vs Fast tier; subject to Google safety filters",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/; fal.ai/models/fal-ai/veo3.1",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google",
@@ -2011,9 +1853,7 @@
       "pro_tips": "",
       "drawbacks": "Still preview-only; quality slightly below full Veo 3.1; capped clip durations",
       "notable_sources": "developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/; fal.ai/models/fal-ai/veo3.1/fast",
-      "featured": true,
-      "is_new": true,
-      "date_added": "2025-11-02"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou",
@@ -2036,9 +1876,7 @@
       "pro_tips": "",
       "drawbacks": "Access limited to authorized platforms; heavy GPU requirements for 1080p; still capped at 10 s",
       "notable_sources": "app.klingai.com/global/release-notes/2025-05-26; help.scenario.com/en/articles/kling-video-models-the-essentials",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-14"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kuaishou",
@@ -2061,9 +1899,7 @@
       "pro_tips": "",
       "drawbacks": "Still closed-source; limited documentation in English; capped to short clips",
       "notable_sources": "help.scenario.com/en/articles/kling-video-models-the-essentials; app.klingai.com/global/release-notes/2025-05-26",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -2086,9 +1922,7 @@
       "pro_tips": "",
       "drawbacks": "Discord-based workflow; clip length capped at 8 s; no native audio yet",
       "notable_sources": "updates.midjourney.com/introducing-our-v1-video-model/; techcrunch.com/2025/06/18/midjourney-launches-its-first-ai-video-generation-model-v1/",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Runway",
@@ -2111,9 +1945,7 @@
       "pro_tips": "",
       "drawbacks": "Superseded by Gen-3/4; slower generation; shorter clips; less realistic than current models; maintained mainly for continuity",
       "notable_sources": "runwayml.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -2136,9 +1968,7 @@
       "pro_tips": "",
       "drawbacks": "Lower quality than 2024+ models; short clips only; occasional artifacts; stylized rather than photorealistic",
       "notable_sources": "pika.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-07"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pika Lab",
@@ -2161,9 +1991,7 @@
       "pro_tips": "",
       "drawbacks": "Quickly superseded by 2.0+; still stylized vs photorealistic; effects sometimes gimmicky; short clips limited use cases",
       "notable_sources": "pika.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Haiper",
@@ -2186,9 +2014,7 @@
       "pro_tips": "",
       "drawbacks": "DISCONTINUED: Platform shut down Feb 2025; website offline (404 errors); pivoted to enterprise-only B2B model; all consumer access ended; refunds issued to paid users",
       "notable_sources": "haiper.ai (offline); techcrunch.com/haiper-shutdown-2025",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Kaiber",
@@ -2211,9 +2037,7 @@
       "pro_tips": "",
       "drawbacks": "More stylized than photorealistic; learning curve for best results; credit system can be confusing; occasional consistency issues",
       "notable_sources": "kaiber.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Imagine Art",
@@ -2236,9 +2060,7 @@
       "pro_tips": "",
       "drawbacks": "Native model quality behind leaders; video features limited; confusing which model you're using; credit depletion fast with video",
       "notable_sources": "imagine.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "FLORA",
@@ -2261,9 +2083,7 @@
       "pro_tips": "",
       "drawbacks": "Pricing complexity across models; learning curve for workflow blueprints; quality dependent on backend model selection",
       "notable_sources": "florafauna.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Figma",
@@ -2286,9 +2106,7 @@
       "pro_tips": "",
       "drawbacks": "Major acquisition transition uncertainty; standalone product future unclear; pricing/access model changing; may lose features during Figma integration",
       "notable_sources": "weavy.ai (redirecting to Figma); techcrunch.com/figma-weavy-acquisition",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-30"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Morphic",
@@ -2311,9 +2129,7 @@
       "pro_tips": "",
       "drawbacks": "Newer platform with smaller community; learning curve for canvas interface; some features still in development",
       "notable_sources": "morphic.com; morphstudio.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Scenario",
@@ -2336,9 +2152,7 @@
       "pro_tips": "",
       "drawbacks": "Training data sourcing controversies (copyright/trademark concerns noted by community); higher pricing for commercial scale; learning curve for custom models",
       "notable_sources": "scenario.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "VEED",
@@ -2361,9 +2175,7 @@
       "pro_tips": "",
       "drawbacks": "AI generation quality not as advanced as specialized tools; watermark on free tier; subscription required for serious use; avatars less realistic than dedicated platforms",
       "notable_sources": "veed.io",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pixverse",
@@ -2386,9 +2198,7 @@
       "pro_tips": "",
       "drawbacks": "Quality may not match premium platforms; effects can be gimmicky; newer platform with limited advanced controls; community smaller than established competitors",
       "notable_sources": "pixverse.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Luma",
@@ -2411,9 +2221,7 @@
       "pro_tips": "",
       "drawbacks": "Still limited to 10-second clips; requires paid tier for 4K/HDR; strict content policies; primarily English prompts; no API access yet",
       "notable_sources": "lumalabs.ai/ray3; blog.adobe.com/luma-ray3-firefly; cometapi.com/luma-ray3-inference",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Midjourney",
@@ -2436,9 +2244,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to 5 seconds currently; requires Discord (no web app); image-to-video only (not text-to-video); slower than pure video generators; artistic bias may not suit photorealism",
       "notable_sources": "updates.midjourney.com/introducing-v1-video-model/; techcrunch.com/2025/06/18/midjourney-video-v1; docs.midjourney.com/video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ByteDance",
@@ -2461,9 +2267,7 @@
       "pro_tips": "",
       "drawbacks": "Chinese language only (no English yet); regional restrictions; documentation primarily Chinese; content moderation under Chinese law; limited international availability",
       "notable_sources": "videomaker.com/bytedance-jimeng-ai; technode.com/bytedance-jimeng-ai; vidboard.ai/bytedance-ai-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "NVIDIA",
@@ -2486,9 +2290,7 @@
       "pro_tips": "",
       "drawbacks": "Specialized for physical AI (not general creative video); requires understanding of robotics/autonomous systems; complex setup; less artistic than creative video models",
       "notable_sources": "nvidia.com/en-us/ai/cosmos/; research.nvidia.com/cosmos-wfms; blogs.nvidia.com/open-models-data-ai/; github.com/nvidia-cosmos",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-11"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stability AI",
@@ -2511,9 +2313,7 @@
       "pro_tips": "",
       "drawbacks": "Highly technical; requires significant GPU resources; primarily for research/advanced users; limited documentation; non-commercial license restrictions",
       "notable_sources": "github.com/Stability-AI/generative-models; huggingface.co/stabilityai/sv4d; stability.ai/research",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "xAI (Elon Musk)",
@@ -2536,9 +2336,7 @@
       "pro_tips": "",
       "drawbacks": "Quality and consistency trail leaders (described as \"behind Sora/Veo\" in detail). Also requires an initial image – no purely imagined scenes. Lax policy raises misuse risks (deepfakes, porn). Access tied to X subscription and iOS app (limited platform availability).",
       "notable_sources": "xAI/Grok",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Alibaba",
@@ -2561,9 +2359,7 @@
       "pro_tips": "",
       "drawbacks": "Setup and VRAM heavy for 14B weights; capped at 720p unless upscaled; tooling still evolving",
       "notable_sources": "github.com/Wan-Video/Wan2.2; lmarena.ai/leaderboard/text-to-video",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Topaz Labs",
@@ -2586,9 +2382,7 @@
       "pro_tips": "",
       "drawbacks": "High system requirements (32GB RAM min); steep learning curve; risk of overprocessing/unnatural results; large output files; stability issues reported; color shifting problems",
       "notable_sources": "topazlabs.com/tools/video-upscale; unifab.ai/resource/topaz-video-ai-review",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-03"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ElevenLabs",
@@ -2611,9 +2405,7 @@
       "pro_tips": "",
       "drawbacks": "Ethical concerns about voice cloning; character limits on lower tiers; API can be expensive for high volume; pronunciation occasional issues",
       "notable_sources": "elevenlabs.io",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-30"
+      "thumbnail_url": ""
     },
     {
       "vendor": "PlayHT",
@@ -2636,9 +2428,7 @@
       "pro_tips": "",
       "drawbacks": "More expensive than competitors; less brand recognition than ElevenLabs; occasional robotic inflections; API documentation less comprehensive",
       "notable_sources": "play.ht",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Murf.ai",
@@ -2661,9 +2451,7 @@
       "pro_tips": "",
       "drawbacks": "More expensive than competitors for equivalent usage; smaller voice library than ElevenLabs; some voices sound less natural",
       "notable_sources": "murf.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Azure AI",
@@ -2686,9 +2474,7 @@
       "pro_tips": "",
       "drawbacks": "Requires Azure account/technical setup; pricing can be complex; some voices less expressive than specialized providers; documentation dense",
       "notable_sources": "azure.microsoft.com/en-us/products/ai-services/text-to-speech",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Google Cloud",
@@ -2711,9 +2497,7 @@
       "pro_tips": "",
       "drawbacks": "Requires GCP account; custom voice very limited access; some Neural2 voices in beta; pricing structure complex for multi-model use",
       "notable_sources": "cloud.google.com/text-to-speech",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -2736,9 +2520,7 @@
       "pro_tips": "",
       "drawbacks": "Chinese company (potential regional restrictions); API-only (developer-focused); pricing per character not per second",
       "notable_sources": "MiniMax (Oct 2025), LiveKit, Pipecat, Vapi integration announcements",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Suno",
@@ -2761,9 +2543,7 @@
       "pro_tips": "",
       "drawbacks": "Copyright/training data concerns; occasional lyric gibberish; consistency issues across continuations; quality varies by genre",
       "notable_sources": "suno.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-19"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Suno",
@@ -2786,9 +2566,7 @@
       "pro_tips": "",
       "drawbacks": "Still occasional lyric oddities; can't fully control melody; copyright debate ongoing; stem extraction quality varies",
       "notable_sources": "suno.com/blog/v4",
-      "featured": false,
-      "is_new": true,
-      "date_added": "2025-11-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Udio",
@@ -2811,9 +2589,7 @@
       "pro_tips": "",
       "drawbacks": "CRITICAL: Cannot download songs after Oct 2025 UMG settlement; massive user backlash and exodus; ownership rights unclear; users lost access to their creations",
       "notable_sources": "reuters.com/business/media-telecom/universal-music-settles-copyright-dispute-with-ai-firm-udio-2025-10-30; billboard.com/pro/udio-deal-backlash",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-28"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Stable Audio",
@@ -2836,9 +2612,7 @@
       "pro_tips": "",
       "drawbacks": "Quality behind Suno/Udio; vocals not a strong suit; community/ecosystem smaller; requires GPU for local use; less genre variety",
       "notable_sources": "stableaudio.com; huggingface.co/stabilityai/stable-audio-open",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Suno",
@@ -2861,9 +2635,7 @@
       "pro_tips": "",
       "drawbacks": "Pro/Premier subscription required (no free access); higher credit cost per song; 8-min songs use significantly more credits; still can't fully control melody",
       "notable_sources": "help.suno.com/en/articles/8105153; suno.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-06"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MiniMax",
@@ -2886,9 +2658,7 @@
       "pro_tips": "",
       "drawbacks": "Chinese company (potential regional restrictions); credit-based pricing may be complex for new users; Reddit feedback mentions demos are \"pretty basic\"",
       "notable_sources": "MiniMax (Oct 31, 2025), Reddit r/SunoAI discussion",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Synthesia",
@@ -2911,9 +2681,7 @@
       "pro_tips": "",
       "drawbacks": "Not for creative storytelling (avatars are presenters); watermark on free tier; requires script preparation; uncanny valley for some",
       "notable_sources": "synthesia.io",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-31"
+      "thumbnail_url": ""
     },
     {
       "vendor": "HeyGen",
@@ -2936,9 +2704,7 @@
       "pro_tips": "",
       "drawbacks": "Avatar quality variable based on input; some ethical concerns about deepfake potential; translation quality depends on original audio",
       "notable_sources": "heygen.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-25"
+      "thumbnail_url": ""
     },
     {
       "vendor": "D-ID",
@@ -2961,9 +2727,7 @@
       "pro_tips": "",
       "drawbacks": "Limited to talking heads (not full body); uncanny valley can occur; voices sound slightly synthetic; premium pricing for API",
       "notable_sources": "d-id.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-10-12"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Meta",
@@ -2986,9 +2750,7 @@
       "pro_tips": "",
       "drawbacks": "Research quality (not production polish); can have artifacts on challenging angles; requires technical setup; no GUI by default; no cloud service",
       "notable_sources": "github.com/Rudrabha/Wav2Lip; arxiv.org/abs/2008.10010",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-05"
+      "thumbnail_url": ""
     },
     {
       "vendor": "SadTalker",
@@ -3011,9 +2773,7 @@
       "pro_tips": "",
       "drawbacks": "Requires high-end GPU; setup more complex than cloud services; occasional artifacts; less polished than commercial tools; limited documentation",
       "notable_sources": "sadtalker.github.io; github.com/OpenTalker/SadTalker",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-24"
+      "thumbnail_url": ""
     },
     {
       "vendor": "LetzAI",
@@ -3036,9 +2796,7 @@
       "pro_tips": "",
       "drawbacks": "Video still in early access; credit-based quotas; closed ecosystem",
       "notable_sources": "letz.ai/blog/letzai-v4",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "LetzAI",
@@ -3061,9 +2819,7 @@
       "pro_tips": "",
       "drawbacks": "Early access invite required; per-clip credits vary widely; reliant on partner GPU queues",
       "notable_sources": "letz.ai/blog/letzai-v4",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Freepik",
@@ -3086,9 +2842,7 @@
       "pro_tips": "",
       "drawbacks": "Credit system confusing; some features expensive; Mystic only on paid tiers; video features limited vs dedicated platforms",
       "notable_sources": "freepik.com; freepik.com/ai/mystic",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "OpenArt",
@@ -3111,9 +2865,7 @@
       "pro_tips": "",
       "drawbacks": "Overwhelming choice for beginners; credit costs vary wildly by model; queue times on free tier; some models outdated",
       "notable_sources": "openart.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "NightCafe",
@@ -3136,9 +2888,7 @@
       "pro_tips": "",
       "drawbacks": "UI can be cluttered; credit costs vary unpredictably; some models outdated; queue times frustrating; limited control vs dedicated tools",
       "notable_sources": "nightcafe.studio",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-29"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Artbreeder",
@@ -3161,9 +2911,7 @@
       "pro_tips": "",
       "drawbacks": "Breeding interface confusing initially; less control than prompt-based tools; not best for photorealism; commercial use requires high tier",
       "notable_sources": "artbreeder.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-05-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Pollo.ai",
@@ -3186,9 +2934,7 @@
       "pro_tips": "",
       "drawbacks": "Credit system can be confusing; quality varies by model selected; not as polished as dedicated single-model platforms",
       "notable_sources": "pollo.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-15"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Based Labs",
@@ -3211,9 +2957,7 @@
       "pro_tips": "",
       "drawbacks": "Free tier has watermarks; queue times can be long; model selection overwhelming for beginners; limited advanced controls",
       "notable_sources": "basedlabs.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-22"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Glif",
@@ -3236,9 +2980,7 @@
       "pro_tips": "",
       "drawbacks": "Learning curve for creating glifs; quality depends on glif creator; can be overwhelming; documentation scattered",
       "notable_sources": "glif.app",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-09"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Wavespeed AI",
@@ -3261,9 +3003,7 @@
       "pro_tips": "",
       "drawbacks": "Developer-centric (assumes REST API proficiency); learning curve for optimization; default rate limits for high volume; pricing varies across models",
       "notable_sources": "wavespeed.ai; skywork.ai/blog/wavespeed-ai-review-2025; xole.ai/ai-image-generator/wavespeed-ai-review",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "fal.ai",
@@ -3286,9 +3026,7 @@
       "pro_tips": "",
       "drawbacks": "Per-use costs add up at scale; requires developer integration; no GUI (API only); enterprise features paywalled",
       "notable_sources": "fal.ai",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-18"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Replicate",
@@ -3311,9 +3049,7 @@
       "pro_tips": "",
       "drawbacks": "No proprietary models; UI minimal (API-first); cold starts can slow first run; pricing complexity with many GPU options",
       "notable_sources": "replicate.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-20"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Hugging Face",
@@ -3336,9 +3072,7 @@
       "pro_tips": "",
       "drawbacks": "Inference API quota limits; community models quality varies; enterprise features expensive; cold starts common",
       "notable_sources": "huggingface.co",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-26"
+      "thumbnail_url": ""
     },
     {
       "vendor": "CivitAI",
@@ -3361,9 +3095,7 @@
       "pro_tips": "",
       "drawbacks": "NSFW content prevalent (can filter); quality control varies; overwhelming choice; some models require attribution or restricted use",
       "notable_sources": "civitai.com",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-01"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Tensor.art",
@@ -3386,9 +3118,7 @@
       "pro_tips": "",
       "drawbacks": "English interface improving but Chinese-first; some models region-locked; credit/energy system confusing; less known in West",
       "notable_sources": "tensor.art",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-08"
+      "thumbnail_url": ""
     },
     {
       "vendor": "ComfyUI",
@@ -3411,9 +3141,7 @@
       "pro_tips": "",
       "drawbacks": "Steep learning curve; not beginner-friendly; requires technical setup; UI can be intimidating; no built-in model management",
       "notable_sources": "github.com/comfyanonymous/ComfyUI",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-09-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Adobe",
@@ -3436,9 +3164,7 @@
       "pro_tips": "",
       "drawbacks": "Requires Creative Cloud plus generative credits; desktop-only for now.",
       "notable_sources": "x.com/Mr_AllenT (Nov 6, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-07-17"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Qwen Team",
@@ -3461,9 +3187,7 @@
       "pro_tips": "",
       "drawbacks": "Text rendering remains weak, so layer typography in post.",
       "notable_sources": "x.com/hellorob (Nov 6, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-06-21"
+      "thumbnail_url": ""
     },
     {
       "vendor": "Higgsfield",
@@ -3486,9 +3210,7 @@
       "pro_tips": "",
       "drawbacks": "Depends on Higgsfield cloud capacity and clean reference footage; promos may change quickly.",
       "notable_sources": "x.com/higgsfield_ai (Nov 6, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-10"
+      "thumbnail_url": ""
     },
     {
       "vendor": "MotionStream (Joonghyk)",
@@ -3511,9 +3233,7 @@
       "pro_tips": "",
       "drawbacks": "Requires high-end GPUs and is limited to the beta interface; no consumer release yet.",
       "notable_sources": "x.com/wildmindai (Nov 4, 2025); x.com/bilwalsidhu (Nov 7, 2025)",
-      "featured": false,
-      "is_new": false,
-      "date_added": "2025-08-04"
+      "thumbnail_url": ""
     }
   ]
 }

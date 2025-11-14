@@ -25,6 +25,8 @@ export interface Tool {
   featured?: boolean;
   dateAdded?: string;
   isNew?: boolean;
+  // Sprint 1: Visual-first redesign
+  thumbnailUrl?: string;
 }
 
 export const CATEGORIES = {
