@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Film, Image, Mic, Music, Clock, Heart, TrendingUp, Sparkles, Filter, Menu, X, Pin, PinOff } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Logo from "@/components/common/Logo";
 
 export type SidebarMode = "full-arsenal" | "quick-draw" | "gallery";
 
@@ -187,9 +188,6 @@ export default function DirectorSidebar({
           <div className={`${getWidth()} relative z-10 py-6`}>
             {/* Sidebar Content */}
             <div className="px-3 space-y-6">
-              import Logo from "@/components/common/Logo";
-
-              // ... inside the component ...
 
               {/* Brand Block */}
               <Link
