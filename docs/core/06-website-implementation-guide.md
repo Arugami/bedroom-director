@@ -1,6 +1,11 @@
 # Website Implementation Guide
 **Making the Best AI Model Discovery Platform**
 
+> **Note (2025-11):** This guide describes the **core V1 intent-based discovery site**. Since then we’ve added a cinematic shell, comparison feature, and Scene Canvas workspace. For those layers, see:  
+> - `docs/00-implementation-summary.md` (2025-11 updates)  
+> - `docs/scene-canvas/scene-canvas-implementation-spec.md`  
+> - `docs/strategy/ux-innovation-roadmap.md`
+
 ---
 
 ## 🎯 Core Philosophy

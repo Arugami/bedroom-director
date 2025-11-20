@@ -1,5 +1,8 @@
 # Enhanced UX Vision v3.0: Discovery + Prompting + Community
 
+> **Role:** Upstream UX/product vision for Bedroom Director’s core loop (Discover → Learn → Create → Share). This doc informs the UX roadmap and feature specs, especially for prompt library and community.  
+> **See also:** `docs/strategy/ux-innovation-roadmap.md` for the current implementation roadmap and `docs/00-implementation-summary.md` for what’s shipped.
+
 **Last Updated:** November 4, 2025
 
 ---

@@ -80,4 +80,4 @@
 > **Last Updated:** November 4, 2025
 > **Action Required:** Move models from "READY TO ADD" section to main CSV database after verification
 > Keep this list in sync with **data/ai_video_image_models.csv** so the site can highlight what's shipping vs. what's coming next.
-> **See also:** research/pricing-audit-findings.md for verification details
+> **See also:** research/business-strategy/pricing-audit-findings.md for verification details

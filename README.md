@@ -32,15 +32,19 @@ bedroom-director-platform/
 │
 ├── docs/                              # All documentation
 │   ├── 00-index.md                    # Documentation index
-│   ├── 01-quick-start-guide.md        # Getting started
-│   ├── 02-enhanced-schema.md          # Database schema
-│   ├── 03-model-categories.md         # Category breakdown
-│   ├── 04-user-journey-guide.md       # User guides
-│   ├── 05-platform-access-guide.md    # Platform access
-│   ├── 06-website-implementation-guide.md
-│   ├── managing-creations.md          # Creator workflows
-│   ├── managing-prompts.md            # Prompt library patterns
-│   └── archive/                       # Deprecated docs
+│   ├── 00-implementation-summary.md   # High-level implementation summary
+│   ├── core/                          # Core implementation docs
+│   │   ├── 01-quick-start-guide.md        # Getting started
+│   │   ├── 02-enhanced-schema.md          # Database schema
+│   │   ├── 03-model-categories.md         # Category breakdown
+│   │   ├── 04-user-journey-guide.md       # User guides
+│   │   ├── 05-platform-access-guide.md    # Platform access
+│   │   ├── 06-website-implementation-guide.md
+│   │   ├── managing-creations.md          # Creator workflows
+│   │   ├── managing-prompts.md            # Prompt library patterns
+│   │   └── technical-architecture.md      # Web app technical design
+│   ├── scene-canvas/                  # Scene Canvas strategy & specs
+│   └── strategy/                      # AI/UX/finance strategy docs
 │
 ├── research/                          # Research materials
 │   ├── research-findings-live.md      # Aggregated insights
@@ -64,7 +68,7 @@ bedroom-director-platform/
 │   ├── scene-canvas-strategic-analysis.md
 │   ├── scene-canvas-implementation-spec.md
 │   ├── scene-canvas-chat-first-director-workspace.md
-│   └── archive/
+│   └── archive/                       # Deprecated docs (cleanup history; safe to ignore)
 │
 ├── creative/                          # Brand, naming, creative partner lenses
 │   └── partners/                      # W+K, Chiat/Day, Jobs, Hybrid, Reynolds
@@ -84,7 +88,7 @@ bedroom-director-platform/
    - Quick reference guide
    - **START HERE** for navigation
 
-2. **[docs/01-quick-start-guide.md](./docs/01-quick-start-guide.md)**
+2. **[docs/core/01-quick-start-guide.md](./docs/core/01-quick-start-guide.md)**
    - 4-week implementation checklist
    - Day-by-day tasks
    - Success metrics
@@ -94,13 +98,13 @@ bedroom-director-platform/
 
 ### **🗄️ Data & Schema**
 
-3. **[docs/02-enhanced-schema.md](./docs/02-enhanced-schema.md)**
+3. **[docs/core/02-enhanced-schema.md](./docs/core/02-enhanced-schema.md)**
    - Complete CSV schema with 19 columns
    - Capability tag reference (40+ tags)
    - Use case to capability mapping
    - Migration strategy
 
-4. **[docs/03-model-categories.md](./docs/03-model-categories.md)**
+4. **[docs/core/03-model-categories.md](./docs/core/03-model-categories.md)**
    - Organized list of all 153 models
    - Categorized by type and capability
    - Coverage breakdown and statistics
@@ -110,13 +114,13 @@ bedroom-director-platform/
 
 ### **🎯 User Experience**
 
-5. **[docs/04-user-journey-guide.md](./docs/04-user-journey-guide.md)**
+5. **[docs/core/04-user-journey-guide.md](./docs/core/04-user-journey-guide.md)**
    - 5 complete user journeys with decision trees
    - Comparison tables for each use case
    - Common mistakes to avoid
    - Quick decision flowchart
 
-6. **[docs/05-platform-access-guide.md](./docs/05-platform-access-guide.md)**
+6. **[docs/core/05-platform-access-guide.md](./docs/core/05-platform-access-guide.md)**
    - Where to use each model (official vs. third-party)
    - Pricing comparisons
    - Platform access matrix
@@ -126,7 +130,7 @@ bedroom-director-platform/
 
 ### **💻 Website Implementation**
 
-7. **[docs/06-website-implementation-guide.md](./docs/06-website-implementation-guide.md)**
+7. **[docs/core/06-website-implementation-guide.md](./docs/core/06-website-implementation-guide.md)**
    - Complete UI/UX specifications
    - Smart search with natural language
    - Recommendation algorithm (with code)
@@ -137,7 +141,7 @@ bedroom-director-platform/
 
 ### **🔬 Research & Analysis**
 
-8. **[research/pricing-audit-findings.md](./research/pricing-audit-findings.md)**
+8. **[research/business-strategy/pricing-audit-findings.md](./research/business-strategy/pricing-audit-findings.md)**
    - Pricing verification for top models
    - Source documentation
    - Audit status and findings
@@ -180,29 +184,29 @@ bedroom-director-platform/
 
 ### **For Product Managers:**
 1. Read: `docs/00-index.md` for overview
-2. Read: `docs/04-user-journey-guide.md`
-3. Review: `docs/01-quick-start-guide.md` for timeline
+2. Read: `docs/core/04-user-journey-guide.md`
+3. Review: `docs/core/01-quick-start-guide.md` for timeline
 
 ### **For Data Team:**
-1. Read: `docs/02-enhanced-schema.md`
+1. Read: `docs/core/02-enhanced-schema.md`
 2. Work with: `data/ai_video_image_models.csv`
 3. Reference: `research/` folder for verification
 
 ### **For Development Team:**
-1. Read: `docs/06-website-implementation-guide.md`
-2. Reference: `docs/02-enhanced-schema.md` for data structure
+1. Read: `docs/core/06-website-implementation-guide.md`
+2. Reference: `docs/core/02-enhanced-schema.md` for data structure
 3. Use: `data/models.json` for API integration
 4. Check: `scripts/` folder for utilities
 
 ### **For Content Team:**
-1. Read: `docs/04-user-journey-guide.md`
-2. Read: `docs/05-platform-access-guide.md`
+1. Read: `docs/core/04-user-journey-guide.md`
+2. Read: `docs/core/05-platform-access-guide.md`
 3. Track: `notes/EMERGING_MODELS.md` for latest announcements
 4. Create: Educational content based on user journeys
 
 ### **For UX/Design Team:**
-1. Read: `docs/06-website-implementation-guide.md`
-2. Reference: `docs/04-user-journey-guide.md` for user flows
+1. Read: `docs/core/06-website-implementation-guide.md`
+2. Reference: `docs/core/04-user-journey-guide.md` for user flows
 3. Design: Model cards, filters, and comparison tables
 
 ---
@@ -293,12 +297,12 @@ bedroom-director-platform/
 - All documents are comprehensive and self-contained
 
 ### **Implementation Questions:**
-- Reference: `01-quick-start-guide.md` for step-by-step
-- Reference: `06-website-implementation-guide.md` for technical specs
+- Reference: `docs/core/01-quick-start-guide.md` for step-by-step
+- Reference: `docs/core/06-website-implementation-guide.md` for technical specs
 
 ### **Data Questions:**
-- Reference: `02-enhanced-schema.md` for schema details
-- Reference: `research/categorization-research.md` for classifications
+- Reference: `docs/core/02-enhanced-schema.md` for schema details
+- Reference: `research/pipelines-workflows/categorization-research.md` for classifications
 
 ---
 

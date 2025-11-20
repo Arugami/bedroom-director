@@ -1,6 +1,25 @@
 # Implementation Summary: Best AI Model Discovery Website
-**Date: November 3, 2025**
-**Status: ✅ Complete**
+**Originally Written:** November 3, 2025  
+**Last Updated:** November 20, 2025  
+**Status:** ✅ Core V1 complete; enhanced UI + Scene Canvas live
+
+---
+
+## 📌 2025-11 Updates (High-Level)
+
+Since the original V1 implementation, we have shipped:
+
+- **Visual-first redesign of the Tools experience**
+  - Cinematic shell (DirectorSidebar, StudioHero, StudioStickyBar) and thumbnail-led `ToolsClient`.
+- **Tool comparison feature**
+  - Comparison tray + comparison page with side-by-side specs.
+- **Scene Canvas (Director Workspace)**
+  - `/scene-canvas` route with Director Chat, Reel Wall, Scene Inspector, and Visual Bible uploads.
+  - See `docs/scene-canvas/scene-canvas-implementation-spec.md` for details.
+- **Model & pricing strategy docs**
+  - AI stack decisions live in `docs/strategy/bedroom-director-model-recommendations.md` and `docs/strategy/bedroom-director-pricing-tiers.md`.
+
+The rest of this document still describes the **core discovery platform foundations** (schema, journeys, access guide, warning system) that everything above is built on.
 
 ---
 
@@ -134,8 +153,8 @@ DIALOGUE & TALKING VIDEOS (15+ entries)
 ### **7. Research & Analysis Documents** ✅
 
 **Files:**
-- `research/lip-sync-analysis.md` - Original research findings
-- `research/categorization-research.md` - Detailed recommendations with verified sources
+- `research/pipelines-workflows/lip-sync-analysis.md` - Original research findings
+- `research/pipelines-workflows/categorization-research.md` - Detailed recommendations with verified sources
 
 **Key Findings:**
 - Identified 3 distinct types of "lip sync" capabilities
@@ -304,7 +323,7 @@ All files created in `/Users/Arugami/Desktop/AI_Image_Video_App/`:
 ### **For Data Team:**
 1. Read `02-enhanced-schema.md` for column definitions
 2. Use capability tags to populate CSV
-3. Reference `research/categorization-research.md` for specific model classifications
+3. Reference `research/pipelines-workflows/categorization-research.md` for specific model classifications
 
 ### **For Development Team:**
 1. Read `06-website-implementation-guide.md` for UI/UX specs

@@ -39,7 +39,7 @@ After analyzing the competitive UX document and our current website, I've identi
 
 ## 🧭 Competitor UX Patterns (Nov 2025 Review)
 
-See `research/competitive-analysis.md` for the full breakdown and monetization notes.
+See `research/market-competitive/competitive-analysis.md` for the full breakdown and monetization notes.
 
 ### There's an AI for That (theresanaiforthat.com)
 - **Navigation stack:** Persistent left rail with icons for modes + sticky top pill bar for task types keeps multi-dimensional browsing low-friction.
@@ -809,7 +809,7 @@ These 3 changes will transform the site from "database" to "discovery platform" 
 ## 📚 Reference Files
 
 **Competitive Analysis:**
-- `/research/competitive-ux-analysis.md` (source document)
+- `/research/market-competitive/competitive-ux-analysis.md` (source document)
 
 **Current Implementation:**
 - `/bedroom-director-web/src/components/tools/ToolCard.tsx:1`

@@ -348,7 +348,7 @@ These are queued items that are not yet staffed. Prioritize based on user impact
 ### Key Files & Scripts  
 Full repo map lives in `agents.md` + `claude.md`; below are the essentials agents touch every day.
 - **Database**: `data/ai_video_image_models.csv` (19 columns) with rolling backup in `data/backups/ai-video-image-models-backup.csv`.
-- **Category & matrix doc**: `docs/03-model-categories.md` (counts + cross-platform tables).
+- **Category & matrix doc**: `docs/core/03-model-categories.md` (counts + cross-platform tables).
 - **Script suite** (all proven): `fix_platform_availability.py`, `update_api_platform_availability.py`, `fix_duplicate_platforms.py`, `add_new_models_2025.py`, `add_new_models_batch.py`.
 - **Column Map**: Metadata → Vendor, Primary_Category, Model_Type, License_Type, Special_Flags, Skill_Level. Data → Best_For, Model, Modality, Key Features, Duration/Resolution, Controls, Speed, Pricing, License, Update Cadence, Distinctive Edge, Drawbacks, Notable Sources.
 
@@ -356,7 +356,7 @@ Full repo map lives in `agents.md` + `claude.md`; below are the essentials agent
 1. **Before you start** – Read this doc, confirm no one else owns the task, log your name + start time.
 2. **During execution** – Capture findings in a dedicated doc, track all sources/URLs/dates, and flag uncertainties loudly.
 3. **After completion** – Update this TODO, link findings, refresh stats if counts changed, and note completion timestamps.
-4. **When editing the DB** – Always create/verify a backup, test on a sample before bulk edits, document the delta, rerun counts, and update `docs/03-model-categories.md` if a category shifts.
+4. **When editing the DB** – Always create/verify a backup, test on a sample before bulk edits, document the delta, rerun counts, and update `docs/core/03-model-categories.md` if a category shifts.
 5. **Naming conventions** – Scripts `{action}_{target}.py`, findings `{TASK}_FINDINGS.md`, backups `ai_video_image_models_BACKUP.csv`.
 
 ### Data Quality Checklist
@@ -826,7 +826,7 @@ grep "Available via API" ai_video_image_models.csv
   - Open-source TTS toolkit (ex-Mozilla team)
   - Cross-lingual voice cloning (3-sec sample → 13+ languages)
   - Self-hostable, fine-tunable models
-- ✅ Updated `docs/03-model-categories.md`:
+- ✅ Updated `docs/core/03-model-categories.md`:
   - Updated total count (150 → 152 entries)
   - Updated VOICE_AUDIO category (7 → 9 entries)
   - Updated all line number ranges for categories

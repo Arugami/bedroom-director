@@ -48,7 +48,7 @@ python3 scripts/utilities/sync_to_json.py
    - Verify row counts before/after
 
 3. **Update docs when categories change**
-   - Update line numbers in `docs/03-model-categories.md`
+   - Update line numbers in `docs/core/03-model-categories.md`
 
 ---
 
@@ -168,7 +168,7 @@ That magical moment when neon signs turn on against a purple dusk sky. Think: Pu
 - `about.md` - Mission/vision (2 paragraphs)
 - `agents.md` - Repo guidelines (for Codex)
 - `bedroom-director-universe.md` - Core aesthetic
-- `docs/03-model-categories.md` - Database categories
+- `docs/core/03-model-categories.md` - Database categories
 - `website/design-spec.md` - Complete design system
 - `bedroom-director-universe/brand/visual-identity.md` - Full visual guide
 

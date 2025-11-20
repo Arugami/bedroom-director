@@ -11,18 +11,21 @@ export interface ProjectChatMessage {
   linkedSceneId?: string;
   linkedBeatId?: string;
   tags?: string[];
+  toolCalls?: { name: string; args: any; result?: any }[];
 }
 
 export interface CameraOption {
   angle: string; // "wide shot", "close-up", "bird's eye", "POV", etc.
   movement: string; // "static", "tracking", "dolly zoom", "pan", etc.
   lens: string; // "35mm", "50mm", "wide angle", "telephoto", etc.
+  shotType?: string; // Legacy/UI field for "Wide", "Medium", etc.
 }
 
 export interface LightingOption {
   mood: string; // "golden hour", "neon noir", "harsh sunlight", "soft diffused", etc.
   direction: string; // "front", "backlit", "rim light", "three-point", etc.
   color: string; // "warm", "cool", "vibrant", "monochrome", etc.
+  timeOfDay?: string; // Legacy/UI field for "Day", "Night", etc.
 }
 
 export interface StyleOption {

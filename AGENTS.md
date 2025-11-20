@@ -29,4 +29,4 @@
 
 ## Data & Configuration Tips
 - Edit `data/ai_video_image_models.csv` with UTF-8 aware tools; after changes, rerun `python scripts/utilities/sync_to_json.py` and place a timestamped copy in `data/backups/`.
-- Secrets stay in local `.env` files ignored by git; mirror required variable names in `docs/06-website-implementation-guide.md` so new agents can provision environments without guesswork.
+- Secrets stay in local `.env` files ignored by git; mirror required variable names in `docs/core/06-website-implementation-guide.md` so new agents can provision environments without guesswork.

@@ -6,7 +6,7 @@
 ## ✅ Week 1: Data Migration
 
 ### Day 1-2: Schema Setup
-- [ ] Read `02-enhanced-schema.md`
+- [ ] Read `docs/core/02-enhanced-schema.md`
 - [ ] Add 4 new columns to CSV:
   - `Primary_Category`
   - `Capabilities`
@@ -211,10 +211,10 @@
 ## 📞 Need Help?
 
 ### Reference Documents:
-- **Schema questions** → `02-enhanced-schema.md`
-- **User flow questions** → `04-user-journey-guide.md`
-- **UI/UX questions** → `06-website-implementation-guide.md`
-- **Research questions** → `research/categorization-research.md`
+- **Schema questions** → `docs/core/02-enhanced-schema.md`
+- **User flow questions** → `docs/core/04-user-journey-guide.md`
+- **UI/UX questions** → `docs/core/06-website-implementation-guide.md`
+- **Research questions** → `research/pipelines-workflows/categorization-research.md`
 - **Overview** → `00-implementation-summary.md`
 
 ---

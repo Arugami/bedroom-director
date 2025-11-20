@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Film, Image, Mic, Music, Clock, Heart, TrendingUp, Sparkles, Filter, Menu, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Film, Image, Mic, Music, Clock, Heart, TrendingUp, Sparkles, Filter, Menu, X, Pin, PinOff } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -37,6 +37,8 @@ export default function DirectorSidebar({
 }: DirectorSidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -61,18 +63,18 @@ export default function DirectorSidebar({
 
   const isSceneCanvas = pathname.startsWith("/scene-canvas");
 
-  // Width based on mode; only Scene Canvas can fully collapse
+  // Width based on mode and pin state
   const getWidth = () => {
-    const collapsed = isSceneCanvas && isCollapsed;
+    const collapsed = isSceneCanvas && isCollapsed && !isPinned;
 
-    if (collapsed) return "w-16"; // Icon-only mode for Scene Canvas only
+    if (collapsed) return "w-16"; // Icon-only mode
     switch (mode) {
       case "full-arsenal":
-        return "w-64"; // Wide sidebar
+        return "w-64";
       case "quick-draw":
-        return "w-64"; // Align width with Tools for consistency
+        return "w-64";
       case "gallery":
-        return "w-64"; // Avoid overly compact sidebar on Showcase
+        return "w-64";
       default:
         return "w-64";
     }
@@ -125,11 +127,12 @@ export default function DirectorSidebar({
   return (
     <>
       {/* Mobile Menu Button - Cinematic Design */}
-      <button
-        onClick={() => setIsMobileMenuOpen(true)}
-        className="lg:hidden fixed top-4 left-4 z-40 group"
-        aria-label="Open menu"
-      >
+      {!isMobileMenuOpen && (
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="lg:hidden fixed top-4 left-4 z-[70] group"
+          aria-label="Open menu"
+        >
         <div className="relative">
           {/* Purple glow background */}
           <div className="absolute inset-0 bg-bedroom-purple/20 blur-xl rounded-full" />
@@ -149,6 +152,7 @@ export default function DirectorSidebar({
           </div>
         </div>
       </button>
+      )}
 
       {/* Desktop Sidebar */}
       <aside
@@ -156,174 +160,171 @@ export default function DirectorSidebar({
       >
         {/* Sidebar Container */}
         <div className={`fixed ${topOffsetClass} left-0 bottom-0 bg-director-black/95 backdrop-blur-xl border-r border-white/5 overflow-y-auto z-30`}>
-        {/* Film grain texture */}
-        <div className="absolute inset-0 grain-texture opacity-5 pointer-events-none" />
+          {/* Film grain texture */}
+          <div className="absolute inset-0 grain-texture opacity-5 pointer-events-none" />
 
-        {/* Purple glow border */}
-        <div className="absolute inset-y-0 right-0 w-[2px] bg-gradient-to-b from-bedroom-purple/0 via-bedroom-purple/30 to-bedroom-purple/0" />
+          {/* Purple glow border */}
+          <div className="absolute inset-y-0 right-0 w-[2px] bg-gradient-to-b from-bedroom-purple/0 via-bedroom-purple/30 to-bedroom-purple/0" />
 
-        <div className={`${getWidth()} relative z-10 py-6`}>
-          {/* Sidebar Content */}
-          <div className="px-3 space-y-6">
-            {/* Brand Block */}
-            <Link
-              href="/"
-              className={`
+          <div className={`${getWidth()} relative z-10 py-6`}>
+            {/* Sidebar Content */}
+            <div className="px-3 space-y-6">
+              {/* Brand Block */}
+              <Link
+                href="/"
+                className={`
                 mb-4 flex items-center gap-3 rounded-lg border border-white/10 bg-bedroom-purple/5
                 px-3 py-3 transition-all hover:bg-bedroom-purple/10 hover:border-bedroom-purple/70
                 ${isCollapsed ? "justify-center" : ""}
               `}
-            >
-              <div className="flex h-8 w-8 items-center justify-center rounded-md border border-bedroom-purple/50 bg-bedroom-purple/15 text-bedroom-purple shadow-[0_0_18px_rgba(168,85,247,0.35)]">
-                <span className="text-[10px] font-semibold tracking-[0.28em]">
-                  BD
-                </span>
-              </div>
-              {!isCollapsed && (
-                <div className="flex flex-col leading-tight">
-                  <span className="text-[11px] font-semibold tracking-[0.32em] text-screen-white">
-                    BEDROOM
-                  </span>
-                  <span className="-mt-0.5 text-[11px] font-semibold tracking-[0.32em] text-screen-white">
-                    DIRECTOR
-                  </span>
-                  <span className="mt-1 text-[10px] uppercase tracking-[0.22em] text-screen-white/40">
-                    Studio workspace
+              >
+                <div className="flex h-8 w-8 items-center justify-center rounded-md border border-bedroom-purple/50 bg-bedroom-purple/15 text-bedroom-purple shadow-[0_0_18px_rgba(168,85,247,0.35)]">
+                  <span className="text-[10px] font-semibold tracking-[0.28em]">
+                    BD
                   </span>
                 </div>
-              )}
-            </Link>
-
-            {allSections.map((section, sectionIndex) => (
-              <div key={sectionIndex}>
-                {/* Section Title */}
                 {!isCollapsed && (
-                  <h3 className="px-3 mb-3 text-xs font-semibold text-screen-white/50 uppercase tracking-wider">
-                    {section.title}
-                  </h3>
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-[11px] font-semibold tracking-[0.32em] text-screen-white">
+                      BEDROOM
+                    </span>
+                    <span className="-mt-0.5 text-[11px] font-semibold tracking-[0.32em] text-screen-white">
+                      DIRECTOR
+                    </span>
+                    <span className="mt-1 text-[10px] uppercase tracking-[0.22em] text-screen-white/40">
+                      Studio workspace
+                    </span>
+                  </div>
                 )}
+              </Link>
 
-                {/* Section Items */}
-                <div className="space-y-1">
-                  {section.items.map((item) => (
-                    <button
-                      key={item.id}
-                      onClick={item.onClick}
-                      className={`
+              {/* Expand/Collapse Button (Scene Canvas only) */}
+              {isSceneCanvas && (
+                <button
+                  onClick={() => setIsPinned(!isPinned)}
+                  className="mb-4 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-all"
+                  title={isPinned ? "Collapse sidebar" : "Expand sidebar"}
+                >
+                  {isPinned ? (
+                    <>
+                      <ChevronLeft className="w-4 h-4" />
+                      {!isCollapsed && <span className="text-xs">Collapse</span>}
+                    </>
+                  ) : (
+                    <>
+                      <ChevronRight className="w-4 h-4" />
+                      {!isCollapsed && <span className="text-xs">Expand</span>}
+                    </>
+                  )}
+                </button>
+              )}
+
+              {allSections.map((section, sectionIndex) => (
+                <div key={sectionIndex}>
+                  {/* Section Title */}
+                  {!isCollapsed && (
+                    <h3 className="px-3 mb-3 text-xs font-semibold text-screen-white/50 uppercase tracking-wider">
+                      {section.title}
+                    </h3>
+                  )}
+
+                  {/* Section Items */}
+                  <div className="space-y-1">
+                    {section.items.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={item.onClick}
+                        className={`
                         w-full flex items-center gap-3 px-3 py-2.5 rounded-lg
                         transition-all duration-200 group relative
                         ${item.active
-                          ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/40"
-                          : "text-screen-white/70 hover:bg-black/40 hover:text-screen-white"
-                        }
+                            ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/40"
+                            : "text-screen-white/70 hover:bg-black/40 hover:text-screen-white"
+                          }
                         ${isCollapsed ? "justify-center" : ""}
                       `}
-                      title={isCollapsed ? item.label : undefined}
-                    >
-                      {/* Icon */}
-                      <div
-                        className={`flex-shrink-0 ${item.active
+                        title={isCollapsed ? item.label : undefined}
+                      >
+                        {/* Icon */}
+                        <div
+                          className={`flex-shrink-0 ${item.active
                             ? "text-screen-white"
                             : item.color
                               ? item.color
                               : "text-screen-white/70 group-hover:text-screen-white"
-                          }`}
-                      >
-                        {item.icon}
-                      </div>
+                            }`}
+                        >
+                          {item.icon}
+                        </div>
 
-                      {/* Label (hidden when collapsed) */}
-                      {!isCollapsed && (
-                        <span className="flex-1 text-left text-sm font-medium truncate">
-                          {item.label}
-                        </span>
-                      )}
+                        {/* Label (hidden when collapsed) */}
+                        {!isCollapsed && (
+                          <span className="flex-1 text-left text-sm font-medium truncate">
+                            {item.label}
+                          </span>
+                        )}
 
-                      {/* Badge (hidden when collapsed) */}
-                      {!isCollapsed && item.badge && (
-                        <span className="px-2 py-0.5 bg-bedroom-purple/20 text-bedroom-purple text-xs font-semibold rounded-full">
-                          {item.badge}
-                        </span>
-                      )}
+                        {/* Badge (hidden when collapsed) */}
+                        {!isCollapsed && item.badge && (
+                          <span className="px-2 py-0.5 bg-bedroom-purple/20 text-bedroom-purple text-xs font-semibold rounded-full">
+                            {item.badge}
+                          </span>
+                        )}
 
-                      {/* Purple glow on active */}
-                      {item.active && (
-                        <div className="absolute inset-0 rounded-lg bg-bedroom-purple/10 blur-xl -z-10" />
-                      )}
-                    </button>
-                  ))}
+                        {/* Purple glow on active */}
+                        {item.active && (
+                          <div className="absolute inset-0 rounded-lg bg-bedroom-purple/10 blur-xl -z-10" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
 
-            {/* Scene Canvas collapse control */}
-            {isSceneCanvas && (
-              <button
-                onClick={toggleCollapsed}
-                className="mt-4 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-bedroom-purple/40 text-xs font-medium text-screen-white/70 hover:bg-bedroom-purple/15 hover:text-screen-white transition-all"
-                aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-              >
-                {isCollapsed ? (
-                  <ChevronRight className="w-3 h-3" />
-                ) : (
-                  <ChevronLeft className="w-3 h-3" />
-                )}
-                {!isCollapsed && <span>Collapse sidebar</span>}
-              </button>
+              {/* Scene Canvas collapse control */}
+              {isSceneCanvas && (
+                <button
+                  onClick={toggleCollapsed}
+                  className="mt-4 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-bedroom-purple/40 text-xs font-medium text-screen-white/70 hover:bg-bedroom-purple/15 hover:text-screen-white transition-all"
+                  aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+                >
+                  {isCollapsed ? (
+                    <ChevronRight className="w-3 h-3" />
+                  ) : (
+                    <ChevronLeft className="w-3 h-3" />
+                  )}
+                  {!isCollapsed && <span>Collapse sidebar</span>}
+                </button>
+              )}
+            </div>
+
+            {/* Mode Indicator (collapsed only for Scene Canvas) */}
+            {isSceneCanvas && isCollapsed && (
+              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                <div className="w-1 h-8 bg-gradient-to-b from-bedroom-purple/0 via-bedroom-purple/50 to-bedroom-purple/0 rounded-full" />
+              </div>
             )}
           </div>
-
-          {/* Mode Indicator (collapsed only for Scene Canvas) */}
-          {isSceneCanvas && isCollapsed && (
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-              <div className="w-1 h-8 bg-gradient-to-b from-bedroom-purple/0 via-bedroom-purple/50 to-bedroom-purple/0 rounded-full" />
-            </div>
-          )}
         </div>
-      </div>
-    </aside>
+      </aside>
 
       {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <>
           {/* Backdrop */}
           <div
-            className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40 animate-in fade-in duration-200"
+            className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[55] animate-in fade-in duration-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-label="Close menu"
           />
 
           {/* Mobile Sidebar */}
-          <div className="lg:hidden fixed top-0 left-0 bottom-0 w-64 bg-director-black/95 backdrop-blur-xl border-r border-white/5 overflow-y-auto z-50 animate-in slide-in-from-left duration-300">
+          <div className="lg:hidden fixed top-0 left-0 bottom-0 w-64 bg-director-black/95 backdrop-blur-xl border-r border-white/5 overflow-y-auto z-[60] animate-in slide-in-from-left duration-300">
             {/* Film grain texture */}
             <div className="absolute inset-0 grain-texture opacity-5 pointer-events-none" />
 
             {/* Purple glow border */}
             <div className="absolute inset-y-0 right-0 w-[2px] bg-gradient-to-b from-bedroom-purple/0 via-bedroom-purple/30 to-bedroom-purple/0" />
-
-            {/* Close Button - Cinematic Design */}
-            <div className="absolute top-6 right-6 z-10">
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="group relative"
-                aria-label="Close menu"
-              >
-                {/* Purple glow */}
-                <div className="absolute inset-0 bg-bedroom-purple/20 blur-lg rounded-full scale-150" />
-
-                {/* Main close button */}
-                <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-director-black/80 via-bedroom-purple/10 to-director-black/80 border-2 border-bedroom-purple/40 hover:border-bedroom-purple/70 backdrop-blur-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(124,58,237,0.6)]">
-                  {/* X icon with cross design */}
-                  <div className="relative w-5 h-5">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-0.5 bg-gradient-to-r from-bedroom-purple via-screen-white to-bedroom-purple rounded-full rotate-45" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-0.5 bg-gradient-to-r from-bedroom-purple via-screen-white to-bedroom-purple rounded-full -rotate-45" />
-                  </div>
-
-                  {/* Animated ring on hover */}
-                  <div className="absolute inset-0 rounded-full border-2 border-bedroom-purple/0 group-hover:border-bedroom-purple/40 group-hover:scale-125 transition-all duration-500" />
-                </div>
-              </button>
-            </div>
 
             <div className="w-64 relative z-10 py-6">
               {/* Sidebar Content */}
@@ -380,10 +381,10 @@ export default function DirectorSidebar({
                           {/* Icon */}
                           <div
                             className={`flex-shrink-0 ${item.active
-                                ? "text-screen-white"
-                                : item.color
-                                  ? item.color
-                                  : "text-screen-white/70 group-hover:text-screen-white"
+                              ? "text-screen-white"
+                              : item.color
+                                ? item.color
+                                : "text-screen-white/70 group-hover:text-screen-white"
                               }`}
                           >
                             {item.icon}

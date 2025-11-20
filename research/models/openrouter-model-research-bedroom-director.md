@@ -1,5 +1,10 @@
 # OpenRouter Model Research for Bedroom Director
 
+> **Role:** Raw research notebook. This file captures detailed per-model notes (context, pricing, modalities) from OpenRouter.  
+> **Source of truth for current model choices:** `docs/strategy/bedroom-director-model-recommendations.md`  
+> **Pricing tiers & packaging:** `docs/strategy/bedroom-director-pricing-tiers.md`  
+> **Long-term AI usage strategy:** `docs/strategy/ai-model-strategy-and-training-roadmap.md`
+
 ## Research Goal
 Find optimal models for three Bedroom Director Scene Canvas APIs:
 1. **Director Chat** - conversational assistant with tool calling

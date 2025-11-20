@@ -1182,11 +1182,11 @@ interface Model {
 
 **For Implementation Teams:**
 - This design spec (bedroom-director-universe.md)
-- Enhanced schema (02-enhanced-schema.md)
-- User journey guide (04-user-journey-guide.md)
-- Platform access guide (05-platform-access-guide.md)
-- Website implementation guide (06-website-implementation-guide.md)
-- Quick start guide (01-quick-start-guide.md)
+- Enhanced schema (`docs/core/02-enhanced-schema.md`)
+- User journey guide (`docs/core/04-user-journey-guide.md`)
+- Platform access guide (`docs/core/05-platform-access-guide.md`)
+- Website implementation guide (`docs/core/06-website-implementation-guide.md`)
+- Quick start guide (`docs/core/01-quick-start-guide.md`)
 
 **All documentation organized and ready for implementation!**
 

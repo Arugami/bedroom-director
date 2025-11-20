@@ -9,26 +9,26 @@ This directory contains all project documentation organized by purpose.
 ## 📚 Core Documentation
 
 ### Getting Started
-- **[01-quick-start-guide.md](./01-quick-start-guide.md)** — Quick start guide for using the database
+-- **[core/01-quick-start-guide.md](./core/01-quick-start-guide.md)** — Quick start guide for using the database
 - **[readme.md](../readme.md)** — Main project overview (in root)
 
 ### Database Structure
-- **[02-enhanced-schema.md](./02-enhanced-schema.md)** — Complete database schema with all 19 columns explained
-- **[03-model-categories.md](./03-model-categories.md)** — Category breakdown and organization guide
+-- **[core/02-enhanced-schema.md](./core/02-enhanced-schema.md)** — Complete database schema with all 19 columns explained
+-- **[core/03-model-categories.md](./core/03-model-categories.md)** — Category breakdown and organization guide
 
 ### User Guides
-- **[04-user-journey-guide.md](./04-user-journey-guide.md)** — User journey and use case guide
-- **[05-platform-access-guide.md](./05-platform-access-guide.md)** — Cross-platform access matrix
+-- **[core/04-user-journey-guide.md](./core/04-user-journey-guide.md)** — User journey and use case guide
+-- **[core/05-platform-access-guide.md](./core/05-platform-access-guide.md)** — Cross-platform access matrix
 
 ### Implementation
 - **[00-implementation-summary.md](./00-implementation-summary.md)** — Implementation summary and status
-- **[06-website-implementation-guide.md](./06-website-implementation-guide.md)** — Website implementation guide
+- **[core/06-website-implementation-guide.md](./core/06-website-implementation-guide.md)** — Website implementation guide
 
 ### Research Documentation
 *Research files have been moved to ../research/ folder for better organization*
-- **[../research/lip-sync-analysis.md](../research/lip-sync-analysis.md)** — Lip sync analysis
-- **[../research/categorization-research.md](../research/categorization-research.md)** — Categorization research
-- **[../research/platform-access-research.md](../research/platform-access-research.md)** — Platform access research
+- **[../research/pipelines-workflows/lip-sync-analysis.md](../research/pipelines-workflows/lip-sync-analysis.md)** — Lip sync analysis
+- **[../research/pipelines-workflows/categorization-research.md](../research/pipelines-workflows/categorization-research.md)** — Categorization research
+- **[../research/pipelines-workflows/platform-access-research.md](../research/pipelines-workflows/platform-access-research.md)** — Platform access research
 
 ---
 
