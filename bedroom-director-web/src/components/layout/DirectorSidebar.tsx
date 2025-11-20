@@ -133,25 +133,25 @@ export default function DirectorSidebar({
           className="lg:hidden fixed top-4 left-4 z-[70] group"
           aria-label="Open menu"
         >
-        <div className="relative">
-          {/* Purple glow background */}
-          <div className="absolute inset-0 bg-bedroom-purple/20 blur-xl rounded-full" />
+          <div className="relative">
+            {/* Purple glow background */}
+            <div className="absolute inset-0 bg-bedroom-purple/20 blur-xl rounded-full" />
 
-          {/* Main button */}
-          <div className="relative p-3 rounded-xl bg-gradient-to-br from-director-black via-director-black to-bedroom-purple/10 border-2 border-bedroom-purple/30 hover:border-bedroom-purple/60 transition-all duration-300 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]">
-            {/* Film strip lines */}
-            <div className="flex flex-col gap-1.5">
-              <div className="w-6 h-0.5 bg-gradient-to-r from-bedroom-purple to-screen-white rounded-full transition-all duration-300 group-hover:w-7" />
-              <div className="w-6 h-0.5 bg-gradient-to-r from-bedroom-purple to-screen-white rounded-full" />
-              <div className="w-6 h-0.5 bg-gradient-to-r from-bedroom-purple to-screen-white rounded-full transition-all duration-300 group-hover:w-7" />
+            {/* Main button */}
+            <div className="relative p-3 rounded-xl bg-gradient-to-br from-director-black via-director-black to-bedroom-purple/10 border-2 border-bedroom-purple/30 hover:border-bedroom-purple/60 transition-all duration-300 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]">
+              {/* Film strip lines */}
+              <div className="flex flex-col gap-1.5">
+                <div className="w-6 h-0.5 bg-gradient-to-r from-bedroom-purple to-screen-white rounded-full transition-all duration-300 group-hover:w-7" />
+                <div className="w-6 h-0.5 bg-gradient-to-r from-bedroom-purple to-screen-white rounded-full" />
+                <div className="w-6 h-0.5 bg-gradient-to-r from-bedroom-purple to-screen-white rounded-full transition-all duration-300 group-hover:w-7" />
+              </div>
+
+              {/* Sprocket holes (film strip aesthetic) */}
+              <div className="absolute -left-0.5 top-1/2 -translate-y-1/2 w-1 h-1 bg-bedroom-purple/40 rounded-full" />
+              <div className="absolute -right-0.5 top-1/2 -translate-y-1/2 w-1 h-1 bg-bedroom-purple/40 rounded-full" />
             </div>
-
-            {/* Sprocket holes (film strip aesthetic) */}
-            <div className="absolute -left-0.5 top-1/2 -translate-y-1/2 w-1 h-1 bg-bedroom-purple/40 rounded-full" />
-            <div className="absolute -right-0.5 top-1/2 -translate-y-1/2 w-1 h-1 bg-bedroom-purple/40 rounded-full" />
           </div>
-        </div>
-      </button>
+        </button>
       )}
 
       {/* Desktop Sidebar */}
