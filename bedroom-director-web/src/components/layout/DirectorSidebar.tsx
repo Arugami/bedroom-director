@@ -52,6 +52,24 @@ export default function DirectorSidebar({
     }
   }, [storageKey]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [isMobileMenuOpen]);
+
   // Save preference to localStorage
   const toggleCollapsed = () => {
     const newState = !isCollapsed;
@@ -169,33 +187,20 @@ export default function DirectorSidebar({
           <div className={`${getWidth()} relative z-10 py-6`}>
             {/* Sidebar Content */}
             <div className="px-3 space-y-6">
+              import Logo from "@/components/common/Logo";
+
+              // ... inside the component ...
+
               {/* Brand Block */}
               <Link
                 href="/"
                 className={`
-                mb-4 flex items-center gap-3 rounded-lg border border-white/10 bg-bedroom-purple/5
-                px-3 py-3 transition-all hover:bg-bedroom-purple/10 hover:border-bedroom-purple/70
-                ${isCollapsed ? "justify-center" : ""}
+                mb-4 block rounded-lg border border-white/10 bg-bedroom-purple/5
+                px-2 py-2 transition-all hover:bg-bedroom-purple/10 hover:border-bedroom-purple/70
+                ${isCollapsed ? "flex justify-center" : ""}
               `}
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-md border border-bedroom-purple/50 bg-bedroom-purple/15 text-bedroom-purple shadow-[0_0_18px_rgba(168,85,247,0.35)]">
-                  <span className="text-[10px] font-semibold tracking-[0.28em]">
-                    BD
-                  </span>
-                </div>
-                {!isCollapsed && (
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-[11px] font-semibold tracking-[0.32em] text-screen-white">
-                      BEDROOM
-                    </span>
-                    <span className="-mt-0.5 text-[11px] font-semibold tracking-[0.32em] text-screen-white">
-                      DIRECTOR
-                    </span>
-                    <span className="mt-1 text-[10px] uppercase tracking-[0.22em] text-screen-white/40">
-                      Studio workspace
-                    </span>
-                  </div>
-                )}
+                <Logo collapsed={isCollapsed} />
               </Link>
 
               {/* Expand/Collapse Button (Scene Canvas only) */}
@@ -319,7 +324,7 @@ export default function DirectorSidebar({
           />
 
           {/* Mobile Sidebar */}
-          <div className="lg:hidden fixed top-0 left-0 bottom-0 w-64 bg-director-black/95 backdrop-blur-xl border-r border-white/5 overflow-y-auto z-[60] animate-in slide-in-from-left duration-300">
+          <div className="lg:hidden fixed top-0 left-0 bottom-0 w-64 bg-director-black/95 backdrop-blur-xl border-r border-white/5 overflow-y-auto z-[60] animate-in slide-in-from-left duration-300 touch-pan-y" style={{ touchAction: 'pan-y' }}>
             {/* Film grain texture */}
             <div className="absolute inset-0 grain-texture opacity-5 pointer-events-none" />
 

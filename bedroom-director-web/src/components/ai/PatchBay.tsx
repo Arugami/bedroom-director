@@ -17,10 +17,16 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
     const [isDragging, setIsDragging] = useState(false);
     const [isPlugging, setIsPlugging] = useState(false);
     const [hoveredModel, setHoveredModel] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
     const inputRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const modelRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
     const socketRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+    useEffect(() => {
+        // Force a re-render after mount to ensure refs are populated for wire calculation
+        setMounted(true);
+    }, []);
 
     const SNAP_DISTANCE = 40; // Tighter snap - must be close to model
 
@@ -170,9 +176,9 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
                 </div>
 
                 {/* Patch Bay Layout */}
-                <div className="p-6 flex flex-col md:flex-row gap-8 items-stretch">
+                <div className="p-4 md:p-6 flex flex-col md:flex-row gap-4 md:gap-8 items-stretch">
                     {/* Left: Input */}
-                    <div className="flex-none w-full md:w-32 flex flex-row md:flex-col items-center justify-center md:justify-start gap-6 pt-2">
+                    <div className="flex-none w-full md:w-32 flex flex-row md:flex-col items-center justify-start md:justify-start gap-4 md:gap-6 pt-2 pl-1 md:pl-0">
                         <div className="text-[9px] font-mono text-white/30 uppercase tracking-[0.2em]">Source</div>
 
                         {/* Input Patch Point */}
@@ -190,7 +196,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
                             <div
                                 ref={inputRef}
                                 className={`
-                relative w-16 h-16 rounded-full 
+                relative w-12 h-12 md:w-16 md:h-16 rounded-full 
                 bg-gradient-to-b from-[#2a2a2a] to-[#111]
                 border-2 border-[#444]
                 flex items-center justify-center transition-all duration-300
@@ -202,9 +208,9 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
                                 <div className="absolute inset-0 rounded-full border border-white/10" />
 
                                 {/* Inner Socket Hole */}
-                                <div className="w-8 h-8 rounded-full bg-black shadow-[inset_0_2px_4px_rgba(0,0,0,1)] flex items-center justify-center">
+                                <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-black shadow-[inset_0_2px_4px_rgba(0,0,0,1)] flex items-center justify-center">
                                     {/* Contact Pin */}
-                                    <div className="w-2 h-2 rounded-full bg-[#333]" />
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#333]" />
                                 </div>
 
                                 {/* Label Ring */}
@@ -217,7 +223,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
 
                     {/* Right: Models */}
                     <div className="flex-1 w-full min-w-0">
-                        <div className="text-[9px] font-mono text-white/30 uppercase tracking-[0.2em] mb-4 text-center md:text-left">Destinations</div>
+                        <div className="text-[9px] font-mono text-white/30 uppercase tracking-[0.2em] mb-2 md:mb-4 text-left">Destinations</div>
                         <div className="grid grid-cols-1 gap-2">
                             {MODELS.map((model) => {
                                 const isSelected = model.id === selectedModel;

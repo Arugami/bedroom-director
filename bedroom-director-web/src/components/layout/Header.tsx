@@ -57,134 +57,126 @@ export default function Header() {
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
           {/* Logo / Slate or Section Label */}
           {showTopNav ? (
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-md border border-bedroom-purple/40 bg-bedroom-purple/10 text-bedroom-purple group-hover:bg-bedroom-purple/20 transition-colors">
-                <span className="text-[10px] md:text-[11px] font-semibold tracking-[0.3em]">
-                  BD
-                </span>
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-[11px] md:text-xs font-semibold tracking-[0.35em] text-screen-white group-hover:text-bedroom-purple transition-colors">
-                  BEDROOM
-                </span>
-                <span className="-mt-0.5 text-[11px] md:text-xs font-semibold tracking-[0.35em] text-screen-white group-hover:text-bedroom-purple transition-colors">
-                  DIRECTOR
-                </span>
-                <span className="hidden text-[10px] md:text-[11px] uppercase tracking-[0.25em] text-screen-white/40 md:block">
-                  Your bedroom studio for AI films
-                </span>
-              </div>
+import Logo from "@/components/common/Logo";
+
+          // ... inside the component ...
+
+          {/* Logo / Slate or Section Label */}
+          {showTopNav ? (
+            <Link href="/" className="block">
+              <Logo />
             </Link>
           ) : (
-            <div className="flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-[0.3em] text-screen-white/70">
-              <span className="text-screen-white/50">Bedroom Director</span>
-              {getSectionLabel() && (
-                <>
-                  <span className="text-screen-white/30">•</span>
-                  <span className="text-screen-white/80">
-                    {getSectionLabel()}
-                  </span>
-                </>
-              )}
-            </div>
-          )}
-
-          {/* Desktop Navigation */}
-          {showTopNav && (
-            <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-xs font-medium">
-              {navItems.map((item) => {
-                const active = isActive(item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="relative px-1 py-1"
-                  >
-                    <span
-                      className={`uppercase tracking-[0.25em] transition-colors ${
-                        active
-                          ? "text-screen-white"
-                          : "text-screen-white/60 hover:text-screen-white"
-                      }`}
-                    >
-                      {item.label}
-                    </span>
-                    {active && (
-                      <span className="absolute inset-x-1 -bottom-1 h-[2px] rounded-full bg-bedroom-purple shadow-[0_0_12px_rgba(168,85,247,0.7)]" />
-                    )}
-                  </Link>
-                );
-              })}
-            </nav>
-          )}
-
-          {/* Right-side utilities */}
-          <div className="flex items-center gap-3">
-            {/* Comparison Counter (desktop) */}
-            {comparisonTools.length > 0 && (
-              <button
-                onClick={toggleTray}
-                className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-bedroom-purple hover:bg-purple-bloom text-screen-white font-semibold rounded-lg transition-all shadow-lg shadow-bedroom-purple/30"
-              >
-                <GitCompare className="w-4 h-4" />
-                <span>Compare ({comparisonTools.length})</span>
-              </button>
-            )}
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-screen-white/80 hover:text-screen-white transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-900/50">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => {
-                const active = isActive(item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`px-2 py-2 text-sm uppercase tracking-[0.2em] transition-colors ${
-                      active
-                        ? "text-screen-white"
-                        : "text-screen-white/70 hover:text-bedroom-purple"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-
-              {/* Mobile Comparison Counter */}
-              {comparisonTools.length > 0 && (
-                <button
-                  onClick={() => {
-                    toggleTray();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="flex items-center justify-center gap-2 px-4 py-3 bg-bedroom-purple hover:bg-purple-bloom text-screen-white font-semibold rounded-lg transition-all shadow-lg shadow-bedroom-purple/30 mx-2"
-                >
-                  <GitCompare className="w-4 h-4" />
-                  <span>Compare ({comparisonTools.length})</span>
-                </button>
-              )}
-            </div>
-          </nav>
+          ): (
+              <div className = "flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-[0.3em] text-screen-white/70">
+              <span className = "text-screen-white/50">Bedroom Director</span>
+        {getSectionLabel() && (
+          <>
+            <span className="text-screen-white/30">•</span>
+            <span className="text-screen-white/80">
+              {getSectionLabel()}
+            </span>
+          </>
         )}
       </div>
-    </header>
+          )}
+
+      {/* Desktop Navigation */}
+      {showTopNav && (
+        <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-xs font-medium">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative px-1 py-1"
+              >
+                <span
+                  className={`uppercase tracking-[0.25em] transition-colors ${active
+                      ? "text-screen-white"
+                      : "text-screen-white/60 hover:text-screen-white"
+                    }`}
+                >
+                  {item.label}
+                </span>
+                {active && (
+                  <span className="absolute inset-x-1 -bottom-1 h-[2px] rounded-full bg-bedroom-purple shadow-[0_0_12px_rgba(168,85,247,0.7)]" />
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+      )}
+
+      {/* Right-side utilities */}
+      <div className="flex items-center gap-3">
+        {/* Comparison Counter (desktop) */}
+        {comparisonTools.length > 0 && (
+          <button
+            onClick={toggleTray}
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-bedroom-purple hover:bg-purple-bloom text-screen-white font-semibold rounded-lg transition-all shadow-lg shadow-bedroom-purple/30"
+          >
+            <GitCompare className="w-4 h-4" />
+            <span>Compare ({comparisonTools.length})</span>
+          </button>
+        )}
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 text-screen-white/80 hover:text-screen-white transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
+      </div>
+    </div>
+
+        {/* Mobile Navigation Menu */ }
+  {
+    isMobileMenuOpen && (
+      <nav className="md:hidden py-4 border-t border-gray-900/50">
+        <div className="flex flex-col space-y-4">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`px-2 py-2 text-sm uppercase tracking-[0.2em] transition-colors ${active
+                    ? "text-screen-white"
+                    : "text-screen-white/70 hover:text-bedroom-purple"
+                  }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+
+          {/* Mobile Comparison Counter */}
+          {comparisonTools.length > 0 && (
+            <button
+              onClick={() => {
+                toggleTray();
+                setIsMobileMenuOpen(false);
+              }}
+              className="flex items-center justify-center gap-2 px-4 py-3 bg-bedroom-purple hover:bg-purple-bloom text-screen-white font-semibold rounded-lg transition-all shadow-lg shadow-bedroom-purple/30 mx-2"
+            >
+              <GitCompare className="w-4 h-4" />
+              <span>Compare ({comparisonTools.length})</span>
+            </button>
+          )}
+        </div>
+      </nav>
+    )
+  }
+      </div >
+    </header >
   );
 }

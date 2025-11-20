@@ -282,7 +282,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
                   placeholder="Search your arsenal..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="relative w-full pl-9 pr-3 py-3 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border border-bedroom-purple/25 rounded-xl text-sm text-screen-white placeholder:text-screen-white/50 focus:outline-none focus:border-bedroom-purple/60 transition-all duration-300"
+                  className="relative w-full pl-9 pr-3 py-3 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border border-bedroom-purple/25 rounded-xl text-base text-screen-white placeholder:text-screen-white/50 focus:outline-none focus:border-bedroom-purple/60 transition-all duration-300"
                 />
                 <div className="absolute inset-0 rounded-xl border border-bedroom-purple/0 group-focus-within:border-bedroom-purple/20 transition-all duration-500 pointer-events-none" />
               </div>
@@ -396,7 +396,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
                   placeholder="Search your arsenal..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="relative w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border-2 border-bedroom-purple/20 hover:border-bedroom-purple/40 focus:border-bedroom-purple/60 rounded-xl text-sm sm:text-base text-screen-white placeholder:text-screen-white/50 focus:outline-none transition-all duration-300 focus:shadow-[0_0_30px_rgba(124,58,237,0.2)]"
+                  className="relative w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border-2 border-bedroom-purple/20 hover:border-bedroom-purple/40 focus:border-bedroom-purple/60 rounded-xl text-base text-screen-white placeholder:text-screen-white/50 focus:outline-none transition-all duration-300 focus:shadow-[0_0_30px_rgba(124,58,237,0.2)]"
                 />
 
                 {/* Animated border on focus */}
