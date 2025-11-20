@@ -1,6 +1,6 @@
 # 🎬 Bedroom Director UX Analysis & Innovation Roadmap
 
-**Date:** November 14, 2025
+**Date:** November 20, 2025
 **Author:** Claude Code Analysis
 **Status:** Strategic Recommendations
 
@@ -80,6 +80,86 @@ See `research/market-competitive/competitive-analysis.md` for the full breakdown
 - Surface **community signals** (karma, upvotes, saved counts) directly on cards; all competitors highlight freshness or popularity above the fold.
 - Introduce **workspace elements** (saved tools, comparison queue, pinned stack) inspired by Toolify and Futurepedia to adapt the experience per user.
 - Use **editorial lanes** (Matt’s Picks, Featured, Trending) to mix curation + monetization gracefully.
+
+---
+
+## 🎛 Studio Dashboards vs Bedroom Director
+
+After reviewing PixVerse, Runway, Leonardo, Krea, TensorArt, BasedLabs, etc., a clear pattern emerges:
+
+- Dark, tool-centric **studio dashboards**
+  - Left nav: Home / Library / Models / Workflows / Community.
+  - Main canvas: a single prompt/composer or workspace.
+  - Top-right: account, credits, “Upgrade”, notifications.
+- One primary **generation surface**
+  - Prompt bar + mode tabs (Video / Image / Avatar / Music) and a few pill controls.
+- Template + gallery rails
+  - Horizontal rows of templates (“Featured”, “Blueprints”) above a community or recent-files grid.
+
+This pattern exists for good reasons:
+
+- **Learnability:** It mirrors familiar SaaS/workspace patterns (Figma, Notion, VS Code).
+- **Single-focus workflows:** Each app’s job is “make something here” → one canvas is efficient.
+- **Monetization:** Credits, contests, and template marketplaces need a dashboard frame.
+- **Feature sprawl:** As more modes are added, a standard sidebar + canvas keeps complexity manageable.
+
+Bedroom Director is playing a different role—**director’s control room + directory**, not a single-model studio. That’s where we should diverge.
+
+### What We Intentionally Keep
+
+- **Search + filters + grid** on `/tools` – users expect these core affordances.
+- A **dark, cinematic shell** – consistent with the creative tools ecosystem.
+- Clear **left navigation + top header** – don’t reinvent wayfinding for basic navigation.
+
+### Where We Intentionally Innovate
+
+1. **Story-first, not tool-first**
+   - Competitors: “Here are our features and models.”
+   - Bedroom Director: “What project are you directing? Here’s the stack for that story.”
+   - Practical impact:
+     - `/tools` and Scene Canvas should frame everything in terms of **projects/scenes**, not just individual tools.
+
+2. **Pipelines over single-model canvases**
+   - Studio UIs focus on one model at a time; workflows are an advanced feature.
+   - Our differentiator is **pipelines** (image → video → post → voice → music).
+   - UI direction:
+     - Show recommended **pipelines/recipes** for common outcomes (short-form vertical teaser, 30s brand film, multi-shot campaign spot).
+     - Make pipeline bands or “stripboards” a visible part of the experience.
+
+3. **Comparison and tradeoffs as first-class UI**
+   - Most tools bury tradeoffs in copy; almost none highlight “Wrong tool for this job.”
+   - We already have comparison trays/tables—these should be treated as **primary surfaces**, not extras.
+   - Examples:
+     - Clear “Better for X than Y” messaging on cards.
+     - Warnings (e.g., “Sora is overkill for presenters; use HeyGen instead”) inline in the UI.
+
+4. **Intent-based navigation that truly respects constraints**
+   - Competitors gesture at templates/use cases but still drop users into generic canvases.
+   - We should take intent seriously:
+     - What do you need to ship? (short-form campaign teaser, 30s brand film, short narrative, explainer.)
+   - Those constraints should drive:
+     - Tool recommendations.
+     - Scene Canvas suggestions (e.g., shorter pipelines for low budget/low time).
+
+5. **Cinematic, editorial layer**
+   - Other homes feel like dashboards; Bedroom Director can feel like a curated festival.
+   - UX goals:
+     - Editorial rails (“This Week’s Standout AI Films”, “What pros use for talking heads vs trailers”).
+     - “How they made it” breakdowns bound directly to tools and pipelines.
+   - This is where our **Trending AI Creations** and research can surface.
+
+6. **Bridge between discovery and execution**
+
+   - Other platforms assume they *are* the place where creation happens.
+   - Our job is to sit **upstream**:
+     - Decide the tool stack.
+     - Spin up a Scene Canvas project with scenes, bible, and prompt slots.
+     - Hand users off to external tools with the right prompts/assets prepped.
+
+   - UX implication:
+     - Make the “handoff” experience explicit: clear links/actions from Scene Canvas and tool cards into external studios, not just URLs.
+
+**Bottom line:** we keep the familiar skeleton (dark shell, search, filters, grid), but move the center of gravity away from “single canvas studio” toward **story-driven pipelines, comparison, and editorial guidance**. Bedroom Director’s UI should feel like a director’s control room that sits above all these studios, not yet another studio competing with them.
 
 ---
 

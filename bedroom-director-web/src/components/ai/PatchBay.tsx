@@ -28,7 +28,6 @@ interface PatchBayProps {
 export default function PatchBay({ currentModel, onModelChange, onClose }: PatchBayProps) {
     const [selectedModel, setSelectedModel] = useState(currentModel);
     const [isDragging, setIsDragging] = useState(false);
-    const [wireEnd, setWireEnd] = useState({ x: 0, y: 0 });
     const [isPlugging, setIsPlugging] = useState(false);
     const [hoveredModel, setHoveredModel] = useState<string | null>(null);
     const inputRef = useRef<HTMLDivElement>(null);
@@ -52,45 +51,101 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
         if (!modelEl || !containerRef.current) return null;
         const modelRect = modelEl.getBoundingClientRect();
         const containerRect = containerRef.current.getBoundingClientRect();
+        // Card has 12px padding (p-3), patch point is 40px wide (w-10), center is at 12 + 20
         return {
-            x: modelRect.left - containerRect.left + 20, // Offset to patch point
+            x: modelRect.left - containerRect.left + 12 + 20, // 12px padding + 20px to center of 40px socket
             y: modelRect.top - containerRect.top + modelRect.height / 2,
         };
     };
 
+    // Physics state
+    const [wirePos, setWirePos] = useState({ x: 0, y: 0 });
+    const velocityRef = useRef({ x: 0, y: 0 });
+    const targetRef = useRef({ x: 0, y: 0 });
+    const animationFrameRef = useRef<number>();
+
+    // Physics constants
+    const SPRING_STIFFNESS = 0.15;
+    const DAMPING = 0.8;
+    const MAGNETIC_FORCE = 0.3;
+
+    useEffect(() => {
+        const updatePhysics = () => {
+            if (!isDragging) return;
+
+            // Calculate forces
+            const dx = targetRef.current.x - wirePos.x;
+            const dy = targetRef.current.y - wirePos.y;
+
+            // Spring force towards target (cursor or snap point)
+            const ax = dx * SPRING_STIFFNESS;
+            const ay = dy * SPRING_STIFFNESS;
+
+            // Update velocity
+            velocityRef.current.x = (velocityRef.current.x + ax) * DAMPING;
+            velocityRef.current.y = (velocityRef.current.y + ay) * DAMPING;
+
+            // Update position
+            setWirePos(prev => ({
+                x: prev.x + velocityRef.current.x,
+                y: prev.y + velocityRef.current.y
+            }));
+
+            animationFrameRef.current = requestAnimationFrame(updatePhysics);
+        };
+
+        if (isDragging) {
+            animationFrameRef.current = requestAnimationFrame(updatePhysics);
+        }
+
+        return () => {
+            if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+        };
+    }, [isDragging, wirePos]); // Depend on wirePos to trigger re-renders for smooth animation
+
     const handleWireDrag = (e: React.MouseEvent) => {
         if (!isDragging || !containerRef.current) return;
         const containerRect = containerRef.current.getBoundingClientRect();
-        let x = e.clientX - containerRect.left;
-        let y = e.clientY - containerRect.top;
+        let targetX = e.clientX - containerRect.left;
+        let targetY = e.clientY - containerRect.top;
 
-        // Check for visual snap indicator (but don't auto-select)
+        // Gentle magnetic pull
         let snappedModel: string | null = null;
         for (const model of MODELS) {
             const modelPos = getModelPosition(model.id);
             if (modelPos) {
-                const distance = Math.sqrt(Math.pow(x - modelPos.x, 2) + Math.pow(y - modelPos.y, 2));
+                const distance = Math.sqrt(Math.pow(targetX - modelPos.x, 2) + Math.pow(targetY - modelPos.y, 2));
                 if (distance < SNAP_DISTANCE) {
-                    // Visual feedback only - don't snap position
-                    snappedModel = model.id;
+                    // Smoothly pull target towards socket center based on proximity
+                    const pullStrength = Math.max(0, (SNAP_DISTANCE - distance) / SNAP_DISTANCE);
+                    targetX = targetX + (modelPos.x - targetX) * pullStrength * MAGNETIC_FORCE;
+                    targetY = targetY + (modelPos.y - targetY) * pullStrength * MAGNETIC_FORCE;
+
+                    if (distance < 20) { // Close enough to count as "hovered"
+                        snappedModel = model.id;
+                        // Stronger pull when very close
+                        targetX = targetX + (modelPos.x - targetX) * 0.5;
+                        targetY = targetY + (modelPos.y - targetY) * 0.5;
+                    }
                     break;
                 }
             }
         }
 
         setHoveredModel(snappedModel);
-        setWireEnd({ x, y }); // Wire follows cursor exactly
+        targetRef.current = { x: targetX, y: targetY };
     };
 
     const handleWireStart = () => {
-        setIsDragging(true);
         const inputPos = getInputPosition();
-        setWireEnd(inputPos);
+        setWirePos(inputPos); // Start exactly at input
+        targetRef.current = inputPos;
+        velocityRef.current = { x: 0, y: 0 };
+        setIsDragging(true);
     };
 
     const handleWireEnd = () => {
         if (hoveredModel) {
-            // Only connect if dropped on a model
             handleModelClick(hoveredModel);
         }
         setIsDragging(false);
@@ -248,7 +303,9 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                                                         setIsDragging(true);
                                                         const modelPos = getModelPosition(model.id);
                                                         if (modelPos) {
-                                                            setWireEnd(modelPos);
+                                                            setWirePos(modelPos);
+                                                            targetRef.current = modelPos;
+                                                            velocityRef.current = { x: 0, y: 0 };
                                                         }
                                                     }
                                                 }}
@@ -352,9 +409,9 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                     {/* Connected wire */}
                     {!isDragging && selectedModel && selectedModelPos && (
                         <g>
-                            {/* Wire Path - Starts lower to simulate coming out of the plug */}
+                            {/* Wire Path - connects socket centers directly */}
                             <path
-                                d={getWirePath(inputPos.x, inputPos.y + 25, selectedModelPos.x, selectedModelPos.y + 25)}
+                                d={getWirePath(inputPos.x, inputPos.y, selectedModelPos.x, selectedModelPos.y)}
                                 stroke="url(#wireGradient)"
                                 strokeWidth="8"
                                 fill="none"
@@ -362,8 +419,8 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                                 filter="url(#wireGlow)"
                             />
 
-                            {/* Input Plug (Heavy Duty) */}
-                            <g transform={`translate(${inputPos.x}, ${inputPos.y})`} filter="url(#plugShadow)">
+                            {/* Input Plug (Heavy Duty) - positioned at socket */}
+                            <g transform={`translate(${inputPos.x}, ${inputPos.y - 15})`} filter="url(#plugShadow)">
                                 {/* Strain Relief (Boot) */}
                                 <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
                                 {/* Plug Body */}
@@ -374,8 +431,8 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                                 <circle cx="0" cy="-2" r="3" fill="#111" opacity="0.5" />
                             </g>
 
-                            {/* Output Plug (Heavy Duty) */}
-                            <g transform={`translate(${selectedModelPos.x}, ${selectedModelPos.y})`} filter="url(#plugShadow)">
+                            {/* Output Plug (Heavy Duty) - positioned at socket */}
+                            <g transform={`translate(${selectedModelPos.x}, ${selectedModelPos.y - 15})`} filter="url(#plugShadow)">
                                 {/* Strain Relief (Boot) */}
                                 <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
                                 {/* Plug Body */}
@@ -393,7 +450,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                         <g>
                             {/* Wire Path */}
                             <path
-                                d={getWirePath(inputPos.x, inputPos.y + 25, wireEnd.x, wireEnd.y + 25)}
+                                d={getWirePath(inputPos.x, inputPos.y, wirePos.x, wirePos.y)}
                                 stroke="url(#wireGradient)"
                                 strokeWidth="8"
                                 fill="none"
@@ -404,15 +461,15 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                             />
 
                             {/* Input Plug (Fixed) */}
-                            <g transform={`translate(${inputPos.x}, ${inputPos.y})`} filter="url(#plugShadow)">
+                            <g transform={`translate(${inputPos.x}, ${inputPos.y - 15})`} filter="url(#plugShadow)">
                                 <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
                                 <rect x="-10" y="-10" width="20" height="25" rx="4" fill="url(#plugBodyGradient)" stroke="#111" strokeWidth="1" />
                                 <rect x="-10" y="8" width="20" height="3" fill="#7c3aed" />
                                 <circle cx="0" cy="-2" r="3" fill="#111" opacity="0.5" />
                             </g>
 
-                            {/* Dragging Plug (Follows Cursor) */}
-                            <g transform={`translate(${wireEnd.x}, ${wireEnd.y})`} filter="url(#plugShadow)">
+                            {/* Dragging Plug (Follows Physics Position) */}
+                            <g transform={`translate(${wirePos.x}, ${wirePos.y - 15})`} filter="url(#plugShadow)">
                                 {/* Strain Relief */}
                                 <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
                                 {/* Plug Body */}
