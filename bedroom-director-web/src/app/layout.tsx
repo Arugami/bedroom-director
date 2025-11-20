@@ -76,7 +76,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans bg-director-black text-screen-white antialiased`}>
+      <body className={`${inter.variable} font-sans bg-director-black text-screen-white antialiased overflow-x-hidden`}>
         <ClientProviders>
           {children}
         </ClientProviders>

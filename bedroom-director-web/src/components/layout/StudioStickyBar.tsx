@@ -23,7 +23,7 @@ export default function StudioStickyBar({ children }: StudioStickyBarProps) {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-bedroom-purple/30 to-transparent z-[1]" />
 
       {/* Content */}
-      <div className="relative z-[2] container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="relative z-[2] container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
         {children}
       </div>
     </div>

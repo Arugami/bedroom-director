@@ -3,29 +3,16 @@
 import { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 
-interface Model {
-    id: string;
-    name: string;
-    provider: string;
-    cost: string;
-    speed: "fast" | "balanced" | "premium";
-    quality: number;
-}
-
-const MODELS: Model[] = [
-    { id: "gpt-4o", name: "GPT-4o", provider: "OpenAI", cost: "$2.50/M", speed: "premium", quality: 5 },
-    { id: "gpt-4o-mini", name: "GPT-4o Mini", provider: "OpenAI", cost: "$0.15/M", speed: "fast", quality: 4 },
-    { id: "gemini-2.5-flash", name: "Gemini 2.5 Flash", provider: "Google", cost: "$0.30/M", speed: "balanced", quality: 4 },
-    { id: "gemini-2.5-lite", name: "Gemini 2.5 Lite", provider: "Google", cost: "$0.10/M", speed: "fast", quality: 3 },
-];
+import { MODELS } from "@/constants/ai-models";
 
 interface PatchBayProps {
     currentModel: string;
     onModelChange: (modelId: string) => void;
     onClose: () => void;
+    variant?: 'modal' | 'drawer';
 }
 
-export default function PatchBay({ currentModel, onModelChange, onClose }: PatchBayProps) {
+export default function PatchBay({ currentModel, onModelChange, onClose, variant = 'modal' }: PatchBayProps) {
     const [selectedModel, setSelectedModel] = useState(currentModel);
     const [isDragging, setIsDragging] = useState(false);
     const [isPlugging, setIsPlugging] = useState(false);
@@ -33,6 +20,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
     const inputRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const modelRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+    const socketRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
     const SNAP_DISTANCE = 40; // Tighter snap - must be close to model
 
@@ -47,100 +35,51 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
     };
 
     const getModelPosition = (modelId: string) => {
-        const modelEl = modelRefs.current[modelId];
-        if (!modelEl || !containerRef.current) return null;
-        const modelRect = modelEl.getBoundingClientRect();
+        const socketEl = socketRefs.current[modelId];
+        if (!socketEl || !containerRef.current) return null;
+        const socketRect = socketEl.getBoundingClientRect();
         const containerRect = containerRef.current.getBoundingClientRect();
-        // Card has 12px padding (p-3), patch point is 40px wide (w-10), center is at 12 + 20
+
         return {
-            x: modelRect.left - containerRect.left + 12 + 20, // 12px padding + 20px to center of 40px socket
-            y: modelRect.top - containerRect.top + modelRect.height / 2,
+            x: socketRect.left - containerRect.left + socketRect.width / 2,
+            y: socketRect.top - containerRect.top + socketRect.height / 2,
         };
     };
 
-    // Physics state
-    const [wirePos, setWirePos] = useState({ x: 0, y: 0 });
-    const velocityRef = useRef({ x: 0, y: 0 });
-    const targetRef = useRef({ x: 0, y: 0 });
-    const animationFrameRef = useRef<number>();
-
-    // Physics constants
-    const SPRING_STIFFNESS = 0.15;
-    const DAMPING = 0.8;
-    const MAGNETIC_FORCE = 0.3;
-
-    useEffect(() => {
-        const updatePhysics = () => {
-            if (!isDragging) return;
-
-            // Calculate forces
-            const dx = targetRef.current.x - wirePos.x;
-            const dy = targetRef.current.y - wirePos.y;
-
-            // Spring force towards target (cursor or snap point)
-            const ax = dx * SPRING_STIFFNESS;
-            const ay = dy * SPRING_STIFFNESS;
-
-            // Update velocity
-            velocityRef.current.x = (velocityRef.current.x + ax) * DAMPING;
-            velocityRef.current.y = (velocityRef.current.y + ay) * DAMPING;
-
-            // Update position
-            setWirePos(prev => ({
-                x: prev.x + velocityRef.current.x,
-                y: prev.y + velocityRef.current.y
-            }));
-
-            animationFrameRef.current = requestAnimationFrame(updatePhysics);
-        };
-
-        if (isDragging) {
-            animationFrameRef.current = requestAnimationFrame(updatePhysics);
-        }
-
-        return () => {
-            if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-        };
-    }, [isDragging, wirePos]); // Depend on wirePos to trigger re-renders for smooth animation
+    // Interaction state
+    const [dragPos, setDragPos] = useState({ x: 0, y: 0 });
 
     const handleWireDrag = (e: React.MouseEvent) => {
         if (!isDragging || !containerRef.current) return;
         const containerRect = containerRef.current.getBoundingClientRect();
-        let targetX = e.clientX - containerRect.left;
-        let targetY = e.clientY - containerRect.top;
+        let x = e.clientX - containerRect.left;
+        let y = e.clientY - containerRect.top;
 
-        // Gentle magnetic pull
+        // Magnetic Latch
         let snappedModel: string | null = null;
         for (const model of MODELS) {
             const modelPos = getModelPosition(model.id);
             if (modelPos) {
-                const distance = Math.sqrt(Math.pow(targetX - modelPos.x, 2) + Math.pow(targetY - modelPos.y, 2));
-                if (distance < SNAP_DISTANCE) {
-                    // Smoothly pull target towards socket center based on proximity
-                    const pullStrength = Math.max(0, (SNAP_DISTANCE - distance) / SNAP_DISTANCE);
-                    targetX = targetX + (modelPos.x - targetX) * pullStrength * MAGNETIC_FORCE;
-                    targetY = targetY + (modelPos.y - targetY) * pullStrength * MAGNETIC_FORCE;
+                const distance = Math.sqrt(Math.pow(x - modelPos.x, 2) + Math.pow(y - modelPos.y, 2));
 
-                    if (distance < 20) { // Close enough to count as "hovered"
-                        snappedModel = model.id;
-                        // Stronger pull when very close
-                        targetX = targetX + (modelPos.x - targetX) * 0.5;
-                        targetY = targetY + (modelPos.y - targetY) * 0.5;
-                    }
+                // Strong snap zone
+                if (distance < SNAP_DISTANCE) {
+                    snappedModel = model.id;
+                    // HARD LATCH: Lock exactly to the socket center
+                    x = modelPos.x;
+                    y = modelPos.y;
                     break;
                 }
             }
         }
 
         setHoveredModel(snappedModel);
-        targetRef.current = { x: targetX, y: targetY };
+        setDragPos({ x, y });
     };
 
     const handleWireStart = () => {
         const inputPos = getInputPosition();
-        setWirePos(inputPos); // Start exactly at input
-        targetRef.current = inputPos;
-        velocityRef.current = { x: 0, y: 0 };
+        setDragPos(inputPos);
         setIsDragging(true);
     };
 
@@ -165,73 +104,100 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
     const selectedModelPos = getModelPosition(selectedModel);
 
     // More realistic wire path with natural sag
+    // More realistic wire path with natural sag (Cubic Bezier with straight exit)
     const getWirePath = (startX: number, startY: number, endX: number, endY: number) => {
         const dx = endX - startX;
         const dy = endY - startY;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Natural sag based on wire length (gravity effect)
-        const sag = Math.min(distance * 0.15, 40); // Max 40px sag
-        const midX = (startX + endX) / 2;
-        const midY = Math.max(startY, endY) + sag;
+        // Subtle gravity: keep the cable tidy but still soft.
+        // Less multiplier + lower cap = tighter curve that doesn't dive.
+        const tension = Math.max(20, Math.min(distance * 0.4, 100));
+        const exitLength = 20; // Shorter straight section out of the boot
 
-        // Smooth catenary-like curve
-        return `M ${startX} ${startY} Q ${midX} ${midY}, ${endX} ${endY}`;
+        // Control points pull down from the end of the straight segments
+        const cp1x = startX;
+        const cp1y = startY + exitLength + tension;
+        const cp2x = endX;
+        const cp2y = endY + exitLength + tension;
+
+        return `M ${startX} ${startY} 
+                L ${startX} ${startY + exitLength} 
+                C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY + exitLength}
+                L ${endX} ${endY}`;
     };
+
+    const isDrawer = variant === 'drawer';
 
     return (
         <div
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-200"
+            className={`
+                ${isDrawer
+                    ? 'absolute top-[60px] left-0 right-0 z-40 animate-in slide-in-from-top-4 duration-300 ease-out'
+                    : 'fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-200'
+                }
+            `}
             onMouseMove={handleWireDrag}
             onMouseUp={handleWireEnd}
             style={{ cursor: isDragging ? 'grabbing' : 'default' }}
         >
             <div
                 ref={containerRef}
-                className="bg-[#1a1a1a] border-2 border-white/10 rounded-xl w-full max-w-3xl mx-4 shadow-2xl overflow-hidden relative"
+                className={`
+                    bg-[#1a1a1a] border-white/10 overflow-hidden relative
+                    ${isDrawer
+                        ? 'w-full border-b shadow-2xl'
+                        : 'border-2 rounded-xl w-full max-w-3xl mx-4 shadow-2xl'
+                    }
+                `}
                 style={{
                     backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)',
                     backgroundSize: '40px 40px',
                 }}
             >
                 {/* Header */}
-                <div className="bg-gradient-to-r from-[#2a2a2a] to-[#1a1a1a] border-b border-white/10 px-6 py-4 flex items-center justify-between">
-                    <div>
-                        <h2 className="text-sm font-bold text-white uppercase tracking-wider font-mono">Director AI Routing</h2>
-                        <p className="text-xs text-white/40 mt-0.5">Drag wire from input to model</p>
+                <div className="border-b border-white/5 px-6 py-3 flex items-center justify-between bg-black/20">
+                    <div className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-bedroom-purple shadow-[0_0_8px_rgba(124,58,237,0.8)]" />
+                        <h2 className="text-[10px] font-bold text-white/90 uppercase tracking-[0.2em] font-mono">Patch Bay</h2>
                     </div>
                     <button
                         onClick={onClose}
-                        className="p-2 rounded-lg hover:bg-white/10 text-white/60 hover:text-white transition-colors"
+                        className="group p-1.5 rounded hover:bg-white/5 transition-colors"
                     >
-                        <X className="w-4 h-4" />
+                        <X className="w-3.5 h-3.5 text-white/40 group-hover:text-white transition-colors" />
                     </button>
                 </div>
 
                 {/* Patch Bay Layout */}
-                <div className="p-8 flex gap-12">
+                <div className="p-6 flex flex-col md:flex-row gap-8 items-stretch">
                     {/* Left: Input */}
-                    <div className="flex-none w-32 flex flex-col items-center gap-4">
-                        <div className="text-xs font-mono text-white/60 uppercase tracking-wider">Input</div>
+                    <div className="flex-none w-full md:w-32 flex flex-row md:flex-col items-center justify-center md:justify-start gap-6 pt-2">
+                        <div className="text-[9px] font-mono text-white/30 uppercase tracking-[0.2em]">Source</div>
 
                         {/* Input Patch Point */}
                         <div
-                            ref={inputRef}
-                            className="relative cursor-grab active:cursor-grabbing"
+                            className="relative group cursor-grab active:cursor-grabbing"
                             onMouseDown={handleWireStart}
                         >
+                            {/* Jack itself gets the ref so our wire origin is the true socket center,
+                               not the combined block with the label underneath (which was offsetting
+                               the wire and making it look like it disappeared into the boot). */}
                             {/* Socket depth */}
                             <div className="absolute inset-0 rounded-full bg-black/40 blur-md" />
 
                             {/* Main patch point - Realistic Socket */}
-                            <div className={`
+                            <div
+                                ref={inputRef}
+                                className={`
                 relative w-16 h-16 rounded-full 
                 bg-gradient-to-b from-[#2a2a2a] to-[#111]
                 border-2 border-[#444]
                 flex items-center justify-center transition-all duration-300
                 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8),0_2px_5px_rgba(0,0,0,0.5)]
                 ${isDragging ? 'ring-2 ring-bedroom-purple/50' : ''}
-              `}>
+              `}
+                            >
                                 {/* Metallic Rim */}
                                 <div className="absolute inset-0 rounded-full border border-white/10" />
 
@@ -245,14 +211,14 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                                 <div className="absolute inset-0 rounded-full border border-white/5 scale-110" />
                             </div>
 
-                            <div className="mt-2 text-xs font-mono text-white/80 text-center font-bold">CHAT</div>
+                            {/* No extra label under the jack to keep copy focused on the column title above */}
                         </div>
                     </div>
 
                     {/* Right: Models */}
-                    <div className="flex-1">
-                        <div className="text-xs font-mono text-white/60 uppercase tracking-wider mb-4">Available Models</div>
-                        <div className="space-y-3">
+                    <div className="flex-1 w-full min-w-0">
+                        <div className="text-[9px] font-mono text-white/30 uppercase tracking-[0.2em] mb-4 text-center md:text-left">Destinations</div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {MODELS.map((model) => {
                                 const isSelected = model.id === selectedModel;
                                 const isHovered = model.id === hoveredModel;
@@ -262,98 +228,75 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                                         key={model.id}
                                         ref={(el) => { modelRefs.current[model.id] = el; }}
                                         onClick={() => !isDragging && handleModelClick(model.id)}
-                                        className={`
-                      group relative flex items-center gap-4 p-3 rounded-lg border cursor-pointer
-                      transform-gpu
-                      ${isSelected
-                                                ? 'bg-bedroom-purple/20 border-bedroom-purple shadow-[0_0_30px_rgba(124,58,237,0.4)]'
-                                                : isHovered
-                                                    ? 'bg-bedroom-purple/10 border-bedroom-purple/50 shadow-[0_0_20px_rgba(124,58,237,0.2)]'
-                                                    : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_10px_rgba(124,58,237,0.1)]'
-                                            }
-                    `}
-                                        style={{
-                                            transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-                                            transform: isSelected ? 'scale(1.01)' : isHovered ? 'scale(1.02)' : 'scale(1)',
-                                        }}
+                                        className="group relative flex items-center gap-4 p-3 rounded border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all cursor-pointer overflow-hidden"
                                         onMouseDown={(e) => {
-                                            e.currentTarget.style.transform = 'scale(0.98)';
-                                        }}
-                                        onMouseUp={(e) => {
-                                            e.currentTarget.style.transform = isSelected ? 'scale(1.01)' : 'scale(1)';
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.currentTarget.style.transform = isSelected ? 'scale(1.01)' : 'scale(1)';
+                                            // Optional: Add a subtle press effect to the background only if needed
                                         }}
                                     >
-                                        {/* Glow effect on selected */}
-                                        {isSelected && (
-                                            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-bedroom-purple/20 to-indigo-500/20 animate-pulse" />
-                                        )}
+                                        {/* Selection State Background */}
+                                        <div
+                                            className={`
+                                                absolute inset-0 transition-all duration-300 ease-out
+                                                ${isSelected
+                                                    ? 'bg-bedroom-purple/10 border-bedroom-purple/40 shadow-[inset_0_0_20px_rgba(124,58,237,0.1)]'
+                                                    : 'border-transparent'
+                                                }
+                                            `}
+                                        />
 
                                         {/* Content */}
-                                        <div className="relative flex items-center gap-4 w-full z-10">
-                                            {/* Output Patch Point */}
+                                        <div className="relative flex items-center justify-between w-full z-10 gap-4">
+
+                                            {/* Left: Info */}
+                                            <div className="flex-1 min-w-0 flex flex-col gap-1">
+                                                <div className="flex items-center gap-2">
+                                                    <span className={`text-xs font-bold tracking-wide truncate ${isSelected ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
+                                                        {model.name}
+                                                    </span>
+                                                    {model.speed === 'premium' && <div className="w-1 h-1 rounded-full bg-purple-400 shadow-[0_0_4px_rgba(192,132,252,0.8)]" />}
+                                                </div>
+                                                <div className="flex items-center gap-2 text-[9px] font-mono text-white/30 uppercase tracking-wider">
+                                                    <span>{model.provider}</span>
+                                                    <span className="w-px h-2 bg-white/10" />
+                                                    <span>{model.cost}</span>
+                                                </div>
+                                            </div>
+
+                                            {/* Right: Output Patch Point */}
                                             <div
+                                                ref={(el) => { socketRefs.current[model.id] = el; }}
                                                 className="relative flex-none cursor-grab active:cursor-grabbing"
                                                 onMouseDown={(e) => {
                                                     e.stopPropagation(); // Don't trigger card click
                                                     if (isSelected) {
-                                                        // Start dragging from this model
                                                         setIsDragging(true);
                                                         const modelPos = getModelPosition(model.id);
                                                         if (modelPos) {
-                                                            setWirePos(modelPos);
-                                                            targetRef.current = modelPos;
-                                                            velocityRef.current = { x: 0, y: 0 };
+                                                            setDragPos(modelPos);
                                                         }
                                                     }
                                                 }}
                                             >
-                                                {/* Glow ring on selected */}
-                                                {(isSelected || isHovered) && (
-                                                    <div className="absolute inset-0 rounded-full bg-bedroom-purple/30 blur-md animate-pulse" />
-                                                )}
-
                                                 {/* Socket depth */}
-                                                <div className="absolute inset-0 rounded-full bg-black/40 blur-sm" />
+                                                <div className="absolute inset-0 rounded-full bg-black/60 blur-[1px]" />
 
                                                 <div className={`
-                                                    relative w-10 h-10 rounded-full 
-                                                    bg-gradient-to-b from-[#2a2a2a] to-[#111]
-                                                    border border-[#444]
+                                                    relative w-8 h-8 rounded-full 
+                                                    bg-gradient-to-b from-[#222] to-[#111]
+                                                    border border-[#333]
                                                     flex items-center justify-center transition-all duration-200
-                                                    shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]
+                                                    shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]
                                                     ${isSelected || isHovered
-                                                        ? 'border-bedroom-purple/50 shadow-[0_0_15px_rgba(124,58,237,0.3)]'
-                                                        : 'border-white/10'
+                                                        ? 'border-bedroom-purple/50 shadow-[0_0_10px_rgba(124,58,237,0.2)]'
+                                                        : 'group-hover:border-[#444]'
                                                     }
                                                 `}>
                                                     {/* Inner Socket Hole */}
-                                                    <div className="w-5 h-5 rounded-full bg-black shadow-[inset_0_1px_3px_rgba(0,0,0,1)] flex items-center justify-center">
+                                                    <div className="w-3.5 h-3.5 rounded-full bg-black shadow-[inset_0_1px_2px_rgba(0,0,0,1)] flex items-center justify-center">
                                                         {/* Contact Pin */}
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-[#333]" />
+                                                        <div className="w-1 h-1 rounded-full bg-[#222]" />
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            {/* Model Info */}
-                                            <div className="flex-1">
-                                                <div className="text-sm font-semibold text-white">{model.name}</div>
-                                                <div className="text-xs text-white/50">{model.provider}</div>
-                                            </div>
-
-                                            {/* Badges */}
-                                            <div className="flex items-center gap-2">
-                                                <span className={`
-                                                    px-2 py-1 rounded text-xs font-mono uppercase
-                                                    ${model.speed === 'fast' ? 'bg-green-500/20 text-green-400' : ''}
-                                                    ${model.speed === 'balanced' ? 'bg-blue-500/20 text-blue-400' : ''}
-                                                    ${model.speed === 'premium' ? 'bg-purple-500/20 text-purple-400' : ''}
-                                                `}>
-                                                    {model.speed}
-                                                </span>
-                                                <span className="text-xs font-mono text-white/60">{model.cost}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -364,7 +307,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                 </div>
 
                 {/* SVG Wire Overlay */}
-                <svg className="absolute inset-0 pointer-events-none" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+                <svg className="absolute inset-0 pointer-events-none z-20" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                     <defs>
                         {/* Wire gradient - simulates rounded cable */}
                         <linearGradient id="wireGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -398,7 +341,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
 
                         {/* Drop shadow for plugs */}
                         <filter id="plugShadow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000" floodOpacity="0.6" />
+                            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000" floodOpacity="0.4" />
                         </filter>
                     </defs>
 
@@ -409,9 +352,9 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                     {/* Connected wire */}
                     {!isDragging && selectedModel && selectedModelPos && (
                         <g>
-                            {/* Wire Path - connects socket centers directly */}
+                            {/* Wire Path - starts at boot exit */}
                             <path
-                                d={getWirePath(inputPos.x, inputPos.y, selectedModelPos.x, selectedModelPos.y)}
+                                d={getWirePath(inputPos.x, inputPos.y + 15, selectedModelPos.x, selectedModelPos.y + 15)}
                                 stroke="url(#wireGradient)"
                                 strokeWidth="8"
                                 fill="none"
@@ -422,7 +365,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                             {/* Input Plug (Heavy Duty) - positioned at socket */}
                             <g transform={`translate(${inputPos.x}, ${inputPos.y - 15})`} filter="url(#plugShadow)">
                                 {/* Strain Relief (Boot) */}
-                                <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
+                                <path d="M -6 10 L -5 30 L 5 30 L 6 10 Z" fill="#1a1a1a" />
                                 {/* Plug Body */}
                                 <rect x="-10" y="-10" width="20" height="25" rx="4" fill="url(#plugBodyGradient)" stroke="#111" strokeWidth="1" />
                                 {/* Color Ring */}
@@ -434,7 +377,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                             {/* Output Plug (Heavy Duty) - positioned at socket */}
                             <g transform={`translate(${selectedModelPos.x}, ${selectedModelPos.y - 15})`} filter="url(#plugShadow)">
                                 {/* Strain Relief (Boot) */}
-                                <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
+                                <path d="M -6 10 L -5 30 L 5 30 L 6 10 Z" fill="#1a1a1a" />
                                 {/* Plug Body */}
                                 <rect x="-10" y="-10" width="20" height="25" rx="4" fill="url(#plugBodyGradient)" stroke="#111" strokeWidth="1" />
                                 {/* Color Ring */}
@@ -448,9 +391,9 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                     {/* Dragging wire */}
                     {isDragging && (
                         <g>
-                            {/* Wire Path */}
+                            {/* Wire Path - starts at boot exit */}
                             <path
-                                d={getWirePath(inputPos.x, inputPos.y, wirePos.x, wirePos.y)}
+                                d={getWirePath(inputPos.x, inputPos.y + 15, dragPos.x, dragPos.y + 15)}
                                 stroke="url(#wireGradient)"
                                 strokeWidth="8"
                                 fill="none"
@@ -462,16 +405,16 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
 
                             {/* Input Plug (Fixed) */}
                             <g transform={`translate(${inputPos.x}, ${inputPos.y - 15})`} filter="url(#plugShadow)">
-                                <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
+                                <path d="M -6 10 L -5 30 L 5 30 L 6 10 Z" fill="#1a1a1a" />
                                 <rect x="-10" y="-10" width="20" height="25" rx="4" fill="url(#plugBodyGradient)" stroke="#111" strokeWidth="1" />
                                 <rect x="-10" y="8" width="20" height="3" fill="#7c3aed" />
                                 <circle cx="0" cy="-2" r="3" fill="#111" opacity="0.5" />
                             </g>
 
-                            {/* Dragging Plug (Follows Physics Position) */}
-                            <g transform={`translate(${wirePos.x}, ${wirePos.y - 15})`} filter="url(#plugShadow)">
+                            {/* Dragging Plug (Follows Cursor) */}
+                            <g transform={`translate(${dragPos.x}, ${dragPos.y - 15})`} filter="url(#plugShadow)">
                                 {/* Strain Relief */}
-                                <path d="M -6 10 L -4 30 L 4 30 L 6 10 Z" fill="#1a1a1a" />
+                                <path d="M -6 10 L -5 30 L 5 30 L 6 10 Z" fill="#1a1a1a" />
                                 {/* Plug Body */}
                                 <rect x="-10" y="-10" width="20" height="25" rx="4" fill="url(#plugBodyGradient)" stroke="#111" strokeWidth="1" />
                                 {/* Color Ring - Pulses when hovering target */}
@@ -484,13 +427,15 @@ export default function PatchBay({ currentModel, onModelChange, onClose }: Patch
                 </svg>
 
                 {/* Info Footer */}
-                <div className="px-8 pb-6">
-                    <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                        <p className="text-xs text-white/60 leading-relaxed">
-                            <span className="font-semibold text-white">Connected:</span> {selectedModelData?.name} •
-                            Quality: {"★".repeat(selectedModelData?.quality || 0)}{"☆".repeat(5 - (selectedModelData?.quality || 0))} •
-                            Cost: {selectedModelData?.cost}
-                        </p>
+                <div className="px-6 pb-4">
+                    <div className="py-2 border-t border-white/5 flex items-center justify-between text-[9px] font-mono text-white/30 uppercase tracking-wider">
+                        <div className="flex items-center gap-4">
+                            <span>Status: Active</span>
+                            <span>Latency: {selectedModelData?.speed === 'premium' ? '120ms' : '45ms'}</span>
+                        </div>
+                        <div>
+                            {selectedModelData?.provider} // {selectedModelData?.name}
+                        </div>
                     </div>
                 </div>
             </div>

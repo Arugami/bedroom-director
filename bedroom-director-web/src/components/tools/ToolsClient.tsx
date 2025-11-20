@@ -134,7 +134,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
   ];
 
   return (
-    <div className="flex min-h-screen bg-director-black">
+    <div className="flex min-h-screen bg-director-black overflow-x-hidden">
       {/* Director Sidebar - Full Arsenal Mode */}
       <DirectorSidebar
         mode="full-arsenal"
@@ -143,11 +143,11 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
       />
 
       {/* Main Content */}
-      <main className="flex-1 min-h-screen">
+      <main className="flex-1 min-h-screen overflow-x-hidden">
         {/* Studio Hero */}
         <StudioHero
           title="Tool Catalog"
-          subtitle={`${tools.length} AI creative tools. Deeply researched. Actually compared.`}
+          subtitle={`${tools.length} AI tools. Researched. Compared.`}
           kicker={`${newToolsCount} new this week`}
         />
 
@@ -211,7 +211,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
         </section>
 
         {/* Scene Canvas CTA - Cinematic Banner */}
-        <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 overflow-hidden border-y border-gray-900/30">
+        <section className="relative py-4 sm:py-8 md:py-10 lg:py-12 overflow-hidden border-y border-gray-900/30">
           {/* Background Image - AI Projector Bedroom */}
           <img
             src="/liveathehudson_cinematic_wallpaper_AI_projector_beam_casting_ac_17a4443e-ea9e-4b26-a07c-a6757d59fd9c.jpg"
@@ -226,32 +226,31 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
           <div className="absolute inset-0 grain-texture opacity-10" />
 
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-6">
               {/* Left: Text Content */}
               <div className="text-center lg:text-left">
                 <h2
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-screen-white mb-2 sm:mb-3"
+                  className="text-xl sm:text-3xl md:text-4xl font-bold text-screen-white mb-1.5 sm:mb-3"
                   style={{
                     textShadow: "0 2px 20px rgba(0, 206, 209, 0.4), 0 4px 40px rgba(124, 58, 237, 0.3)"
                   }}
                 >
                   Ready to Create Your Scene?
                 </h2>
-                <p className="text-screen-white/80 text-base sm:text-lg max-w-2xl">
-                  Build complete production workflows with Scene Canvas.
-                  Combine tools, plan shots, and bring your vision to life.
+                <p className="text-screen-white/80 text-sm sm:text-lg max-w-2xl leading-snug">
+                  Build complete workflows with Scene Canvas. Combine tools and bring your vision to life.
                 </p>
               </div>
 
               {/* Right: CTA Button */}
               <a
                 href="/scene-canvas"
-                className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-bedroom-purple to-purple-bloom rounded-lg font-bold text-sm sm:text-base text-screen-white transition-all hover:scale-105 hover:shadow-2xl hover:shadow-bedroom-purple/50 whitespace-nowrap"
+                className="group relative w-full sm:w-auto px-5 sm:px-8 py-2.5 sm:py-4 bg-gradient-to-r from-bedroom-purple to-purple-bloom rounded-lg font-bold text-sm sm:text-base text-screen-white transition-all hover:scale-105 hover:shadow-2xl hover:shadow-bedroom-purple/50 whitespace-nowrap"
                 style={{
                   boxShadow: "0 4px 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.2)"
                 }}
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   Open Scene Canvas
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -266,87 +265,155 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
 
         {/* Sticky Filter Bar */}
         <StudioStickyBar>
-          {/* Sort Options */}
-          <div className="flex items-center justify-end gap-2 sm:gap-3 mb-4">
-            <button
-              onClick={() => setSortBy("featured")}
-              className={`relative flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                sortBy === "featured"
-                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
-              }`}
-            >
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>Featured</span>
-            </button>
-            <button
-              onClick={() => setSortBy("newest")}
-              className={`relative flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                sortBy === "newest"
-                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
-              }`}
-            >
-              <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>Newest</span>
-            </button>
-            <button
-              onClick={() => setSortBy("alphabetical")}
-              className={`relative flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                sortBy === "alphabetical"
-                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
-              }`}
-            >
-              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>A-Z</span>
-            </button>
+          {/* Mobile: search + categories + sort, all in one compact stack */}
+          <div className="md:hidden space-y-3">
+            {/* Search Bar - compact mobile variant */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-bedroom-purple/20 via-bedroom-purple/30 to-bedroom-purple/20 rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10">
+                  <div className="relative">
+                    <Search className="w-4 h-4 text-bedroom-purple/60 group-focus-within:text-bedroom-purple transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-bedroom-purple/30 blur-md opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search your arsenal..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="relative w-full pl-9 pr-3 py-3 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border border-bedroom-purple/25 rounded-xl text-sm text-screen-white placeholder:text-screen-white/50 focus:outline-none focus:border-bedroom-purple/60 transition-all duration-300"
+                />
+                <div className="absolute inset-0 rounded-xl border border-bedroom-purple/0 group-focus-within:border-bedroom-purple/20 transition-all duration-500 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Sort Options – condensed pills */}
+            <div className="flex items-center justify-between gap-2">
+              <button
+                onClick={() => setSortBy("featured")}
+                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
+                  sortBy === "featured"
+                    ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 border border-gray-800/70"
+                }`}
+              >
+                <Sparkles className="w-3 h-3" />
+                <span>Featured</span>
+              </button>
+              <button
+                onClick={() => setSortBy("newest")}
+                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
+                  sortBy === "newest"
+                    ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 border border-gray-800/70"
+                }`}
+              >
+                <Clock className="w-3 h-3" />
+                <span>Newest</span>
+              </button>
+              <button
+                onClick={() => setSortBy("alphabetical")}
+                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
+                  sortBy === "alphabetical"
+                    ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 border border-gray-800/70"
+                }`}
+              >
+                <TrendingUp className="w-3 h-3" />
+                <span>A-Z</span>
+              </button>
+            </div>
           </div>
 
-          {/* Search Bar - Cinematic Design */}
-          <div className="relative max-w-2xl mx-auto group">
-            {/* Purple glow background (intensifies on focus) */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-bedroom-purple/20 via-bedroom-purple/30 to-bedroom-purple/20 rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
+          {/* Desktop / tablet: original layout with search + sort */}
+          <div className="hidden md:block">
+            {/* Sort Options */}
+            <div className="flex items-center justify-end gap-2 sm:gap-3 mb-3">
+              <button
+                onClick={() => setSortBy("featured")}
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+                  sortBy === "featured"
+                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
+                }`}
+              >
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span>Featured</span>
+              </button>
+              <button
+                onClick={() => setSortBy("newest")}
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+                  sortBy === "newest"
+                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
+                }`}
+              >
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span>Newest</span>
+              </button>
+              <button
+                onClick={() => setSortBy("alphabetical")}
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+                  sortBy === "alphabetical"
+                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
+                }`}
+              >
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span>A-Z</span>
+              </button>
+            </div>
 
-            {/* Search container */}
-            <div className="relative">
-              {/* Film grain texture overlay */}
-              <div className="absolute inset-0 rounded-xl opacity-[0.02] mix-blend-overlay pointer-events-none"
-                style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}
-              />
+            {/* Search Bar - Cinematic Design */}
+            <div className="relative max-w-2xl mx-auto group">
+              {/* Purple glow background (intensifies on focus) */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-bedroom-purple/20 via-bedroom-purple/30 to-bedroom-purple/20 rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
 
-              {/* Search icon with gradient */}
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
-                <div className="relative">
-                  <Search className="w-5 h-5 text-bedroom-purple/60 group-focus-within:text-bedroom-purple transition-colors duration-300" />
-                  {/* Icon glow on focus */}
-                  <div className="absolute inset-0 bg-bedroom-purple/30 blur-md opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+              {/* Search container */}
+              <div className="relative">
+                {/* Film grain texture overlay */}
+                <div
+                  className="absolute inset-0 rounded-xl opacity-[0.02] mix-blend-overlay pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+                  }}
+                />
+
+                {/* Search icon with gradient */}
+                <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10">
+                  <div className="relative">
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 text-bedroom-purple/60 group-focus-within:text-bedroom-purple transition-colors duration-300" />
+                    {/* Icon glow on focus */}
+                    <div className="absolute inset-0 bg-bedroom-purple/30 blur-md opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                  </div>
                 </div>
+
+                {/* Input field */}
+                <input
+                  type="text"
+                  placeholder="Search your arsenal..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="relative w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border-2 border-bedroom-purple/20 hover:border-bedroom-purple/40 focus:border-bedroom-purple/60 rounded-xl text-sm sm:text-base text-screen-white placeholder:text-screen-white/50 focus:outline-none transition-all duration-300 focus:shadow-[0_0_30px_rgba(124,58,237,0.2)]"
+                />
+
+                {/* Animated border on focus */}
+                <div className="absolute inset-0 rounded-xl border-2 border-bedroom-purple/0 group-focus-within:border-bedroom-purple/20 transition-all duration-500 pointer-events-none" />
+
+                {/* Bottom accent line (like film strip) */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-bedroom-purple/40 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
               </div>
-
-              {/* Input field */}
-              <input
-                type="text"
-                placeholder="Search your arsenal..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="relative w-full pl-12 pr-4 py-4 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border-2 border-bedroom-purple/20 hover:border-bedroom-purple/40 focus:border-bedroom-purple/60 rounded-xl text-screen-white placeholder:text-screen-white/50 focus:outline-none transition-all duration-300 focus:shadow-[0_0_30px_rgba(124,58,237,0.2)]"
-              />
-
-              {/* Animated border on focus */}
-              <div className="absolute inset-0 rounded-xl border-2 border-bedroom-purple/0 group-focus-within:border-bedroom-purple/20 transition-all duration-500 pointer-events-none" />
-
-              {/* Bottom accent line (like film strip) */}
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-bedroom-purple/40 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
             </div>
           </div>
         </StudioStickyBar>
 
         {/* Tools Grid */}
-        <section className="relative py-8">
+        <section className="relative py-6 sm:py-8">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {/* Results Count - Enhanced */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
               <div className="flex items-center gap-3">
                 {/* Count badge */}
                 <div className="flex items-center gap-2 px-4 py-2 bg-bedroom-purple/10 border border-bedroom-purple/20 rounded-lg backdrop-blur-sm">

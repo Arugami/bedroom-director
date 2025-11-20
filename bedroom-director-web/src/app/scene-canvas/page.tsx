@@ -7,6 +7,7 @@ import DirectorSidebar, { SidebarSection } from "@/components/layout/DirectorSid
 import TimelineRail from "@/components/scene/TimelineRail";
 import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight, Sparkles, LayoutTemplate, Camera, Sun, Palette, MessageSquare, Check } from "lucide-react";
 import PatchBay from "@/components/ai/PatchBay";
+import ModelSelector from "@/components/ai/ModelSelector";
 
 const AnalyzingProgressBar = () => {
   const [width, setWidth] = useState(0);
@@ -511,11 +512,29 @@ export default function SceneCanvasPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="px-2 py-0.5 rounded-full bg-white/5 border border-white/5 text-[9px] font-medium text-screen-white/40 cursor-pointer hover:bg-white/10 transition-colors" onClick={() => setShowPatchBay(true)}>
-                      {selectedModel === "gpt-4o" ? "GPT-4o" : selectedModel === "gpt-4o-mini" ? "GPT-4o-mini" : selectedModel === "gemini-2.5-flash" ? "Gemini Flash" : "Gemini Lite"}
-                    </div>
+                    <ModelSelector
+                      selectedModelId={selectedModel}
+                      onSelectModel={setSelectedModel}
+                      onOpenPatchBay={() => setShowPatchBay(true)}
+                    />
                   </div>
                 </div>
+
+                {/* Patch Bay Drawer */}
+                {showPatchBay && (
+                  <PatchBay
+                    currentModel={selectedModel}
+                    onModelChange={(model) => {
+                      setSelectedModel(model);
+                      // Don't close automatically in drawer mode for better UX? 
+                      // Actually, let's keep it open until closed manually or maybe close on select?
+                      // For now, let's close on select to match dropdown behavior.
+                      setShowPatchBay(false);
+                    }}
+                    onClose={() => setShowPatchBay(false)}
+                    variant="drawer"
+                  />
+                )}
 
                 {/* Messages Area */}
                 <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
@@ -938,18 +957,6 @@ export default function SceneCanvasPage() {
           </div>
         </div>
       </div>
-
-      {/* Patch Bay Modal */}
-      {showPatchBay && (
-        <PatchBay
-          currentModel={selectedModel}
-          onModelChange={(modelId) => {
-            setSelectedModel(modelId);
-            // Model will be used in next chat API call
-          }}
-          onClose={() => setShowPatchBay(false)}
-        />
-      )}
 
       {/* Custom Confirmation Modal */}
       {confirmDelete.show && (
