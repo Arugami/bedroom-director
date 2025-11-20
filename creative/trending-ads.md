@@ -42,4 +42,13 @@
 - **Freepik Spaces Launch Reels** - compile case studies once brand publishes workflow breakdowns.
 - **Replicate MiniMax Hailuo 2.3 Demos** - monitor social clips using the new Fast endpoint for cinematic choreography benchmarks.
 
+---
+
+## Industry Adoption & Headlines (Nov 2025)
+
+- **Disney+ embraces AI short-form content** — Bob Iger confirmed the service will open a lane for user-submitted, AI-generated shorts. Perfect proof point for “distribution is catching up” messaging. Track workflow case studies once the program launches. *(Source: Screenshot 2025-11-14 at 11.53.13 AM / Hollywood Reporter)*
+- **Promise AI Studio** — Dave Clark teased their film/TV studio using AI stages plus traditional tech ("AI is more than pressing buttons"). Add to potential partner list for future spotlights. *(Screenshot 11.53.36 AM)*
+- **Meta AI + Midjourney partnership** — Meta is letting anyone remix Midjourney-quality art/video inside the Meta AI chatbot (free). Include in “Try This Stack” options for social-focused creators once documentation drops. *(Screenshot 1.08.46 PM)*
+- **Nano Banana 2 viral outputs** — Multiple creators showcased Nano Banana 2’s realistic TV graphics and political overlays, highlighting the model’s reasoning power. Good candidate for “hot model” callouts. *(Screenshots 1.09.08 PM, 1.12.47 PM, 1.12.55 PM)*
+
 > Keep this document in sync with the marketing content calendar so the website's "Trending" block always showcases fresh, inspiring work linked to the underlying models.

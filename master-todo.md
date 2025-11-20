@@ -5,7 +5,7 @@
 **Brand Name**: Bedroom Director
 **Domain**: bedroomdirector.com (+ bedroomdirector.ai)
 **Production Site**: https://bedroom-director.pages.dev
-**Current Database Size**: 140 models (JSON) | Dynamic data backend implemented
+**Current Database Size**: 156 models (JSON) | Dynamic data backend implemented
 **Backup Strategy**: Rolling backups in `data/backups/` folder
 **Positioning**: Discovery & education platform for bedroom creators (guide, not generator)
 **Tagline**: "From bedroom to big screen"
@@ -25,17 +25,25 @@ Comprehensive database of AI creative tools (video, image, voice, music generati
 
 ## 🚧 ACTIVE & UPCOMING WORK
 
-### File Renaming and Link Correction (In Progress)
+### Phase 5: Visual Polish & Consistency (Active)
 **Last Updated**: November 14, 2025
 
-**Task**: Rename all markdown files to be lowercase and hyphenated. Update all links within the markdown files to reflect the new file names.
+**Focus**: Finish the sprint polish list while making the `/prompts` surface feel like the `/tools` homepage (currently the main landing page).
 
-**Progress**:
-- Renamed `docs/00-IMPLEMENTATION-SUMMARY.md` to `docs/00-implementation-summary.md`.
-- Updated links in `docs/00-implementation-summary.md`.
+**Tasks**
+- [x] Match hero treatment (video loop, twilight gradient, copy tone) between `/tools` and `/prompts` so the experience feels like one product.
+- [ ] Elevate hero search CTA (tighter copy, larger field, surfaced on prompts page) and add "Popular Categories" quick tiles under the hero.
+- [x] Standardize sticky filter interactions (shadow, backdrop blur, breakpoints) across tools + prompts via shared `StudioHero` + `StudioStickyBar` patterns.
+- [ ] Add horizontally scrollable top categories on mobile so filters aren’t buried behind the sidebar.
+- [ ] Make active filters stand out (chips/badges + clear-all) and mirror the state indicator on both pages.
+- [x] Audit typography + copy (remove “Your Arsenal” / “The Arsenal”) and align to new naming: `Tools`, `Prompt Library`, `Scene Canvas`, `Showcase`.
+- [ ] Performance + accessibility sweeps called out in `current-sprint.md` (hover states, keyboard support, lazy loading).
+- [ ] Regression test the comparison tray after styling changes.
+- [ ] Design richer empty states (illustrations + CTA to clear filters) for tools & prompts when no results match.
+- [x] Unify studio shell across `/tools`, `/prompts`, and `/showcase` (shared `DirectorSidebar` + `Studio Navigation`).
 
-**Next Steps**:
-- Continue renaming files and updating links for the remaining markdown files in the project.
+### File Renaming and Link Correction (Paused)
+Work stopped after the first document rename. Revisit once the sprint polish ships.
 
 ---
 
@@ -118,12 +126,48 @@ Comprehensive database of AI creative tools (video, image, voice, music generati
 - [ ] Implement Open Graph images
 - [ ] Add analytics (Plausible or PostHog)
 
+---
+
+### Phase 20: Scene Canvas – Chat-First Director Workspace (Planning & Buildout)
+**Why**: Give bedroom directors a chat-first directing workspace where project chat is the source of truth for scenes, beats, and prompts.  
+**Time Estimate**: 12–20 hours (MVP)  
+**Impact**: Very High – becomes the place where projects actually live.
+
+**Docs Source of Truth:**
+- `scene-canvas-docs/scene-canvas-implementation-spec.md`
+- `scene-canvas-docs/scene-canvas-strategic-analysis.md`
+- `scene-canvas-docs/scene-canvas-chat-first-director-workspace.md`
+
+**MVP Tasks:**
+- [x] Add `ProjectChatPanel` to `/scene-canvas` with per-project message history in `SceneContext`.
+- [x] Implement a stub `ProposeStructure` flow that turns recent chat into an outline and, on accept, creates `Scene` entities.
+- [x] Wire the existing Reel Wall + Inspector to read/write chat-derived scene/beat fields (titles, notes, main prompt).
+- [x] Ensure scenes, beats, and prompts store links back to originating chat messages for traceability.
+- [x] Keep existing model selector + “Copy Prompt” + “Open Tool” flows as the execution layer.
+
+**Additional Completed Tasks (Nov 19, 2025):**
+- [x] Built `/api/director/chat` with OpenRouter integration and tool calling
+- [x] Built `/api/director/structure` for AI-powered scene proposals
+- [x] Built `/api/director/vision` for automatic image analysis
+- [x] Integrated Supabase Storage for Visual Bible uploads
+- [x] Created Timeline Rail with drag-and-drop reordering
+- [x] Applied glassmorphism UI polish across entire workspace
+- [x] Fixed chat persistence bug and scene creation logic
+
+**Mode Experiments (Optional, behind a simple toggle):**
+- [ ] Add internal modes inside Scene Canvas: `Director Chat` and `Scene Canvas` tabs (same route, different layout emphasis).
+- [ ] Explore simple lenses like `Storyboard`, `Trailer Cut`, `Clips`, `Lookbook` as presets on top of the same chat-derived data.
+
+**Success Criteria (MVP):**
+- Creators can brain-dump into chat, accept a proposed structure, and then work in a canvas that stays in sync with that conversation.
+- Scene Canvas feels consistent with the rest of the brand (colors, typography, W+K/Chiat/Day/Jobs hybrid voice) while clearly positioning itself as the “Director Chat + Canvas” workspace.
+
 **Future Enhancements:**
 - [ ] Configure Supabase project for user data
 - [ ] Migrate to full database backend (Supabase)
 - [ ] Add user authentication (email, social login)
 - [ ] Implement advanced filtering (price range, skill level)
-- [ ] Build comparison tool (compare 2-3 tools side-by-side)
+- [ ] Expand comparison experience (export, highlight differences toggle, save sets)
 - [ ] Create tutorial/guide section
 - [ ] Add newsletter signup and email campaigns
 

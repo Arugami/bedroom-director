@@ -7,12 +7,13 @@
 
 ## 🎬 Overview
 
-We have four creative partner lenses to guide Bedroom Director's brand strategy:
+We have five creative partner lenses to guide Bedroom Director's brand strategy. The primary trio is Wieden+Kennedy, Chiat/Day, and Steve Jobs, with Hybrid as a blend of those three. Ryan Reynolds is an optional spice layer for copy, not a core driver of the brand platform.
 
 1. **Wieden+Kennedy** - Rebellion
 2. **Chiat/Day** - Reverence
 3. **Steve Jobs** - Clarity
 4. **Hybrid** - Best of all three
+5. **Ryan Reynolds** - Self-aware charm (advisory)
 
 ---
 
@@ -24,6 +25,7 @@ We have four creative partner lenses to guide Bedroom Director's brand strategy:
 | **Chiat/Day** | Turn it into a religion | Brand films, premium content, thought leadership | Quick campaigns, social |
 | **Steve Jobs** | Build the myth | Product launches, keynotes, investor pitches | Daily social, quick updates |
 | **Hybrid** | Rebellion + Reverence + Clarity | Main campaigns, homepage, brand guidelines | Specific tactical needs |
+| **Ryan Reynolds** | Self-aware, charming, a little unhinged | Microcopy, late-night/bedroom jokes, launch emails | Core nav labels, legal pages |
 
 ---
 

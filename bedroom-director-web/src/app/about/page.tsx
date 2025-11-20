@@ -2,17 +2,52 @@ import { CheckCircle } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-screen-white mb-6">
-            Your Bedroom Is Your Studio
-          </h1>
-          <p className="text-xl text-screen-white/70 leading-relaxed">
-            Traditional filmmaking required expensive equipment, large teams, and Hollywood budgets. Not anymore.
-          </p>
+    <main className="min-h-screen bg-director-black">
+      {/* Cinematic Hero Section */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Video - Director's Chair */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        >
+          <source src="/cinematic_twilight_scene_with_directors_chair_silhouette.mp4" type="video/mp4" />
+        </video>
+
+        {/* Twilight gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b]/90 via-[#312e81]/85 to-director-black" />
+
+        {/* Purple ambient glow */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bedroom-purple/10 via-transparent to-transparent" />
+
+        {/* Film grain */}
+        <div className="absolute inset-0 grain-texture opacity-15" />
+
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-screen-white mb-6"
+              style={{
+                textShadow: "0 2px 30px rgba(124, 58, 237, 0.5), 0 4px 60px rgba(0, 0, 0, 0.8)"
+              }}
+            >
+              Your Bedroom Is Your Studio
+            </h1>
+            <p className="text-xl text-screen-white/90 leading-relaxed">
+              Traditional filmmaking required expensive equipment, large teams, and Hollywood budgets. Not anymore.
+            </p>
+          </div>
         </div>
+      </section>
+
+      {/* Content Section with Film Grain Background */}
+      <div className="relative">
+        {/* Subtle film grain for content sections */}
+        <div className="absolute inset-0 grain-texture opacity-5 pointer-events-none" />
+
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Mission Section */}
         <div className="max-w-3xl mx-auto mb-20">
@@ -31,7 +66,12 @@ export default function AboutPage() {
 
         {/* What We Do */}
         <div className="max-w-3xl mx-auto mb-20">
-          <h2 className="text-3xl font-bold text-screen-white mb-8">
+          <h2
+            className="text-3xl font-bold text-screen-white mb-8"
+            style={{
+              textShadow: "0 2px 20px rgba(124, 58, 237, 0.4)"
+            }}
+          >
             We Help You:
           </h2>
           <div className="space-y-6">
@@ -54,8 +94,17 @@ export default function AboutPage() {
 
         {/* Manifesto */}
         <div className="max-w-3xl mx-auto mb-20">
-          <div className="p-12 bg-gray-900/50 border border-gray-800 rounded-lg">
-            <h2 className="text-3xl sm:text-4xl font-bold text-screen-white mb-8 text-center">
+          <div className="p-12 bg-gray-900/50 border border-gray-800/50 rounded-lg relative overflow-hidden">
+            {/* Subtle purple glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-bedroom-purple/5 via-transparent to-transparent pointer-events-none" />
+
+            <div className="relative z-10">
+            <h2
+              className="text-3xl sm:text-4xl font-bold text-screen-white mb-8 text-center"
+              style={{
+                textShadow: "0 2px 20px rgba(124, 58, 237, 0.4)"
+              }}
+            >
               Here's to the Bedroom Directors.
             </h2>
             <div className="space-y-6 text-lg text-screen-white/80 leading-relaxed">
@@ -72,12 +121,18 @@ export default function AboutPage() {
                 Bedroom Director.
               </p>
             </div>
+            </div>
           </div>
         </div>
 
         {/* Vision */}
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-screen-white mb-6">
+          <h2
+            className="text-3xl font-bold text-screen-white mb-6"
+            style={{
+              textShadow: "0 2px 20px rgba(124, 58, 237, 0.4)"
+            }}
+          >
             Our Vision
           </h2>
           <p className="text-lg text-screen-white/80 leading-relaxed">
@@ -86,5 +141,6 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
+    </main>
   );
 }

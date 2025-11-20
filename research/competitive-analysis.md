@@ -58,6 +58,44 @@ Existing platforms fall into 3 categories:
 - Focus on curation and discovery
 - No prompting or community features
 
+#### **Toolify** (toolify.ai)
+- **What they do:** Daily-updated AI directory with “My Tools” workspace and GPT store.
+- **Features:**
+  - Hero search across tools, GPTs, prompts
+  - Toggleable feeds (Today, New, Most Saved)
+  - Personal dock for quick-launching saved tools
+  - Editorial blocks (Featured, Sponsored write-ups)
+- **What they DON'T have:**
+  - ❌ No deep reviews or benchmark data
+  - ❌ No cinematic/video-first POV
+  - ❌ No side-by-side comparisons or workflow guidance
+  - ❌ Surface-level prompts; no tie-in to the listed tools
+- **Monetization:** Sponsored hero placement (i10X) + featured tiles + newsletter ads.
+
+#### **Dang! AI Directory** (dang.ai)
+- **What they do:** Curated list of “dang good” AI services with upvotes.
+- **Features:**
+  - Minimalist dark UI, category icons, vote counts
+  - Promoted, Featured, Recently Verified right rail
+  - Deals hub + AI “graveyard” for dead tools
+- **What they DON'T have:**
+  - ❌ No prompts or creative workflows
+  - ❌ No structured data beyond marketing copy
+  - ❌ No video/audio depth; mostly SaaS automation
+- **Monetization:** Paid promos/verification; ad inventory in right rail.
+
+#### **Insidr.ai** (insidr.ai/ai-tools)
+- **What they do:** Ranked AI tools with long-form descriptions for marketers.
+- **Features:**
+  - Numbered list format with thumbnails
+  - Hashtag taxonomy (marketing, ecommerce, etc.)
+  - Pricing chips (“Trial”, “Freemium”) next to CTA
+- **What they DON'T have:**
+  - ❌ Any technical testing or comparisons
+  - ❌ Prompt workflows or footage examples
+  - ❌ Depth on video/image models (mostly marketing SaaS)
+- **Monetization:** Likely paid placements + affiliate outbound links.
+
 **💡 GAP:** These platforms help you FIND tools but don't help you USE them effectively.
 
 ### 2025 UI & Monetization Observations (from TAFT, FutureTools, Futurepedia, Toolify, Dang!, Insidr)
@@ -205,6 +243,25 @@ Existing platforms fall into 3 categories:
 - **Them:** Assume technical knowledge
 - **Us:** Progressive disclosure (simple for beginners, deep for experts)
 
+### 7. **Depth & Proof of Work**
+- **Them:** Sponsored blurbs and customer quotes. No latency numbers, shot breakdowns, or drawback callouts.
+- **Us:** Publish “Tested on set” data: FPS, render times, licensing traps, best use case, drawbacks, plus comparison rows for every major tool.
+
+### 8. **Trusted Monetization**
+- **Them:** Pay-to-play placements (TAFT, Toolify, FutureTools, Dang!, Insidr) erode credibility.
+- **Us:** Sponsored slots require benchmark data + disclosure badge (“Verified Sponsor”). Ads double as QA reports, not random banners.
+
+---
+
+## 🛡️ Why We'll Win (2025 Strategic Moat)
+
+1. **Depth is scarce:** Every competitor optimizes for scale (10k+ listings) at the expense of accuracy. Bedroom Director narrows focus to cinematic creation and tests models hands-on.
+2. **Workflow-first UX:** Visual hero → search → categories → comparison tray → prompts. No other platform keeps the entire decision loop inside one flow.
+3. **Creator credibility:** Hollywood noir brand, shot-by-shot storytelling, and practical notes resonate with film/video pros while other directories feel like SaaS coupon sites.
+4. **Transparent revenue:** We can sell sponsor slots without betraying trust because we pair them with benchmark data; users know “featured” still passed QA.
+5. **Data foundation:** Structured CSV → JSON → TypeScript pipeline powers filtering, comparisons, and future rec engines. Competitors rely on CMS tables and manual curation.
+6. **Community leverage:** Instead of forcing another social feed, we aggregate prompts/workflows from existing communities and map them to the right tools, something neither prompt libraries nor tool directories can replicate.
+
 ---
 
 ## 📈 Market Opportunity
@@ -263,6 +320,23 @@ Existing platforms fall into 3 categories:
 2. **PromptHero adds discovery** - They have community, could add model comparison
 3. **Civitai expands beyond SD** - They have 10M users, could go multi-model
 4. **Model providers build their own** - OpenAI/Google could create discovery platforms
+
+### BeatBandit (beatbandit.ai) – Screenplay Development Suite
+
+- **What they do:** All-in-one screenplay development workspace that takes a story from idea → beats → scenes → treatment → full script, with an AI “writing partner.”
+- **Features:**
+  - Structured workflow: story beats, character definitions, acts/sequences, scene list, dramatic beats per scene
+  - “Wizards” for each stage: Beat Wizard, Scene Wizard, Treatment Wizard, Writer Wizard, Change Wizard
+  - Full online screenplay editor with beat ↔ script linking and rewrite flows that carry structural changes into the script text
+  - Brainstorming, feedback, version history, storyboard image generation, AI co-writer chat, and “magic suggestions”
+  - Multiple AI models behind a context engine that keeps canon consistent; exports to Fountain/FDX/PDF; templates for film/TV/micro-drama; import existing scripts
+- **What they DON’T have (relative to us):**
+  - ❌ No cross-model discovery or comparison across the broader AI tool ecosystem
+  - ❌ No directory or pricing transparency across many vendors (it’s a single immersive product, not an aggregator)
+  - ❌ No general-purpose prompt library across models/tools (screenplay-only, not image/video/music/voice)
+- **Relevance to us:**
+  - Strong signal for demand around structured, stage-based creative workspaces (very similar to where Scene Canvas and a future “Director Workspace” want to land).
+  - Less of a direct competitor to the Bedroom Director directory itself, more of a benchmark for how polished our scene/workspace UX and messaging should feel.
 
 ### Our Moats:
 

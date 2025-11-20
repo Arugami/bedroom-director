@@ -23,10 +23,10 @@ export default function FeaturedTools() {
         <div className="flex justify-between items-end mb-10">
           <div>
             <h2 className="text-3xl sm:text-4xl font-bold text-screen-white mb-2">
-              Your Arsenal
+              Featured Tools
             </h2>
             <p className="text-screen-white/60">
-              Start creating with these tools
+              Start creating with our most trusted picks
             </p>
           </div>
           <Link

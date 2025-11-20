@@ -4,6 +4,10 @@ import { useState, useMemo } from "react";
 import { Search, Filter, TrendingUp, Clock, Heart, ExternalLink, Sparkles } from "lucide-react";
 import PromptCard from "@/components/prompts/PromptCard";
 import { Toast } from "@/components/ui/Toast";
+import DirectorSidebar from "@/components/layout/DirectorSidebar";
+import StudioHero from "@/components/layout/StudioHero";
+import StudioStickyBar from "@/components/layout/StudioStickyBar";
+import { getPromptsSidebarConfig } from "@/lib/sidebarConfig";
 import {
   getAllPrompts,
   getAllCategories,
@@ -95,151 +99,56 @@ export default function PromptsPage() {
     return featured[0] || allPrompts[0];
   }, [allPrompts]);
 
+  // Get sidebar configuration
+  const sidebarSections = getPromptsSidebarConfig(
+    selectedCategory,
+    sortBy,
+    setSelectedCategory,
+    (sort: string) => setSortBy(sort as SortOption)
+  );
+
   return (
-    <main className="min-h-screen bg-director-black">
-      {/* Toast Notifications */}
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-      )}
+    <div className="flex min-h-screen bg-director-black">
+      {/* Director Sidebar - "Quick Draw" Mode */}
+      <DirectorSidebar
+        mode="quick-draw"
+        sections={sidebarSections}
+        defaultCollapsed={false}
+        storageKey="prompts-sidebar-collapsed"
+      />
 
-      {/* Compact Hero Section */}
-      <section className="relative py-12 overflow-hidden">
-        {/* Twilight gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b] via-[#312e81] to-director-black" />
-        {/* Film grain */}
-        <div className="absolute inset-0 grain-texture opacity-10" />
+      {/* Main Content */}
+      <main className="flex-1 min-h-screen">
+        {/* Toast Notifications */}
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-screen-white mb-2"
-              style={{ textShadow: "0 2px 20px rgba(0, 0, 0, 0.6)" }}
-            >
-              The Arsenal
-            </h1>
-            <p className="text-screen-white/70">
-              Steal these prompts. Create something legendary.
-            </p>
-          </div>
+      {/* Studio Hero */}
+      <StudioHero
+        title="Prompt Library"
+        subtitle="Steal these prompts. Create something legendary."
+        kicker="Battle-tested prompts from the community"
+      />
+
+      {/* Sticky Search Bar */}
+      <StudioStickyBar>
+        {/* Search Bar */}
+        <div className="relative max-w-2xl mx-auto">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-screen-white/40" />
+          <input
+            type="text"
+            placeholder="Search prompts, tools, styles..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-lg text-screen-white placeholder:text-screen-white/40 focus:outline-none focus:border-bedroom-purple transition-all"
+          />
         </div>
-      </section>
-
-      {/* Sticky Filter Bar */}
-      <div className="sticky top-16 z-40 bg-director-black/95 backdrop-blur-lg border-b border-gray-900/50 shadow-lg">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          {/* Category Filters + Sort in One Row */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-            {/* Quick Category Filters */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
-              <button
-                onClick={() => setSelectedCategory("all")}
-                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
-                  selectedCategory === "all"
-                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-                }`}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setSelectedCategory("video")}
-                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
-                  selectedCategory === "video"
-                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-                }`}
-              >
-                🎬 Video
-              </button>
-              <button
-                onClick={() => setSelectedCategory("image")}
-                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
-                  selectedCategory === "image"
-                    ? "bg-[#FF8C42] text-screen-white shadow-lg shadow-[#FF8C42]/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-                }`}
-              >
-                🖼️ Image
-              </button>
-              <button
-                onClick={() => setSelectedCategory("voice")}
-                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
-                  selectedCategory === "voice"
-                    ? "bg-[#00CED1] text-screen-white shadow-lg shadow-[#00CED1]/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-                }`}
-              >
-                🎙️ Voice
-              </button>
-              <button
-                onClick={() => setSelectedCategory("music")}
-                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
-                  selectedCategory === "music"
-                    ? "bg-[#FCD34D] text-screen-white shadow-lg shadow-[#FCD34D]/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 border border-gray-800/50"
-                }`}
-              >
-                🎵 Music
-              </button>
-            </div>
-
-            {/* Sort Options */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setSortBy("newest")}
-                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  sortBy === "newest"
-                    ? "bg-bedroom-purple text-screen-white"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60"
-                }`}
-              >
-                <Clock className="w-4 h-4" />
-                <span className="hidden sm:inline">Newest</span>
-              </button>
-              <button
-                onClick={() => setSortBy("most-liked")}
-                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  sortBy === "most-liked"
-                    ? "bg-bedroom-purple text-screen-white"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60"
-                }`}
-              >
-                <Heart className="w-4 h-4" />
-                <span className="hidden sm:inline">Liked</span>
-              </button>
-              <button
-                onClick={() => setSortBy("most-viewed")}
-                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  sortBy === "most-viewed"
-                    ? "bg-bedroom-purple text-screen-white"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60"
-                }`}
-              >
-                <TrendingUp className="w-4 h-4" />
-                <span className="hidden sm:inline">Trending</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Search Bar */}
-          <div className="mt-4">
-            <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-screen-white/40" />
-              <input
-                type="text"
-                placeholder="Search prompts, tools, styles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-lg text-screen-white placeholder:text-screen-white/40 focus:outline-none focus:border-bedroom-purple transition-all"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      </StudioStickyBar>
 
       {/* Advanced Filters Section (Collapsible) */}
       <section className="relative">
@@ -345,6 +254,7 @@ export default function PromptsPage() {
           )}
         </div>
       </section>
-    </main>
+      </main>
+    </div>
   );
 }

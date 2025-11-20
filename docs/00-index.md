@@ -46,7 +46,7 @@ Older or deprecated documentation files:
 - **[../research/](../research/)** — Research materials and findings
 - **[../notes/](../notes/)** — Working notes and emerging models
 - **[../scripts/](../scripts/)** — Python scripts for maintenance and updates
-- **[../website/](../website/)** — Website implementation files
+- **[../bedroom-director-web/](../bedroom-director-web/)** — Next.js web app (current implementation)
 
 ---
 

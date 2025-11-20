@@ -2,6 +2,7 @@
 
 import { Tool, CATEGORIES, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/types/tools";
 import { X } from "lucide-react";
+import Link from "next/link";
 import { useMemo } from "react";
 
 interface ToolsSidebarProps {
@@ -64,13 +65,38 @@ export default function ToolsSidebar({
       >
         {/* Mobile Header */}
         <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-900/50">
-          <h2 className="text-lg font-bold text-screen-white">Categories</h2>
+          <h2 className="text-lg font-bold text-screen-white">Tools</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-900/50 rounded-lg transition-colors"
           >
             <X className="w-5 h-5 text-screen-white/70" />
           </button>
+        </div>
+
+        {/* Brand Block */}
+        <div className="p-4 pb-2 border-b border-gray-900/50 hidden lg:block">
+          <Link
+            href="/"
+            className="mb-4 flex items-center gap-3 rounded-lg border border-bedroom-purple/30 bg-bedroom-purple/5 px-3 py-3 transition-all hover:bg-bedroom-purple/10 hover:border-bedroom-purple/70"
+          >
+            <div className="flex h-8 w-8 items-center justify-center rounded-md border border-bedroom-purple/50 bg-bedroom-purple/15 text-bedroom-purple shadow-[0_0_18px_rgba(168,85,247,0.35)]">
+              <span className="text-[10px] font-semibold tracking-[0.28em]">
+                BD
+              </span>
+            </div>
+            <div className="flex flex-col leading-tight">
+              <span className="text-[11px] font-semibold tracking-[0.32em] text-screen-white">
+                BEDROOM
+              </span>
+              <span className="-mt-0.5 text-[11px] font-semibold tracking-[0.32em] text-screen-white">
+                DIRECTOR
+              </span>
+              <span className="mt-1 text-[10px] uppercase tracking-[0.22em] text-screen-white/40">
+                Tool catalog
+              </span>
+            </div>
+          </Link>
         </div>
 
         {/* Category Filters */}

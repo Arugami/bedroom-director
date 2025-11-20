@@ -18,13 +18,16 @@
 ## 📁 Project Structure
 
 ```
-AI_Image_Video_App/
+bedroom-director-platform/
 ├── readme.md                          # This file
 ├── master-todo.md                     # Project task tracker
+├── concerns.md                        # Active issues & clinical assessment
+├── roadmap.md                         # High-level product roadmap
+├── current-sprint.md                  # In-flight work
 │
 ├── data/                              # Database files
-│   ├── ai_video_image_models.csv     # Main database (153 entries)
-│   ├── models.json                    # JSON version
+│   ├── ai_video_image_models.csv      # Main database
+│   ├── models.json                    # JSON version (synced via scripts)
 │   └── backups/                       # Backup files
 │
 ├── docs/                              # All documentation
@@ -35,24 +38,39 @@ AI_Image_Video_App/
 │   ├── 04-user-journey-guide.md       # User guides
 │   ├── 05-platform-access-guide.md    # Platform access
 │   ├── 06-website-implementation-guide.md
+│   ├── managing-creations.md          # Creator workflows
+│   ├── managing-prompts.md            # Prompt library patterns
 │   └── archive/                       # Deprecated docs
 │
 ├── research/                          # Research materials
-│   ├── Executive_Summary.md
-│   ├── prompting-research.md
-│   └── PRICING_AUDIT_FINDINGS.md
+│   ├── research-findings-live.md      # Aggregated insights
+│   ├── research-image-to-video-pipelines.md
+│   ├── pricing-audit-findings.md
+│   ├── competitive-ux-analysis.md
+│   └── personas/                      # Design personas (Mira, Eli, Sienna)
 │
 ├── scripts/                           # Python scripts
 │   ├── maintenance/                   # Maintenance scripts
 │   ├── updates/                       # Model update scripts
 │   └── utilities/                     # Utility scripts
 │
-├── website/                           # Web implementation
-│   ├── DESIGN_SPEC.md
-│   └── TECHNICAL_ARCHITECTURE.md
+├── bedroom-director-web/              # Next.js 16 web app
+│   ├── src/                           # App router, components, lib
+│   ├── public/                        # Static assets
+│   ├── website/                       # Legacy web design docs/specs
+│   └── deployment.md                  # Deployment notes
+│
+├── scene-canvas-docs/                 # Scene Canvas strategy & specs
+│   ├── scene-canvas-strategic-analysis.md
+│   ├── scene-canvas-implementation-spec.md
+│   ├── scene-canvas-chat-first-director-workspace.md
+│   └── archive/
+│
+├── creative/                          # Brand, naming, creative partner lenses
+│   └── partners/                      # W+K, Chiat/Day, Jobs, Hybrid, Reynolds
 │
 └── notes/                             # Working notes
-    └── EMERGING_MODELS.md             # Upcoming models
+    └── emerging-models-industry-pulse.md  # Upcoming models & industry pulse
 ```
 
 ---

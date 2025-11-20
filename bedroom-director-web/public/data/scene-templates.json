@@ -1,0 +1,282 @@
+[
+  {
+    "id": "cinematic-hero-shot",
+    "name": "Cinematic Hero Shot",
+    "category": "video",
+    "description": "Epic establishing shot perfect for introducing characters or locations",
+    "defaultPromptSlots": {
+      "subject": "hero standing on cliff edge at sunset",
+      "camera": {
+        "angle": "wide shot",
+        "movement": "slow dolly push-in",
+        "lens": "35mm anamorphic"
+      },
+      "lighting": {
+        "mood": "golden hour",
+        "direction": "backlit",
+        "color": "warm"
+      },
+      "style": {
+        "aesthetic": "cinematic",
+        "era": "modern",
+        "influences": ["Denis Villeneuve", "Roger Deakins"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["cinematic", "hero", "establishing"],
+    "difficulty": "beginner",
+    "isPro": false
+  },
+  {
+    "id": "product-showcase",
+    "name": "Product Showcase",
+    "category": "video",
+    "description": "Clean commercial-style product reveal",
+    "defaultPromptSlots": {
+      "subject": "sleek smartphone rotating on pedestal",
+      "camera": {
+        "angle": "close-up",
+        "movement": "360 rotation",
+        "lens": "50mm macro"
+      },
+      "lighting": {
+        "mood": "studio lighting",
+        "direction": "three-point",
+        "color": "neutral"
+      },
+      "style": {
+        "aesthetic": "commercial",
+        "era": "modern",
+        "influences": ["Apple", "minimalist design"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["product", "commercial", "clean"],
+    "difficulty": "beginner",
+    "isPro": false
+  },
+  {
+    "id": "neon-noir",
+    "name": "Neon Noir Street",
+    "category": "video",
+    "description": "Moody cyberpunk street scene with neon reflections",
+    "defaultPromptSlots": {
+      "subject": "lone figure walking through rain-soaked alley",
+      "camera": {
+        "angle": "medium shot",
+        "movement": "tracking shot",
+        "lens": "35mm"
+      },
+      "lighting": {
+        "mood": "neon noir",
+        "direction": "rim light",
+        "color": "vibrant purple and cyan"
+      },
+      "style": {
+        "aesthetic": "cyberpunk",
+        "era": "retro futuristic",
+        "influences": ["Blade Runner", "Ghost in the Shell"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["cyberpunk", "noir", "neon"],
+    "difficulty": "intermediate",
+    "isPro": false
+  },
+  {
+    "id": "dreamy-portrait",
+    "name": "Dreamy Portrait",
+    "category": "image",
+    "description": "Soft, ethereal character portrait",
+    "defaultPromptSlots": {
+      "subject": "young woman with flowing hair in meadow",
+      "camera": {
+        "angle": "close-up portrait",
+        "movement": "static",
+        "lens": "85mm"
+      },
+      "lighting": {
+        "mood": "soft diffused",
+        "direction": "front natural light",
+        "color": "warm pastel"
+      },
+      "style": {
+        "aesthetic": "dreamy",
+        "era": "modern",
+        "influences": ["Annie Leibovitz", "film photography"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["portrait", "dreamy", "soft"],
+    "difficulty": "beginner",
+    "isPro": false
+  },
+  {
+    "id": "action-sequence",
+    "name": "Action Sequence",
+    "category": "video",
+    "description": "High-energy chase or fight scene",
+    "defaultPromptSlots": {
+      "subject": "parkour athlete jumping between buildings",
+      "camera": {
+        "angle": "dynamic POV",
+        "movement": "handheld chase",
+        "lens": "wide angle 24mm"
+      },
+      "lighting": {
+        "mood": "harsh sunlight",
+        "direction": "top-down noon",
+        "color": "high contrast"
+      },
+      "style": {
+        "aesthetic": "action",
+        "era": "modern",
+        "influences": ["Michael Bay", "John Wick"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["action", "dynamic", "chase"],
+    "difficulty": "intermediate",
+    "isPro": false
+  },
+  {
+    "id": "cozy-interior",
+    "name": "Cozy Interior",
+    "category": "image",
+    "description": "Warm, inviting interior space",
+    "defaultPromptSlots": {
+      "subject": "rustic coffee shop with vintage furniture",
+      "camera": {
+        "angle": "wide interior shot",
+        "movement": "static",
+        "lens": "24mm"
+      },
+      "lighting": {
+        "mood": "warm ambient",
+        "direction": "window light",
+        "color": "warm golden"
+      },
+      "style": {
+        "aesthetic": "cozy",
+        "era": "vintage",
+        "influences": ["Wes Anderson", "hygge aesthetics"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["interior", "cozy", "ambient"],
+    "difficulty": "beginner",
+    "isPro": false
+  },
+  {
+    "id": "music-video-vibe",
+    "name": "Music Video Aesthetic",
+    "category": "video",
+    "description": "Stylized music video look with color grading",
+    "defaultPromptSlots": {
+      "subject": "artist performing under colored spotlights",
+      "camera": {
+        "angle": "close-up",
+        "movement": "slow push-in",
+        "lens": "50mm"
+      },
+      "lighting": {
+        "mood": "theatrical",
+        "direction": "colored spotlights",
+        "color": "vibrant contrasting"
+      },
+      "style": {
+        "aesthetic": "music video",
+        "era": "modern",
+        "influences": ["Hype Williams", "Jonas Åkerlund"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["music-video", "theatrical", "colorful"],
+    "difficulty": "intermediate",
+    "isPro": false
+  },
+  {
+    "id": "documentary-style",
+    "name": "Documentary Real",
+    "category": "video",
+    "description": "Natural, authentic documentary feel",
+    "defaultPromptSlots": {
+      "subject": "elderly craftsman working in workshop",
+      "camera": {
+        "angle": "medium shot",
+        "movement": "handheld observational",
+        "lens": "35mm"
+      },
+      "lighting": {
+        "mood": "natural window light",
+        "direction": "side light",
+        "color": "neutral realistic"
+      },
+      "style": {
+        "aesthetic": "documentary",
+        "era": "modern",
+        "influences": ["Frederick Wiseman", "cinema vérité"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["documentary", "natural", "authentic"],
+    "difficulty": "beginner",
+    "isPro": false
+  },
+  {
+    "id": "fantasy-landscape",
+    "name": "Fantasy Landscape",
+    "category": "image",
+    "description": "Magical otherworldly environment",
+    "defaultPromptSlots": {
+      "subject": "floating islands with waterfalls in clouds",
+      "camera": {
+        "angle": "wide establishing",
+        "movement": "static",
+        "lens": "wide angle"
+      },
+      "lighting": {
+        "mood": "magical twilight",
+        "direction": "dramatic rays",
+        "color": "purple and blue gradient"
+      },
+      "style": {
+        "aesthetic": "fantasy",
+        "era": "timeless",
+        "influences": ["Studio Ghibli", "concept art"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["fantasy", "landscape", "magical"],
+    "difficulty": "advanced",
+    "isPro": false
+  },
+  {
+    "id": "smooth-transition",
+    "name": "Smooth Transition",
+    "category": "transition",
+    "description": "Seamless scene-to-scene transition",
+    "defaultPromptSlots": {
+      "subject": "camera whip pan to reveal new location",
+      "camera": {
+        "angle": "medium shot",
+        "movement": "fast whip pan",
+        "lens": "35mm"
+      },
+      "lighting": {
+        "mood": "matching between scenes",
+        "direction": "consistent",
+        "color": "color-matched"
+      },
+      "style": {
+        "aesthetic": "seamless",
+        "era": "modern",
+        "influences": ["Edgar Wright", "Sam Kolder"]
+      }
+    },
+    "recommendedModels": [],
+    "tags": ["transition", "seamless", "dynamic"],
+    "difficulty": "intermediate",
+    "isPro": false
+  }
+]

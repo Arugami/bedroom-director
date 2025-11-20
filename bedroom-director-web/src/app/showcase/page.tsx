@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Play, ExternalLink } from "lucide-react";
+import DirectorSidebar from "@/components/layout/DirectorSidebar";
+import StudioHero from "@/components/layout/StudioHero";
+import { getShowcaseSidebarConfig } from "@/lib/sidebarConfig";
 import { getAllCreations, getAllCategories } from "@/lib/data/creations";
 
 export default function ShowcasePage() {
@@ -14,64 +17,39 @@ export default function ShowcasePage() {
     ? allCreations
     : allCreations.filter((c) => c.category === selectedCategory);
 
+  // Get sidebar configuration
+  const sidebarSections = getShowcaseSidebarConfig(
+    selectedCategory,
+    setSelectedCategory
+  );
+
   return (
-    <main className="min-h-screen bg-director-black">
-      {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
-        {/* Twilight gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b] via-[#312e81] to-director-black" />
-        
-        {/* Film grain */}
-        <div className="absolute inset-0 grain-texture opacity-10" />
+    <div className="flex min-h-screen bg-director-black">
+      {/* Director Sidebar - "Gallery" Mode */}
+      <DirectorSidebar
+        mode="gallery"
+        sections={sidebarSections}
+        defaultCollapsed={false}
+        storageKey="showcase-sidebar-collapsed"
+      />
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-screen-white mb-6"
-                style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.6)' }}>
-              AI Creations Showcase
-            </h1>
-            <p className="text-screen-white/70 text-lg max-w-2xl mx-auto">
-              See what's possible. Learn from the best. Get inspired by real AI-generated work.
-            </p>
-          </div>
-
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <button
-              onClick={() => setSelectedCategory("all")}
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                selectedCategory === "all"
-                  ? "bg-bedroom-purple text-screen-white"
-                  : "bg-black/40 border border-gray-700/50 text-screen-white/70 hover:bg-black/60 hover:text-screen-white"
-              }`}
-            >
-              All
-            </button>
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  selectedCategory === category.id
-                    ? "bg-bedroom-purple text-screen-white"
-                    : "bg-black/40 border border-gray-700/50 text-screen-white/70 hover:bg-black/60 hover:text-screen-white"
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Results count */}
-          <p className="text-center text-screen-white/60 mb-8">
-            Showing {filteredCreations.length} {filteredCreations.length === 1 ? "creation" : "creations"}
-          </p>
-        </div>
-      </section>
+      {/* Main Content */}
+      <main className="flex-1 min-h-screen">
+      {/* Studio Hero */}
+      <StudioHero
+        title="AI Creations Showcase"
+        subtitle="See what's possible. Learn from the best. Get inspired."
+        kicker="Real AI-generated work from the community"
+      />
 
       {/* Creations Grid */}
       <section className="relative py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Results Count */}
+          <p className="text-screen-white/60 text-sm mb-6">
+            {filteredCreations.length} {filteredCreations.length === 1 ? "creation" : "creations"}
+          </p>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCreations.map((creation) => (
               <Link
@@ -169,6 +147,7 @@ export default function ShowcasePage() {
           )}
         </div>
       </section>
-    </main>
+      </main>
+    </div>
   );
 }
