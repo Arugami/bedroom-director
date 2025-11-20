@@ -5,6 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal scrolling globally */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 /* Film grain texture overlay */
 @layer utilities {
   .grain-texture {

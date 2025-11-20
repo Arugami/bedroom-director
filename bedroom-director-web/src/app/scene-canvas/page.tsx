@@ -526,10 +526,6 @@ export default function SceneCanvasPage() {
                     currentModel={selectedModel}
                     onModelChange={(model) => {
                       setSelectedModel(model);
-                      // Don't close automatically in drawer mode for better UX? 
-                      // Actually, let's keep it open until closed manually or maybe close on select?
-                      // For now, let's close on select to match dropdown behavior.
-                      setShowPatchBay(false);
                     }}
                     onClose={() => setShowPatchBay(false)}
                     variant="drawer"

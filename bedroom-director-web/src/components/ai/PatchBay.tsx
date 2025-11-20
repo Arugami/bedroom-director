@@ -218,7 +218,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
                     {/* Right: Models */}
                     <div className="flex-1 w-full min-w-0">
                         <div className="text-[9px] font-mono text-white/30 uppercase tracking-[0.2em] mb-4 text-center md:text-left">Destinations</div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 gap-2">
                             {MODELS.map((model) => {
                                 const isSelected = model.id === selectedModel;
                                 const isHovered = model.id === hoveredModel;
@@ -247,22 +247,7 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
                                         {/* Content */}
                                         <div className="relative flex items-center justify-between w-full z-10 gap-4">
 
-                                            {/* Left: Info */}
-                                            <div className="flex-1 min-w-0 flex flex-col gap-1">
-                                                <div className="flex items-center gap-2">
-                                                    <span className={`text-xs font-bold tracking-wide truncate ${isSelected ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
-                                                        {model.name}
-                                                    </span>
-                                                    {model.speed === 'premium' && <div className="w-1 h-1 rounded-full bg-purple-400 shadow-[0_0_4px_rgba(192,132,252,0.8)]" />}
-                                                </div>
-                                                <div className="flex items-center gap-2 text-[9px] font-mono text-white/30 uppercase tracking-wider">
-                                                    <span>{model.provider}</span>
-                                                    <span className="w-px h-2 bg-white/10" />
-                                                    <span>{model.cost}</span>
-                                                </div>
-                                            </div>
-
-                                            {/* Right: Output Patch Point */}
+                                            {/* Left: Output Patch Point */}
                                             <div
                                                 ref={(el) => { socketRefs.current[model.id] = el; }}
                                                 className="relative flex-none cursor-grab active:cursor-grabbing"
@@ -296,6 +281,21 @@ export default function PatchBay({ currentModel, onModelChange, onClose, variant
                                                         {/* Contact Pin */}
                                                         <div className="w-1 h-1 rounded-full bg-[#222]" />
                                                     </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Right: Info */}
+                                            <div className="flex-1 min-w-0 flex flex-col gap-1 items-end text-right">
+                                                <div className="flex items-center gap-2 flex-row-reverse">
+                                                    <span className={`text-xs font-bold tracking-wide truncate ${isSelected ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
+                                                        {model.name}
+                                                    </span>
+                                                    {model.speed === 'premium' && <div className="w-1 h-1 rounded-full bg-purple-400 shadow-[0_0_4px_rgba(192,132,252,0.8)]" />}
+                                                </div>
+                                                <div className="flex items-center gap-2 text-[9px] font-mono text-white/30 uppercase tracking-wider flex-row-reverse">
+                                                    <span>{model.provider}</span>
+                                                    <span className="w-px h-2 bg-white/10" />
+                                                    <span>{model.cost}</span>
                                                 </div>
                                             </div>
                                         </div>
