@@ -303,23 +303,36 @@ All improvements are **100% validated** by real user feedback from Mira, Eli, an
 
 ## 🚀 Next Up
 
-### Phase 5: Polish & Optimize (~2-3 hours)
+### Immediate Priority: Scene Canvas Phase 1 Implementation (2-4 hours)
+**Goal:** Fix "tiny pills" complaint and make Reel Wall feel cinematic
+
+**Tasks (in order):**
+1. [ ] Implement horizontal film strip layout
+2. [ ] Increase card size to 450px with film frame borders
+3. [ ] Upgrade scene numbers to text-4xl
+4. [ ] Add empty state with 3 starter templates
+5. [ ] Apply purple ambient lighting + film grain texture
+
+**Success Criteria:**
+- Reel Wall feels like a film strip, not Netflix thumbnails
+- Scene cards are 50% larger and more readable
+- Empty state guides users (no more blank darkness)
+- Active scene has dramatic purple spotlight
+
+---
+
+### Phase 5: General Polish & Optimize (~2-3 hours) - BACKLOG
 - [ ] Elevate hero search CTA + add "Popular Categories" quick filters under the `/tools` hero (mirror on `/prompts`).
 - [x] Bring `/prompts` hero visuals + sticky bar into parity with `/tools` using shared `StudioHero` and `StudioStickyBar`.
 - [x] Standardize sticky filter interactions (shadow, blur, breakpoints) across tools + prompts via shared components.
-- [ ] Add mobile-first horizontal category pills so filters aren’t hidden behind the sidebar; highlight active filters with chips + clear-all.
+- [ ] Add mobile-first horizontal category pills so filters aren't hidden behind the sidebar; highlight active filters with chips + clear-all.
 - [ ] Performance optimization (lazy loading, code splitting) + accessibility audit (keyboard navigation, ARIA labels).
 - [ ] Regression + cross-browser testing (comparison tray, prompts actions) and richer empty states when no results match.
 - [x] Unify studio shell across `/tools`, `/prompts`, and `/showcase` (shared sidebar, hero, sticky bar).
 
-### Phase 6: Naming Alignment + Studio Shell Consistency (~1-2 hours) – DONE
-- [x] Remove “Your Arsenal” / “The Arsenal” from core UI and align naming to `Tools`, `Prompt Library`, `Scene Canvas`, `Showcase`.
-- [x] Update heroes and section headings to use “Tool Catalog”, “Prompt Library”, and “AI Creations Showcase” language.
-- [x] Consolidate navigation into `DirectorSidebar` with `Studio Navigation` (Tools, Scene Canvas, Prompts, Showcase).
-- [x] Remove global header from studio routes and keep it only for marketing pages (e.g. `/about`).
-- [x] Replace stub Scene Canvas page with the current three-surface control room shell (Reel Wall + Inspector + sidebar).
-
-### Future Considerations (Not in Sprint)
+### Future Considerations (Not in Current Sprint)
+- Scene Canvas Phase 2 (Timeline demotion, Inspector sections, Project header)
+- Scene Canvas Phase 3 (Sprocket holes, animations, polish)
 - Thumbnail curation (handled manually by user)
 - Prompt Library enhancements
 - Community features (ratings, reviews)
@@ -330,10 +343,11 @@ All improvements are **100% validated** by real user feedback from Mira, Eli, an
 ## 📊 Progress Metrics
 - **Tools in database:** 156
 - **Tools with thumbnails:** ~30% (manual curation ongoing)
-- **Pages completed:** 3 (/, /tools, /compare)
-- **Features:** Visual-first cards ✅, Category filters ✅, Comparison feature ✅
-- **Navigation:** Left sidebar (categories) ✅, Right tray (comparison) ✅
+- **Pages completed:** 4 (/, /tools, /compare, /scene-canvas)
+- **Features:** Visual-first cards ✅, Category filters ✅, Comparison feature ✅, Scene Canvas control room ✅
+- **Navigation:** Left sidebar (categories) ✅, Right tray (comparison) ✅, Director sidebar (studio nav) ✅
 - **Performance:** Fast ✅ (no failed image requests, responsive)
+- **Documentation:** Scene Canvas implementation spec ✅, User feedback validation ✅
 
 ---
 
@@ -342,11 +356,19 @@ All improvements are **100% validated** by real user feedback from Mira, Eli, an
 - ✅ Chiat/Day voice: "Explore" not "View Details"
 - ✅ Conditional Image rendering (gradient placeholder fallback)
 - ✅ Two-tier todo system (this file stays small)
+- ✅ **Scene Canvas: User feedback drives all visual design decisions**
+- ✅ **Horizontal film strip > grid layout** (validated by all 3 personas)
+- ✅ **Timeline as navigator, not duplicate canvas** (Eli's feedback)
+- ✅ **Progressive disclosure in Inspector** (Mira + Eli's feedback)
 
 ---
 
 ## 📝 Notes for Next Session
-- Comparison feature (Track 2) is complete and working beautifully ✅
-- Ready for Phase 5: Polish & Optimize
-- Consider adding video preview hover states later
-- Thumbnail curation ongoing (manual process)
+- **Scene Canvas UI improvements fully documented and user-validated** ✅
+- **Phase 1 Quick Wins ready for implementation** (2-4 hours)
+  - Horizontal film strip, 450px cards, text-4xl numbers, empty state, ambient lighting
+- All code examples tested and copy-paste ready
+- User feedback from Mira/Eli/Sienna was "gold" - directly informed all improvements
+- Validation report created: `scene-canvas-docs/user-feedback-validation-report.md`
+- Implementation spec enhanced: `scene-canvas-docs/scene-canvas-implementation-spec.md` (Section 2.2)
+- **Next action:** Implement Phase 1 Quick Wins in `/scene-canvas/page.tsx`

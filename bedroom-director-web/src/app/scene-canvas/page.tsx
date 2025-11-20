@@ -5,7 +5,7 @@ import { useScene } from "@/contexts/SceneContext";
 import { supabase } from "@/lib/supabase";
 import DirectorSidebar, { SidebarSection } from "@/components/layout/DirectorSidebar";
 import TimelineRail from "@/components/scene/TimelineRail";
-import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight } from "lucide-react";
+import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight, Sparkles } from "lucide-react";
 
 export default function SceneCanvasPage() {
   const {
@@ -157,9 +157,9 @@ export default function SceneCanvasPage() {
     setIsGenerating(true);
 
     try {
-      // 1. Check for Supabase keys
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-        alert("Please add your Supabase keys to .env.local to enable cloud uploads.");
+      // 1. Check for Supabase configuration
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || !supabase) {
+        alert("Visual Bible uploads are not configured. Please add your Supabase keys to .env.local (and deployment env) to enable cloud uploads.");
         setIsGenerating(false);
         return;
       }
@@ -762,106 +762,230 @@ export default function SceneCanvasPage() {
 
               {/* Reel Wall - Primary Canvas */}
               <div
-                className={`flex-1 overflow-auto transition-all duration-300 bg-black/20
+                className={`flex-1 overflow-hidden transition-all duration-300 bg-gradient-radial from-bedroom-purple/5 via-black/20 to-black/30 relative
                   ${mobileTab === "canvas" ? "block" : "hidden"}
                   lg:block
-                  ${inspectorOpen ? "mr-96" : ""}
                 `}
               >
-                <div className="max-w-7xl mx-auto px-6 py-8">
-                  {/* Reel Wall Header */}
-                  <div className="mb-6">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Film className="w-6 h-6 text-bedroom-purple" />
-                      <h2 className="text-2xl font-bold text-screen-white">Reel Wall</h2>
+                {/* Film Grain Texture Overlay */}
+                <div className="absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-overlay"
+                  style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}
+                />
+
+                <div className="h-full overflow-auto relative z-10">
+                  <div className={`px-8 py-8 ${inspectorOpen ? 'pr-[400px]' : 'pr-8'} transition-all duration-300`}>
+                    {/* Reel Wall Header */}
+                    <div className="mb-8">
+                      <div className="flex items-center gap-4 mb-3">
+                        <Film className="w-8 h-8 text-bedroom-purple" />
+                        <h2 className="text-3xl font-black text-screen-white tracking-tight">Reel Wall</h2>
+                      </div>
+                      <p className="text-screen-white/60 text-sm pl-12">
+                        Your film at a glance. Click any scene to direct.
+                      </p>
                     </div>
-                    <p className="text-screen-white/60 text-sm">
-                      Your film at a glance. Select a scene to direct.
-                    </p>
-                  </div>
 
-                  {/* Scene Cards Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {project.scenes.map((scene, index) => (
-                      <button
-                        key={scene.id}
-                        onClick={() => {
-                          setActiveScene(scene.id);
-                          setInspectorOpen(true);
-                        }}
-                        className={`
-                    group relative aspect-video rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden
-                    ${activeSceneId === scene.id
-                            ? "border-bedroom-purple/60 bg-bedroom-purple/5 shadow-[0_0_40px_rgba(124,58,237,0.15)] scale-[1.02]"
-                            : "border-white/5 hover:border-white/20 hover:bg-white/5 hover:shadow-2xl hover:shadow-black/50 hover:-translate-y-1"
-                          }
-                  `}              >
-                        {/* Film Frame */}
-                        <div className="aspect-video bg-gradient-to-br from-black/80 to-black/60 border-4 border-black/40 relative">
-                          {/* Scene Number Badge */}
-                          <div className="absolute top-3 left-3 bg-bedroom-purple text-screen-white text-lg font-bold px-3 py-1.5 rounded-lg shadow-lg">
-                            {index + 1}
+                    {/* Empty State with Starter Templates */}
+                    {project.scenes.length === 0 ? (
+                      <div className="max-w-4xl mx-auto text-center py-20">
+                        {/* Hero Icon + Headline */}
+                        <div className="mb-12">
+                          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-bedroom-purple/10 border-4 border-bedroom-purple/30 mb-6">
+                            <Film className="w-12 h-12 text-bedroom-purple" />
                           </div>
-
-                          {/* Status Badge */}
-                          {scene.status === "locked" && (
-                            <div className="absolute top-3 right-3 bg-yellow-500/90 text-director-black p-2 rounded-lg">
-                              <Lock className="w-4 h-4" />
-                            </div>
-                          )}
-
-                          {/* Placeholder Visual */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            {scene.generatedMedia.length > 0 ? (
-                              <div className="text-center">
-                                <div className="text-4xl font-bold text-bedroom-purple mb-2">
-                                  {scene.generatedMedia.length}
-                                </div>
-                                <div className="text-xs text-screen-white/60 uppercase tracking-wide">
-                                  {scene.generatedMedia.length === 1 ? "Take" : "Takes"}
-                                </div>
-                              </div>
-                            ) : (
-                              <Film className="w-16 h-16 text-screen-white/10" />
-                            )}
-                          </div>
-
-                          {/* Active Scene Glow */}
-                          {scene.id === activeSceneId && (
-                            <div className="absolute inset-0 bg-bedroom-purple/10 pointer-events-none" />
-                          )}
-                        </div>
-
-                        {/* Film Slate Bottom */}
-                        <div className="bg-black/90 border-t-2 border-bedroom-purple/20 p-4">
-                          <h3
-                            className={`font-bold mb-1 truncate ${scene.id === activeSceneId ? "text-bedroom-purple" : "text-screen-white"
-                              }`}
-                          >
-                            {scene.title}
+                          <h3 className="text-4xl font-black text-screen-white mb-3 tracking-tight">
+                            Start Your First Scene
                           </h3>
-                          <p className="text-xs text-screen-white/50 line-clamp-2 h-8">
-                            {scene.compiledPrompt || "Empty scene - click to direct"}
+                          <p className="text-screen-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
+                            Every great film begins with a single frame. Choose a template below to get started, or use Director Chat to brainstorm your vision.
                           </p>
                         </div>
-                      </button>
-                    ))}
 
-                    {/* Add Scene Card */}
-                    <button
-                      onClick={() => addScene()}
-                      className="aspect-video rounded-2xl border-4 border-dashed border-bedroom-purple/30 hover:border-bedroom-purple/60 bg-black/40 hover:bg-black/60 transition-all duration-300 flex items-center justify-center group"
-                    >
-                      <div className="text-center">
-                        <Plus className="w-12 h-12 text-bedroom-purple/60 group-hover:text-bedroom-purple mx-auto mb-2 transition-colors" />
-                        <span className="text-sm font-medium text-screen-white/60 group-hover:text-screen-white/90 transition-colors">
-                          New Scene
-                        </span>
+                        {/* 3 Starter Templates */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                          {[
+                            {
+                              title: "Opening Shot",
+                              desc: "Establish the world",
+                              icon: "🎬",
+                              notes: "Set the tone and introduce your audience to the story's universe. Think wide shots, atmospheric lighting, and world-building."
+                            },
+                            {
+                              title: "Main Beat",
+                              desc: "Core action sequence",
+                              icon: "⚡",
+                              notes: "The heart of your story. This is where the drama unfolds, conflicts arise, and your vision takes center stage."
+                            },
+                            {
+                              title: "Closing Shot",
+                              desc: "Leave them wanting more",
+                              icon: "✨",
+                              notes: "End with impact. A memorable finale that resonates long after the credits roll."
+                            }
+                          ].map((template) => (
+                            <button
+                              key={template.title}
+                              onClick={() => addScene(undefined, { title: template.title, compiledPrompt: template.notes })}
+                              className="group relative p-8 rounded-2xl border-2 border-bedroom-purple/30 hover:border-bedroom-purple/70 bg-black/40 hover:bg-black/60 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(124,58,237,0.3)]"
+                            >
+                              <div className="text-6xl mb-4">{template.icon}</div>
+                              <h4 className="text-xl font-black text-screen-white mb-2 tracking-tight">
+                                {template.title}
+                              </h4>
+                              <p className="text-sm text-screen-white/50 mb-4">
+                                {template.desc}
+                              </p>
+                              <div className="text-xs text-screen-white/40 leading-relaxed">
+                                {template.notes}
+                              </div>
+                              <div className="absolute inset-0 rounded-2xl bg-bedroom-purple/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                            </button>
+                          ))}
+                        </div>
+
+                        {/* Secondary CTA - Director Chat */}
+                        <div className="p-6 rounded-xl border border-white/10 bg-black/20 max-w-2xl mx-auto">
+                          <p className="text-sm text-screen-white/60 mb-3">
+                            <span className="font-semibold text-bedroom-purple">Pro tip:</span> Not sure where to start? Use <span className="font-semibold">Director Chat</span> on the left to brainstorm ideas. The AI will help structure your scenes automatically.
+                          </p>
+                          <button
+                            onClick={() => setMobileTab("chat")}
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-bedroom-purple/10 hover:bg-bedroom-purple/20 border border-bedroom-purple/30 hover:border-bedroom-purple/60 rounded-lg text-sm font-medium text-screen-white transition-all"
+                          >
+                            <Sparkles className="w-4 h-4" />
+                            Open Director Chat
+                          </button>
+                        </div>
                       </div>
-                    </button>
+                    ) : (
+                      /* Horizontal Film Strip */
+                      <div className="flex gap-8 overflow-x-auto pb-6" style={{
+                        scrollbarWidth: 'thin',
+                        scrollbarColor: 'rgba(124, 58, 237, 0.2) transparent'
+                      }}>
+                        {project.scenes.map((scene, index) => (
+                          <button
+                            key={scene.id}
+                            onClick={() => {
+                              setActiveScene(scene.id);
+                              setInspectorOpen(true);
+                            }}
+                            style={{ minWidth: '450px', width: '450px' }}
+                            className={`
+                          group relative flex-shrink-0 transition-all duration-500 cursor-pointer
+                          ${activeSceneId === scene.id
+                                ? "scale-105"
+                                : "hover:scale-[1.02]"
+                              }
+                        `}
+                          >
+                            {/* Film Frame Container */}
+                            <div className={`
+                          relative rounded-2xl overflow-hidden
+                          border-8 border-black
+                          ${activeSceneId === scene.id
+                                ? "shadow-[0_0_60px_rgba(124,58,237,0.4)] ring-4 ring-bedroom-purple/30"
+                                : "shadow-2xl shadow-black/60 hover:shadow-[0_0_40px_rgba(124,58,237,0.2)]"
+                              }
+                        `}>
+                              {/* Film Frame Visual Area */}
+                              <div className="aspect-video bg-gradient-to-br from-black/90 via-black/80 to-black/70 border-2 border-black/60 relative">
+
+                                {/* Giant Scene Number */}
+                                <div
+                                  style={{ fontSize: '60px' }}
+                                  className={`
+                              absolute top-6 left-6 
+                              font-black tracking-tighter leading-none
+                              drop-shadow-[0_0_20px_rgba(124,58,237,0.6)]
+                              ${activeSceneId === scene.id ? "text-bedroom-purple" : "text-screen-white"}
+                              transition-colors duration-300
+                            `}>
+                                  {index + 1}
+                                </div>
+
+                                {/* Status Badge */}
+                                {scene.status === "locked" && (
+                                  <div className="absolute top-6 right-6 bg-yellow-500/90 text-director-black p-3 rounded-xl shadow-xl backdrop-blur-sm">
+                                    <Lock className="w-6 h-6" />
+                                  </div>
+                                )}
+
+                                {/* Center Visual - Takes Count or Empty */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  {scene.generatedMedia.length > 0 ? (
+                                    <div className="text-center">
+                                      <div className="text-6xl font-black text-bedroom-purple mb-3 drop-shadow-2xl">
+                                        {scene.generatedMedia.length}
+                                      </div>
+                                      <div className="text-sm text-screen-white/60 uppercase tracking-widest font-bold">
+                                        {scene.generatedMedia.length === 1 ? "Take" : "Takes"}
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <Film className="w-24 h-24 text-screen-white/5" />
+                                  )}
+                                </div>
+
+                                {/* Active Scene Glow Overlay */}
+                                {scene.id === activeSceneId && (
+                                  <div className="absolute inset-0 bg-gradient-to-t from-bedroom-purple/20 to-transparent pointer-events-none animate-pulse" />
+                                )}
+                              </div>
+
+                              {/* Clapperboard Film Slate */}
+                              <div className="bg-black border-t-4 border-bedroom-purple/30 p-5 relative">
+                                {/* Diagonal Stripes (Clapperboard) */}
+                                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-bedroom-purple/20 to-transparent" />
+
+                                <h3 className={`
+                              text-xl font-black mb-2 truncate tracking-tight
+                              ${scene.id === activeSceneId ? "text-bedroom-purple" : "text-screen-white"}
+                              transition-colors duration-300
+                            `}>
+                                  {scene.title}
+                                </h3>
+                                <p className="text-xs text-screen-white/50 line-clamp-2 leading-relaxed">
+                                  {scene.compiledPrompt || "Empty scene - click to direct"}
+                                </p>
+
+                                {/* Footer Meta */}
+                                <div className="flex items-center gap-3 mt-3 pt-3 border-t border-white/5">
+                                  <span className="text-[10px] uppercase tracking-wider text-screen-white/40 font-bold">
+                                    {scene.status}
+                                  </span>
+                                  {scene.generatedMedia.length > 0 && (
+                                    <>
+                                      <span className="text-screen-white/20">•</span>
+                                      <span className="text-[10px] text-screen-white/40">
+                                        {scene.generatedMedia.length} {scene.generatedMedia.length === 1 ? "take" : "takes"}
+                                      </span>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </button>
+                        ))}
+
+                        {/* Add Scene Card */}
+                        <button
+                          onClick={() => addScene()}
+                          style={{ minWidth: '450px', width: '450px' }}
+                          className="flex-shrink-0 aspect-video rounded-2xl border-4 border-dashed border-bedroom-purple/30 hover:border-bedroom-purple/60 bg-black/40 hover:bg-black/60 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(124,58,237,0.2)] transition-all duration-300 flex items-center justify-center group"
+                        >
+                          <div className="text-center">
+                            <Plus className="w-16 h-16 text-bedroom-purple/60 group-hover:text-bedroom-purple mx-auto mb-3 transition-colors" />
+                            <span className="text-lg font-black text-screen-white/60 group-hover:text-screen-white/90 transition-colors tracking-tight">
+                              New Scene
+                            </span>
+                          </div>
+                        </button>
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div >
+                </div >
+              </div>
 
               {/* Inspector Drawer - Right Side */}
               {

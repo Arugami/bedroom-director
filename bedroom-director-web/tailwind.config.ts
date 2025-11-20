@@ -79,6 +79,9 @@ const config: Config = {
       animation: {
         shimmer: 'shimmer 2s infinite',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
