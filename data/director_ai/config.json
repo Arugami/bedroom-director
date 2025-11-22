@@ -1,0 +1,8 @@
+{
+  "textModel": "openai/gpt-4o-mini",
+  "visionModel": "google/gemini-2.5-flash",
+  "reasoningEffort": "none",
+  "chatPromptExtra": "",
+  "chatPromptOverride": "",
+  "temperature": 0.7
+}

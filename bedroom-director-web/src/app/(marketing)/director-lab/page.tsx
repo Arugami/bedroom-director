@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { GlassPanel } from "@/components/ui/GlassPanel";
+import { ChevronDown, ChevronRight, Save, AlertCircle, CheckCircle2, Settings2, Sparkles, Terminal } from "lucide-react";
 
 type ReasoningEffort = "high" | "medium" | "low" | "minimal" | "none";
 
@@ -14,7 +16,8 @@ interface DirectorConfig {
 }
 
 const MODEL_LABELS: Record<string, string> = {
-  "x-ai/grok-4.1-fast-free": "Grok 4.1 Fast (free promo)",
+  "x-ai/grok-4.1-fast:free": "Grok 4.1 Fast (Free Promo)", // Fixed ID
+  "openai/gpt-4o-mini": "GPT-4o mini (OpenAI via OpenRouter)",
   "x-ai/grok-4-fast": "Grok 4 Fast (standard)",
   "x-ai/grok-4.1-fast": "Grok 4.1 Fast (full)",
 };
@@ -28,33 +31,75 @@ const DEFAULT_CONFIG: DirectorConfig = {
   promptPreview: "",
 };
 
+// Collapsible Section Component
+const CollapsibleSection = ({
+  title,
+  children,
+  icon: Icon,
+  defaultOpen = false
+}: {
+  title: string;
+  children: React.ReactNode;
+  icon?: React.ElementType;
+  defaultOpen?: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className="border border-white/5 rounded-lg bg-black/20 overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors"
+      >
+        <div className="flex items-center gap-2 text-sm font-medium text-screen-white/90">
+          {Icon && <Icon className="w-4 h-4 text-bedroom-purple" />}
+          {title}
+        </div>
+        {isOpen ? (
+          <ChevronDown className="w-4 h-4 text-screen-white/50" />
+        ) : (
+          <ChevronRight className="w-4 h-4 text-screen-white/50" />
+        )}
+      </button>
+      {isOpen && (
+        <div className="px-4 pb-4 pt-2 border-t border-white/5 animate-in slide-in-from-top-2 duration-200">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function DirectorLabPage() {
   const [config, setConfig] = useState<DirectorConfig>(DEFAULT_CONFIG);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isDirty, setIsDirty] = useState(false);
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await fetch("/api/director/config");
-        if (!res.ok) {
-          throw new Error("Failed to load config");
-        }
-        const data = (await res.json()) as DirectorConfig;
-        setConfig((prev) => ({ ...prev, ...data }));
-      } catch (err: any) {
-        console.warn(
-          "Director Lab: failed to load config from API, using defaults instead",
-          err
-        );
-      } finally {
-        setLoading(false);
+  const loadConfig = async () => {
+    try {
+      const res = await fetch("/api/director/config");
+      if (!res.ok) {
+        throw new Error("Failed to load config");
       }
-    };
-    load();
+      const data = (await res.json()) as DirectorConfig;
+      setConfig((prev) => ({ ...prev, ...data }));
+      setIsDirty(false);
+    } catch (err: any) {
+      console.warn(
+        "Director Lab: failed to load config from API, using defaults instead",
+        err
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadConfig();
   }, []);
 
   const handleChange = (
@@ -66,28 +111,32 @@ export default function DirectorLabPage() {
       [field]: value,
     }));
     setIsDirty(true);
+    setSuccess(false);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setSaving(true);
-    setMessage(null);
     setError(null);
+    setSuccess(false);
 
-      try {
-        const res = await fetch("/api/director/config", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(config),
-        });
-        if (!res.ok) {
+    try {
+      const res = await fetch("/api/director/config", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(config),
+      });
+      if (!res.ok) {
         const payload = await res.json().catch(() => ({}));
         throw new Error(payload.error || "Failed to save config");
       }
       const data = (await res.json()) as DirectorConfig;
       setConfig(data);
-      setMessage("Director AI settings updated. New chats will use this config.");
       setIsDirty(false);
+      setSuccess(true);
+
+      // Clear success state after 2 seconds
+      setTimeout(() => setSuccess(false), 2000);
     } catch (err: any) {
       setError(err.message || "Failed to save config");
     } finally {
@@ -123,286 +172,293 @@ GOAL:
   };
 
   const overrideActive = !!config.chatPromptOverride?.trim();
-  const modelLabel =
-    MODEL_LABELS[config.textModel] || config.textModel || "Not set";
+  const modelLabel = MODEL_LABELS[config.textModel] || config.textModel || "Not set";
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black via-director-black to-black text-screen-white relative overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-soft-light"
-        style={{
-          backgroundImage:
-            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
-        }}
-      />
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <div className="flex flex-col-reverse lg:flex-row items-stretch lg:items-start gap-6 lg:gap-12">
-          <div className="max-w-xl mt-6 lg:mt-0">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
-              Director Lab
-            </h1>
-            <p className="text-sm text-screen-white/70 mb-3">
-              Fine-tune how Director AI thinks and talks inside Scene Canvas.
-              Changes here apply to new chats and structure runs.
-            </p>
-            <p className="text-xs text-screen-white/50">
-              Use this space to experiment with Grok routing, reasoning effort,
-              and tone before you lock choices into config and pricing tiers.
-            </p>
+    <main className="min-h-screen bg-black text-screen-white relative overflow-hidden font-sans">
+      {/* Background Ambience */}
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-bedroom-purple/10 via-black to-black pointer-events-none" />
+      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 pointer-events-none" />
+
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 max-w-7xl mx-auto">
+
+          {/* Header & Context - Left Side */}
+          <div className="lg:w-1/3 space-y-6">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-bedroom-purple/20 flex items-center justify-center border border-bedroom-purple/30">
+                  <Settings2 className="w-5 h-5 text-bedroom-purple" />
+                </div>
+                <h1 className="text-3xl font-bold tracking-tight text-white">
+                  Director Lab
+                </h1>
+              </div>
+              <p className="text-screen-white/70 leading-relaxed">
+                Fine-tune the brain of your AI Director. Adjust reasoning depth, creativity, and personality to match your creative workflow.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3">
+              <h3 className="text-sm font-semibold text-white flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                Pro Tip
+              </h3>
+              <p className="text-xs text-screen-white/60 leading-relaxed">
+                Use <strong>Low Effort</strong> for quick brainstorming chats. Switch to <strong>High Effort</strong> when you need deep structural analysis or complex scene breakdowns.
+              </p>
+            </div>
+
+            {/* Status Indicators */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs py-2 border-b border-white/5">
+                <span className="text-screen-white/50">Active Model</span>
+                <span className="font-mono text-bedroom-purple bg-bedroom-purple/10 px-2 py-0.5 rounded">
+                  {modelLabel}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs py-2 border-b border-white/5">
+                <span className="text-screen-white/50">Reasoning</span>
+                <span className="font-mono text-screen-white/80">
+                  {config.reasoningEffort.toUpperCase()}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs py-2 border-b border-white/5">
+                <span className="text-screen-white/50">Creativity</span>
+                <span className="font-mono text-screen-white/80">
+                  {Math.round(config.temperature * 100)}%
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div className="w-full lg:max-w-xl">
+          {/* Configuration Form - Right Side */}
+          <div className="lg:w-2/3">
             {loading ? (
-              <p className="text-sm text-screen-white/60">Loading config…</p>
+              <GlassPanel className="h-96 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-6 h-6 border-2 border-bedroom-purple border-t-transparent rounded-full animate-spin" />
+                  <p className="text-sm text-screen-white/50">Loading configuration...</p>
+                </div>
+              </GlassPanel>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                id="director-lab-form"
-                className="space-y-6 bg-black/70 border border-white/10 rounded-xl p-4 sm:p-6 shadow-[0_18px_60px_rgba(0,0,0,0.75)] backdrop-blur-xl"
-              >
-                {/* Summary strip */}
-                <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-white/10">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-screen-white/80">
-                      Model: <span className="font-semibold">{modelLabel}</span>
-                    </span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-screen-white/80">
-                      Effort: <span className="font-semibold">{config.reasoningEffort}</span>
-                    </span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-screen-white/80">
-                      Temp: <span className="font-semibold">{config.temperature.toFixed(2)}</span>
-                    </span>
-                    <span
-                      className={`px-2 py-1 rounded-full text-[11px] border ${
-                        overrideActive
-                          ? "bg-amber-500/10 border-amber-400/60 text-amber-200"
-                          : "bg-white/5 border-white/10 text-screen-white/70"
-                      }`}
-                    >
-                      Override: {overrideActive ? "On" : "Off"}
-                    </span>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <GlassPanel title="Core Configuration">
+                  <div className="space-y-6">
+                    {/* Model Selection */}
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-screen-white/80 uppercase tracking-wider">
+                        Director Text Model
+                      </label>
+                      <div className="relative">
+                        <select
+                          value={config.textModel || "openai/gpt-4o-mini"}
+                          onChange={(e) => handleChange("textModel", e.target.value)}
+                          className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-sm text-screen-white focus:outline-none focus:border-bedroom-purple/50 focus:ring-1 focus:ring-bedroom-purple/50 transition-all appearance-none"
+                        >
+                          <option value="openai/gpt-4o-mini">GPT-4o mini (OpenAI via OpenRouter)</option>
+                          <option value="x-ai/grok-4.1-fast:free">Grok 4.1 Fast (Free Promo)</option>
+                          <option value={config.textModel || "custom"}>
+                            Custom... ({config.textModel || "set via env/config"})
+                          </option>
+                        </select>
+                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-screen-white/30 pointer-events-none" />
+                      </div>
+                      <p className="text-[11px] text-screen-white/40">
+                        Choose the primary text model for Director Chat. For advanced IDs, set <code>DIRECTOR_TEXT_MODEL</code> or update <code>config.json</code>; they0will appear here as <em>Custom...</em>.
+                      </p>
+                    </div>
+
+                    {/* Reasoning Effort Slider */}
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <label className="text-xs font-semibold text-screen-white/80 uppercase tracking-wider">
+                          Reasoning Effort
+                        </label>
+                        <span className="text-xs font-mono text-bedroom-purple bg-bedroom-purple/10 px-2 py-0.5 rounded">
+                          {config.reasoningEffort}
+                        </span>
+                      </div>
+                      <input
+                        type="range"
+                        min={0}
+                        max={4}
+                        step={1}
+                        value={["none", "minimal", "low", "medium", "high"].indexOf(config.reasoningEffort) || 0}
+                        onChange={(e) => {
+                          const levels: ReasoningEffort[] = ["none", "minimal", "low", "medium", "high"];
+                          handleChange("reasoningEffort", levels[Number(e.target.value)] || "low");
+                        }}
+                        className="w-full h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer accent-bedroom-purple hover:accent-bedroom-purple/80 transition-all"
+                      />
+                      <div className="flex justify-between text-[10px] text-screen-white/30 font-mono uppercase">
+                        <span>None</span>
+                        <span>High</span>
+                      </div>
+                    </div>
+
+                    {/* Temperature Slider */}
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <label className="text-xs font-semibold text-screen-white/80 uppercase tracking-wider">
+                          Temperature (Creativity)
+                        </label>
+                        <span className="text-xs font-mono text-bedroom-purple bg-bedroom-purple/10 px-2 py-0.5 rounded">
+                          {config.temperature.toFixed(2)}
+                        </span>
+                      </div>
+                      <input
+                        type="range"
+                        min={0}
+                        max={200}
+                        step={5}
+                        value={Math.round(config.temperature * 100)}
+                        onChange={(e) => handleChange("temperature", Number(e.target.value) / 100)}
+                        className="w-full h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer accent-bedroom-purple hover:accent-bedroom-purple/80 transition-all"
+                      />
+                      <div className="flex justify-between text-[10px] text-screen-white/30 font-mono uppercase">
+                        <span>Deterministic</span>
+                        <span>Creative</span>
+                      </div>
+                    </div>
                   </div>
-                  <span
-                    className={`text-[11px] font-medium ${
-                      isDirty
-                        ? "text-amber-300"
-                        : "text-screen-white/50"
-                    }`}
-                  >
-                    {isDirty ? "Unsaved changes" : "All changes saved"}
-                  </span>
+                </GlassPanel>
+
+                {/* Advanced Settings */}
+                <div className="space-y-4">
+                  <CollapsibleSection title="Style Guidelines" icon={Sparkles}>
+                    <div className="space-y-2">
+                      <p className="text-xs text-screen-white/50 mb-2">
+                        Add specific instructions for the Director's personality and output style.
+                      </p>
+                      <textarea
+                        value={config.chatPromptExtra}
+                        onChange={(e) => handleChange("chatPromptExtra", e.target.value)}
+                        rows={5}
+                        className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-sm text-screen-white placeholder:text-screen-white/20 focus:outline-none focus:border-bedroom-purple/50 focus:ring-1 focus:ring-bedroom-purple/50 transition-all resize-none"
+                        placeholder="e.g. Be sarcastic, use film noir metaphors, keep responses under 50 words..."
+                      />
+                    </div>
+                  </CollapsibleSection>
+
+                  <CollapsibleSection title="System Prompt Override" icon={Terminal}>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${overrideActive ? "bg-amber-500" : "bg-white/20"}`} />
+                          <span className="text-xs text-screen-white/50">
+                            {overrideActive ? "Override Active" : "Using Default Template"}
+                          </span>
+                        </div>
+                      </div>
+                      <textarea
+                        value={config.chatPromptOverride}
+                        onChange={(e) => handleChange("chatPromptOverride", e.target.value)}
+                        rows={10}
+                        className={`w-full rounded-lg px-4 py-3 text-xs font-mono leading-relaxed focus:outline-none transition-all resize-y ${overrideActive
+                          ? "bg-amber-950/20 border border-amber-500/30 text-amber-100/90 focus:border-amber-500/50"
+                          : "bg-black/40 border border-white/10 text-screen-white/70 focus:border-bedroom-purple/50"
+                          }`}
+                        placeholder="Paste a full system prompt here to completely override the default behavior..."
+                      />
+                    </div>
+                  </CollapsibleSection>
+
+                  <CollapsibleSection title="Prompt Preview" icon={CheckCircle2}>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-end mb-2">
+                        <button
+                          type="button"
+                          onClick={() => handleChange(
+                            "chatPromptOverride",
+                            buildPromptPreview({ ...config, chatPromptOverride: "", chatPromptExtra: "" })
+                          )}
+                          className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-screen-white/70 hover:text-white text-[10px] font-medium rounded-md transition-all flex items-center gap-2"
+                        >
+                          <Terminal className="w-3 h-3" />
+                          Copy to Override
+                        </button>
+                      </div>
+                      <textarea
+                        value={buildPromptPreview(config)}
+                        readOnly
+                        rows={10}
+                        className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-3 text-xs font-mono text-screen-white/60 resize-none focus:outline-none"
+                      />
+                    </div>
+                  </CollapsibleSection>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold mb-1">
-                    Director Text Model
-                  </label>
-                  <select
-                    value={config.textModel || "x-ai/grok-4.1-fast-free"}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                      handleChange("textModel", e.target.value)
-                    }
-                    className="w-full bg-gradient-to-r from-black/70 via-black/60 to-black/70 border border-bedroom-purple/40 rounded-lg px-3 py-2.5 text-sm text-screen-white focus:outline-none focus:border-bedroom-purple/80 focus:ring-2 focus:ring-bedroom-purple/40 transition"
-                  >
-                    <option value="x-ai/grok-4.1-fast-free">
-                      Grok 4.1 Fast (free promo)
-                    </option>
-                    <option value={config.textModel || "custom"}>
-                      Custom… ({config.textModel || "set via env/config"})
-                    </option>
-                  </select>
-                  <p className="mt-1 text-[11px] text-screen-white/50">
-                    Use the free Grok promo model for Director Chat by default.
-                    For any other model, set <code>DIRECTOR_TEXT_MODEL</code> in
-                    env or edit <code>config.json</code>; it will appear here as
-                    “Custom…”.
-                  </p>
+                {/* Sticky Action Bar */}
+                <div className="sticky bottom-6 z-10">
+                  <GlassPanel className="flex items-center justify-between py-3 px-6 bg-black/90 backdrop-blur-2xl border-bedroom-purple/20 shadow-[0_0_30px_rgba(124,58,237,0.1)]">
+                    <div className="flex-1">
+                      {/* Status Text */}
+                      <div className="flex flex-col">
+                        {isDirty ? (
+                          <span className="text-xs font-medium text-amber-400 flex items-center gap-2">
+                            <AlertCircle className="w-3 h-3" />
+                            Unsaved changes
+                          </span>
+                        ) : (
+                          <span className="text-xs font-medium text-screen-white/50 flex items-center gap-2">
+                            <CheckCircle2 className="w-3 h-3" />
+                            All changes saved
+                          </span>
+                        )}
+                        {error && (
+                          <span className="text-[10px] text-red-400 mt-0.5">
+                            {error}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 ml-8">
+                      {isDirty && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (confirm("Discard unsaved changes?")) {
+                              loadConfig();
+                            }
+                          }}
+                          className="px-3 py-1.5 text-xs text-screen-white/50 hover:text-white transition-colors"
+                        >
+                          Discard
+                        </button>
+                      )}
+                      <button
+                        type="submit"
+                        disabled={saving || (!isDirty && !success)}
+                        className={`flex items-center gap-2 px-6 py-2 text-sm font-semibold rounded-lg transition-all shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:shadow-[0_0_25px_rgba(124,58,237,0.5)] ${success
+                          ? "bg-green-500 text-white hover:bg-green-600"
+                          : "bg-bedroom-purple text-white hover:bg-bedroom-purple/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                          }`}
+                      >
+                        {saving ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            <span>Saving...</span>
+                          </>
+                        ) : success ? (
+                          <>
+                            <CheckCircle2 className="w-4 h-4" />
+                            <span>Saved!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Save className="w-4 h-4" />
+                            <span>Save Changes</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </GlassPanel>
                 </div>
-
-                <div>
-                  <label className="block text-xs font-semibold mb-1">
-                    Grok Reasoning Effort
-                  </label>
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="range"
-                      min={0}
-                      max={4}
-                      step={1}
-                      value={
-                        ["none", "minimal", "low", "medium", "high"].indexOf(
-                          config.reasoningEffort
-                        ) || 0
-                      }
-                      onChange={(e) => {
-                        const levels: ReasoningEffort[] = [
-                          "none",
-                          "minimal",
-                          "low",
-                          "medium",
-                          "high",
-                        ];
-                        const idx = Number(e.target.value);
-                        handleChange("reasoningEffort", levels[idx] || "low");
-                      }}
-                      className="flex-1"
-                    />
-                    <span className="text-[11px] text-screen-white/70 w-20">
-                      {config.reasoningEffort}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[11px] text-screen-white/50">
-                    Controls Grok’s reasoning tokens via OpenRouter. Lower
-                    effort = faster, higher effort = deeper thinking.
-                  </p>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold mb-1">
-                    Temperature
-                  </label>
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="range"
-                      min={0}
-                      max={200}
-                      step={5}
-                      value={Math.round(config.temperature * 100)}
-                      onChange={(e) =>
-                        handleChange(
-                          "temperature",
-                          Number(e.target.value) / 100
-                        )
-                      }
-                      className="flex-1"
-                    />
-                    <span className="text-[11px] text-screen-white/70 w-16">
-                      {config.temperature.toFixed(2)}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[11px] text-screen-white/50">
-                    0 = deterministic, 1 = more creative. Grok supports 0–2;
-                    we clamp values into that range.
-                  </p>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold mb-1">
-                    Extra Style Guidelines for Director Chat
-                  </label>
-                  <textarea
-                    value={config.chatPromptExtra}
-                    onChange={(e) =>
-                      handleChange("chatPromptExtra", e.target.value)
-                    }
-                    rows={5}
-                    className="w-full bg-black/60 border border-white/10 rounded-md px-3 py-2 text-sm text-screen-white placeholder:text-screen-white/40 focus:outline-none focus:border-bedroom-purple/60"
-                    placeholder={
-                      "Example:\n- Open with a short, punchy line.\n- Use concrete film references when helpful.\n- Keep answers under 4 sentences unless asked for more detail."
-                    }
-                  />
-                  <p className="mt-1 text-[11px] text-screen-white/50">
-                    This text is appended as “ADDITIONAL STYLE GUIDELINES” to
-                    the Director Chat system prompt.
-                  </p>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold mb-1">
-                    System Prompt (Editable Override)
-                  </label>
-                  <textarea
-                    value={config.chatPromptOverride}
-                    onChange={(e) =>
-                      handleChange("chatPromptOverride", e.target.value)
-                    }
-                    rows={8}
-                    className={`w-full rounded-md px-3 py-2 text-[11px] text-screen-white/80 font-mono whitespace-pre-wrap border ${
-                      overrideActive
-                        ? "bg-amber-500/5 border-amber-400/70"
-                        : "bg-black/60 border-white/10"
-                    }`}
-                  />
-                  <p className="mt-1 text-[11px] text-screen-white/50">
-                    If you fill this in, Director Chat will use it as the full
-                    system prompt. Leave blank to use the default template plus
-                    Extra Style Guidelines above.
-                  </p>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold mb-1">
-                    Default Template (Preview)
-                  </label>
-                  <textarea
-                    value={buildPromptPreview(config)}
-                    readOnly
-                    rows={8}
-                    className="w-full bg-black/80 border border-white/15 rounded-md px-3 py-2 text-[11px] text-screen-white/80 font-mono whitespace-pre-wrap"
-                  />
-                  <div className="mt-2 flex items-center justify-between gap-2">
-                    <p className="text-[11px] text-screen-white/50">
-                      This is the built-in Director Chat template for a sample
-                      project, without overrides. Use it as a reference when
-                      crafting variants.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleChange(
-                          "chatPromptOverride",
-                          buildPromptPreview({
-                            ...config,
-                            chatPromptOverride: "",
-                            chatPromptExtra: "",
-                          })
-                        )
-                      }
-                      className="shrink-0 px-2.5 py-1 rounded-md border border-white/20 text-[11px] text-screen-white/80 hover:bg-white/5"
-                    >
-                      Copy to Override
-                    </button>
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-bedroom-purple text-white text-sm font-semibold hover:bg-bedroom-purple/80 disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {saving ? "Saving…" : "Save Director AI Settings"}
-                </button>
-
-                {message && (
-                  <p className="text-xs text-green-400 mt-2">{message}</p>
-                )}
-                {error && (
-                  <p className="text-xs text-red-400 mt-2">{error}</p>
-                )}
               </form>
             )}
           </div>
-        </div>
-      </div>
-      {/* Mobile sticky save bar */}
-      <div className="fixed inset-x-0 bottom-0 z-20 md:hidden">
-        <div className="mx-4 mb-4 rounded-xl border border-white/10 bg-black/80 backdrop-blur-xl px-3 py-2 flex items-center justify-between gap-3">
-          <div className="flex flex-col">
-            <span className="text-[11px] font-medium text-screen-white/80">
-              {isDirty ? "Unsaved changes" : "All changes saved"}
-            </span>
-            <span className="text-[10px] text-screen-white/50">
-              Director Lab · Affects new chats and structure runs
-            </span>
-          </div>
-          <button
-            type="submit"
-            form="director-lab-form"
-            disabled={saving}
-            className="px-3 py-1.5 rounded-md bg-bedroom-purple text-white text-xs font-semibold hover:bg-bedroom-purple/80 disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {saving ? "Saving…" : "Save"}
-          </button>
         </div>
       </div>
     </main>

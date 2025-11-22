@@ -4,6 +4,8 @@ import { useState, useEffect, useRef, FormEvent } from "react";
 import { useScene } from "@/contexts/SceneContext";
 import { supabase } from "@/lib/supabase";
 import DirectorSidebar, { SidebarSection } from "@/components/layout/DirectorSidebar";
+import DirectorChat from "@/components/chat/DirectorChat";
+
 import TimelineRail from "@/components/scene/TimelineRail";
 import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight, Sparkles, LayoutTemplate, Camera, Sun, Palette, MessageSquare, Check, Copy, ExternalLink, Settings, Download, Pin, Columns, Image as ImageIcon, LayoutGrid, Users, Wand2, Clock, Smartphone, Monitor, Square, RectangleHorizontal, PanelLeft, PanelRight } from "lucide-react";
 import { GlassPanel } from "@/components/ui/GlassPanel";
@@ -268,6 +270,111 @@ export default function SceneCanvasPage() {
     }
   };
 
+  // Handle chat message submission
+  const handleChatMessage = async (messageContent: string) => {
+    if (!project || !messageContent.trim()) return;
+
+    // Add user message immediately
+    addChatMessage({
+      role: 'user',
+      content: messageContent
+    });
+
+    setIsGenerating(true);
+
+    try {
+      // Call AI chat API
+      const response = await fetch("/api/director/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            ...chatMessages.map(m => ({ role: m.role, content: m.content })),
+            { role: "user", content: messageContent }
+          ],
+          projectContext: {
+            title: project.title,
+            bible: project.bible,
+            sceneCount: project.scenes.length
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Chat API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Process tool calls if any
+      if (data.tool_calls && data.tool_calls.length > 0) {
+        for (const toolCall of data.tool_calls) {
+          if (toolCall.function.name === "create_scene") {
+            const args = JSON.parse(toolCall.function.arguments);
+            addScene(undefined, {
+              title: args.title || "New Scene",
+              notes: args.description || ""
+            });
+          } else if (toolCall.function.name === "update_bible") {
+            const updates = JSON.parse(toolCall.function.arguments);
+            const updatedBible = { ...project.bible };
+
+            if (updates.characters && updates.characters.length > 0) {
+              const newCharacters = updates.characters.map((c: any) => ({
+                id: `char_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                name: c.name,
+                description: c.description
+              }));
+              updatedBible.characters = [...(updatedBible.characters || []), ...newCharacters];
+            }
+
+            if (updates.locations && updates.locations.length > 0) {
+              const newLocations = updates.locations.map((l: any) => ({
+                id: `loc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                name: l.name,
+                description: l.description
+              }));
+              updatedBible.locations = [...(updatedBible.locations || []), ...newLocations];
+            }
+
+            if (updates.aesthetic) {
+              if (!updatedBible.aesthetic) {
+                updatedBible.aesthetic = { palette: [], mood: [], era: "" };
+              }
+              if (updates.aesthetic.mood) {
+                updatedBible.aesthetic.mood = [...(updatedBible.aesthetic.mood || []), ...updates.aesthetic.mood];
+              }
+              if (updates.aesthetic.palette) {
+                updatedBible.aesthetic.palette = [...(updatedBible.aesthetic.palette || []), ...updates.aesthetic.palette];
+              }
+              if (updates.aesthetic.era) {
+                updatedBible.aesthetic.era = updates.aesthetic.era;
+              }
+            }
+
+            updateProjectBible(updatedBible);
+          }
+        }
+      }
+
+      // Add AI response
+      addChatMessage({
+        role: 'assistant',
+        content: data.content || "I'm here to help with your project!"
+      });
+
+    } catch (error) {
+      console.error("Chat error:", error);
+      addChatMessage({
+        role: 'assistant',
+        content: "Sorry, I encountered an error. Please try again."
+      });
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+
   // Auto-create first project with a branded name if none exist
   useEffect(() => {
     if (!hasAutoCreatedProject && projects.length === 0 && !project) {
@@ -464,10 +571,22 @@ export default function SceneCanvasPage() {
 
   const processImageUpload = async (file: File) => {
 
-    const currentProject = projectRef.current;
+    let currentProject = projectRef.current;
+
+    // Auto-create project if none exists
     if (!currentProject) {
-      console.error('No project found (in ref)');
-      return;
+      console.log('No project found, creating one...');
+      const defaultTitle = generateDefaultProjectTitle();
+      await createProject(defaultTitle);
+      // Wait a bit for the project to be created and ref to update
+      await new Promise(resolve => setTimeout(resolve, 100));
+      currentProject = projectRef.current;
+
+      if (!currentProject) {
+        console.error('Failed to create project for image upload');
+        alert('Please create a project first before uploading images.');
+        return;
+      }
     }
 
     try {
@@ -737,6 +856,48 @@ export default function SceneCanvasPage() {
                       </div>
                     )}
 
+                    {/* Visual Assets Grid */}
+                    {project?.bible?.visualAssets && project.bible.visualAssets.length > 0 && (
+                      <div className="space-y-2">
+                        <div className="font-bold text-bedroom-purple text-xs">Visual References</div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {project.bible.visualAssets.map((asset: any) => (
+                            <div
+                              key={asset.id}
+                              className="group relative aspect-square rounded-lg overflow-hidden bg-black/40 border border-white/10 hover:border-bedroom-purple/50 transition-all cursor-pointer"
+                              onClick={() => window.open(asset.url, '_blank')}
+                            >
+                              <img
+                                src={asset.url}
+                                alt={asset.label || 'Visual reference'}
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="absolute bottom-0 left-0 right-0 p-2">
+                                  <div className="text-[10px] font-bold text-white line-clamp-1">
+                                    {asset.label || 'Untitled'}
+                                  </div>
+                                  {asset.description && (
+                                    <div className="text-[9px] text-white/60 line-clamp-2 mt-0.5">
+                                      {asset.description}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                              {asset.tags?.includes('analyzing') && (
+                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                                  <div className="text-[10px] text-bedroom-purple font-bold animate-pulse">
+                                    Analyzing...
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+
                     <div
                       className="relative group rounded-xl border-2 border-dashed border-white/10 bg-black/20 hover:border-bedroom-purple/50 hover:bg-white/5 transition-all duration-300 overflow-hidden"
                     >
@@ -766,7 +927,17 @@ export default function SceneCanvasPage() {
                       </label>
                     </div>
                   </div>
-                  </div>
+                )}
+              </div>
+
+              {/* Director Chat - Fills remaining space */}
+              <div className="flex-1 overflow-hidden relative">
+                <DirectorChat
+                  messages={chatMessages}
+                  onSendMessage={handleChatMessage}
+                  isGenerating={isGenerating}
+                />
+              </div>
             </div>
 
             {/* Center Panel: Reel Wall */}
@@ -780,7 +951,7 @@ export default function SceneCanvasPage() {
               {/* Scrollable Reel Wall Container */}
               <div className="absolute inset-0 overflow-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                 <div className="min-h-full p-8 pb-32">
-                  {project?.scenes.length === 0 ? (
+                  {(!project?.scenes || project.scenes.length === 0) ? (
                     <div className="h-full flex flex-col items-center justify-center pt-20">
                       <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(124,58,237,0.1)]">
                         <Film className="w-10 h-10 text-bedroom-purple" />

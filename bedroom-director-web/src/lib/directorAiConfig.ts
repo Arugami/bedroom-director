@@ -42,7 +42,7 @@ function readConfigFile(): DirectorAiConfigFile | null {
 const fileConfig = readConfigFile();
 
 export const DIRECTOR_TEXT_MODEL =
-  fileConfig?.textModel || process.env.DIRECTOR_TEXT_MODEL || "x-ai/grok-4-fast";
+  fileConfig?.textModel || process.env.DIRECTOR_TEXT_MODEL || "openai/gpt-4o-mini";
 
 export const DIRECTOR_VISION_MODEL =
   fileConfig?.visionModel ||
@@ -61,7 +61,7 @@ export const DIRECTOR_VISION_MODEL =
  */
 export const DIRECTOR_TEXT_REASONING_EFFORT: ReasoningEffort =
   fileConfig?.reasoningEffort ||
-  ((process.env.DIRECTOR_TEXT_REASONING_EFFORT as ReasoningEffort) || "low");
+  ((process.env.DIRECTOR_TEXT_REASONING_EFFORT as ReasoningEffort) || "minimal");
 
 export const DIRECTOR_CHAT_PROMPT_EXTRA =
   fileConfig?.chatPromptExtra || "";

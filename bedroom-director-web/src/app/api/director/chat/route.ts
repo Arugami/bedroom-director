@@ -1,10 +1,184 @@
 import { NextResponse } from "next/server";
 import {
-    DIRECTOR_TEXT_MODEL,
-    DIRECTOR_TEXT_REASONING_EFFORT,
-    DIRECTOR_TEXT_TEMPERATURE,
+    getDirectorAiConfig,
     buildDirectorChatSystemPrompt,
 } from "@/lib/directorAiConfig";
+
+// Tool definitions
+const TOOL_UPDATE_BIBLE = {
+    type: "function" as const,
+    function: {
+        name: "update_bible",
+        description: "Update the project bible with new or modified entities (characters, locations, aesthetic).",
+        parameters: {
+            type: "object",
+            properties: {
+                characters: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            name: { type: "string" },
+                            description: { type: "string" },
+                        },
+                        required: ["name", "description"],
+                    },
+                },
+                locations: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            name: { type: "string" },
+                            description: { type: "string" },
+                        },
+                        required: ["name", "description"],
+                    },
+                },
+                aesthetic: {
+                    type: "object",
+                    properties: {
+                        tone: { type: "string" },
+                        visualStyle: { type: "string" },
+                        references: {
+                            type: "array",
+                            items: { type: "string" }
+                        }
+                    }
+                }
+            },
+        },
+    },
+};
+
+const TOOL_CREATE_SCENE = {
+    type: "function" as const,
+    function: {
+        name: "create_scene",
+        description: "Create a new scene in the project",
+        parameters: {
+            type: "object",
+            properties: {
+                title: {
+                    type: "string",
+                    description: "Scene title"
+                },
+                description: {
+                    type: "string",
+                    description: "Scene description"
+                },
+                location: {
+                    type: "string",
+                    description: "Scene location"
+                },
+                characters: {
+                    type: "array",
+                    items: { type: "string" },
+                    description: "Characters in the scene"
+                }
+            },
+            required: ["title", "description"]
+        }
+    }
+};
+
+const TOOL_PROPOSE_STRUCTURE = {
+    type: "function" as const,
+    function: {
+        name: "propose_structure",
+        description: "Propose a complete project structure with title, logline, and scenes.",
+        parameters: {
+            type: "object",
+            properties: {
+                title: {
+                    type: "string",
+                    description: "Project title"
+                },
+                logline: {
+                    type: "string",
+                    description: "One-sentence summary of the story"
+                },
+                scenes: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            title: { type: "string" },
+                            description: { type: "string" },
+                            location: { type: "string" },
+                            characters: {
+                                type: "array",
+                                items: { type: "string" }
+                            }
+                        },
+                        required: ["title", "description"]
+                    }
+                }
+            },
+            required: ["title", "scenes"]
+        }
+    }
+};
+
+const TOOL_APPLY_WORKFLOW = {
+    type: "function" as const,
+    function: {
+        name: "apply_director_workflow",
+        description: "Apply a Director AI workflow to generate content",
+        parameters: {
+            type: "object",
+            properties: {
+                workflow: {
+                    type: "string",
+                    enum: ["shot-list", "dialogue", "action"],
+                    description: "Type of workflow to apply"
+                },
+                sceneId: {
+                    type: "string",
+                    description: "ID of the scene to modify (optional, defaults to creating new)"
+                },
+            },
+            required: ["workflow"]
+        }
+    }
+};
+
+/**
+ * Conditionally select tools based on user message and project context.
+ * CORE TOOLS (always included): update_bible, create_scene
+ * CONDITIONAL TOOLS: propose_structure, apply_director_workflow
+ */
+function selectToolsForContext(userMessage: string, projectContext: any): any[] {
+    // Always include core tools
+    const tools: any[] = [
+        TOOL_UPDATE_BIBLE,
+        TOOL_CREATE_SCENE,
+    ];
+
+    const msg = userMessage.toLowerCase();
+    const sceneCount = projectContext?.sceneCount || 0;
+
+    // Add propose_structure early in project or when explicitly requested
+    if (sceneCount === 0 ||
+        msg.includes('structure') ||
+        msg.includes('outline') ||
+        msg.includes('plan') ||
+        msg.includes('organize')) {
+        tools.push(TOOL_PROPOSE_STRUCTURE);
+    }
+
+    // Add workflow tool when project has scenes or when requested
+    if (sceneCount > 0 ||
+        msg.includes('workflow') ||
+        msg.includes('storyboard') ||
+        msg.includes('shot list') ||
+        msg.includes('dialogue') ||
+        msg.includes('action')) {
+        tools.push(TOOL_APPLY_WORKFLOW);
+    }
+
+    return tools;
+}
 
 export async function POST(request: Request) {
     try {
@@ -17,150 +191,22 @@ export async function POST(request: Request) {
             );
         }
 
+        // Load config dynamically on each request
+        const config = getDirectorAiConfig();
+
+        console.log("🎬 Director Chat Config:", {
+            model: config.textModel,
+            reasoningEffort: config.reasoningEffort,
+            temperature: config.temperature
+        });
+
         const systemPrompt = buildDirectorChatSystemPrompt(projectContext);
 
-        const tools = [
-            {
-                type: "function",
-                function: {
-                    name: "update_bible",
-                    description: "Update the project bible with new or modified entities (characters, locations, aesthetic).",
-                    parameters: {
-                        type: "object",
-                        properties: {
-                            characters: {
-                                type: "array",
-                                items: {
-                                    type: "object",
-                                    properties: {
-                                        name: { type: "string" },
-                                        description: { type: "string" },
-                                    },
-                                    required: ["name", "description"],
-                                },
-                            },
-                            locations: {
-                                type: "array",
-                                items: {
-                                    type: "object",
-                                    properties: {
-                                        name: { type: "string" },
-                                        description: { type: "string" },
-                                    },
-                                    required: ["name", "description"],
-                                },
-                            },
-                            aesthetic: {
-                                type: "object",
-                                properties: {
-                                    mood: { type: "array", items: { type: "string" } },
-                                    palette: { type: "array", items: { type: "string" } },
-                                    era: { type: "string" },
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-            {
-                type: "function",
-                function: {
-                    name: "propose_structure",
-                    description: "Propose a complete project structure based on the user's vision. Use this when the user has described their film idea sufficiently (logline, key scenes, characters, tone).",
-                    parameters: {
-                        type: "object",
-                        properties: {
-                            suggestedTitle: {
-                                type: "string",
-                                description: "A compelling title for the project based on their vision"
-                            },
-                            logline: {
-                                type: "string",
-                                description: "One-sentence summary of the story"
-                            },
-                            scenes: {
-                                type: "array",
-                                description: "Breakdown of key scenes for the project",
-                                items: {
-                                    type: "object",
-                                    properties: {
-                                        title: { type: "string", description: "Scene title (e.g., 'Opening: Jack wakes up')" },
-                                        notes: { type: "string", description: "Scene description and creative notes" },
-                                        duration: { type: "number", description: "Estimated duration in seconds" }
-                                    },
-                                    required: ["title", "notes"]
-                                }
-                            },
-                            bibleNotes: {
-                                type: "object",
-                                description: "Initial project bible with key details",
-                                properties: {
-                                    characters: {
-                                        type: "array",
-                                        items: {
-                                            type: "object",
-                                            properties: {
-                                                name: { type: "string" },
-                                                description: { type: "string" }
-                                            }
-                                        }
-                                    },
-                                    locations: {
-                                        type: "array",
-                                        items: {
-                                            type: "object",
-                                            properties: {
-                                                name: { type: "string" },
-                                                description: { type: "string" }
-                                            }
-                                        }
-                                    },
-                                    aesthetic: {
-                                        type: "object",
-                                        properties: {
-                                            mood: { type: "array", items: { type: "string" } },
-                                            palette: { type: "array", items: { type: "string" } },
-                                            era: { type: "string" }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        required: ["suggestedTitle", "scenes"]
-                    }
-                }
-            },
-            {
-                type: "function",
-                function: {
-                    name: "apply_director_workflow",
-                    description: "Apply a specialized creative workflow to a scene. Use this when the user wants to create specific formats like stacked frames, storyboards, or movie posters.",
-                    parameters: {
-                        type: "object",
-                        properties: {
-                            workflow: {
-                                type: "string",
-                                enum: ["standard", "stacked_frames", "storyboard", "poster", "character_sheet"],
-                                description: "The creative workflow to apply"
-                            },
-                            aspectRatio: {
-                                type: "string",
-                                description: "Target aspect ratio (e.g., '9:16' for social, '16:9' for film, '2:3' for poster)"
-                            },
-                            sceneId: {
-                                type: "string",
-                                description: "ID of the scene to modify (optional, defaults to creating new)"
-                            },
-                            description: {
-                                type: "string",
-                                description: "Description of the content to generate"
-                            }
-                        },
-                        required: ["workflow", "description"]
-                    }
-                }
-            }
-        ];
+        // Conditionally select tools based on context
+        const lastUserMessage = messages.length > 0 ? messages[messages.length - 1].content : "";
+        const tools = selectToolsForContext(lastUserMessage, projectContext);
+
+        console.log("🔧 Selected tools:", tools.map(t => t.function.name));
 
         const apiMessages = [
             { role: "system", content: systemPrompt },
@@ -170,6 +216,25 @@ export async function POST(request: Request) {
             })),
         ];
 
+        const requestBody = {
+            model: config.textModel,
+            messages: apiMessages,
+            tools,
+            tool_choice: "auto",
+            temperature: config.temperature,
+            reasoning: {
+                effort: config.reasoningEffort,
+                exclude: true,
+            },
+        };
+
+        console.log("📤 Sending request to OpenRouter:", {
+            model: requestBody.model,
+            messageCount: requestBody.messages.length,
+            toolCount: requestBody.tools.length,
+            reasoning: requestBody.reasoning
+        });
+
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
             headers: {
@@ -178,18 +243,10 @@ export async function POST(request: Request) {
                 "HTTP-Referer": "https://bedroom-director.vercel.app",
                 "X-Title": "Bedroom Director",
             },
-            body: JSON.stringify({
-                model: DIRECTOR_TEXT_MODEL,
-                messages: apiMessages,
-                tools,
-                tool_choice: "auto",
-                temperature: DIRECTOR_TEXT_TEMPERATURE,
-                reasoning: {
-                    effort: DIRECTOR_TEXT_REASONING_EFFORT,
-                    exclude: true,
-                },
-            })
+            body: JSON.stringify(requestBody)
         });
+
+        console.log("📥 OpenRouter response status:", response.status);
 
         if (!response.ok) {
             const errorText = await response.text();
