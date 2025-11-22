@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import {
+    DIRECTOR_TEXT_MODEL,
+    DIRECTOR_TEXT_REASONING_EFFORT,
+    DIRECTOR_TEXT_TEMPERATURE,
+} from "@/lib/directorAiConfig";
 
 export async function POST(request: Request) {
     try {
@@ -44,16 +49,21 @@ export async function POST(request: Request) {
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+                Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                 "Content-Type": "application/json",
                 "HTTP-Referer": "https://bedroom-director.vercel.app", // Optional, for including your app on openrouter.ai rankings.
                 "X-Title": "Bedroom Director", // Optional. Shows in rankings on openrouter.ai.
             },
             body: JSON.stringify({
-                "model": "openai/gpt-4o-mini", // Fast, cheap, good for structure
-                "messages": messages,
-                "response_format": { "type": "json_object" }
-            })
+                model: DIRECTOR_TEXT_MODEL,
+                messages,
+                response_format: { type: "json_object" },
+                temperature: DIRECTOR_TEXT_TEMPERATURE,
+                reasoning: {
+                    effort: DIRECTOR_TEXT_REASONING_EFFORT,
+                    exclude: true,
+                },
+            }),
         });
 
         if (!response.ok) {

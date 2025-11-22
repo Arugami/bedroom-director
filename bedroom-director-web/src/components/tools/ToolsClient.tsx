@@ -146,68 +146,50 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
       <main className="flex-1 min-h-screen overflow-x-hidden">
         {/* Studio Hero */}
         <StudioHero
-          title="Tool Catalog"
-          subtitle={`${tools.length} AI tools. Researched. Compared.`}
-          kicker={`${newToolsCount} new this week`}
+          title="Cinema, Reborn."
+          subtitle="The operating system for the next generation of filmmakers."
+          kicker="Bedroom Director OS 1.0"
         />
 
-        {/* Quick Category Filters - Horizontal Scroll */}
-        <section className="relative border-b border-gray-900/30 bg-director-black/60 backdrop-blur-sm">
-          {/* Film grain texture */}
-          <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay pointer-events-none"
-            style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}
-          />
-
+        {/* Quick Category Filters - Lens Rack Style */}
+        <section className="relative border-b border-white/5 bg-director-black/40 backdrop-blur-sm">
           <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-4">
             {/* Horizontal scrolling container */}
             <div className="overflow-x-auto scrollbar-hide -mx-2 px-2">
-              <div className="flex gap-2 sm:gap-3 min-w-max">
+              <div className="flex gap-1 sm:gap-2 min-w-max">
                 {quickCategories.map((category) => {
                   const isActive = selectedCategory === category.id;
                   return (
                     <button
                       key={category.id}
                       onClick={() => setSelectedCategory(category.id)}
-                      className={`group relative flex items-center gap-2 px-4 sm:px-5 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                        isActive
-                          ? "bg-gradient-to-r from-bedroom-purple to-purple-bloom text-screen-white shadow-lg shadow-bedroom-purple/30"
-                          : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
-                      }`}
+                      className={`group relative flex items-center gap-2 px-4 py-2 rounded-sm font-mono text-xs tracking-wider uppercase transition-all whitespace-nowrap border ${isActive
+                          ? "bg-white/10 border-bedroom-purple text-white shadow-[0_0_15px_-5px_rgba(124,58,237,0.5)]"
+                          : "bg-black/20 border-white/10 text-white/50 hover:bg-white/5 hover:border-white/20 hover:text-white"
+                        }`}
                     >
-                      {/* Icon with glow on active */}
-                      <div className="relative">
+                      {/* Technical Corner Markers */}
+                      <div className={`absolute top-0 left-0 w-1 h-1 border-t border-l transition-colors ${isActive ? "border-bedroom-purple" : "border-white/20"}`} />
+                      <div className={`absolute bottom-0 right-0 w-1 h-1 border-b border-r transition-colors ${isActive ? "border-bedroom-purple" : "border-white/20"}`} />
+
+                      {/* Icon */}
+                      <div className={isActive ? "text-bedroom-purple" : "text-white/40 group-hover:text-white"}>
                         {categoryIcons[category.id]}
-                        {isActive && (
-                          <div className="absolute inset-0 bg-screen-white/30 blur-md rounded-full" />
-                        )}
                       </div>
 
                       {/* Label */}
                       <span>{category.label}</span>
 
-                      {/* Count badge */}
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                        isActive
-                          ? "bg-screen-white/20 text-screen-white"
-                          : "bg-bedroom-purple/10 text-bedroom-purple/60 group-hover:text-bedroom-purple"
-                      }`}>
-                        {category.count}
+                      {/* Count - Technical subscript style */}
+                      <span className={`ml-1 text-[10px] ${isActive ? "text-bedroom-purple" : "text-white/30"}`}>
+                        {category.count.toString().padStart(2, '0')}
                       </span>
-
-                      {/* Purple glow on active */}
-                      {isActive && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-bedroom-purple/20 to-purple-bloom/20 rounded-lg blur-xl -z-10" />
-                      )}
                     </button>
                   );
                 })}
               </div>
             </div>
           </div>
-
-          {/* Fade indicators for scroll on mobile */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-director-black to-transparent pointer-events-none lg:hidden" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-director-black to-transparent pointer-events-none lg:hidden" />
         </section>
 
         {/* Scene Canvas CTA - Cinematic Banner */}
@@ -279,7 +261,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
                 </div>
                 <input
                   type="text"
-                  placeholder="Search your arsenal..."
+                  placeholder="Search AI studios & tools..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="relative w-full pl-9 pr-3 py-3 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border border-bedroom-purple/25 rounded-xl text-base text-screen-white placeholder:text-screen-white/50 focus:outline-none focus:border-bedroom-purple/60 transition-all duration-300"
@@ -292,33 +274,30 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
             <div className="flex items-center justify-between gap-2">
               <button
                 onClick={() => setSortBy("featured")}
-                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
-                  sortBy === "featured"
-                    ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 border border-gray-800/70"
-                }`}
+                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${sortBy === "featured"
+                  ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 border border-gray-800/70"
+                  }`}
               >
                 <Sparkles className="w-3 h-3" />
                 <span>Featured</span>
               </button>
               <button
                 onClick={() => setSortBy("newest")}
-                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
-                  sortBy === "newest"
-                    ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 border border-gray-800/70"
-                }`}
+                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${sortBy === "newest"
+                  ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 border border-gray-800/70"
+                  }`}
               >
                 <Clock className="w-3 h-3" />
                 <span>Newest</span>
               </button>
               <button
                 onClick={() => setSortBy("alphabetical")}
-                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
-                  sortBy === "alphabetical"
-                    ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 border border-gray-800/70"
-                }`}
+                className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${sortBy === "alphabetical"
+                  ? "bg-bedroom-purple text-screen-white shadow-md shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 border border-gray-800/70"
+                  }`}
               >
                 <TrendingUp className="w-3 h-3" />
                 <span>A-Z</span>
@@ -332,33 +311,30 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
             <div className="flex items-center justify-end gap-2 sm:gap-3 mb-3">
               <button
                 onClick={() => setSortBy("featured")}
-                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${
-                  sortBy === "featured"
-                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
-                }`}
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${sortBy === "featured"
+                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
+                  }`}
               >
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Featured</span>
               </button>
               <button
                 onClick={() => setSortBy("newest")}
-                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${
-                  sortBy === "newest"
-                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
-                }`}
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${sortBy === "newest"
+                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
+                  }`}
               >
                 <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Newest</span>
               </button>
               <button
                 onClick={() => setSortBy("alphabetical")}
-                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${
-                  sortBy === "alphabetical"
-                    ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
-                    : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
-                }`}
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${sortBy === "alphabetical"
+                  ? "bg-bedroom-purple text-screen-white shadow-lg shadow-bedroom-purple/30"
+                  : "bg-black/40 text-screen-white/70 hover:bg-black/60 hover:text-screen-white border border-gray-800/50 hover:border-bedroom-purple/30"
+                  }`}
               >
                 <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>A-Z</span>
@@ -393,7 +369,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
                 {/* Input field */}
                 <input
                   type="text"
-                  placeholder="Search your arsenal..."
+                  placeholder="Search AI studios & tools..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="relative w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-xl border-2 border-bedroom-purple/20 hover:border-bedroom-purple/40 focus:border-bedroom-purple/60 rounded-xl text-base text-screen-white placeholder:text-screen-white/50 focus:outline-none transition-all duration-300 focus:shadow-[0_0_30px_rgba(124,58,237,0.2)]"
@@ -461,10 +437,32 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16">
-                <p className="text-screen-white/60 text-lg">
-                  No tools found. Try adjusting your filters.
-                </p>
+              <div className="flex flex-col items-center justify-center py-24 relative overflow-hidden rounded-xl border border-white/5 bg-black/50">
+                {/* Static Noise Background */}
+                <div
+                  className="absolute inset-0 opacity-10 pointer-events-none"
+                  style={{
+                    backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")'
+                  }}
+                />
+
+                <div className="relative z-10 text-center">
+                  <div className="text-6xl mb-4 opacity-30 font-mono tracking-widest text-white">
+                    NO SIGNAL
+                  </div>
+                  <p className="text-screen-white/50 text-lg max-w-md mx-auto mb-6">
+                    No tools found. Try adjusting your filters.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedCategory("ALL");
+                    }}
+                    className="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-white transition-all"
+                  >
+                    Reset Signal
+                  </button>
+                </div>
               </div>
             )}
           </div>

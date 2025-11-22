@@ -99,6 +99,42 @@ This analysis examines the user experience patterns of the most popular AI image
 
 ---
 
+### 1.3 Emerging AI Film Studios & Workflow Canvases (New 2025 Entrants)
+
+These platforms sit closer to where Scene Canvas is heading: they combine AI generation with timelines, nodes, or agent flows rather than single prompts.
+
+#### **Clova / Flova / TapNow / VidBuilder (High-Level UX Themes)**
+
+- **Simple narrative arcs:**  
+  - Clova, Flova, and VidBuilder all sell a very clean story in their hero copy:  
+    - “Idea → Image → Film” (Flova)  
+    - “Create AI videos in one platform” (Clova)  
+    - “Text / URL → JSON → Video” (VidBuilder)  
+  - UX implication: one primary CTA and one mental model for how things flow.
+
+- **Continuous workspaces:**  
+  - Clova: image → video → **timeline editor** in the same surface.  
+  - TapNow: Tapflow graph where image, text, script, and output nodes live together.  
+  - VidBuilder: JSON editor + drag-and-drop UI + preview panel as one triad.  
+  - UX implication: users feel like they’re in a **studio**, not jumping between disconnected tools.
+
+- **Graph / code representations of video:**  
+  - Tapflow: node-based canvas with “Try this workflow” affordances.  
+  - VidBuilder: explicit JSON schema for scenes, with human-readable types (`hero-title`, `cta`, etc.).  
+  - UX implication: power users expect **inspectable, editable structures** under the hood, not just magic buttons.
+
+- **Agent language in the UI:**  
+  - Flova’s marketing leans heavily on “talk to the agent, get a film.”  
+  - Even when the underlying UX is more wizard-like, the **conversation metaphor** lowers friction.
+
+**Bedroom Director UX Insights:**
+- We should keep the **Scene Canvas mental model** simple (“Bible → Boards → Shots → Film”) and ensure our hero/landing experiences tell that story with a single dominant CTA.
+- Scene Canvas should feel like an **unbroken studio surface**:
+  - Director Chat, Bible, boards, and external model runs should all feel like different *modes* of the same workspace—not separate pages.
+- For advanced users, exposing a **structured view** (JSON or IL-based) of a project or shot—similar in spirit to VidBuilder’s “video as code”—will make the system feel trustworthy and automatable.
+- We can borrow the visual energy of Tapflow’s node canvas, but keep our objects grounded in film grammar (Projects → Scenes → Beats → Shots) instead of arbitrary nodes.
+- Conversation UI (Director Chat) shouldn’t just be a side panel; it can be a **first-class way to trigger workflows** (“Create a Shot Stack for this beat”, “Storyboard this key frame”), echoing Flova’s strengths while keeping control in the director’s hands.
+
 ### 1.3 Platform-Specific Observations
 
 #### **Leonardo.ai**

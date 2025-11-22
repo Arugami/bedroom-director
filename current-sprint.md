@@ -1,7 +1,74 @@
 # Current Sprint - Scene Canvas Visual Improvements
 
 **Timeline:** AI-Assisted (hours, not weeks)
-**Last Updated:** 2025-11-19
+**Last Updated:** 2025-11-21
+
+---
+
+## 🔧 Latest Session (Nov 21, 2025) - Director Lab & Grok Routing
+
+**Status:** ✅ **ADDED** - Director Lab for Grok model routing, reasoning & prompt tuning; Visual Bible now on Gemini 2.5 Flash
+
+### Issues Identified & Fixed
+
+1. **No central place to tweak Director Chat behavior**
+   - **Root Cause:** Model IDs, reasoning, and system prompt were hard-coded in API routes
+   - **Fix:** Added `src/lib/directorAiConfig.ts` and `data/director_ai/config.json` to centralize:
+     - `textModel` (Grok variant via OpenRouter)
+     - `reasoningEffort` (none → high)
+     - `temperature` (0–2)
+     - Extra style guidelines + optional full prompt override
+   - **Status:** Director Chat and Structure now read from this config instead of hard-coded strings.
+
+2. **No UI to experiment with Grok settings**
+   - **Root Cause:** Config only changeable via env / code
+   - **Fix:** Built **Director Lab** at `/director-lab`:
+     - Dropdown for Grok variants (4.1 Fast free promo, 4 Fast, 4.1 Fast full)
+     - Slider for Grok `reasoning.effort` (`none` → `high`)
+     - Slider for `temperature` (0–2)
+     - Textarea for “Extra Style Guidelines” (always appended as final polish)
+     - Editable **System Prompt Override** (full replacement if needed)
+     - Read-only **Default Template Preview** (shows the built-in system prompt + guidelines)
+   - **Result:** You can tune Director AI’s tone and thinking parameters without redeploying.
+
+3. **Director Chat still on GPT-4o-mini; Vision on weaker model**
+   - **Fix:** Switched Director Chat + Structure to **Grok 4 Fast / 4.1 Fast** via OpenRouter with explicit `reasoning` controls.
+   - **Fix:** Switched Visual Bible `/vision` route to **Gemini 2.5 Flash** (1M context, better multimodal reasoning).
+   - **Result:** Text flows use Grok’s agentic tool calling; image analysis uses Gemini’s stronger vision.
+
+4. **Signals had no approval gate for catalog updates**
+   - **Fix:** Extended `/signals` flow:
+     - After AI analysis, you can now **Approve / Reject** a signal
+     - Signals are logged with `status: "pending" | "approved" | "rejected"` in `data/signals/signals.jsonl`
+   - **Result:** Only approved signals can feed into the AI curator / catalog automations.
+
+### Files Modified (Nov 21)
+- ✅ `bedroom-director-web/src/lib/directorAiConfig.ts`
+  - New central config for Director AI models, reasoning, temperature, and prompts
+- ✅ `bedroom-director-web/src/app/api/director/chat/route.ts`
+  - Now uses `DIRECTOR_TEXT_MODEL`, `DIRECTOR_TEXT_TEMPERATURE`, and `DIRECTOR_TEXT_REASONING_EFFORT`
+  - System prompt now built via `buildDirectorChatSystemPrompt`
+- ✅ `bedroom-director-web/src/app/api/director/structure/route.ts`
+  - Same model + reasoning + temperature config as chat
+- ✅ `bedroom-director-web/src/app/api/director/vision/route.ts`
+  - Vision routed to `google/gemini-2.5-flash` via config
+- ✅ `bedroom-director-web/src/app/(marketing)/director-lab/page.tsx`
+  - Director Lab UI for Grok routing and prompt tuning
+- ✅ `bedroom-director-web/src/app/api/director/config/route.ts`
+  - API for reading/updating `data/director_ai/config.json`
+- ✅ `bedroom-director-web/src/app/api/signals/analyze/route.ts` + `approve/route.ts`
+  - Signals classification + approval flow
+- ✅ `docs/strategy/director-chat-architecture.md`
+  - Updated with Director Lab + config details
+- ✅ `docs/strategy/signals-and-automation.md`
+  - Documented Signals + AI curator pipeline
+- ✅ `current-sprint.md` (this file) - Updated with session details
+
+### Next Steps for Continuation
+- [ ] Fix any remaining `/api/director/config` load errors in dev so previews always render
+- [ ] Start logging Director prompt versions to `data/director_ai/prompt_history.jsonl` for “prompt git”
+- [ ] Add simple semantic diff summaries between prompt versions (why v4 ≠ v3)
+- [ ] Consider document upload + retrieval for Director Chat (brand bibles, style guides)
 
 ---
 
@@ -28,7 +95,7 @@ Transform Bedroom Director from text-heavy listings to **visual-first discovery 
 
 ## ✅ Completed Today
 
-### Phase 7: Scene Canvas Control Room (Nov 19, 2025) - COMPLETE ✅
+### Phase 7: Scene Canvas Control Room (Nov 19, 2025) - COMPLETE ✅ (previous session)
 **Time Taken:** 12 hours  
 **Impact:** Very High - Core directing workspace now functional
 
@@ -189,15 +256,106 @@ Transform Bedroom Director from text-heavy listings to **visual-first discovery 
 
 ---
 
-## 🎬 In Progress: Scene Canvas Visual Improvements
+## 🎬 In Progress: Scene Canvas Immersive UX Transformation
 
-### Implementation Phases (User-Validated)
+**Updated:** November 21, 2025
+**Strategic Vision:** Transform Scene Canvas from "nice workspace" to "film school for AI directors"
+
+### 🎯 New Strategic Focus (Nov 21, 2025)
+
+After comprehensive analysis of strategy docs, user feedback, and AI education roadmap, the **core opportunity** is clear:
+
+**Current State:** Chat-first workspace with solid foundation
+**Strategic Gap:** Education layer is invisible, chat isn't source of truth yet, prompt compiler hidden
+**Vision:** Position Scene Canvas as **teaching tool + control room** (not just workspace)
+
+### Key Strategic Shifts
+
+1. **Chat → Structure Pipeline** (Gap #1)
+   - Add "Propose Structure from Chat" flow
+   - Per-message actions ("Create scene from this")
+   - Chat becomes canonical source of truth
+
+2. **Education First** (Gap #2)
+   - Add "Learn" mode toggle with workflow templates
+   - Educational tooltips explaining model choices
+   - Template-first approach (Split Stack, Time Stack, Shot Stack)
+
+3. **Prompt Compiler Visibility** (Gap #3)
+   - Show compiled prompts in Inspector
+   - Model-specific tips visible inline
+   - "Copy Prompt" → "Try in [Tool]" workflow
+
+4. **Progressive Disclosure** (User Feedback)
+   - Collapsible Inspector sections
+   - Reduce overwhelm, guide workflow flow
+   - Camera → Lighting → Style progression
+
+5. **Project Context** (Sienna's feedback)
+   - Project Header band with scene count, tags
+   - Export/Settings easily accessible
+   - Campaign-ready presentation mode
+
+### Implementation Priority (Impact-Ordered)
+
+**Phase 1: Quick Wins** ✅ **COMPLETE** (2-4 hours)
+- [x] Add Prompt Compiler Preview to Inspector (page.tsx:989-1025)
+- [x] Make Inspector sections collapsible with progressive disclosure (page.tsx:890-988)
+- [x] Add Project Header band with scene count and actions (page.tsx:444-499)
+- **Result:** Inspector is cleaner, prompts are visible, workspace feels professional
+
+**Phase 2: Chat-Driven Structure** ✅ **COMPLETE** (4-6 hours)
+- [x] Build "Propose Structure" flow with preview modal (route.ts:74-141, page.tsx:1214-1365)
+  - Added `propose_structure` tool to API with Grok 4.1 Fast (#1 tool calling, FREE until Dec 3rd)
+  - Beautiful preview modal with title, logline, scenes, Bible notes
+  - `acceptProposal()` function populates entire project
+  - **Result:** Chat is now canonical way to create projects! (Gap #1 SOLVED)
+- [x] Add per-message actions (Create Scene, Pin to Bible) (page.tsx:820, route.ts:22-63)
+  - Hover over assistant messages to reveal "Create Scene" and "Pin to Bible" buttons
+  - Only shows on substantive messages (>100 chars) to exclude confirmation messages
+  - `createSceneFromMessage()` - instantly creates scene from message content (page.tsx:158-172)
+  - `pinMessageToBible()` - AI analyzes and categorizes content into proper Bible sections (page.tsx:175-264)
+  - Uses existing `update_bible` tool - AI decides whether content is character, location, or aesthetic
+  - **FIXED (Nov 21):** Added missing `projectContext` parameter to API call (page.tsx:193-196)
+  - **FIXED (Nov 21):** Action buttons no longer appear on short confirmation messages (page.tsx:820)
+  - **Result:** Chat messages are now actionable + AI-powered categorization! (Gap #2 addressed)
+- [x] Visual Bible Content Viewer (page.tsx:688-737) - **NEW (Nov 21)**
+  - Added live display of Bible contents (characters, locations, aesthetic)
+  - Shows character names + descriptions in purple-themed cards
+  - Shows location names + descriptions
+  - Shows aesthetic (era, mood, palette) with formatted arrays
+  - Automatically updates when AI adds content via "Pin to Bible"
+  - **Result:** Users can now see their story world building up in real-time!
+- [x] Wire Director Chat to generate project structure (complete via propose_structure)
+- [x] Hide technical architecture (removed ModelSelector, PatchBay for curated experience)
+
+**Phase 3: Education Layer** ⏸️ **NOT STARTED** (6-10 hours)
+- [ ] Add "Learn" mode toggle
+- [ ] Create first 3 workflow templates
+- [ ] Add educational tooltips with model-specific tips
+
+**Total Estimated Time:** ~24 hours (3-4 focused days)
+**Time Spent:** ~10 hours
+**Progress:** ✅ Phase 1 complete, ✅ Phase 2 complete (67% overall)
+
+### Success Metrics
+
+- **Product Engagement:** Template opens, Scene Canvas clones, workflow completions
+- **Education Impact:** Watch time on tutorial videos, click-through to tools
+- **Monetization:** Sponsorship revenue from workflow series, Pro tier conversions
+
+---
+
+## 🎬 Visual Improvements (User-Validated)
+
+### Implementation Phases
 
 All improvements are **100% validated** by real user feedback from Mira, Eli, and Sienna personas.
 
 **Documentation Complete:**
 - ✅ `scene-canvas-implementation-spec.md` Section 2.2 (971 lines of code + rationale)
 - ✅ `user-feedback-validation-report.md` (comprehensive validation analysis)
+- ✅ **NEW:** Strategic UX Analysis (Nov 21, 2025) - Chat-first + Education vision
 
 ---
 

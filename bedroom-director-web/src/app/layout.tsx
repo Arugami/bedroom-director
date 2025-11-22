@@ -75,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark overflow-x-hidden">
+    <html lang="en" className="dark overflow-x-hidden" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans bg-director-black text-screen-white antialiased overflow-x-hidden`}>
         <ClientProviders>
           {children}

@@ -128,24 +128,24 @@ Work stopped after the first document rename. Revisit once the sprint polish shi
 
 ---
 
-### Phase 20: Scene Canvas – Chat-First Director Workspace (Planning & Buildout)
-**Why**: Give bedroom directors a chat-first directing workspace where project chat is the source of truth for scenes, beats, and prompts.  
-**Time Estimate**: 12–20 hours (MVP)  
-**Impact**: Very High – becomes the place where projects actually live.
+### Phase 20: Scene Canvas – Immersive UX Transformation (Active Development)
+**Updated**: November 21, 2025
+**Why**: Transform Scene Canvas from "nice workspace" to **"film school for AI directors"** - the place where creators learn workflows, not just use tools.
+**Time Estimate**: 24 hours (3-4 focused days for core features)
+**Impact**: Very High – positions platform as education-first, unlocks sponsorship/partnership revenue, creates moat
+
+**Strategic Vision:**
+- **Current State:** Chat-first workspace with solid foundation (Director Chat, Visual Bible, Reel Wall, Timeline)
+- **Strategic Gap:** Education layer invisible, chat not yet source of truth, prompt compiler hidden
+- **Opportunity:** Make workflows teachable, clonable, and sponsor-able
 
 **Docs Source of Truth:**
 - `scene-canvas-docs/scene-canvas-implementation-spec.md`
 - `scene-canvas-docs/scene-canvas-strategic-analysis.md`
 - `scene-canvas-docs/scene-canvas-chat-first-director-workspace.md`
+- `docs/strategy/ai-education-and-content-strategy.md` (NEW - Nov 20, 2025)
 
-**MVP Tasks:**
-- [x] Add `ProjectChatPanel` to `/scene-canvas` with per-project message history in `SceneContext`.
-- [x] Implement a stub `ProposeStructure` flow that turns recent chat into an outline and, on accept, creates `Scene` entities.
-- [x] Wire the existing Reel Wall + Inspector to read/write chat-derived scene/beat fields (titles, notes, main prompt).
-- [x] Ensure scenes, beats, and prompts store links back to originating chat messages for traceability.
-- [x] Keep existing model selector + “Copy Prompt” + “Open Tool” flows as the execution layer.
-
-**Additional Completed Tasks (Nov 19, 2025):**
+**Core MVP Completed (Nov 19, 2025):**
 - [x] Built `/api/director/chat` with OpenRouter integration and tool calling
 - [x] Built `/api/director/structure` for AI-powered scene proposals
 - [x] Built `/api/director/vision` for automatic image analysis
@@ -154,13 +154,94 @@ Work stopped after the first document rename. Revisit once the sprint polish shi
 - [x] Applied glassmorphism UI polish across entire workspace
 - [x] Fixed chat persistence bug and scene creation logic
 
-**Mode Experiments (Optional, behind a simple toggle):**
-- [ ] Add internal modes inside Scene Canvas: `Director Chat` and `Scene Canvas` tabs (same route, different layout emphasis).
-- [ ] Explore simple lenses like `Storyboard`, `Trailer Cut`, `Clips`, `Lookbook` as presets on top of the same chat-derived data.
+**Phase 1: Quick Wins (2-4 hours)** ✅ **COMPLETE** (Nov 21, 2025)
+Priority: HIGH - Addresses immediate user pain points + shows prompt output
+- [x] **Prompt Compiler Preview in Inspector** (page.tsx:989-1025)
+  - Shows compiled prompt at bottom of Inspector in monospace
+  - "Copy Prompt" button with 2-second success state
+  - "Try in Tool Catalog" button opens /tools in new tab
+  - Real-time preview as user changes Camera/Lighting/Style
+  - **Result:** Prompt generation is now transparent (Gap #3 SOLVED)
+- [x] **Collapsible Inspector Sections** (page.tsx:890-988)
+  - Camera, Lighting, Style as native `<details>` sections
+  - Progressive disclosure (Camera open by default)
+  - Collapsed headers show current value in purple
+  - ChevronRight icon rotates 90° on expand
+  - **Result:** Reduces "form UI" overwhelm (Mira/Eli feedback addressed)
+- [x] **Project Header Band** (page.tsx:444-499)
+  - 12px band below top bar with scene count + Film icon
+  - Project tags as purple badges
+  - "Export All Scenes" + Settings buttons
+  - **Result:** Workspace feels "campaign-ready" (Sienna feedback addressed)
 
-**Success Criteria (MVP):**
-- Creators can brain-dump into chat, accept a proposed structure, and then work in a canvas that stays in sync with that conversation.
-- Scene Canvas feels consistent with the rest of the brand (colors, typography, W+K/Chiat/Day/Jobs hybrid voice) while clearly positioning itself as the “Director Chat + Canvas” workspace.
+**Phase 2: Chat-Driven Structure (4-6 hours)** ✅ **COMPLETE** (Nov 21, 2025)
+Priority: HIGH - Makes chat the canonical source of truth
+- [x] **"Propose Structure from Chat" Flow** (route.ts:74-141, page.tsx:1214-1365)
+  - Added `propose_structure` tool to API with full schema
+  - **Switched to Grok 4.1 Fast** (#1 tool calling, FREE until Dec 3rd, 2M context)
+  - Beautiful preview modal with title, logline, scenes breakdown, Bible notes
+  - Two actions: "Keep Chatting" (revise) or "Accept Structure" (populate)
+  - `acceptProposal()` function updates project title, Bible, creates all scenes
+  - Success message in chat after acceptance
+  - **Result:** Chat is now canonical way to create projects! (Gap #1 SOLVED)
+- [x] **Per-Message Actions** (page.tsx:812-839, route.ts:132-176)
+  - Hover over assistant messages to reveal action buttons (hidden while AI is generating)
+  - "Create Scene" button - instantly creates scene from message content (page.tsx:158-172)
+  - "Pin to Bible" button - AI-powered intelligent categorization (page.tsx:175-264)
+    - Added `pin_to_bible` tool function to API (route.ts:132-176)
+    - AI analyzes message and decides: characters, locations, or aesthetic details
+    - Properly structured Bible updates with IDs, names, descriptions
+    - Success feedback with confirmation message
+  - Smooth opacity transition on hover with group utility
+  - **Result:** Chat messages are now actionable + AI intelligently organizes Bible! (Gap #2 addressed)
+- [x] **Wire Director Chat to Generate Structure** (complete via propose_structure)
+  - Core functionality delivered via `propose_structure` tool
+  - Could expand: "Suggest more scenes", "Refine this scene", "Generate variations"
+- [x] **Hide Technical Architecture** (page.tsx:8, 62-66, 685-696)
+  - Removed ModelSelector and PatchBay components
+  - Director Chat shows only "Director AI - Always active"
+  - Backend uses Grok 4.1 Fast invisibly for curated experience
+  - **Result:** Maintains "film school" brand without exposing plumbing
+
+**Phase 3: Education Layer (6-10 hours)** ⏸️ **NOT STARTED**
+Priority: MEDIUM-HIGH - Unlocks strategic "film school" positioning
+- [ ] **"Learn" Mode Toggle**
+  - Top-right toggle: Create | Learn
+  - Learn mode shows workflow templates grid
+  - First 3 workflows: Split Stack, Time Stack, Shot Stack
+- [ ] **Workflow Templates**
+  - Template cards with video thumbnails
+  - "Open Template" clones Scene Canvas project
+  - Pre-filled Bible, Scenes, PromptSlots
+  - Annotations explaining choices
+- [ ] **Educational Tooltips**
+  - Camera/Lighting/Style options have hover tips
+  - Model-specific guidance ("Seedream likes full sentences")
+  - "Why does this work?" explanations
+
+**Progress Summary (Nov 21, 2025):**
+- ✅ Phase 1: 100% complete (3/3 tasks)
+- ✅ Phase 2: 100% complete (4/4 tasks) - INCLUDING per-message actions!
+- ⏸️ Phase 3: 0% complete (0/3 tasks)
+- **Overall:** 67% of planned work complete (~10 hours spent)
+
+**Additional Strategic Opportunities (Future):**
+- [ ] Model selector per scene (not global)
+- [ ] Visual Bible → Prompt auto-injection
+- [ ] Workflow analytics tracking
+- [ ] Sponsored curriculum series
+- [ ] Creator Partner Program
+
+**Success Metrics:**
+- **Product Engagement:** Template opens, Scene Canvas clones, workflow completions
+- **Education Impact:** Video watch time, tool click-throughs, template usage
+- **Monetization:** Sponsorship revenue from workflow series, Pro tier conversions
+- **User Satisfaction:** "Film school" positioning resonates, reduces support burden
+
+**Strategic Positioning:**
+- Not just "AI movie studio tooling" → **"Directing education + workflow literacy"**
+- Tool Catalog = index → Scene Canvas = classroom + lab
+- Every workflow is teachable, clonable, sponsor-able
 
 **Future Enhancements:**
 - [ ] Configure Supabase project for user data

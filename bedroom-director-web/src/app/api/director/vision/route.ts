@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+const VISION_MODEL_ID =
+    process.env.DIRECTOR_VISION_MODEL || "google/gemini-2.5-flash";
+
 export async function POST(request: Request) {
     try {
         const { imageUrl } = await request.json();
@@ -8,6 +11,13 @@ export async function POST(request: Request) {
             return NextResponse.json(
                 { error: "Image URL is required" },
                 { status: 400 }
+            );
+        }
+
+        if (!process.env.OPENROUTER_API_KEY) {
+            return NextResponse.json(
+                { error: "Missing API Key" },
+                { status: 500 }
             );
         }
 
@@ -20,7 +30,7 @@ export async function POST(request: Request) {
                 "X-Title": "Bedroom Director", // Optional. Shows in rankings on openrouter.ai.
             },
             body: JSON.stringify({
-                model: "openai/gpt-4o-mini", // Or google/gemini-flash-1.5
+                model: VISION_MODEL_ID,
                 messages: [
                     {
                         role: "system",

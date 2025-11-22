@@ -21,14 +21,14 @@ export default function StudioHero({
       : "text-center items-center";
 
   return (
-    <section className="relative py-8 sm:py-12 md:py-16 overflow-hidden">
+    <section className="relative py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Background Video - Director's Chair */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        className="absolute inset-0 w-full h-full object-cover opacity-50 scale-105"
       >
         <source
           src="/cinematic_twilight_scene_with_directors_chair_silhouette.mp4"
@@ -36,36 +36,49 @@ export default function StudioHero({
         />
       </video>
 
-      {/* Twilight gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b]/90 via-[#312e81]/85 to-director-black" />
+      {/* Twilight gradient overlay - Deepened for drama */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0f0c29]/80 via-[#302b63]/70 to-director-black" />
 
-      {/* Purple ambient glow */}
-      <div className="absolute inset-0 bg-gradient-to-t from-bedroom-purple/10 via-transparent to-transparent" />
+      {/* Purple ambient glow - localized */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-bedroom-purple/20 blur-[120px] opacity-40 pointer-events-none" />
 
       {/* Film grain */}
-      <div className="absolute inset-0 grain-texture opacity-15" />
+      <div className="absolute inset-0 grain-texture opacity-20 mix-blend-overlay" />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex flex-col ${alignmentClasses}`}>
+        <div className={`flex flex-col ${alignmentClasses} max-w-4xl mx-auto`}>
+
+          {/* Kicker - The "Label" */}
+          {kicker && (
+            <div className="mb-6 flex items-center gap-3">
+              <div className="h-px w-8 bg-bedroom-purple/60" />
+              <p className="text-bedroom-purple font-mono text-xs sm:text-sm tracking-[0.2em] uppercase">
+                {kicker}
+              </p>
+              <div className="h-px w-8 bg-bedroom-purple/60" />
+            </div>
+          )}
+
+          {/* H1 - The "Headline" */}
           <h1
-            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-screen-white mb-2 sm:mb-4"
+            className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-screen-white mb-6 sm:mb-8 leading-[0.9] tracking-tight"
             style={{
-              textShadow:
-                "0 2px 30px rgba(124, 58, 237, 0.5), 0 4px 60px rgba(0, 0, 0, 0.8)",
+              textShadow: "0 10px 30px rgba(0,0,0,0.5), 0 0 80px rgba(124, 58, 237, 0.2)"
             }}
           >
-            {title}
+            Cinema, <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/50">
+              Reborn.
+            </span>
           </h1>
+
+          {/* Subtitle - The "Manifesto" */}
           {subtitle && (
-            <p className="text-screen-white/95 text-base sm:text-xl mb-2 max-w-2xl">
+            <p className="text-screen-white/80 text-lg sm:text-2xl md:text-3xl font-light leading-relaxed max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}
-          {kicker && (
-            <p className="text-bedroom-purple/90 text-xs sm:text-sm font-medium">
-              {kicker}
-            </p>
-          )}
+
         </div>
       </div>
     </section>

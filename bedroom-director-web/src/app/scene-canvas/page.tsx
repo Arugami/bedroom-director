@@ -5,9 +5,7 @@ import { useScene } from "@/contexts/SceneContext";
 import { supabase } from "@/lib/supabase";
 import DirectorSidebar, { SidebarSection } from "@/components/layout/DirectorSidebar";
 import TimelineRail from "@/components/scene/TimelineRail";
-import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight, Sparkles, LayoutTemplate, Camera, Sun, Palette, MessageSquare, Check } from "lucide-react";
-import PatchBay from "@/components/ai/PatchBay";
-import ModelSelector from "@/components/ai/ModelSelector";
+import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight, Sparkles, LayoutTemplate, Camera, Sun, Palette, MessageSquare, Check, Copy, ExternalLink, Settings, Download, Pin } from "lucide-react";
 
 const AnalyzingProgressBar = () => {
   const [width, setWidth] = useState(0);
@@ -60,11 +58,213 @@ export default function SceneCanvasPage() {
   const [mobileTab, setMobileTab] = useState<"chat" | "canvas">("chat");
   const [showBible, setShowBible] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
-  const [showPatchBay, setShowPatchBay] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("gpt-4o-mini"); // Default model
+  const [copiedPrompt, setCopiedPrompt] = useState(false);
+  const [proposalData, setProposalData] = useState<any>(null);
+  const [showProposalModal, setShowProposalModal] = useState(false);
+  const [hoveredMessageId, setHoveredMessageId] = useState<string | null>(null);
 
   const generateDefaultProjectTitle = () => {
     return "Untitled Project";
+  };
+
+  // Compile prompt from scene data
+  const compilePrompt = (scene: any) => {
+    if (!scene) return "";
+
+    const parts = [];
+
+    // Add scene title and description
+    if (scene.title) parts.push(`Scene: ${scene.title}`);
+    if (scene.notes) parts.push(scene.notes);
+
+    // Add camera settings
+    if (scene.promptSlots?.camera?.shotType) {
+      parts.push(`Camera: ${scene.promptSlots.camera.shotType} shot`);
+    }
+
+    // Add lighting
+    if (scene.promptSlots?.lighting?.timeOfDay) {
+      parts.push(`Lighting: ${scene.promptSlots.lighting.timeOfDay}`);
+    }
+
+    // Add style
+    if (scene.promptSlots?.style?.aesthetic) {
+      parts.push(`Style: ${scene.promptSlots.style.aesthetic}`);
+    }
+
+    return parts.join(", ");
+  };
+
+  // Copy prompt to clipboard
+  const copyPromptToClipboard = async () => {
+    if (!activeScene) return;
+
+    const prompt = compilePrompt(activeScene);
+    await navigator.clipboard.writeText(prompt);
+    setCopiedPrompt(true);
+    setTimeout(() => setCopiedPrompt(false), 2000);
+  };
+
+  // Accept proposed structure and populate project
+  const acceptProposal = () => {
+    if (!proposalData || !project) return;
+
+    // Update project title
+    if (proposalData.suggestedTitle) {
+      updateProjectTitle(proposalData.suggestedTitle);
+    }
+
+    // Update Bible with proposed data
+    if (proposalData.bibleNotes) {
+      const updatedBible = { ...project.bible };
+
+      if (proposalData.bibleNotes.characters) {
+        updatedBible.characters = proposalData.bibleNotes.characters;
+      }
+      if (proposalData.bibleNotes.locations) {
+        updatedBible.locations = proposalData.bibleNotes.locations;
+      }
+      if (proposalData.bibleNotes.aesthetic) {
+        updatedBible.aesthetic = proposalData.bibleNotes.aesthetic;
+      }
+
+      updateProjectBible(updatedBible);
+    }
+
+    // Create all proposed scenes
+    if (proposalData.scenes && proposalData.scenes.length > 0) {
+      proposalData.scenes.forEach((sceneData: any) => {
+        addScene(undefined, {
+          title: sceneData.title,
+          notes: sceneData.notes
+        });
+      });
+    }
+
+    // Close modal and show success message
+    setShowProposalModal(false);
+    setProposalData(null);
+
+    // Add success message to chat
+    addChatMessage({
+      content: "Perfect! I've populated your project with the structure. You can now start working on individual scenes!",
+      role: "assistant"
+    });
+  };
+
+  // Create scene from chat message
+  const createSceneFromMessage = (messageContent: string) => {
+    if (!project) return;
+
+    // Generate a scene title from the first line or first ~50 chars
+    const title = messageContent.split('\n')[0].substring(0, 50).trim() + (messageContent.length > 50 ? '...' : '');
+
+    addScene(undefined, {
+      title: title || "Scene from chat",
+      notes: messageContent
+    });
+
+    // Show success feedback
+    addChatMessage({
+      content: "Scene created! I've added it to your timeline.",
+      role: "assistant"
+    });
+  };
+
+  // Pin message content to Visual Bible (via AI analysis)
+  const pinMessageToBible = async (messageContent: string) => {
+    if (!project || !project.bible) return;
+
+    setIsGenerating(true);
+
+    try {
+      // Send to AI to analyze and categorize
+      const response = await fetch("/api/director/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            ...chatMessages.map(m => ({ role: m.role, content: m.content })),
+            {
+              role: "user",
+              content: `Please analyze this message and pin relevant information to my Visual Bible: "${messageContent}"`
+            }
+          ],
+          projectContext: {
+            title: project.title,
+            bible: project.bible
+          }
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to pin to Bible");
+
+      const data = await response.json();
+
+      // Check if AI called update_bible tool
+      if (data.tool_calls && data.tool_calls.length > 0) {
+        const updateCall = data.tool_calls.find((tc: any) => tc.function.name === "update_bible");
+        if (updateCall) {
+          const updates = JSON.parse(updateCall.function.arguments);
+          const updatedBible = { ...project.bible };
+
+          // Apply character updates
+          if (updates.characters && updates.characters.length > 0) {
+            const newCharacters = updates.characters.map((c: any) => ({
+              id: `char_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+              name: c.name,
+              description: c.description
+            }));
+            updatedBible.characters = [...updatedBible.characters, ...newCharacters];
+          }
+
+          // Apply location updates
+          if (updates.locations && updates.locations.length > 0) {
+            const newLocations = updates.locations.map((l: any) => ({
+              id: `loc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+              name: l.name,
+              description: l.description
+            }));
+            updatedBible.locations = [...updatedBible.locations, ...newLocations];
+          }
+
+          // Apply aesthetic updates
+          if (updates.aesthetic) {
+            if (updates.aesthetic.mood) {
+              updatedBible.aesthetic.mood = [...updatedBible.aesthetic.mood, ...updates.aesthetic.mood];
+            }
+            if (updates.aesthetic.palette) {
+              updatedBible.aesthetic.palette = [...updatedBible.aesthetic.palette, ...updates.aesthetic.palette];
+            }
+            if (updates.aesthetic.era) {
+              updatedBible.aesthetic.era = updates.aesthetic.era;
+            }
+          }
+
+          updateProjectBible(updatedBible);
+
+          // Add AI success message
+          addChatMessage({
+            content: data.content || "I've analyzed and added the relevant details to your Visual Bible!",
+            role: "assistant"
+          });
+        }
+      } else {
+        // Fallback if no tool call
+        addChatMessage({
+          content: data.content || "I've noted that information!",
+          role: "assistant"
+        });
+      }
+    } catch (error) {
+      console.error("Error pinning to Bible:", error);
+      addChatMessage({
+        content: "Sorry, I had trouble pinning that to your Bible. Please try again.",
+        role: "assistant"
+      });
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   // Auto-create first project with a branded name if none exist
@@ -402,6 +602,63 @@ export default function SceneCanvasPage() {
             </div>
           </div>
 
+          {/* Project Header Band - Scene Count, Tags, Actions */}
+          <div className="h-12 flex-none border-b border-white/5 bg-black/40 backdrop-blur-xl flex items-center justify-between px-6 z-40">
+            {/* Left: Scene Count & Tags */}
+            <div className="flex items-center gap-4">
+              {/* Scene Count */}
+              <div className="flex items-center gap-2 text-xs">
+                <Film className="w-3.5 h-3.5 text-bedroom-purple" />
+                <span className="font-bold text-screen-white">
+                  {project?.scenes?.length || 0}
+                </span>
+                <span className="text-screen-white/40">
+                  {project?.scenes?.length === 1 ? 'Scene' : 'Scenes'}
+                </span>
+              </div>
+
+              {/* Project Tags (if any) */}
+              {project?.tags && project.tags.length > 0 && (
+                <div className="flex items-center gap-2">
+                  {project.tags.map((tag: string, i: number) => (
+                    <span
+                      key={i}
+                      className="px-2 py-1 rounded-md bg-bedroom-purple/20 text-bedroom-purple text-[10px] font-bold uppercase tracking-wider"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Right: Action Buttons */}
+            <div className="flex items-center gap-2">
+              {/* Export All Scenes */}
+              <button
+                onClick={() => {
+                  // TODO: Implement export functionality
+                  console.log('Export all scenes');
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-screen-white/60 hover:text-screen-white text-xs font-medium transition-all"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Export</span>
+              </button>
+
+              {/* Settings */}
+              <button
+                onClick={() => {
+                  // TODO: Open project settings modal
+                  console.log('Open settings');
+                }}
+                className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-screen-white/60 hover:text-screen-white transition-all"
+              >
+                <Settings className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
           {/* Workspace - Chat + Canvas + Inspector */}
           <div className="flex-1 flex overflow-hidden relative">
 
@@ -426,7 +683,59 @@ export default function SceneCanvasPage() {
                 </button>
 
                 {showBible && (
-                  <div className="px-4 pb-4 animate-in slide-in-from-top-2 duration-200">
+                  <div className="px-4 pb-4 animate-in slide-in-from-top-2 duration-200 space-y-3">
+
+                    {/* Bible Content Viewer */}
+                    {project?.bible && (
+                      <div className="space-y-2 text-xs">
+                        {/* Characters */}
+                        {project.bible.characters && project.bible.characters.length > 0 && (
+                          <div className="bg-black/20 rounded-lg p-3 border border-white/5">
+                            <div className="font-bold text-bedroom-purple mb-2">Characters</div>
+                            <div className="space-y-1.5">
+                              {project.bible.characters.map((char: any) => (
+                                <div key={char.id} className="text-screen-white/70">
+                                  <span className="font-semibold text-white">{char.name}:</span> {char.description}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Locations */}
+                        {project.bible.locations && project.bible.locations.length > 0 && (
+                          <div className="bg-black/20 rounded-lg p-3 border border-white/5">
+                            <div className="font-bold text-bedroom-purple mb-2">Locations</div>
+                            <div className="space-y-1.5">
+                              {project.bible.locations.map((loc: any) => (
+                                <div key={loc.id} className="text-screen-white/70">
+                                  <span className="font-semibold text-white">{loc.name}:</span> {loc.description}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Aesthetic */}
+                        {project.bible.aesthetic && (
+                          <div className="bg-black/20 rounded-lg p-3 border border-white/5">
+                            <div className="font-bold text-bedroom-purple mb-2">Aesthetic</div>
+                            <div className="space-y-1.5 text-screen-white/70">
+                              {project.bible.aesthetic.era && (
+                                <div><span className="font-semibold text-white">Era:</span> {project.bible.aesthetic.era}</div>
+                              )}
+                              {project.bible.aesthetic.mood && project.bible.aesthetic.mood.length > 0 && (
+                                <div><span className="font-semibold text-white">Mood:</span> {project.bible.aesthetic.mood.join(", ")}</div>
+                              )}
+                              {project.bible.aesthetic.palette && project.bible.aesthetic.palette.length > 0 && (
+                                <div><span className="font-semibold text-white">Palette:</span> {project.bible.aesthetic.palette.join(", ")}</div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
                     <div
                       className="relative group rounded-xl border-2 border-dashed border-white/10 bg-black/20 hover:border-bedroom-purple/50 hover:bg-white/5 transition-all duration-300 overflow-hidden"
                     >
@@ -496,41 +805,16 @@ export default function SceneCanvasPage() {
                 {/* Chat Header */}
                 <div className="flex-none px-4 py-3 border-b border-white/5 flex items-center justify-between bg-black/20">
                   <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => setShowPatchBay(true)}
-                      className="relative group cursor-pointer"
-                      title="Configure AI Model"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-bedroom-purple to-indigo-600 flex items-center justify-center shadow-lg shadow-bedroom-purple/20 group-hover:shadow-bedroom-purple/40 transition-all">
-                        <Sparkles className="w-4 h-4 text-white" />
-                      </div>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-bedroom-purple to-indigo-600 flex items-center justify-center shadow-lg shadow-bedroom-purple/20">
+                      <Sparkles className="w-4 h-4 text-white" />
                       <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border-2 border-black rounded-full" />
-                    </button>
+                    </div>
                     <div>
                       <div className="text-xs font-bold text-screen-white">Director AI</div>
                       <div className="text-[10px] text-screen-white/40">Always active</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <ModelSelector
-                      selectedModelId={selectedModel}
-                      onSelectModel={setSelectedModel}
-                      onOpenPatchBay={() => setShowPatchBay(true)}
-                    />
-                  </div>
                 </div>
-
-                {/* Patch Bay Drawer */}
-                {showPatchBay && (
-                  <PatchBay
-                    currentModel={selectedModel}
-                    onModelChange={(model) => {
-                      setSelectedModel(model);
-                    }}
-                    onClose={() => setShowPatchBay(false)}
-                    variant="drawer"
-                  />
-                )}
 
                 {/* Messages Area */}
                 <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
@@ -548,7 +832,7 @@ export default function SceneCanvasPage() {
                     chatMessages.map((message) => (
                       <div
                         key={message.id}
-                        className={`flex gap-3 ${message.role === "user" ? "flex-row-reverse" : "flex-row"}`}
+                        className={`flex gap-3 ${message.role === "user" ? "flex-row-reverse" : "flex-row"} mb-2`}
                       >
                         {/* Avatar */}
                         <div className={`
@@ -558,23 +842,59 @@ export default function SceneCanvasPage() {
                           {message.role === "user" ? "U" : "AI"}
                         </div>
 
-                        <div className={`
-                          relative max-w-[85%] rounded-2xl px-4 py-2.5 text-xs leading-relaxed shadow-sm
-                          ${message.role === "user"
-                            ? "bg-bedroom-purple text-white rounded-tr-sm"
-                            : "bg-white/10 text-white border border-white/10 rounded-tl-sm backdrop-blur-sm"}`}
+                        <div
+                          className="relative group"
+                          onMouseEnter={() => message.role === "assistant" && setHoveredMessageId(message.id)}
+                          onMouseLeave={() => setHoveredMessageId(null)}
                         >
-                          {message.content}
+                          <div className={`
+                            max-w-[85%] rounded-2xl px-4 py-2.5 text-xs leading-relaxed shadow-sm
+                            ${message.role === "user"
+                              ? "bg-bedroom-purple text-white rounded-tr-sm"
+                              : "bg-white/10 text-white border border-white/10 rounded-tl-sm backdrop-blur-sm"}`}
+                          >
+                            {message.content}
 
-                          {/* Tool Output (if any) */}
-                          {message.toolCalls && (
-                            <div className="mt-2 pt-2 border-t border-white/10 space-y-1">
-                              {message.toolCalls.map((tool, idx) => (
-                                <div key={idx} className="flex items-center gap-1.5 text-[10px] text-screen-white/50 bg-black/20 rounded px-2 py-1">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-green-500/50" />
-                                  <span>Used tool: <span className="font-mono text-screen-white/70">{tool.name}</span></span>
-                                </div>
-                              ))}
+                            {/* Tool Output (if any) */}
+                            {message.toolCalls && (
+                              <div className="mt-2 pt-2 border-t border-white/10 space-y-1">
+                                {message.toolCalls.map((tool, idx) => (
+                                  <div key={idx} className="flex items-center gap-1.5 text-[10px] text-screen-white/50 bg-black/20 rounded px-2 py-1">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500/50" />
+                                    <span>Used tool: <span className="font-mono text-screen-white/70">{tool.name}</span></span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Action Buttons (Assistant messages only - exclude short confirmation messages) */}
+                          {message.role === "assistant" && hoveredMessageId === message.id && !isGenerating && message.content.length > 100 && (
+                            <div className="mt-2 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  createSceneFromMessage(message.content);
+                                  setHoveredMessageId(null);
+                                }}
+                                className="flex items-center gap-1 px-2 py-1 rounded-lg bg-bedroom-purple/90 hover:bg-bedroom-purple text-white text-[10px] font-medium transition-colors shadow-lg backdrop-blur-sm"
+                                title="Create scene from this message"
+                              >
+                                <Film className="w-3 h-3" />
+                                <span>Create Scene</span>
+                              </button>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  pinMessageToBible(message.content);
+                                  setHoveredMessageId(null);
+                                }}
+                                className="flex items-center gap-1 px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[10px] font-medium transition-colors shadow-lg backdrop-blur-sm border border-white/10"
+                                title="Pin to Visual Bible (AI will analyze and categorize)"
+                              >
+                                <Pin className="w-3 h-3" />
+                                <span>Pin to Bible</span>
+                              </button>
                             </div>
                           )}
                         </div>
@@ -622,10 +942,29 @@ export default function SceneCanvasPage() {
 
                         const data = await response.json();
 
+                        // Check if AI called propose_structure tool
+                        if (data.tool_calls && data.tool_calls.length > 0) {
+                          const proposeCall = data.tool_calls.find((tc: any) => tc.function.name === "propose_structure");
+                          if (proposeCall) {
+                            const proposal = JSON.parse(proposeCall.function.arguments);
+                            setProposalData(proposal);
+                            setShowProposalModal(true);
+
+                            // Add AI message indicating structure is ready
+                            addChatMessage({
+                              content: data.content || "I've analyzed your vision and prepared a project structure for you! Check the preview to see if it matches what you had in mind.",
+                              role: "assistant"
+                            });
+
+                            setIsGenerating(false);
+                            return;
+                          }
+                        }
+
                         // Add AI response
                         addChatMessage({
                           content: data.content || "I'm here to help with your project!",
-                          role: "assistant",
+                          role: "assistant"
                         });
                       } catch (error) {
                         console.error('Chat error:', error);
@@ -848,14 +1187,24 @@ export default function SceneCanvasPage() {
                     />
                   </div>
 
-                  {/* Camera Controls */}
-                  <div className="space-y-4 pt-4 border-t border-white/5">
-                    <div className="flex items-center gap-2 text-screen-white/60">
-                      <Camera className="w-4 h-4" />
-                      <span className="text-xs font-bold uppercase">Camera</span>
-                    </div>
+                  {/* Camera Controls - Collapsible */}
+                  <details className="group border-b border-white/5 pb-4" open>
+                    <summary className="cursor-pointer flex items-center justify-between py-4 hover:opacity-80 transition-opacity">
+                      <div className="flex items-center gap-2 text-screen-white/60">
+                        <Camera className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase">Camera</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {activeScene.promptSlots?.camera?.shotType && (
+                          <span className="text-[10px] text-bedroom-purple font-medium">
+                            {activeScene.promptSlots.camera.shotType}
+                          </span>
+                        )}
+                        <ChevronRight className="w-4 h-4 text-white/40 group-open:rotate-90 transition-transform" />
+                      </div>
+                    </summary>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
                       {["Wide", "Medium", "Close-up", "Extreme Close-up"].map((shot) => (
                         <button
                           key={shot}
@@ -869,16 +1218,26 @@ export default function SceneCanvasPage() {
                         </button>
                       ))}
                     </div>
-                  </div>
+                  </details>
 
-                  {/* Lighting Controls */}
-                  <div className="space-y-4 pt-4 border-t border-white/5">
-                    <div className="flex items-center gap-2 text-screen-white/60">
-                      <Sun className="w-4 h-4" />
-                      <span className="text-xs font-bold uppercase">Lighting</span>
-                    </div>
+                  {/* Lighting Controls - Collapsible */}
+                  <details className="group border-b border-white/5 pb-4">
+                    <summary className="cursor-pointer flex items-center justify-between py-4 hover:opacity-80 transition-opacity">
+                      <div className="flex items-center gap-2 text-screen-white/60">
+                        <Sun className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase">Lighting</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {activeScene.promptSlots?.lighting?.timeOfDay && (
+                          <span className="text-[10px] text-bedroom-purple font-medium">
+                            {activeScene.promptSlots.lighting.timeOfDay}
+                          </span>
+                        )}
+                        <ChevronRight className="w-4 h-4 text-white/40 group-open:rotate-90 transition-transform" />
+                      </div>
+                    </summary>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
                       {["Day", "Golden Hour", "Night", "Studio"].map((time) => (
                         <button
                           key={time}
@@ -892,16 +1251,26 @@ export default function SceneCanvasPage() {
                         </button>
                       ))}
                     </div>
-                  </div>
+                  </details>
 
-                  {/* Style Controls */}
-                  <div className="space-y-4 pt-4 border-t border-white/5">
-                    <div className="flex items-center gap-2 text-screen-white/60">
-                      <Palette className="w-4 h-4" />
-                      <span className="text-xs font-bold uppercase">Style</span>
-                    </div>
+                  {/* Style Controls - Collapsible */}
+                  <details className="group border-b border-white/5 pb-4">
+                    <summary className="cursor-pointer flex items-center justify-between py-4 hover:opacity-80 transition-opacity">
+                      <div className="flex items-center gap-2 text-screen-white/60">
+                        <Palette className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase">Style</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {activeScene.promptSlots?.style?.aesthetic && (
+                          <span className="text-[10px] text-bedroom-purple font-medium">
+                            {activeScene.promptSlots.style.aesthetic}
+                          </span>
+                        )}
+                        <ChevronRight className="w-4 h-4 text-white/40 group-open:rotate-90 transition-transform" />
+                      </div>
+                    </summary>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
                       {["Cinematic", "Film Noir", "Cyberpunk", "Documentary", "Wes Anderson"].map((style) => (
                         <button
                           key={style}
@@ -915,6 +1284,44 @@ export default function SceneCanvasPage() {
                         </button>
                       ))}
                     </div>
+                  </details>
+
+                  {/* Compiled Prompt Preview - NEW */}
+                  <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xs font-bold text-bedroom-purple uppercase tracking-wider">Compiled Prompt</h3>
+                      <button
+                        onClick={copyPromptToClipboard}
+                        className="flex items-center gap-1.5 text-[10px] text-white/40 hover:text-bedroom-purple transition-colors"
+                      >
+                        {copiedPrompt ? (
+                          <>
+                            <Check className="w-3 h-3" />
+                            <span>Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3 h-3" />
+                            <span>Copy</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    <div className="bg-black/40 rounded-xl p-4 border border-white/10">
+                      <p className="text-xs text-white/80 leading-relaxed font-mono">
+                        {compilePrompt(activeScene) || "Configure camera, lighting, and style to generate prompt..."}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        // TODO: Open tool catalog with pre-filled prompt
+                        window.open('/tools', '_blank');
+                      }}
+                      className="w-full py-2.5 rounded-lg bg-bedroom-purple/20 hover:bg-bedroom-purple/30 text-bedroom-purple text-xs font-bold transition-colors flex items-center justify-center gap-2"
+                    >
+                      <span>Try in Tool Catalog</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </button>
                   </div>
 
                 </div>
@@ -972,6 +1379,159 @@ export default function SceneCanvasPage() {
                 className="px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 text-sm font-medium transition-colors border border-red-500/30"
               >
                 Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Proposal Structure Modal */}
+      {showProposalModal && proposalData && (
+        <div className="fixed inset-0 z-[250] bg-black/80 backdrop-blur-md flex items-center justify-center animate-in fade-in duration-300 p-4">
+          <div className="bg-screen-black border border-bedroom-purple/30 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-[0_0_80px_rgba(124,58,237,0.3)] animate-in zoom-in-95 duration-300">
+
+            {/* Header */}
+            <div className="bg-gradient-to-r from-bedroom-purple/10 to-indigo-600/10 border-b border-white/10 p-6">
+              <div className="flex items-start justify-between mb-2">
+                <div>
+                  <h2 className="text-2xl font-bold text-white mb-1">Project Structure Preview</h2>
+                  <p className="text-sm text-white/50">Review the proposed structure for your project</p>
+                </div>
+                <button
+                  onClick={() => {
+                    setShowProposalModal(false);
+                    setProposalData(null);
+                  }}
+                  className="text-white/40 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Content - Scrollable */}
+            <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(90vh-200px)] scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+
+              {/* Title & Logline */}
+              <div className="space-y-3">
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-bedroom-purple mb-2">Suggested Title</h3>
+                  <p className="text-lg font-bold text-white">{proposalData.suggestedTitle}</p>
+                </div>
+                {proposalData.logline && (
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-bedroom-purple mb-2">Logline</h3>
+                    <p className="text-sm text-white/80 leading-relaxed">{proposalData.logline}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Scenes Breakdown */}
+              {proposalData.scenes && proposalData.scenes.length > 0 && (
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-bedroom-purple mb-3">Scene Breakdown ({proposalData.scenes.length} scenes)</h3>
+                  <div className="space-y-2">
+                    {proposalData.scenes.map((scene: any, idx: number) => (
+                      <div key={idx} className="bg-white/5 rounded-lg p-3 border border-white/10">
+                        <div className="flex items-start gap-3">
+                          <div className="flex-none w-6 h-6 rounded-full bg-bedroom-purple/20 text-bedroom-purple text-xs font-bold flex items-center justify-center">
+                            {idx + 1}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-bold text-white mb-1">{scene.title}</h4>
+                            <p className="text-xs text-white/60 leading-relaxed">{scene.notes}</p>
+                            {scene.duration && (
+                              <p className="text-[10px] text-bedroom-purple mt-1">{scene.duration}s</p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Bible Notes */}
+              {proposalData.bibleNotes && (
+                <div className="space-y-4">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-bedroom-purple">Project Bible</h3>
+
+                  {/* Characters */}
+                  {proposalData.bibleNotes.characters && proposalData.bibleNotes.characters.length > 0 && (
+                    <div>
+                      <h4 className="text-xs font-medium text-white/60 mb-2">Characters</h4>
+                      <div className="space-y-2">
+                        {proposalData.bibleNotes.characters.map((char: any, idx: number) => (
+                          <div key={idx} className="bg-white/5 rounded-lg p-2 border border-white/5">
+                            <p className="text-xs font-bold text-white">{char.name}</p>
+                            <p className="text-[10px] text-white/50 mt-0.5">{char.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Locations */}
+                  {proposalData.bibleNotes.locations && proposalData.bibleNotes.locations.length > 0 && (
+                    <div>
+                      <h4 className="text-xs font-medium text-white/60 mb-2">Locations</h4>
+                      <div className="space-y-2">
+                        {proposalData.bibleNotes.locations.map((loc: any, idx: number) => (
+                          <div key={idx} className="bg-white/5 rounded-lg p-2 border border-white/5">
+                            <p className="text-xs font-bold text-white">{loc.name}</p>
+                            <p className="text-[10px] text-white/50 mt-0.5">{loc.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Aesthetic */}
+                  {proposalData.bibleNotes.aesthetic && (
+                    <div>
+                      <h4 className="text-xs font-medium text-white/60 mb-2">Aesthetic</h4>
+                      <div className="bg-white/5 rounded-lg p-3 border border-white/5 space-y-2">
+                        {proposalData.bibleNotes.aesthetic.mood && (
+                          <div>
+                            <p className="text-[10px] text-white/40 mb-1">Mood</p>
+                            <div className="flex flex-wrap gap-1">
+                              {proposalData.bibleNotes.aesthetic.mood.map((m: string, idx: number) => (
+                                <span key={idx} className="px-2 py-0.5 rounded bg-bedroom-purple/20 text-bedroom-purple text-[10px]">
+                                  {m}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {proposalData.bibleNotes.aesthetic.era && (
+                          <div>
+                            <p className="text-[10px] text-white/40 mb-1">Era</p>
+                            <p className="text-xs text-white">{proposalData.bibleNotes.aesthetic.era}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Actions */}
+            <div className="border-t border-white/10 p-4 bg-black/40 flex gap-3">
+              <button
+                onClick={() => {
+                  setShowProposalModal(false);
+                  setProposalData(null);
+                }}
+                className="flex-1 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 text-sm font-medium transition-all"
+              >
+                Keep Chatting
+              </button>
+              <button
+                onClick={acceptProposal}
+                className="flex-1 px-4 py-3 rounded-lg bg-bedroom-purple hover:bg-bedroom-purple/80 text-white text-sm font-bold transition-all shadow-lg shadow-bedroom-purple/20"
+              >
+                Accept Structure
               </button>
             </div>
           </div>

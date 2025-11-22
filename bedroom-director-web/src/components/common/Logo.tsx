@@ -14,10 +14,11 @@ export default function Logo({ collapsed = false, className }: LogoProps) {
                 collapsed ? "w-10 h-10" : "w-9 h-9 md:w-10 md:h-10",
                 "bg-gradient-to-br from-bedroom-purple/20 to-indigo-500/20",
                 "border border-bedroom-purple/30 group-hover:border-bedroom-purple/50",
-                "shadow-[0_0_15px_rgba(124,58,237,0.15)] group-hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                "shadow-[0_0_15px_rgba(124,58,237,0.15)] group-hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]",
+                "group-hover:scale-105"
             )}>
-                {/* Inner Glow */}
-                <div className="absolute inset-0 rounded-xl bg-bedroom-purple/10 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Inner Glow with pulse */}
+                <div className="absolute inset-0 rounded-xl bg-bedroom-purple/10 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
 
                 {/* Monogram */}
                 <span className={cn(

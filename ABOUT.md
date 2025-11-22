@@ -2,7 +2,7 @@
 
 > **"From bedroom to big screen. Since 1989."** 🎬✨
 
-**Last Updated:** November 7, 2025  
+**Last Updated:** November 21, 2025
 **Status:** Living Document (Evolves with the brand)
 
 ---
@@ -71,11 +71,18 @@ We don't just list tools—we help you find the RIGHT tool for YOUR vision:
 - Honest pros/cons (we tell you what NOT to use it for)
 - Pricing transparency (compare across platforms)
 
-### **2. Learning & Techniques**
+### **2. Learning & Techniques (Scene Canvas)**
+**Scene Canvas** is our chat-first director workspace - the "film school + control room" for AI directors:
+- **Workflow Templates** - Split Stack, Time Stack, Shot Stack (learn by doing)
+- **Director Chat** - Brain-dump your vision, AI proposes structure
+- **Prompt Compiler** - See exactly what prompts get sent to each model
+- **Visual Bible** - Reference images with AI analysis
+- **Educational Tooltips** - Learn why certain choices work (model-specific tips)
+- **Teachable Projects** - Every great workflow becomes a clonable template
+
 Real techniques from real bedroom directors:
 - "How they made it" breakdowns
 - Prompt engineering guides
-- Workflow tutorials
 - Pro tips and common mistakes
 - Community-shared knowledge
 

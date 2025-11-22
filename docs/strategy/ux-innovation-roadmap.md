@@ -107,7 +107,7 @@ Bedroom Director is playing a different role—**director’s control room + dir
 
 ### What We Intentionally Keep
 
-- **Search + filters + grid** on `/tools` – users expect these core affordances.
+- **Search + filters + grid** on the **AI Studio Directory** (`/tools`) – users expect these core affordances.
 - A **dark, cinematic shell** – consistent with the creative tools ecosystem.
 - Clear **left navigation + top header** – don’t reinvent wayfinding for basic navigation.
 
@@ -117,7 +117,7 @@ Bedroom Director is playing a different role—**director’s control room + dir
    - Competitors: “Here are our features and models.”
    - Bedroom Director: “What project are you directing? Here’s the stack for that story.”
    - Practical impact:
-     - `/tools` and Scene Canvas should frame everything in terms of **projects/scenes**, not just individual tools.
+     - The **AI Studio Directory** (`/tools`) and Scene Canvas should frame everything in terms of **projects/scenes**, not just individual tools.
 
 2. **Pipelines over single-model canvases**
    - Studio UIs focus on one model at a time; workflows are an advanced feature.
@@ -273,7 +273,7 @@ Pricing: ...
 
   // Add:
   pricing: "free" | "paid" | "freemium" | "enterprise",
-  features: string[], // API, Inpainting, Upscaling, etc.
+  features: string[], // API, Inpainting, etc.
   useCase: "marketing" | "film" | "social" | "hobbyist",
   skillLevel: "beginner" | "intermediate" | "advanced",
   speed: "realtime" | "fast" | "slow",
@@ -407,29 +407,72 @@ Runway Gen-3,Runway,VIDEO_GEN,...,"film,advertising,production"
 ### **Phase 5: Mobile-First Patterns** 📱
 **Impact: MEDIUM | Effort: MEDIUM | Timeline: 1 week**
 
-#### 5.1 Bottom Navigation Tabs
+#### 5.1 Mobile Navigation – Proven Patterns vs Our Direction
+
+**What we observed (Nov 20 iOS review):**
+- Higgsfield leans on a **bottom tab bar** (Home / Community / Library / Profile) and keeps the top area almost entirely for content.
+- Freepik uses a very standard **top app bar** (logo + hamburger + profile/CTA), and the hamburger opens a **full-height slide-down sheet** with clear sections and large tap targets.
+- Across competitors, the actual navigation chrome is intentionally boring: small icons, high predictability, no experimental layouts. All the brand personality lives in content and motion, not in “how to open the menu”.
+
+**Conclusion:** mobile nav is a “solved-enough” problem. Trying to reinvent the layout usually hurts learnability. We should **borrow the structure**, then differentiate through cinematic styling and contextual intelligence.
+
+#### 5.2 Bedroom Director Mobile Nav – Proposed Pattern
 ```tsx
-// Mobile (<768px) only:
+// Global mobile header (<768px):
+┌─────────────────────────────────────┐
+│  BD • Tool Catalog           ☰     │
+└─────────────────────────────────────┘
+
+Tap ☰  → Full-height menu sheet:
+
+┌─────────────────────────────────────┐
+│ Bedroom Director            [ × ]   │
+│─────────────────────────────────────│
+│ Scene Canvas                        │
+│ Tool Catalog                        │
+│ Universe / Stories                  │
+│ Docs & Guides                       │
+│                                     │
+│ Account                             │
+│ Settings                            │
+│ Log out                             │
+└─────────────────────────────────────┘
+
+// Styling:
+- Dark, cinematic sheet (film-grain background, soft gradients)
+- Simple text-first rows with small icons
+- Sections change order by context (project actions first inside Scene Canvas)
+```
+
+**Why:**  
+- Respects user muscle memory (standard app bar + hamburger).  
+- Gives us one consistent shell across marketing + app screens.  
+- Lets us inject brand through motion/texture instead of unusual placement (no floating purple menu pill).
+
+#### 5.3 Scene Canvas Dock (Contextual, Not Global)
+```tsx
+// Optional dock for creative workspace only:
 ┌──────────────────────────┐
-│                          │
-│    MAIN CONTENT          │
-│                          │
+│          Canvas          │
+│  (timeline / viewport)   │
 ├──────────────────────────┤
-│ 🏠    🔍    ⚖️    ☰     │
-│ Home Browse Compare Menu │
+│ 🎬 Canvas  📖 Bible  ✨ Chat │
 └──────────────────────────┘
 ```
 
-**Why:** Thumb-friendly, industry standard (all major AI apps use this)
+**Principles:**
+- Lives only in Scene Canvas, not on marketing pages.
+- Surfaces the three “jobs” directors actually switch between mid-session.
+- Global navigation still lives in the top app bar menu; the dock is purely in-document navigation.
 
-#### 5.2 Swipe Gestures
+#### 5.4 Swipe Gestures
 ```tsx
 // Tool card swipe actions:
 ← Swipe left: Add to compare
 → Swipe right: Save for later
 ```
 
-#### 5.3 Filter Drawer
+#### 5.5 Filter Drawer
 ```tsx
 // Instead of sidebar on mobile:
 [Filters] button → Bottom sheet drawer slides up
@@ -849,8 +892,8 @@ Tiny: 12px (Labels)
 - [ ] Create `Badge.tsx` variants
 
 ### **Pages:**
-- [ ] Update `/tools` layout (sidebar)
-- [ ] Create `/compare` page
+- [ ] Update **AI Studio Directory** (`/tools`) layout (sidebar)
+ - [ ] Create `/compare` page
 - [ ] Create `/for/[useCase]` dynamic route
 - [ ] Enhance homepage hero
 
@@ -916,8 +959,8 @@ These 3 changes will transform the site from "database" to "discovery platform" 
 **Scope:** Complementary observations collected before Claude’s deep-dive. Keep this section updated as agents experiment so we maintain multiple perspectives.
 
 ### 1. Homepage & Storytelling
-- **Dynamic prompt reels:** Rotate “prompt → output → notes” cards beneath the hero (inspired by Luma Dream Machine + OpenAI Sora). Source data from `TrendingCreations` to keep it live.
-- **“Help me choose” wizard:** Borrow Kaiber’s multi-step flow to guide visitors through goal → skill level → must-have features, then auto-apply filters on `/tools`.
+ - **Dynamic prompt reels:** Rotate “prompt → output → notes” cards beneath the hero (inspired by Luma Dream Machine + OpenAI Sora). Source data from `TrendingCreations` to keep it live.
+ - **“Help me choose” wizard:** Borrow Kaiber’s multi-step flow to guide visitors through goal → skill level → must-have features, then auto-apply filters on the **AI Studio Directory** (`/tools`).
 
 ### 2. Browsing & Filters
 - **Alternate layouts:** Add list + masonry toggles (Ideogram, Playground v2.5) so pros can scan pricing/API info while explorers stay visual.

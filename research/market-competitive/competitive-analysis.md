@@ -107,6 +107,140 @@ Existing platforms fall into 3 categories:
 
 ---
 
+### Category 1.5: AI Video Creation Studios (Adjacent but Overlapping)
+
+These aren’t classic “directories”, but they compete directly for the **idea → image → video** job that Scene Canvas + Director AI aim to own.
+
+#### **Clova** (joinclova.com)
+- **Positioning:** “Create AI videos in one platform.” AI movie studio/editor aimed at turning ideas into viral videos.
+- **What they do:**
+  - End-to-end path: **generate starting image → generate video → edit on timeline**.
+  - Focus on fast social/ad content with cinematic polish.
+  - Runs on Veo 3, Kling 2.1 and other frontier video models behind the scenes.
+- **UX & feature patterns (from marketing site):**
+  - Simple hero with social proof (“Over 100M+ views across all Clova posts”, “Join 1000+”) and a single CTA: **Start Creating**.
+  - Clear 3-step “How it Works” band:
+    1. Generate starting image (look, lighting, composition).
+    2. Generate video from that frame (motion, camera, style).
+    3. Edit on a **built-in timeline** (arrange, trim, polish) with all assets imported.
+  - Feature list:
+    - AI video from text/prompts/scripts.
+    - Image-to-video generation in-app.
+    - Direct timeline editing.
+    - Model support for Veo 3, Kling 2.1, others.
+    - Viral templates.
+    - Analytics & performance tracking.
+- **What they DON'T emphasize:**
+  - ❌ No explicit **scene graph** or project bible – timeline-centric, not story-structure-centric.
+  - ❌ No transparent **tool/model catalog** or benchmark data – models are capabilities, not researched entries.
+  - ❌ No modular prompt/workflow system – templates appear pre-baked rather than composable recipes.
+- **Implications for Bedroom Director:**
+  - Clova is strongest in **execution & editing** (timeline + templates + analytics).
+  - Our wedge is **upstream craft**: scenes, beats, bibles, model comparisons, and cross-model workflows.
+  - We can borrow their clear “Process” framing, but anchor ours in **film language** (Bible → Boards → Shots → Render), not just “video editor with AI”.
+
+#### **Flova** (flova.ai)
+- **Positioning:** AI “video creation agent platform” for storytellers – “from idea → image → film” through conversation.
+- **What they do (from site + social):**
+  - Conversational agent that helps users go from script/idea to generated scenes and final video.
+  - Heavy emphasis on cinematic storytelling and “first brand film” style marketing.
+  - Waitlist + “Super Creator Program” for high-intent users.
+- **Model strategy on the surface:**
+  - Very model-forward: name-drops Kling 2.5, Veo 3.1, Sora, WAN 2.5, Seedream/Seedance, Nano Banana 2, Flux, Midjourney V7, Suno, Gemini, Qwen, etc.
+  - Presents as a **hub/router** across many providers, mostly via a scrolling list of model names/logos.
+- **UX & funnel signals:**
+  - Waitlist-first homepage with “Join the Waitlist / Enter Invitation Code”.
+  - Narrative of “talk to Flova → get a film” – agent as creative partner.
+  - Public marketing doesn’t expose a DAW-style timeline; it feels more like a guided conversational flow than a workstation.
+- **What they DON'T show:**
+  - ❌ No public schema for scenes/shots/beats – narrative treated as “script in, film out”.
+  - ❌ No visible **tool catalog** or per-model testing – models are marketing bullets, not evaluated entries.
+  - ❌ No editable **workflow graph** – users don’t see or tweak the agent’s internal steps.
+- **Implications for Bedroom Director:**
+  - Flova is betting on the **agent makes your film** story; we can position as the **director’s workstation** where agents are controllable assistants.
+  - Our differentiation:
+    - Structured projects (Scenes, Beats, Bible, Prompt Slots).
+    - Transparent model routing + comparisons.
+    - Named workflows (Shot Stack, Time Stack, Storyboard from Still) that pros can reuse and refine.
+  - Marketing-wise, we can speak in the same “idea → image → film” arc but highlight **craft, control, and cross-model literacy**, not just automation.
+
+---
+
+#### **TapNow** (tapnow.ai)
+- **Positioning:** “AI visual creation engine for ads, films & creative storytelling.” Feels like a hybrid of AI film studio and commercial content engine.
+- **What they do (from site + social posts):**
+  - Provide an **infinite creation board** called Tapflow where you combine images, text, scripts, and outputs as nodes in a graph.
+  - Focus on professional storytelling use cases: TVCs, animation, short films, experimental art, e‑commerce ads.
+  - Lean on a very broad model stack: Veo, Kling, Wan, Runway, Vidu, Hailuo, Topaz, Midjourney, Imagen, Flux, GPT, Nano Banana, etc.
+- **UX & feature patterns:**
+  - Tapflow appears as a **node-based canvas** where:
+    - Nodes represent assets (image, script, output) and operations/workflows (“Try this workflow” chips).
+    - You can visually wire steps together (like a light version of Nuke / Unreal blueprints).
+  - Strong emphasis on:
+    - High-identity, ultra-detailed visuals for commercial work.
+    - “From idea to scripted video” workflows.
+    - One-click graphic design (ads, banners, social media).
+    - Image-to-TVC passes using multiple models.
+  - Brand layer: TapTV and Creative Partner Program signal a **creator community / showcase** dimension.
+- **What they DON'T make explicit:**
+  - ❌ No clear scene/shot schema—Tapflow is a graph, but it’s not obviously mapped to scenes, beats, or coverage.
+  - ❌ No exposed testing/benchmark layer; the model logos are impressive but not interrogated.
+  - ❌ No visible textual “director’s assistant” like our Director Chat—interface is more visual/graph-first.
+- **Implications for Bedroom Director:**
+  - Tapflow validates the idea of a **graph-like creative board**; our Scene Canvas is conceptually similar but grounded in a stricter film schema.
+  - We should make sure Scene Canvas can feel *playful* and exploratory (Tapflow vibe) while still enforcing structure (scenes, beats, boards).
+  - Their model wall again confirms that “multi‑model engine” is table stakes; our moat is **how** we route and compare, not raw breadth.
+
+#### **VidBuilder** (vidbuilder.ai)
+- **Positioning:** JSON-driven AI video creator for **promotional videos**; “Your Video as Code & UI.”
+- **What they do:**
+  - Generate videos from:
+    - Text prompts (AI Text‑to‑Video → auto JSON).
+    - Website URLs (URL‑to‑Video).
+    - Hand-authored JSON (JSON‑to‑Video).
+  - Present a **dual editing model**:
+    - Raw JSON editor for developers/automation.
+    - Drag-and-drop scene editor for non-technical users.
+  - Video-as-code positioning with 4K, 1080p, 720p outputs and a public product roadmap.
+- **UX & feature patterns:**
+  - Treats video spec as a **structured JSON document**:
+    - Top-level config (theme, music, quality).
+    - Array of `scenes` with typed scene kinds (`hero-title`, `cta`, etc.) and content fields.
+  - Features:
+    - Scene templates for promos/education (hero, product, features, CTA).
+    - URL scraping to auto-build JSON from a site.
+    - Planned REST API for programmatic generation.
+  - Pricing:
+    - Clear **per-video pricing** with a launch-phase scarcity mechanic (“94 videos remaining at $9.99”).
+    - No subscriptions at launch.
+- **What they DON'T cover:**
+  - ❌ No cinematic storytelling / film language—firmly focused on SaaS-style promo videos.
+  - ❌ No multi-model narrative; it’s about a single engine, not routing across Veo/Kling/etc.
+  - ❌ No notion of characters, bibles, or shot coverage—video is a sequence of marketing scene templates.
+- **Implications for Bedroom Director:**
+  - VidBuilder validates **“video as structured code”**; we’re already aligned with this via Scene/PromptSlot schemas.
+  - Their JSON schema and text‑to‑JSON approach are a useful mental model for our Prompt Compiler + external renderers (Veo, Seedance, etc.).
+  - For certain non‑narrative exports (promos/trailers), offering a **“promo JSON view”** or export could make Bedroom Director feel more interoperable with tools like VidBuilder without diluting our film focus.
+
+---
+
+#### What We Should Learn from Clova / Flova / TapNow / VidBuilder
+
+**Patterns to borrow:**
+- **Simple story arc:** All of them sell a clean narrative (“idea → image → film” or “describe → JSON → video”) rather than “AI tools.” Our messaging for Scene Canvas should be similarly tight (e.g., “Bible → Boards → Shots → Film”).
+- **Focused funnels:** Clova and VidBuilder have one obvious action (“Start Creating” / “Get Started Free”) with very little competing chrome. Key Bedroom Director pages should also champion a single primary CTA.
+- **Continuous path:** Each product promises a single environment from concept to finished video (no obvious tool‑hopping). Our strategic advantage is that we add **model choice and film craft** on top of that, but the experience should still feel like one uninterrupted studio.
+
+**Where we intentionally differ:**
+- **Director’s workstation vs. black box agent:** Flova leans on “talk to the agent, get a film”; we position as the **director’s workstation** where agents are visible tools plugged into Scenes / Beats / Bible, not opaque magic.
+- **Film grammar & structure:** None of these competitors expose a real scene/shot/bible schema or continuity tooling. That’s our core edge; we should keep doubling down on coverage, beats, and story health checks.
+- **Model literacy over logo walls:** TapNow and Flova use model walls for social proof. We’ll still show breadth, but our moat is **tested recommendations and routing logic**, not just “we support everything.”
+- **Structured representations:** VidBuilder proves that “video as code (JSON)” resonates, especially for promos. Our schemas + Prompt Compiler give us that power *and* cinematic storytelling, so we can selectively expose “video-as-JSON” where it helps (automation, promo exports) without narrowing the product to marketing videos only.
+
+These studios confirm that the market is converging on “AI film/visual engines,” but none combine: deep model research, explicit scene structure, and controllable multi‑model workflows the way Bedroom Director can.
+
+---
+
 ### Category 2: Prompt Libraries (Prompts Only)
 
 #### **PromptHero** (prompthero.com)
