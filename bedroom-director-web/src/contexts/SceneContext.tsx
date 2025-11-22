@@ -278,6 +278,8 @@ export function SceneProvider({ children }: { children: ReactNode }) {
         camera: { angle: "", movement: "", lens: "" },
         lighting: { mood: "", direction: "", color: "" },
         style: { aesthetic: "", era: "", influences: [] },
+        aspectRatio: "16:9",
+        workflow: "standard",
       },
       compiledPrompt: "",
       generatedMedia: [],
@@ -419,6 +421,35 @@ export function SceneProvider({ children }: { children: ReactNode }) {
 
     if (slots.style.influences && slots.style.influences.length > 0) {
       parts.push(`inspired by ${slots.style.influences.join(", ")}`);
+    }
+
+    // Workflow-specific prompt additions
+    if (slots.workflow && slots.workflow !== "standard") {
+      switch (slots.workflow) {
+        case "stacked_frames":
+          parts.unshift("Split screen, 4 vertical panels, sequential action, comic book style layout");
+          break;
+        case "storyboard":
+          parts.unshift("Storyboard grid, multiple shots, rough sketch style, annotated");
+          break;
+        case "poster":
+          parts.unshift("Movie poster key art, high contrast, title typography, cinematic composition");
+          break;
+        case "character_sheet":
+          parts.unshift("Character sheet, multiple angles, front view, side view, close up, full body");
+          break;
+        case "moodboard":
+          parts.unshift("Moodboard style transfer, aesthetic matching, color palette extraction, visual theme consistency");
+          break;
+        case "temporal_progression":
+          parts.unshift("4 sequential frames, temporal progression, time evolution, before and after, storytelling sequence");
+          break;
+      }
+    }
+
+    // Aspect Ratio flag (Midjourney/Niji style)
+    if (slots.aspectRatio) {
+      parts.push(`--ar ${slots.aspectRatio}`);
     }
 
     return parts.join(", ");

@@ -39,6 +39,9 @@ export interface PromptSlots {
   camera: CameraOption;
   lighting: LightingOption;
   style: StyleOption;
+  aspectRatio?: string; // "16:9", "9:16", "2.35:1", "1:1", etc.
+  workflow?: string; // "standard", "stacked_frames", "storyboard", "poster", etc.
+  referenceImage?: string; // URL of a reference image from Visual Bible
   advanced?: {
     negativePrompt?: string;
     weights?: Record<string, number>;

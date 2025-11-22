@@ -17,6 +17,7 @@ interface CuratedSignal {
   filePath: string;
   status: "pending" | "approved" | "rejected";
   analysis: any;
+}
 
 async function ensureSignalsDir() {
   await fs.mkdir(SIGNALS_DIR, { recursive: true });

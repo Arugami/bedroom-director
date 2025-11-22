@@ -5,7 +5,8 @@ import { useScene } from "@/contexts/SceneContext";
 import { supabase } from "@/lib/supabase";
 import DirectorSidebar, { SidebarSection } from "@/components/layout/DirectorSidebar";
 import TimelineRail from "@/components/scene/TimelineRail";
-import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight, Sparkles, LayoutTemplate, Camera, Sun, Palette, MessageSquare, Check, Copy, ExternalLink, Settings, Download, Pin } from "lucide-react";
+import { Film, FolderOpen, Save, Lock, Unlock, Plus, Edit3, X, ChevronRight, Sparkles, LayoutTemplate, Camera, Sun, Palette, MessageSquare, Check, Copy, ExternalLink, Settings, Download, Pin, Columns, Image as ImageIcon, LayoutGrid, Users, Wand2, Clock, Smartphone, Monitor, Square, RectangleHorizontal, PanelLeft, PanelRight } from "lucide-react";
+import { GlassPanel } from "@/components/ui/GlassPanel";
 
 const AnalyzingProgressBar = () => {
   const [width, setWidth] = useState(0);
@@ -764,242 +765,8 @@ export default function SceneCanvasPage() {
                         </div>
                       </label>
                     </div>
-
-                    {/* Visual Assets Grid */}
-                    {project?.bible?.visualAssets && project.bible.visualAssets.length > 0 && (
-                      <div className="grid grid-cols-3 gap-2 mt-3 max-h-[200px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10">
-                        {project.bible.visualAssets.map((asset, i) => {
-                          const isAnalyzing = asset.tags.includes("analyzing");
-                          return (
-                            <div key={i} className={`group relative aspect-square rounded-lg overflow-hidden border border-white/10 bg-black/50 cursor-pointer hover:border-bedroom-purple/50 transition-colors ${isAnalyzing ? 'animate-pulse border-bedroom-purple/50' : ''}`}>
-                              <img src={asset.url} alt={asset.label} className={`w-full h-full object-cover ${isAnalyzing ? 'opacity-50 blur-[2px]' : ''}`} />
-
-                              {/* Analyzing Overlay */}
-                              {isAnalyzing && (
-                                <>
-                                  <div className="absolute inset-0 bg-black/10 backdrop-blur-[0.5px]" />
-                                  <AnalyzingProgressBar />
-                                </>
-                              )}
-
-                              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-2">
-                                <button
-                                  onClick={(e) => deleteVisualAsset(asset.id, e)}
-                                  className="absolute top-1 right-1 p-1.5 rounded-full bg-white/10 hover:bg-red-500/20 hover:text-red-400 text-white/60 transition-colors"
-                                  title="Remove asset"
-                                >
-                                  <X className="w-3 h-3" />
-                                </button>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
                   </div>
-                )}
-              </div>
-
-              {/* Director Chat Section */}
-              <div className="flex-1 flex flex-col min-h-0 bg-gradient-to-b from-transparent to-black/20">
-                {/* Chat Header */}
-                <div className="flex-none px-4 py-3 border-b border-white/5 flex items-center justify-between bg-black/20">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-bedroom-purple to-indigo-600 flex items-center justify-center shadow-lg shadow-bedroom-purple/20">
-                      <Sparkles className="w-4 h-4 text-white" />
-                      <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border-2 border-black rounded-full" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-screen-white">Director AI</div>
-                      <div className="text-[10px] text-screen-white/40">Always active</div>
-                    </div>
                   </div>
-                </div>
-
-                {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                  {chatMessages.length === 0 ? (
-                    <div className="h-full flex flex-col items-center justify-center text-center p-6 opacity-50">
-                      <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-4 rotate-3">
-                        <Sparkles className="w-6 h-6 text-bedroom-purple" />
-                      </div>
-                      <h3 className="text-sm font-bold text-screen-white mb-1">Director Chat</h3>
-                      <p className="text-xs text-screen-white/50 max-w-[200px]">
-                        Discuss your vision, brainstorm scenes, or ask for structural advice.
-                      </p>
-                    </div>
-                  ) : (
-                    chatMessages.map((message) => (
-                      <div
-                        key={message.id}
-                        className={`flex gap-3 ${message.role === "user" ? "flex-row-reverse" : "flex-row"} mb-2`}
-                      >
-                        {/* Avatar */}
-                        <div className={`
-                          flex-none w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shadow-lg mt-1
-                          ${message.role === "user" ? "bg-white text-black" : "bg-bedroom-purple text-white"}
-                        `}>
-                          {message.role === "user" ? "U" : "AI"}
-                        </div>
-
-                        <div
-                          className="relative group"
-                          onMouseEnter={() => message.role === "assistant" && setHoveredMessageId(message.id)}
-                          onMouseLeave={() => setHoveredMessageId(null)}
-                        >
-                          <div className={`
-                            max-w-[85%] rounded-2xl px-4 py-2.5 text-xs leading-relaxed shadow-sm
-                            ${message.role === "user"
-                              ? "bg-bedroom-purple text-white rounded-tr-sm"
-                              : "bg-white/10 text-white border border-white/10 rounded-tl-sm backdrop-blur-sm"}`}
-                          >
-                            {message.content}
-
-                            {/* Tool Output (if any) */}
-                            {message.toolCalls && (
-                              <div className="mt-2 pt-2 border-t border-white/10 space-y-1">
-                                {message.toolCalls.map((tool, idx) => (
-                                  <div key={idx} className="flex items-center gap-1.5 text-[10px] text-screen-white/50 bg-black/20 rounded px-2 py-1">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500/50" />
-                                    <span>Used tool: <span className="font-mono text-screen-white/70">{tool.name}</span></span>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Action Buttons (Assistant messages only - exclude short confirmation messages) */}
-                          {message.role === "assistant" && hoveredMessageId === message.id && !isGenerating && message.content.length > 100 && (
-                            <div className="mt-2 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  createSceneFromMessage(message.content);
-                                  setHoveredMessageId(null);
-                                }}
-                                className="flex items-center gap-1 px-2 py-1 rounded-lg bg-bedroom-purple/90 hover:bg-bedroom-purple text-white text-[10px] font-medium transition-colors shadow-lg backdrop-blur-sm"
-                                title="Create scene from this message"
-                              >
-                                <Film className="w-3 h-3" />
-                                <span>Create Scene</span>
-                              </button>
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  pinMessageToBible(message.content);
-                                  setHoveredMessageId(null);
-                                }}
-                                className="flex items-center gap-1 px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[10px] font-medium transition-colors shadow-lg backdrop-blur-sm border border-white/10"
-                                title="Pin to Visual Bible (AI will analyze and categorize)"
-                              >
-                                <Pin className="w-3 h-3" />
-                                <span>Pin to Bible</span>
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))
-                  )}
-                  <div className="h-px" /> {/* Spacer */}
-                </div>
-
-                {/* Input Area */}
-                <div className="flex-none p-4 bg-black/40 border-t border-white/5 backdrop-blur-xl">
-                  <form
-                    onSubmit={async (e) => {
-                      e.preventDefault();
-                      if (!chatInput.trim() || isGenerating || !project) return;
-
-                      const userMessage = chatInput.trim();
-                      setChatInput("");
-                      setIsGenerating(true);
-
-                      // Add user message
-                      addChatMessage({ content: userMessage, role: "user" });
-
-                      try {
-                        // Call chat API with full conversation history
-                        const response = await fetch('/api/director/chat', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({
-                            messages: [
-                              ...chatMessages.map(m => ({ role: m.role, content: m.content })),
-                              { role: 'user', content: userMessage }
-                            ],
-                            projectContext: {
-                              title: project.title,
-                              scenes: project.scenes,
-                              bible: project.bible
-                            }
-                          })
-                        });
-
-                        if (!response.ok) {
-                          throw new Error('Chat API failed');
-                        }
-
-                        const data = await response.json();
-
-                        // Check if AI called propose_structure tool
-                        if (data.tool_calls && data.tool_calls.length > 0) {
-                          const proposeCall = data.tool_calls.find((tc: any) => tc.function.name === "propose_structure");
-                          if (proposeCall) {
-                            const proposal = JSON.parse(proposeCall.function.arguments);
-                            setProposalData(proposal);
-                            setShowProposalModal(true);
-
-                            // Add AI message indicating structure is ready
-                            addChatMessage({
-                              content: data.content || "I've analyzed your vision and prepared a project structure for you! Check the preview to see if it matches what you had in mind.",
-                              role: "assistant"
-                            });
-
-                            setIsGenerating(false);
-                            return;
-                          }
-                        }
-
-                        // Add AI response
-                        addChatMessage({
-                          content: data.content || "I'm here to help with your project!",
-                          role: "assistant"
-                        });
-                      } catch (error) {
-                        console.error('Chat error:', error);
-                        addChatMessage({
-                          content: "Sorry, I encountered an error. Please try again.",
-                          role: "assistant"
-                        });
-                      } finally {
-                        setIsGenerating(false);
-                      }
-                    }}
-                    className="relative"
-                  >
-                    <input
-                      type="text"
-                      value={chatInput}
-                      onChange={(e) => setChatInput(e.target.value)}
-                      placeholder="Describe a scene or ask for ideas..."
-                      disabled={isGenerating}
-                      className="w-full bg-black/40 border border-white/10 rounded-xl pl-4 pr-10 py-3 text-xs text-white placeholder-white/30 focus:outline-none focus:border-bedroom-purple/50 focus:bg-black/60 transition-all shadow-inner disabled:opacity-50"
-                    />
-                    <button
-                      type="submit"
-                      disabled={!chatInput.trim() || isGenerating}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-bedroom-purple text-white hover:bg-bedroom-purple/80 disabled:opacity-0 disabled:scale-90 transition-all duration-200 shadow-lg shadow-bedroom-purple/20"
-                    >
-                      {isGenerating ? (
-                        <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      ) : (
-                        <ChevronRight className="w-3 h-3" />
-                      )}
-                    </button>
-                  </form>
-                </div>
-              </div>
             </div>
 
             {/* Center Panel: Reel Wall */}
@@ -1286,6 +1053,79 @@ export default function SceneCanvasPage() {
                     </div>
                   </details>
 
+                  {/* Format & Workflow Controls - Collapsible (NEW) */}
+                  <details className="group border-b border-white/5 pb-4">
+                    <summary className="cursor-pointer flex items-center justify-between py-4 hover:opacity-80 transition-opacity">
+                      <div className="flex items-center gap-2 text-screen-white/60">
+                        <LayoutTemplate className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase">Format & Workflow</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {activeScene.promptSlots?.workflow && activeScene.promptSlots.workflow !== "standard" && (
+                          <span className="text-[10px] text-bedroom-purple font-medium">
+                            {activeScene.promptSlots.workflow.replace("_", " ")}
+                          </span>
+                        )}
+                        <ChevronRight className="w-4 h-4 text-white/40 group-open:rotate-90 transition-transform" />
+                      </div>
+                    </summary>
+
+                    <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
+                      {/* Workflow Selector */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-white/40 uppercase tracking-wider">Workflow Mode</label>
+                        <div className="grid grid-cols-1 gap-2">
+                          {[
+                            { id: "standard", label: "Standard Scene", desc: "Single cinematic shot" },
+                            { id: "stacked_frames", label: "Stacked Frames", desc: "4 vertical panels (9:16)" },
+                            { id: "storyboard", label: "Storyboard Grid", desc: "Rough sketch layout" },
+                            { id: "poster", label: "Movie Poster", desc: "Key art & typography (2:3)" },
+                            { id: "character_sheet", label: "Character Sheet", desc: "Multi-angle reference" },
+                          ].map((wf) => (
+                            <button
+                              key={wf.id}
+                              onClick={() => updatePromptSlots(activeScene.id, { workflow: wf.id })}
+                              className={`p-3 rounded-lg border text-left transition-all ${activeScene.promptSlots.workflow === wf.id
+                                ? "bg-bedroom-purple/20 border-bedroom-purple text-white"
+                                : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10"
+                                }`}
+                            >
+                              <div className="text-xs font-bold">{wf.label}</div>
+                              <div className="text-[10px] opacity-60">{wf.desc}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Aspect Ratio Selector - Quick Select */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-white/40 uppercase tracking-wider">Aspect Ratio</label>
+                        <div className="grid grid-cols-5 gap-2">
+                          {[
+                            { id: "9:16", label: "Social", icon: Smartphone },
+                            { id: "2.35:1", label: "Cinema", icon: RectangleHorizontal },
+                            { id: "16:9", label: "TV", icon: Monitor },
+                            { id: "2:3", label: "Poster", icon: ImageIcon },
+                            { id: "1:1", label: "Square", icon: Square },
+                          ].map((ar) => (
+                            <button
+                              key={ar.id}
+                              onClick={() => updatePromptSlots(activeScene.id, { aspectRatio: ar.id })}
+                              className={`group flex flex-col items-center justify-center p-2 rounded-lg border transition-all ${activeScene.promptSlots.aspectRatio === ar.id
+                                ? "bg-white text-black border-white"
+                                : "bg-white/5 text-white/40 border-white/10 hover:bg-white/10 hover:border-white/20"
+                                }`}
+                              title={ar.label}
+                            >
+                              <ar.icon className={`w-4 h-4 mb-1 ${activeScene.promptSlots.aspectRatio === ar.id ? "text-black" : "text-white/40 group-hover:text-white/60"}`} />
+                              <span className="text-[8px] font-bold uppercase">{ar.id}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </details>
+
                   {/* Compiled Prompt Preview - NEW */}
                   <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
                     <div className="flex items-center justify-between">
@@ -1537,6 +1377,65 @@ export default function SceneCanvasPage() {
           </div>
         </div>
       )}
+
+      {/* Director's Lens - Floating Action Bar */}
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+        <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-full p-1.5 shadow-2xl shadow-black/50 flex items-center gap-1 animate-in slide-in-from-bottom-4 duration-500">
+          <div className="px-3 py-1.5 flex items-center gap-2 border-r border-white/10 mr-1">
+            <div className="w-2 h-2 rounded-full bg-bedroom-purple animate-pulse" />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-white/60">Director's Lens</span>
+          </div>
+
+          {[
+            { id: "stacked_frames", label: "Stacked Frames", icon: Columns, color: "text-cyan-400", hover: "hover:bg-cyan-500/20 hover:text-cyan-300" },
+            { id: "poster", label: "Movie Poster", icon: ImageIcon, color: "text-amber-400", hover: "hover:bg-amber-500/20 hover:text-amber-300" },
+            { id: "storyboard", label: "Storyboard", icon: LayoutGrid, color: "text-emerald-400", hover: "hover:bg-emerald-500/20 hover:text-emerald-300" },
+            { id: "character_sheet", label: "Character Sheet", icon: Users, color: "text-pink-400", hover: "hover:bg-pink-500/20 hover:text-pink-300" },
+            { id: "moodboard", label: "Moodboard", icon: Palette, color: "text-purple-400", hover: "hover:bg-purple-500/20 hover:text-purple-300" },
+            { id: "temporal_progression", label: "Time Sequence", icon: Clock, color: "text-orange-400", hover: "hover:bg-orange-500/20 hover:text-orange-300" },
+          ].map((action) => (
+            <button
+              key={action.id}
+              onClick={() => {
+                // Create new scene with workflow
+                addScene(undefined, {
+                  title: `${action.label} Scene`,
+                  notes: `New ${action.label.toLowerCase()} workflow`,
+                  promptSlots: {
+                    subject: "",
+                    camera: { angle: "", movement: "", lens: "" },
+                    lighting: { mood: "", direction: "", color: "" },
+                    style: { aesthetic: "", era: "", influences: [] },
+                    workflow: action.id,
+                    aspectRatio: action.id === "stacked_frames" ? "9:16" : action.id === "poster" ? "2:3" : action.id === "character_sheet" ? "1:1" : action.id === "moodboard" ? "1:1" : "16:9"
+                  },
+                  // Auto-select recommended models if available
+                  selectedModel: action.id === "stacked_frames" || action.id === "character_sheet"
+                    ? "midjourney/niji-v6" // Niji v6 for anime/character
+                    : action.id === "poster" || action.id === "moodboard" || action.id === "temporal_progression"
+                      ? "google/gemini-3-pro-image-preview" // Nano Banana Pro for photorealism/text/temporal
+                      : "google/gemini-2.5-flash" // Flash for storyboards
+                });
+
+                // Show toast (simulated with chat message for now)
+                addChatMessage({
+                  role: "assistant",
+                  content: `I've set up a **${action.label}** scene for you! Check the Inspector to tweak the details.`
+                });
+              }}
+              className={`group relative p-2.5 rounded-full transition-all duration-300 ${action.hover}`}
+            >
+              <action.icon className={`w-5 h-5 ${action.color} transition-transform group-hover:scale-110`} />
+
+              {/* Tooltip */}
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-2 py-1 bg-black/80 backdrop-blur-md border border-white/10 rounded text-[10px] font-medium text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                {action.label}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-black/80" />
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

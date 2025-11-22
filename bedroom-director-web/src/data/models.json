@@ -345,7 +345,7 @@
       "regional_restrictions": "",
       "skill_level": "Enterprise",
       "best_for": "Production,Hobbyists",
-      "model": "Gemini 2.5 Flash Image (Nano-Banana)",
+      "model": "Gemini 3 Pro Image Preview (Nano Banana Pro)",
       "modality": "Text-to-Image; Image Editing",
       "key_features": "Conversational image generation & editing with mask-aware updates, multi-turn refinement, typography improvements, and prompt-grounded revisions",
       "duration_resolution": "Still images up to 2048×2048 (supports aspect ratios & animated GIF beta)",
@@ -358,7 +358,8 @@
       "pro_tips": "",
       "drawbacks": "Preview access, watermarking/usage policies apply; enterprise billing details still evolving",
       "notable_sources": "developers.googleblog.com/en/introducing-gemini-2-5-flash-image/; ai.google.dev/gemini-api/docs/image-generation",
-      "thumbnail_url": ""
+      "thumbnail_url": "",
+      "id": "google/gemini-3-pro-image-preview"
     },
     {
       "vendor": "Google",

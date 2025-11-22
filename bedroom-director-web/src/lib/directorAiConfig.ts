@@ -115,21 +115,25 @@ Project Title: ${projectContext.title}
 Current Bible: ${JSON.stringify(projectContext.bible)}
 
 VISUAL REFERENCES:
-${
-  projectContext.bible?.visualAssets
-    ?.map(
-      (a: any) =>
-        `[${(a.category || "").toUpperCase()}] ${a.label}: ${a.description}`
-    )
-    .join("\n") || "None"
-}
+${projectContext.bible?.visualAssets
+        ?.map(
+          (a: any) =>
+            `[${(a.category || "").toUpperCase()}] ${a.label}: ${a.description}`
+        )
+        .join("\n") || "None"
+      }
 
 GOAL:
 1. Chat naturally with the user. Ask probing questions about characters, setting, and tone.
 2. When the user gives new concrete details about characters, locations, or aesthetic, use the 'update_bible' tool to save them.
 3. When the user has described their vision sufficiently (logline, key scenes, tone), use 'propose_structure' to suggest a complete project breakdown.
-4. Keep responses concise, vivid, and cinematic. Prefer specific examples over generic advice.
-5. Stay encouraging and collaborative—you're a creative partner, not a critic.`;
+4. If the user asks for specific formats like "stacked frames", "storyboard", "movie poster", or "character sheet", use the 'apply_director_workflow' tool.
+   - Stacked Frames: Great for showing sequential action or time progression (9:16 vertical).
+   - Storyboard: Good for planning multiple shots in a grid.
+   - Movie Poster: For creating key art and promotional material (2:3 vertical).
+   - Character Sheet: For defining character look from multiple angles.
+5. Keep responses concise, vivid, and cinematic. Prefer specific examples over generic advice.
+6. Stay encouraging and collaborative—you're a creative partner, not a critic.`;
   }
 
   if (!DIRECTOR_CHAT_PROMPT_EXTRA) return base;

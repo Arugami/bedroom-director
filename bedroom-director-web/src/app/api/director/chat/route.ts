@@ -129,6 +129,36 @@ export async function POST(request: Request) {
                         required: ["suggestedTitle", "scenes"]
                     }
                 }
+            },
+            {
+                type: "function",
+                function: {
+                    name: "apply_director_workflow",
+                    description: "Apply a specialized creative workflow to a scene. Use this when the user wants to create specific formats like stacked frames, storyboards, or movie posters.",
+                    parameters: {
+                        type: "object",
+                        properties: {
+                            workflow: {
+                                type: "string",
+                                enum: ["standard", "stacked_frames", "storyboard", "poster", "character_sheet"],
+                                description: "The creative workflow to apply"
+                            },
+                            aspectRatio: {
+                                type: "string",
+                                description: "Target aspect ratio (e.g., '9:16' for social, '16:9' for film, '2:3' for poster)"
+                            },
+                            sceneId: {
+                                type: "string",
+                                description: "ID of the scene to modify (optional, defaults to creating new)"
+                            },
+                            description: {
+                                type: "string",
+                                description: "Description of the content to generate"
+                            }
+                        },
+                        required: ["workflow", "description"]
+                    }
+                }
             }
         ];
 

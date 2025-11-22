@@ -13,6 +13,7 @@ const CONFIG_DIR = path.join(DATA_ROOT, "director_ai");
 const CONFIG_PATH = path.join(CONFIG_DIR, "config.json");
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
